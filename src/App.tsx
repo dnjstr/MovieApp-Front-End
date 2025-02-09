@@ -3,6 +3,8 @@ import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
 import MovieListSection from "./components/Movielistsection";
 import MovieDetail from "./components/MovieDetail";
+import SignIn from "./components/SignIn";  // ✅ Import SignIn
+import SignUp from "./components/SignUp";  // Already included
 
 const App: React.FC = () => {
   return (
@@ -15,6 +17,8 @@ const App: React.FC = () => {
           <Route path="/genre" element={<div>Genre Page</div>} />
           <Route path="/my-list" element={<div>My List Page</div>} />
           <Route path="/movies/:id" element={<MovieDetail />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
         </Routes>
       </div>
     </Router>

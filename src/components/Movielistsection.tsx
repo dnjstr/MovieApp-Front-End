@@ -26,7 +26,7 @@ const MovieListSection: React.FC = () => {
         {movies.map((movie) => (
           <div
             key={movie.id}
-            className="bg-gray-700 text-white p-4 rounded-lg shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
+            className="bg-orange-600 text-white p-4 rounded-lg shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
             onClick={() => handleMovieClick(movie.id)}
           >
             <img src={movie.image} alt={movie.title} className="w-full h-40 object-cover rounded-md mb-2" />
