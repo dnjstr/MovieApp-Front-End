@@ -13,7 +13,7 @@ const SignUp: React.FC = () => {
                         <input
                             type="text"
                             placeholder="Full Name"
-                            className="w-full p-3 border border-gray-300 rounded-md"
+                            className="text-black w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                         />
                     </div>
 
@@ -21,7 +21,7 @@ const SignUp: React.FC = () => {
                         <input
                             type="email"
                             placeholder="Email Address"
-                            className="w-full p-3 border border-gray-300 rounded-md"
+                            className="text-black w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                         />
                     </div>
 
@@ -29,7 +29,7 @@ const SignUp: React.FC = () => {
                         <input
                             type="text"
                             placeholder="Phone Number"
-                            className="w-full p-3 border border-gray-300 rounded-md"
+                            className="text-black w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                         />
                     </div>
 
@@ -37,7 +37,7 @@ const SignUp: React.FC = () => {
                         <input
                             type="password"
                             placeholder="Password"
-                            className="w-full p-3 border border-gray-300 rounded-md"
+                            className="text-black w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                         />
                     </div>
 
@@ -48,7 +48,7 @@ const SignUp: React.FC = () => {
 
                 <p className="text-center text-gray-600 mt-4">
                     Already have an account?{" "}
-                    <Link to="/sign-in" className="text-orange-500 hover:underline">
+                    <Link to="/sign-in" className="text-orange-500 font-semibold hover:underline">
                         Sign In
                     </Link>
                 </p>

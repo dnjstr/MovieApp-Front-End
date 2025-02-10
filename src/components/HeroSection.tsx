@@ -11,7 +11,7 @@ const HeroSection: React.FC = () => {
         muted
         playsInline
       >
-        <source src="/jake-the-dog.960x540.mp4" type="video/mp4" />
+        <source src="/dune-movie-2021.960x540.mp4" type="video/mp4" />
       </video>
 
       {/* Overlay (for better text visibility) */}
@@ -23,7 +23,7 @@ const HeroSection: React.FC = () => {
           Unlimited movies, TV shows, and more.
         </h1>
         <p className="text-lg text-white md:text-xl mt-4">Watch anywhere. Cancel anytime.</p>
-        <button className="mt-6 bg-orange-600 hover:bg-orange-700 text-black px-6 py-3 rounded-md text-lg font-semibold">
+        <button className="mt-6 bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-md text-lg font-semibold">
           Get Started
         </button>
       </div>

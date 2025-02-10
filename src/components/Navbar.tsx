@@ -38,10 +38,10 @@ const Navbar: React.FC = () => {
       {/* Right Side (Desktop) */}
       <div className="hidden md:flex items-center space-x-4">
         <Link to="/sign-in">
-          <button className="bg-orange-600 text-black px-4 py-2 rounded-md">Sign In</button>
+          <button className="bg-orange-600 text-white px-4 py-2 rounded-md">Sign In</button>
         </Link>
         <Link to="/sign-up">
-          <button className="bg-gray-600 text-white px-4 py-2 rounded-md">Sign Up</button>
+          <button className="bg-orange-600 text-white px-4 py-2 rounded-md">Sign Up</button>
         </Link>
       </div>
 
@@ -58,10 +58,10 @@ const Navbar: React.FC = () => {
           <Link to="/genre" className="hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>Genre</Link>
           <Link to="/my-list" className="hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>My List</Link>
           <Link to="/sign-in" onClick={() => setIsMenuOpen(false)}>
-            <button className="bg-orange-600 text-black px-4 py-2 rounded-md w-full">Sign In</button>
+            <button className="bg-orange-600 text-white px-4 py-2 rounded-md w-full">Sign In</button>
           </Link>
           <Link to="/sign-up" onClick={() => setIsMenuOpen(false)}>
-            <button className="bg-gray-600 text-white px-4 py-2 rounded-md w-full">Sign Up</button>
+            <button className="bg-orange-600 text-white px-4 py-2 rounded-md w-full">Sign Up</button>
           </Link>
         </div>
       )}

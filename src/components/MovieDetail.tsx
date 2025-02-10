@@ -65,11 +65,11 @@ const MovieDetail: React.FC = () => {
         <div className="p-8">
             <button
                 onClick={() => navigate(-1)}
-                className="mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
+                className="mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300 mt-8"
             >
                 &larr; Back
             </button>
-            <img src={movie.image} alt={movie.title} className="w-full h-80 object-cover rounded-md mb-4" />
+            <img src={movie.image} alt={movie.title} className="w-full h-90 object-cover rounded-md mb-4" />
             <h1 className="text-3xl font-bold mb-2">{movie.title}</h1>
             <p>{movie.description}</p>
         </div>

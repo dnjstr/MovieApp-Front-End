@@ -3,8 +3,8 @@ import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
 import MovieListSection from "./components/Movielistsection";
 import MovieDetail from "./components/MovieDetail";
-import SignIn from "./components/SignIn";  // ✅ Import SignIn
-import SignUp from "./components/SignUp";  // Already included
+import SignIn from "./components/SignIn";
+import SignUp from "./components/SignUp";
 
 const App: React.FC = () => {
   return (
