@@ -54,8 +54,8 @@ const movies = [
             { name: "Zendaya", role: "Chani", image: "https://cdn.britannica.com/23/264823-050-A938FF2D/zendaya-attends-96th-annual-academy-awards-march-10-2024-hollywood-california-actress-acting.jpg?w=400&h=300&c=crop" }
         ],
         reviews: [
-            { source: "Hollywood Reporter", review: "A mind-bending thriller...", rating: 5 },
-            { source: "The Guardian", review: "Terrifying and thought-provoking...", rating: 4 }
+            { source: "Rotten Tomatoes", review: "All the hype and great things I’ve heard about this film are all true!", rating: 4 },
+            { source: "Flick Filosopher", review: "This is what all movies should aspire to be, and yes, I can say that for many other great movies but I believe this is one of, if not the best example of art in movie form as it presents a good story, great action and phenomenal acting from actors such as Timothee Chalamet and Zendaya. ", rating: 4 }
         ]
     },
     {
@@ -64,12 +64,12 @@ const movies = [
         description: "During World War II, Lt. Gen. Leslie Groves Jr. appoints physicist J. Robert Oppenheimer to work on the top-secret Manhattan Project. Oppenheimer and a team of scientists spend years developing and designing the atomic bomb. Their work comes to fruition on July 16, 1945, as they witness the world's first nuclear explosion, forever changing the course of history.",
         image: "https://creativereview.imgix.net/content/uploads/2023/12/Oppenheimer.jpg?auto=compress,format&q=60&w=1263&h=2000",
         cast: [
-            { name: "Lupita Nyong'o", role: "Adelaide Wilson", image: "https://example.com/lupita.jpg" },
-            { name: "Winston Duke", role: "Gabe Wilson", image: "https://example.com/winston.jpg" }
+            { name: "Cillian Murphy", role: "J. Robert Oppenheimer", image: "https://media.gq-magazine.co.uk/photos/671b8991c9fbba3490dbc2fd/1:1/w_2359,h_2359,c_limit/2180805232" },
+            { name: "Florence Pugh", role: "Jean Tatlock", image: "https://cdn.britannica.com/20/217320-050-181C95DC/English-actor-Florence-Pugh-2019.jpg" }
         ],
         reviews: [
-            { source: "Hollywood Reporter", review: "A mind-bending thriller...", rating: 5 },
-            { source: "The Guardian", review: "Terrifying and thought-provoking...", rating: 4 }
+            { source: "Rotten Tomatoes", review: "A Brilliant Tale of Science, Humanity, and Ethical Dilemmas", rating: 4 },
+            { source: "IMDb", review: "It is a must-see for anyone who appreciates the convergence of history, science, and the human spirit on the silver screen.", rating: 3 }
         ]
     },
     {
@@ -78,12 +78,12 @@ const movies = [
         description: "At a psychiatric ward in Newark, New Jersey, therapist Rose Cotter meets graduate student Laura Weaver, who explains that she recently witnessed her professor kill himself. Laura claims to be terrorized by an invisible Entity that appears as various smiling people and has foretold her death.",
         image: "https://cdn.prod.website-files.com/6009ec8cda7f305645c9d91b/66a4263d01a185d5ea22eeda_6408f76710a9935109f855d4_smile-min.png",
         cast: [
-            { name: "Lupita Nyong'o", role: "Adelaide Wilson", image: "https://example.com/lupita.jpg" },
-            { name: "Winston Duke", role: "Gabe Wilson", image: "https://example.com/winston.jpg" }
+            { name: "Sosie Bacon", role: "Rose Cotter", image: "https://ntvb.tmsimg.com/assets/assets/489330_v9_bc.jpg" },
+            { name: "Kyle Gallner", role: "Joel", image: "https://ntvb.tmsimg.com/assets/assets/264616_v9_bc.jpg" }
         ],
         reviews: [
-            { source: "Hollywood Reporter", review: "A mind-bending thriller...", rating: 5 },
-            { source: "The Guardian", review: "Terrifying and thought-provoking...", rating: 4 }
+            { source: "IMDb", review: "Smile is still my overall favorite between the two, and for that this is a must watch for any horror movie lover reading this review. You wont regret seeing this.", rating: 3 },
+            { source: "Rotten Tomatoes", review: "Smile is the most shocking movie Ive ever reviewed. It had more surprises than a David Blaine magic show.", rating: 3 }
         ]
     },
     {
@@ -92,12 +92,12 @@ const movies = [
         description: "An accomplished strategist and tactician, leader, and diplomat. She has been shown to astrally project herself into various lands of myth. In some cases, she has shown the ability to place individuals into a state of sleep while under the power of her golden lasso.",
         image: "https://rukminim2.flixcart.com/image/850/1000/jt8yxe80/poster/e/w/k/medium-wonder-wom11-woman-movie-poster-original-imafem3hvgkhfvuj.jpeg?q=20&crop=false",
         cast: [
-            { name: "Lupita Nyong'o", role: "Adelaide Wilson", image: "https://example.com/lupita.jpg" },
-            { name: "Winston Duke", role: "Gabe Wilson", image: "https://example.com/winston.jpg" }
+            { name: "Gal Gadot", role: "Wonder Woman", image: "https://m.media-amazon.com/images/M/MV5BNWJmNDNiMzgtOGNlOC00MmU4LThkNjUtNTIxNmQwMzQ4NTczXkEyXkFqcGc@._V1_.jpg" },
+            { name: "Chris Pine", role: "Steve Trevor", image: "https://mediaproxy.tvtropes.org/width/1200/https://static.tvtropes.org/pmwiki/pub/images/chris_pine_3.png" }
         ],
         reviews: [
-            { source: "Hollywood Reporter", review: "A mind-bending thriller...", rating: 5 },
-            { source: "The Guardian", review: "Terrifying and thought-provoking...", rating: 4 }
+            { source: "Rotten Tomatoes", review: "This film is everything you want in a superhero movie. This is the Wonder Woman movie weve been waiting for. ", rating: 4 },
+            { source: "IMDb", review: "Wonder Woman is the first DCEU movie that most people can agree is stellar. It features a good story, great action scenes, and strong performances by its cast, especially Gal Gadot and Chris Pine.", rating: 3 }
         ]
     },
     {
@@ -106,12 +106,12 @@ const movies = [
         description: "Follows Steve Rogers, aka Captain America, as he struggles to adapt to modern life after being frozen for decades, only to become entangled in a dangerous conspiracy within S.H.I.E.L.D., forcing him to team up with Black Widow and a new ally, the Falcon, to combat a mysterious and lethal assassin known as the Winter Soldier, a highly skilled and seemingly unstoppable enemy with a connection to his past.",
         image: "https://anniehaydesign.weebly.com/uploads/9/5/4/6/95469676/landscape-poster-3_orig.jpg",
         cast: [
-            { name: "Lupita Nyong'o", role: "Adelaide Wilson", image: "https://example.com/lupita.jpg" },
-            { name: "Winston Duke", role: "Gabe Wilson", image: "https://example.com/winston.jpg" }
+            { name: "Chris Evans", role: "Captain America", image: "https://cdn.britannica.com/28/215028-050-94E9EA1E/American-actor-Chris-Evans-2019.jpg" },
+            { name: "Sebastian Stan", role: "Bucky Barnes", image: "https://m.media-amazon.com/images/M/MV5BMWEwYjgxMDQtYmRkOS00MGFiLThjMzMtZGQ2ZjBhMTcyOWNlXkEyXkFqcGc@._V1_.jpg" }
         ],
         reviews: [
-            { source: "Hollywood Reporter", review: "A mind-bending thriller...", rating: 5 },
-            { source: "The Guardian", review: "Terrifying and thought-provoking...", rating: 4 }
+            { source: "Rotten Tomatoes", review: "Captain America: The Winter Soldier is an absolute masterpiece and one of the greatest superhero films of all time. This movie redefined what a Marvel film could be, blending action, espionage, and emotional depth into a thrilling experience.", rating: 4 },
+            { source: "IMDb", review: "My absolute favourite of the MCU movies. The Winter Soldier is such a cracking 70s style conspiracy story. ", rating: 3 }
         ]
     }
 ];
@@ -127,13 +127,13 @@ const MovieDetail: React.FC = () => {
 
     return (
         <div className="relative text-white bg-black min-h-screen">
-            {/* Background Image */}
+
             <div className="absolute inset-0 bg-cover bg-center opacity-40" style={{ backgroundImage: `url(${movie.image})` }}></div>
             
             <div className="relative z-10 p-8 max-w-4xl mx-auto">
                 <button
                     onClick={() => navigate(-1)}
-                    className="mb-4 px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-900 transition duration-300 mt-5"
+                    className="mb-4 px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-900 transition duration-300 mt-8"
                 >
                     &larr; Back
                 </button>
@@ -143,7 +143,7 @@ const MovieDetail: React.FC = () => {
                 <h1 className="text-4xl font-bold mt-4">{movie.title}</h1>
                 <p className="text-lg mt-2">{movie.description}</p>
                 
-                {/* Cast Section */}
+
                 {movie.cast && (
                     <>
                         <h2 className="text-2xl font-bold mt-6">Cast</h2>
@@ -159,7 +159,7 @@ const MovieDetail: React.FC = () => {
                     </>
                 )}
 
-                {/* Ratings & Reviews */}
+
                 {movie.reviews && (
                     <>
                         <h2 className="text-2xl font-bold mt-6">Ratings & Reviews</h2>
