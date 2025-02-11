@@ -3,7 +3,7 @@ import React from "react";
 const MainPage: React.FC = () => {
   return (
     <div className="relative h-screen w-full flex flex-col items-start justify-center text-white text-left px-4">
-      {/* Video Background */}
+
       <video
         className="absolute top-0 left-0 w-full h-full object-cover"
         autoPlay
@@ -14,10 +14,8 @@ const MainPage: React.FC = () => {
         <source src="/dune-movie-2021.960x540.mp4" type="video/mp4" />
       </video>
 
-      {/* Overlay (for better text visibility) */}
       <div className="absolute top-0 left-0 w-full h-full bg-black/30"></div>
 
-      {/* Content */}
       <div className="relative z-10 pl-10 md:pl-20">
         <h1 className="text-4xl text-orange-600 md:text-5xl font-bold max-w-2xl">
           Unlimited movies, TV shows, and more.

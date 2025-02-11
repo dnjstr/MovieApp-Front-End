@@ -21,7 +21,7 @@ const MovieListSection: React.FC = () => {
 
   return (
     <div className="px-8 py-10">
-      <h2 className="text-3xl font-bold mb-6">Popular on JustWatch</h2>
+      <h2 className="text-3xl font-bold mb-6">Popular on Movie Haven</h2>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {movies.map((movie) => (
           <div
