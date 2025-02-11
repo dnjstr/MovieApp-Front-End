@@ -11,7 +11,7 @@ const SignIn: React.FC = () => {
                         We're excited to have you back. Sign in to access your account and continue your journey with us.
                     </p>
                     <div className="mt-8">
-                       <svg
+                        <svg
                         className="w-16 h-16 text-black"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 512 512"
