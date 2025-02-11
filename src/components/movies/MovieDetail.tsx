@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { FaArrowLeft } from 'react-icons/fa';
 
 const movies = [
     {
@@ -122,35 +123,37 @@ const MovieDetail: React.FC = () => {
     const movie = movies.find((movie) => movie.id === parseInt(id || '', 10));
 
     if (!movie) {
-        return <div>Movie not found.</div>;
+        return <div className="text-white text-center mt-10">Movie not found.</div>;
     }
 
     return (
-        <div className="relative text-white bg-black min-h-screen">
+        <div className="relative text-white bg-black min-h-screen flex flex-col items-start">
+            <div className="absolute inset-0 bg-cover bg-center opacity-50" style={{ backgroundImage: `url(${movie.image})` }}></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black"></div>
 
-            <div className="absolute inset-0 bg-cover bg-center opacity-40" style={{ backgroundImage: `url(${movie.image})` }}></div>
-            
-            <div className="relative z-10 p-8 max-w-4xl mx-auto">
+            <div className="relative z-10 p-8 w-full max-w-full">
                 <button
-                    onClick={() => navigate(-1)}
-                    className="mb-4 px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-900 transition duration-300 mt-8"
+                    onClick={() => (window.history.length > 2 ? navigate(-1) : navigate('/'))}
+                    className="flex items-center gap-2 mb-4 px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-900 transition duration-300 mt-8 shadow-md"
                 >
-                    &larr; Back
+                    <FaArrowLeft /> Back
                 </button>
-                
-                <img src={movie.image} alt={movie.title} className="w-full h-96 object-cover rounded-md shadow-lg" />
-                
-                <h1 className="text-4xl font-bold mt-4">{movie.title}</h1>
-                <p className="text-lg mt-2">{movie.description}</p>
-                
+
+                <div className="flex flex-col md:flex-row items-center">
+                    <img src={movie.image} alt={movie.title} className="w-80 h-96 object-cover rounded-md shadow-lg border border-gray-700" />
+                    <div className="md:ml-8 text-center md:text-left">
+                        <h1 className="text-4xl font-bold">{movie.title}</h1>
+                        <p className="text-lg mt-2 text-gray-300">{movie.description}</p>
+                    </div>
+                </div>
 
                 {movie.cast && (
                     <>
-                        <h2 className="text-2xl font-bold mt-6">Cast</h2>
-                        <div className="flex overflow-x-auto space-x-4 mt-2">
+                        <h2 className="text-2xl font-bold mt-6 text-center border-b border-orange-600 pb-2">Cast</h2>
+                        <div className="flex overflow-x-auto space-x-4 mt-4 justify-center">
                             {movie.cast.map((actor) => (
                                 <div key={actor.name} className="flex flex-col items-center">
-                                    <img src={actor.image} alt={actor.name} className="w-16 h-16 rounded-full" />
+                                    <img src={actor.image} alt={actor.name} className="w-16 h-16 rounded-full border border-gray-500 shadow-md" />
                                     <p className="text-sm font-medium">{actor.name}</p>
                                     <p className="text-xs opacity-70">{actor.role}</p>
                                 </div>
@@ -159,15 +162,14 @@ const MovieDetail: React.FC = () => {
                     </>
                 )}
 
-
                 {movie.reviews && (
                     <>
-                        <h2 className="text-2xl font-bold mt-6">Ratings & Reviews</h2>
-                        <div className="space-y-4 mt-2">
+                        <h2 className="text-2xl font-bold mt-6 text-center border-b border-orange-600 pb-2">Ratings & Reviews</h2>
+                        <div className="space-y-4 mt-4">
                             {movie.reviews.map((review, index) => (
-                                <div key={index} className="border-l-4 border-orange-600 pl-4">
-                                    <p className="text-lg font-semibold">{review.source}</p>
-                                    <p className="text-sm italic">"{review.review}"</p>
+                                <div key={index} className="border-l-4 border-orange-600 pl-4 bg-black/40 p-3 rounded-md shadow-md">
+                                    <p className="text-lg font-semibold text-orange-400">{review.source}</p>
+                                    <p className="text-sm italic text-gray-300">"{review.review}"</p>
                                     <p className="text-yellow-400">{'⭐'.repeat(review.rating)}</p>
                                 </div>
                             ))}
