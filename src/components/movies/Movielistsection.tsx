@@ -26,18 +26,18 @@ const MovieListSection: React.FC = () => {
         {movies.map((movie) => (
           <div
             key={movie.id}
-            className="relative movie-card-bg text-white p-4 rounded-lg shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
+            className="relative movie-card-bg text-white p-4 rounded-lg shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer mb-4"
             onClick={() => handleMovieClick(movie.id)}
           >
             <div className='movie-card-photo w-full p-1 flex justify-center rounded-md'>
               <img src={movie.image} alt={movie.title} className="w-full h-40 object-cover rounded-md" />
             </div>
-            <div className='flex flex-col justify-between h-52'>
+            <div className='movie-card-info flex flex-col justify-between'>
               <div>
                 <h3 className="text-lg font-semibold mt-2">{movie.title}</h3>
+                <p className="text-sm text-white mb-3 mt-1">{movie.cast}</p>
                 <p className="text-xs leading-5 px-1 tracking-normal text-justify opacity-75">{movie.description}</p>
               </div>
-              <p className="text-sm text-white">{movie.cast}</p>
             </div>
             <div className='movie-card-overlay'></div>
           </div>
