@@ -128,7 +128,7 @@ const MovieDetail: React.FC = () => {
     return (
         <div className="relative text-white bg-black min-h-screen">
 
-            <div className="absolute inset-0 bg-cover bg-center opacity-40" style={{ backgroundImage: `url(${movie.image})` }}></div>
+            <div className=" absolute inset-0 bg-cover bg-center opacity-40" style={{ backgroundImage: `url(${movie.image})` }}></div>
             
             <div className="relative z-10 p-8 max-w-4xl mx-auto">
                 <button

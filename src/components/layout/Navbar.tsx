@@ -25,7 +25,7 @@ const Navbar: React.FC = () => {
         <Link to="/my-list" className="hover:text-orange-600">My List</Link>
       </div>
 
-      <div className="hidden md:flex items-center bg-gray-800 px-3 py-2 rounded-md w-64">
+      <div className="hidden md:flex items-center bg-gray-800 px-3 py-2 rounded-md w-64 md:w-1/3 lg:w-1/4 xl:w-1/5">
         <FaSearch className="text-white" />
         <input
           type="text"
@@ -65,13 +65,14 @@ const Navbar: React.FC = () => {
 
   
       {isMenuOpen && (
-        <div className="absolute top-16 right-0 w-48 bg-black bg-opacity-90 flex flex-col items-center p-4 space-y-4 md:hidden">
-          <Link to="/" className="hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>Home</Link>
-          <Link to="/popular" className="hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>New & Popular</Link>
-          <Link to="/genre" className="hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>Genre</Link>
-          <Link to="/my-list" className="hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>My List</Link>
+        <div className="absolute top-16 right-0 w-48 bg-gray-800 rounded-md bg-opacity-100 flex flex-col items-center p-4 space-y-4 md:hidden">
+          <Link to="/" className="text-white hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>Home</Link>
+          <Link to="/popular" className="text-white hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>New & Popular</Link>
+          <Link to="/genre" className="text-white hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>Genre</Link>
+          <Link to="/my-list" className="text-white hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>My List</Link>
 
           <div className="relative w-full">
+            
             <button
               className="bg-orange-600 text-white px-4 py-2 rounded-md w-full"
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -80,9 +81,9 @@ const Navbar: React.FC = () => {
             </button>
 
             {isDropdownOpen && (
-              <div className="mt-2 bg-black bg-opacity-90 rounded-md py-2 w-full text-center">
-                <Link to="/sign-in" className="block px-4 py-2 text-white hover:bg-orange-600">Sign In</Link>
-                <Link to="/sign-up" className="block px-4 py-2 text-white hover:bg-orange-600">Sign Up</Link>
+              <div className="mt-2  border-gray-400 bg-opacity-90 rounded-md py-1 w-full text-center">
+                <Link to="/sign-in" className="block px-4 py-2 text-white hover:bg-orange-600 rounded-md">Sign In</Link>
+                <Link to="/sign-up" className="block px-4 py-2 text-white hover:bg-orange-600 rounded-md">Sign Up</Link>
               </div>
             )}
           </div>
