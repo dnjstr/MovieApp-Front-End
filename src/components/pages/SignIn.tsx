@@ -30,7 +30,7 @@ const SignIn: React.FC = () => {
                         </svg>
                     </div>
                 </div>
-                    <div className="bg-white text-white p-16 rounded-r-lg flex flex-col justify-center items-center w-2/3">
+                    <div className="bg-white p-16 rounded-r-lg  w-2/3">
                         <h2 className="text-2xl text-black font-bold text-center mb-4">Sign In</h2>
                         <p className="text-black text-center mb-6">
                             Sign in to your account to continue.
