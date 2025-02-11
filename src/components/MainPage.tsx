@@ -1,6 +1,6 @@
 import React from "react";
 
-const HeroSection: React.FC = () => {
+const MainPage: React.FC = () => {
   return (
     <div className="relative h-screen w-full flex flex-col items-start justify-center text-white text-left px-4">
       {/* Video Background */}
@@ -33,4 +33,4 @@ const HeroSection: React.FC = () => {
   );
 };
 
-export default HeroSection;
+export default MainPage;
