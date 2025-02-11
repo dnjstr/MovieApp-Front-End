@@ -5,7 +5,7 @@ const MainPage: React.FC = () => {
     <div className="relative h-screen w-full flex flex-col items-start justify-center text-white text-left px-4">
 
       <video
-        className="absolute top-0 left-0 w-full h-full object-cover"
+        className="absolute top-0 left-0 w-full h-full object-cover rounded"
         autoPlay
         loop
         muted

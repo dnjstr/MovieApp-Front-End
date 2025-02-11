@@ -22,17 +22,24 @@ const MovieListSection: React.FC = () => {
   return (
     <div className="px-8 py-10">
       <h2 className="text-3xl font-bold mb-6">Popular on Movie Haven</h2>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {movies.map((movie) => (
           <div
             key={movie.id}
-            className="bg-orange-600 text-white p-4 rounded-lg shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
+            className="relative movie-card-bg text-white p-4 rounded-lg shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
             onClick={() => handleMovieClick(movie.id)}
           >
-            <img src={movie.image} alt={movie.title} className="w-full h-40 object-cover rounded-md mb-2" />
-            <h3 className="text-lg font-semibold">{movie.title}</h3>
-            <p className="text-sm opacity-75">{movie.description}</p>
-            <p className="text-sm text-black opacity-75">{movie.cast}</p>
+            <div className='movie-card-photo w-full p-1 flex justify-center rounded-md'>
+              <img src={movie.image} alt={movie.title} className="w-full h-40 object-cover rounded-md" />
+            </div>
+            <div className='flex flex-col justify-between h-52'>
+              <div>
+                <h3 className="text-lg font-semibold mt-2">{movie.title}</h3>
+                <p className="text-xs leading-5 px-1 tracking-normal text-justify opacity-75">{movie.description}</p>
+              </div>
+              <p className="text-sm text-white">{movie.cast}</p>
+            </div>
+            <div className='movie-card-overlay'></div>
           </div>
         ))}
       </div>
