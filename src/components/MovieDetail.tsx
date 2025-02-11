@@ -8,8 +8,8 @@ const movies = [
         description: "A dark, gritty take on the superhero...",
         image: "https://cdn.prod.website-files.com/6009ec8cda7f305645c9d91b/66a4263d01a185d5ea22eeec_6408f6e7b5811271dc883aa8_batman-min.png",
         cast: [
-            { name: "Robert Pattinson", role: "Batman", image: "https://example.com/pattinson.jpg" },
-            { name: "Zoe Kravitz", role: "Catwoman", image: "https://example.com/kravitz.jpg" }
+            { name: "Robert Pattinson", role: "Batman", image: "https://m.media-amazon.com/images/M/MV5BNzk0MDQ5OTUxMV5BMl5BanBnXkFtZTcwMDM5ODk5Mg@@._V1_FMjpg_UX1000_.jpg" },
+            { name: "Zoe Kravitz", role: "Catwoman", image: "https://imgix.bustle.com/uploads/getty/2025/1/29/89045022/new-york-new-york.jpg?w=248&h=372&fit=crop&crop=faces&dpr=2" }
         ],
         reviews: [
             { source: "New York Times", review: "A deeply intense, outright gritty take...", rating: 5 },
@@ -22,8 +22,8 @@ const movies = [
         description: "A young adult fantasy novel...",
         image: "https://m.media-amazon.com/images/M/MV5BZWM1NTJiNzUtYTJlYy00NWYyLTliNjUtN2FjNzdkOWQxNWRjXkEyXkFqcGc@._V1_.jpg",
         cast: [
-            { name: "Jessie Mei Li", role: "Alina Starkov", image: "https://example.com/jessie.jpg" },
-            { name: "Ben Barnes", role: "General Kirigan", image: "https://example.com/ben.jpg" }
+            { name: "Jessie Mei Li", role: "Alina Starkov", image: "https://ntvb.tmsimg.com/assets/assets/1597259_v9_aa.jpg" },
+            { name: "Ben Barnes", role: "General Kirigan", image: "https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/510380_v9_bb.jpg" }
         ],
         reviews: [
             { source: "Rotten Tomatoes", review: "A gripping fantasy adventure...", rating: 4 },
@@ -36,8 +36,8 @@ const movies = [
         description: "A horror thriller directed by Jordan Peele...",
         image: "https://i.ebayimg.com/images/g/FKsAAOSw8DZgGo2i/s-l1200.jpg",
         cast: [
-            { name: "Lupita Nyong'o", role: "Adelaide Wilson", image: "https://example.com/lupita.jpg" },
-            { name: "Winston Duke", role: "Gabe Wilson", image: "https://example.com/winston.jpg" }
+            { name: "Lupita Nyong'o", role: "Adelaide Wilson", image: "https://m.media-amazon.com/images/M/MV5BMTY0NTQ4MDY2Nl5BMl5BanBnXkFtZTgwNDk1MTEyMDE@._V1_.jpg" },
+            { name: "Winston Duke", role: "Gabe Wilson", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2duyORVbVNsv57ZdhWbIaKjKs24twoK-yEA&s" }
         ],
         reviews: [
             { source: "Hollywood Reporter", review: "A mind-bending thriller...", rating: 5 },
