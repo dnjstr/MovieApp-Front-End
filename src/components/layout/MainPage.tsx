@@ -4,15 +4,17 @@ const MainPage: React.FC = () => {
   return (
     <div className="relative h-screen w-full flex flex-col items-start justify-center text-white text-left px-4">
 
-      <video
-        className="absolute top-0 left-0 w-full h-full object-cover"
-        autoPlay
-        loop
-        muted
-        playsInline
-      >
-        <source src="/dune-movie-2021.960x540.mp4" type="video/mp4" />
-      </video>
+      <div className="main-page-video-bg">
+        <video
+          className="absolute top-0 left-0 w-full h-full object-cover rounded"
+          autoPlay
+          loop
+          muted
+          playsInline
+        >
+          <source src="/dune-movie-2021.960x540.mp4" type="video/mp4" />
+        </video>
+      </div>
 
       <div className="absolute top-0 left-0 w-full h-full bg-black/30"></div>
 

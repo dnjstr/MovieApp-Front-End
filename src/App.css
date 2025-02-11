@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global variables */
+:root {
+    --primary-movie-bg-color: rgb(249, 115, 22);
+}
+
 /* Custom Styles */
 body {
     font-family: 'Arial', sans-serif;
@@ -12,16 +17,37 @@ body {
     background-color: #ea580c;
 }
 
-.left-vignette::before {
+.main-page-video-bg::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.3) 70%, rgba(0, 0, 0, 0.8) 90%);
     pointer-events: none;
-    background: radial-gradient(circle at left, rgba(0, 0, 0, 0.7), transparent 70%);
-    z-index: 1;
-  }
-  
+}
+
+.movie-card-bg {
+    /* background-color: var(--primary-movie-bg-color); */
+    z-index: 10;
+}
+
+.movie-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 105%;
+    background: linear-gradient(to top, rgba(249, 115, 22, 0.6) 10%, rgba(249, 115, 22, 0.2) 60%, rgba(249, 115, 22, 0.1) 100%);
+    z-index: -1;
+    border-radius: 5px;  
+}
+
+.movie-card-photo {
+    background: linear-gradient(to top, rgba(249, 115, 22, 0.6) 10%, rgba(249, 115, 22, 0.2) 60%, rgba(249, 115, 22, 0.2) 100%);
+}
+
+
+
 
