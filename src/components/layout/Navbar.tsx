@@ -11,7 +11,7 @@ const Navbar: React.FC = () => {
       
       <div className="flex items-center space-x-2">
         <Link to="/">
-          <img src="/2972234.png" alt="MovieHaven Logo" className="h-8 cursor-pointer" />
+          <img src="/Logo.png" alt="MovieHaven Logo" className="h-8 cursor-pointer" />
         </Link>
       </div>
 

@@ -50,8 +50,8 @@ const movies = [
         description: "Set in the distant future in a feudal interstellar society, descended from terrestrial humans, in which various noble houses control planetary fiefs. It tells the story of young Paul Atreides, whose family accepts the stewardship of the planet Arrakis.",
         image: "https://vice-press.com/cdn/shop/files/dune-part-two-movie-poster-matt-ferguson_ac86f8c9-f410-450c-805b-c4352aac4a55_540x.jpg?v=1730814717",
         cast: [
-            { name: "Lupita Nyong'o", role: "Adelaide Wilson", image: "https://example.com/lupita.jpg" },
-            { name: "Winston Duke", role: "Gabe Wilson", image: "https://example.com/winston.jpg" }
+            { name: "Timothée Chalamet", role: "Paul Atreides", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKQNZq0LflnBBVwN_OFGfL0YT2BKHrnofxfQ&s" },
+            { name: "Zendaya", role: "Chani", image: "https://cdn.britannica.com/23/264823-050-A938FF2D/zendaya-attends-96th-annual-academy-awards-march-10-2024-hollywood-california-actress-acting.jpg?w=400&h=300&c=crop" }
         ],
         reviews: [
             { source: "Hollywood Reporter", review: "A mind-bending thriller...", rating: 5 },
