@@ -6,7 +6,7 @@ const movies = [
     {
         id: 1,
         title: "BATMAN (2022)",
-        description: "A dark, gritty take on the superhero...",
+        description: "A dark, gritty take on the superhero where a young Bruce Wayne, in his second year as Batman, investigates a series of brutal murders by the enigmatic Riddler, uncovering deep corruption within Gotham City's elite, forcing him to confront his own family's secrets while forging new alliances to bring the city's criminals to justice.",
         image: "https://cdn.prod.website-files.com/6009ec8cda7f305645c9d91b/66a4263d01a185d5ea22eeec_6408f6e7b5811271dc883aa8_batman-min.png",
         cast: [
             { name: "Robert Pattinson", role: "Batman", image: "https://m.media-amazon.com/images/M/MV5BNzk0MDQ5OTUxMV5BMl5BanBnXkFtZTcwMDM5ODk5Mg@@._V1_FMjpg_UX1000_.jpg" },
@@ -20,7 +20,7 @@ const movies = [
     {
         id: 2,
         title: "SHADOW AND BONE",
-        description: "A young adult fantasy novel...",
+        description: "A young adult fantasy novel by Leigh Bardugo, following Alina Starkov, an orphaned mapmaker who discovers she possesses a rare magical ability that could potentially save her war-torn country from a dangerous, monstrous realm called the Shadow Fold, forcing her into a world of political intrigue and powerful forces as she learns to control her newfound power.",
         image: "https://m.media-amazon.com/images/M/MV5BZWM1NTJiNzUtYTJlYy00NWYyLTliNjUtN2FjNzdkOWQxNWRjXkEyXkFqcGc@._V1_.jpg",
         cast: [
             { name: "Jessie Mei Li", role: "Alina Starkov", image: "https://ntvb.tmsimg.com/assets/assets/1597259_v9_aa.jpg" },
@@ -34,7 +34,7 @@ const movies = [
     {
         id: 3,
         title: "US",
-        description: "A horror thriller directed by Jordan Peele...",
+        description: "At night, four strangers break into Adelaide's childhood home. The family is shocked to find out that the intruders look like them. A vacationing family and the traumatized mother visit where the mother was attacked on vacation years before, on the same boardwalk, the same year the movie Lost Boys was filmed.",
         image: "https://i.ebayimg.com/images/g/FKsAAOSw8DZgGo2i/s-l1200.jpg",
         cast: [
             { name: "Lupita Nyong'o", role: "Adelaide Wilson", image: "https://m.media-amazon.com/images/M/MV5BMTY0NTQ4MDY2Nl5BMl5BanBnXkFtZTgwNDk1MTEyMDE@._V1_.jpg" },
