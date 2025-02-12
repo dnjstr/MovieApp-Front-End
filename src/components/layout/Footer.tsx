@@ -34,7 +34,7 @@ const Footer = () => {
                 <a href="/genre/romance" className="text-sm whitespace-nowrap 
                 hover:text-orange-400 transition-colors">📂 Romance</a>
                 <a href="/genre/mystery" className="text-sm whitespace-nowrap 
-                hover:text-orange-400 transition-colors">📂 Mystery</a>
+                hover:text-orange-400 transition-colors">📂 Action</a>
               </div>
             </div>
           </div>
