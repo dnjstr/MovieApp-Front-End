@@ -6,7 +6,7 @@ const MainPage: React.FC = () => {
 
       <div className="main-page-video-bg">
         <video
-          className="absolute top-0 left-0 w-full h-full object-cover"
+          className="absolute top-0 left-0 w-full h-full object-cover rounded-sm"
           autoPlay
           loop
           muted
@@ -25,7 +25,7 @@ const MainPage: React.FC = () => {
         <p className="text-lg text-white md:text-xl mt-4">
           Watch anywhere. Cancel anytime.
         </p>
-        <button className="mt-6 bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-md text-lg font-semibold">
+        <button className="mt-6 bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-md text-lg font-semibold transition-all ease-in-out duration-300">
           Get Started
         </button>
       </div>
