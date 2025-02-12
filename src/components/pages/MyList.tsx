@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from '../layout/Footer';
 
 const myList = [
     {
@@ -67,6 +68,7 @@ const MyList: React.FC = () => {
                     </div>
                 ))}
             </div>
+            <Footer />
         </div>
     );
 };

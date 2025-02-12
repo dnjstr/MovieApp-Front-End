@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from '../layout/Footer';
 
 const movies = [
     {
@@ -46,6 +47,7 @@ const Popular: React.FC = () => {
                     </div>
                 ))}
             </div>
+            <Footer />
         </div>
     );
 };
