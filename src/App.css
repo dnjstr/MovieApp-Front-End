@@ -48,6 +48,17 @@ body {
     background: linear-gradient(to top, rgba(249, 115, 22, 0.6) 10%, rgba(249, 115, 22, 0.2) 60%, rgba(249, 115, 22, 0.2) 100%);
 }
 
+.header-search-bar::placeholder {
+    font-size: 14px;
+}
+
+.search-container:hover .search-icon {
+    color: #ff6347; 
+  }
+
+.search-icon {
+    transition: color 0.3s ease;  
+}
 
 
 
