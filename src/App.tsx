@@ -14,7 +14,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <Navbar />
-      <div className="bg-gray-900 text-white min-h-screen p-6">
+      <div className="bg-black text-white min-h-screen p-6">
         <Routes>
           <Route path="/" element={<><MainPage /><MovieListSection /></>} />
           <Route path="/popular" element={<Popular />} />

@@ -25,7 +25,7 @@ const Navbar: React.FC = () => {
         <Link to="/my-list" className="hover:text-orange-600">My List</Link>
       </div>
 
-      <div className="hidden md:flex items-center bg-gray-800 px-3 py-2 rounded-md w-64 md:w-1/3 lg:w-1/4 xl:w-1/5">
+      <div className="hidden md:flex items-center bg-black px-3 py-2 rounded-md w-64 md:w-1/3 lg:w-1/4 xl:w-1/5">
         <FaSearch className="text-white" />
         <input
           type="text"
@@ -49,7 +49,7 @@ const Navbar: React.FC = () => {
 
         {isDropdownOpen && (
           <div
-            className="absolute  right-0 mt-10 bg-gray-800 bg-opacity-100 rounded-md shadow-lg py-2 w-36"
+            className="absolute  right-0 mt-10 bg-black bg-opacity-100 rounded-md shadow-lg py-2 w-36"
             onMouseEnter={() => setIsDropdownOpen(true)}
             onMouseLeave={() => setIsDropdownOpen(false)}
           >
@@ -65,7 +65,7 @@ const Navbar: React.FC = () => {
 
   
       {isMenuOpen && (
-        <div className="absolute top-16 right-0 w-48 bg-gray-800 rounded-md bg-opacity-100 flex flex-col items-center p-4 space-y-4 md:hidden">
+        <div className="absolute top-16 right-0 w-48 bg-black rounded-md bg-opacity-100 flex flex-col items-center p-4 space-y-4 md:hidden">
           <Link to="/" className="text-white hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>Home</Link>
           <Link to="/popular" className="text-white hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>New & Popular</Link>
           <Link to="/genre" className="text-white hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>Genre</Link>
