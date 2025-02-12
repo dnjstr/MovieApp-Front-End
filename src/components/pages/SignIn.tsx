@@ -5,7 +5,7 @@ const SignIn: React.FC = () => {
     return (
         <div className="flex justify-center items-center min-h-screen ">
             <div className="flex">
-                <div className="bg-orange-600 text-white p-8 rounded-l-lg flex flex-col justify-center items-center w-1/2">
+                <div className="movie-card-photo text-white p-8 rounded-l-lg flex flex-col justify-center items-center w-1/2">
                     <h1 className="text-4xl font-bold mb-6">Welcome Back!</h1>
                     <p className="text-x text-center max-w-md">
                         We're excited to have you back. Sign in to access your account and continue your journey with us.
