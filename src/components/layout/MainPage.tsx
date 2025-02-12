@@ -32,12 +32,12 @@ const MainPage: React.FC = () => {
 
   return (
     <div className="relative h-screen w-full flex flex-col items-start justify-center text-white text-left px-4">
-
-
+      
+      {/* Background Video */}
       <div className="main-page-video-bg">
         <video
           key={currentVideo} 
-          className="absolute top-0 left-0 w-full h-full object-cover"
+          className="absolute top-0 left-0 w-full h-full object-cover rounded-sm"
           autoPlay
           loop
           muted
@@ -48,8 +48,10 @@ const MainPage: React.FC = () => {
       </div>
 
 
+      {/* Overlay */}
       <div className="absolute top-0 left-0 w-full h-full bg-black/30"></div>
 
+      {/* Content */}
       <div className="relative z-10 pl-10 md:pl-20 w-full max-w-3xl">
         <Swiper
           modules={[Pagination, Autoplay]}
@@ -69,15 +71,15 @@ const MainPage: React.FC = () => {
           ))}
         </Swiper>
 
-        {/* For: Pagination Dots */}
+        {/* Pagination Dots */}
         <div className="swiper-pagination"></div>
 
-        <button className="mt-6 bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-md text-lg font-semibold">
-          Get Started
-        </button>
-      </div>
+          <button className="mt-6 bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-md text-lg font-semibold transition-all ease-in-out duration-300">
+            Get Started
+          </button>
+        </div>
 
-    </div>
+      </div>
   );
 };
 
