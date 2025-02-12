@@ -54,11 +54,31 @@ body {
 
 .search-container:hover .search-icon {
     color: #ff6347; 
-  }
+}
 
 .search-icon {
     transition: color 0.3s ease;  
 }
 
+/* SWIPER PAGINATION STYLES */
+.custom-pagination .swiper-pagination {
+    position: relative !important;
+    bottom: -20px !important;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
 
+.swiper-pagination-bullet {
+    background: white !important;
+    width: 10px;
+    height: 10px;
+    opacity: 0.7;
+    transition: all 0.3s ease-in-out;
+}
 
+.swiper-pagination-bullet-active {
+    background: orange !important;
+    opacity: 1;
+    transform: scale(1.2);
+}
