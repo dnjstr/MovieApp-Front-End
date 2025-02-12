@@ -57,7 +57,7 @@ const MyList: React.FC = () => {
                         className="flex items-center p-4 rounded-lg 
                                     bg-gradient-to-r from-orange-900 via-orange-700 to-orange-500"
                     >
-                        <img src={item.image} alt={item.title} className="w-28 h-16 object-cover rounded-md mr-4" />
+                        <img src={item.image} alt={item.title} className="w-[80px] h-[120px] object-cover rounded-md mr-4" />
                         <div className="flex-grow">
                             <h2 className="text-lg font-bold">{item.title}</h2>
                             <p className="text-gray-300 text-sm">

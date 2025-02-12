@@ -28,20 +28,20 @@ const Popular: React.FC = () => {
     return (
         <div className="text-white p-6 mt-6">
             <h1 className="text-2xl font-bold mb-4">New & Popular</h1>
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {movies.map((movie, index) => (
                     <div key={index} className="relative group">
                         <img
                             src={movie.image}
                             alt={movie.title}
-                            className="w-full h-40 object-cover rounded-lg"
+                            className="w-full h-[350px] object-cover rounded-lg"
                         />
                         {movie.tag && (
                             <span className="absolute top-2 left-2 bg-red-600 px-2 py-1 text-xs font-bold rounded">
                                 {movie.tag}
                             </span>
                         )}
-                        <div className="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div className="absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center text-center opacity-0 group-hover:opacity-100 transition-opacity p-4">
                             <p className="text-lg font-bold">{movie.title}</p>
                         </div>
                     </div>
