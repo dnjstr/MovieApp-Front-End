@@ -17,24 +17,30 @@ const Footer = () => {
                 hover:text-white transition-colors">Terms of Service</a>
                 <a href="/contact" className="block text-sm whitespace-nowrap 
                 hover:text-white transition-colors">Contact</a>
+                <a href="/faq" className="block text-sm whitespace-nowrap 
+                hover:text-white transition-colors">FAQ</a>
               </div>
             </div>
             
             <div className=" "> 
               <h3 className="font-semibold text-white mb-4">Genres</h3>
               <div className="grid grid-cols-2 gap-x-10 gap-y-2 ">
-                <a href="/genre/adult" className="text-sm whitespace-nowrap 
+                <a href="/genre" className="text-sm whitespace-nowrap 
                 hover:text-orange-400 transition-colors">📂 Adult</a>
-                <a href="/genre/horror" className="text-sm whitespace-nowrap 
+                <a href="/genre" className="text-sm whitespace-nowrap 
                 hover:text-orange-400 transition-colors">📂 Horror</a>
-                <a href="/genre/comedy" className="text-sm whitespace-nowrap 
+                <a href="/genre" className="text-sm whitespace-nowrap 
                 hover:text-orange-400 transition-colors">📂 Comedy</a>
-                <a href="/genre/drama" className="text-sm whitespace-nowrap 
+                <a href="/genre" className="text-sm whitespace-nowrap 
                 hover:text-orange-400 transition-colors">📂 Drama</a>
-                <a href="/genre/romance" className="text-sm whitespace-nowrap 
+                <a href="/genre" className="text-sm whitespace-nowrap 
                 hover:text-orange-400 transition-colors">📂 Romance</a>
-                <a href="/genre/mystery" className="text-sm whitespace-nowrap 
+                <a href="/genre" className="text-sm whitespace-nowrap 
                 hover:text-orange-400 transition-colors">📂 Action</a>
+                <a href="/genre" className="text-sm whitespace-nowrap 
+                hover:text-orange-400 transition-colors">📂 Musical</a>
+                <a href="/genre" className="text-sm whitespace-nowrap 
+                hover:text-orange-400 transition-colors">📂 Mystery</a>
               </div>
             </div>
           </div>
