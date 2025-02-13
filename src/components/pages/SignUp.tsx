@@ -3,14 +3,27 @@ import { Link } from "react-router-dom";
 
 const SignUp: React.FC = () => {
     return (
-        <div className="flex justify-center items-center min-h-screen ">
+        <div className=" flex justify-center items-center min-h-screen ">
             <div className="flex">
-                <div className=" movie-card-photo text-white p-8 rounded-l-lg flex flex-col justify-center items-center w-1/2">
-                    <h1 className="text-4xl font-bold mb-6">Welcome to Movie Haven!</h1>
-                    <p className="text-x text-center max-w-md">
-                        We're excited to have you. Sign Up to create your new account and watch free pirated movies anytime.
-                    </p>
-                    <div className="mt-8">
+                <div className="movie-card-photo text-white p-8 rounded-l-lg flex flex-col justify-center items-center w-1/2 relative">
+                    
+                    {/* Back to Home Button */}
+                    
+                    <Link
+                        to="/"
+                        className="absolute top-4 left-4 bg-orange-500 text-white font-bold px-4 py-2 rounded-lg hover:bg-orange-600 transition duration-200"
+                        >
+                        ← Back to Home
+                    </Link>
+
+                    <div>
+                        <h1 className="text-4xl font-bold mb-6">Welcome to Movie Haven!</h1>
+                        <p className="text-x text-center max-w-md">
+                            We're excited to have you. Sign Up to create your new account and watch free pirated movies anytime.
+                        </p>
+                    </div>
+
+                    <div className="mt-8 animate-spin">
                         <svg
                             className="w-16 h-16 text-black"
                             xmlns="http://www.w3.org/2000/svg"
@@ -29,6 +42,7 @@ const SignUp: React.FC = () => {
                                 22.047 49.219 49.234-22.031 49.234-49.219 49.234-49.25-22.047-49.25-49.234z"/>
                         </svg>
                     </div>
+
                 </div>
                 <div className="bg-white p-8 rounded-r-lg shadow-lg w-2/3">
                     <h2 className="text-2xl text-black font-bold text-center mb-4">Sign Up</h2>

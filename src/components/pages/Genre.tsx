@@ -48,7 +48,69 @@ const Genre: React.FC = () => {
           </Link>
         ))}
       </div>
-      <Footer />
+
+      <div>
+        <footer className=" text-gray-300 py-12">
+        <div className="max-w-full mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="flex justify-center">
+              <div className="space-y-2">
+                <h3 className="font-semibold text-white mb-4 text-center">Quick Links</h3>
+                <div className="space-y-2">
+                  <a href="/about" className="block text-sm whitespace-nowrap hover:text-white transition-colors text-center">
+                    About Us
+                  </a>
+                  <a href="/terms" className="block text-sm whitespace-nowrap hover:text-white transition-colors text-center">
+                    Terms of Service
+                  </a>
+                  <a href="/contact" className="block text-sm whitespace-nowrap hover:text-white transition-colors text-center">
+                    Contact
+                  </a>
+                  <a href="/faq" className="block text-sm whitespace-nowrap hover:text-white transition-colors text-center">
+                    FAQ
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="text-center space-y-1">
+              <h3 className="font-semibold text-white mb-2">Contact Us</h3>
+              <div className="space-y-3 flex flex-col items-center">
+                <a
+                  href="https://web.telegram.org/"
+                  className="w-48 px-6 py-1 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
+                >
+                  ▶️ Join Telegram
+                </a>
+                <a
+                  href="https://www.reddit.com/"
+                  className="w-48 px-6 py-1 bg-orange-600 text-white rounded-full hover:bg-orange-700 transition-colors"
+                >
+                  🐽 Join Reddit
+                </a>
+                <a
+                  href="https://x.com"
+                  className="w-48 px-6 py-1 bg-sky-500 text-white rounded-full hover:bg-sky-600 transition-colors"
+                >
+                  🐤 Join Twitter
+                </a>
+              </div>
+            </div>
+            <div className="flex justify-center">
+              <Link to="/">
+                <img
+                  src="/Logo.png"
+                  alt="Haven Movie Logo"
+                  className="h-14 w-auto object-contain"
+                />
+              </Link>
+            </div>
+          </div>
+          <div className="mt-12 pt-8 border-t border-gray-800 text-center text-sm">
+            <p>© 2025 Haven Movie. All rights reserved.</p>
+          </div>
+        </div>
+          </footer>
+      </div>
     </div>
   );
 };
