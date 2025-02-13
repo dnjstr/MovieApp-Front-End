@@ -15,7 +15,6 @@ const SignUp: React.FC = () => {
                         >
                         ← Back to Home
                     </Link>
-                 
 
                     <div>
                         <h1 className="text-4xl font-bold mb-6">Welcome to Movie Haven!</h1>
