@@ -122,3 +122,22 @@ body {
     opacity: 1;
     transform: scale(1.2);
 }
+
+.back-to-home {
+    position: absolute;
+    top: 1.5rem;  /* Adjusts the button lower */
+    left: 2rem;   /* Moves it inside the brown section */
+    background-color: #f97316; /* Tailwind orange-500 */
+    color: white;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.back-to-home:hover {
+    background-color: #ea580c; /* Tailwind orange-600 */
+}

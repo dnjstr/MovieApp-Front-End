@@ -6,6 +6,17 @@ const SignUp: React.FC = () => {
         <div className="flex justify-center items-center min-h-screen ">
             <div className="flex">
                 <div className=" movie-card-photo text-white p-8 rounded-l-lg flex flex-col justify-center items-center w-1/2">
+                    
+                    {/* Back to Home Button */}
+                    <div className="relative w-full h-full">
+                        <Link
+                            to="/"
+                            className="absolute top-1 left-1 bg-orange-500 text-white font-bold px-4 py-2 rounded-lg hover:bg-orange-600 transition duration-200"
+                        >
+                            ← Back to Home
+                        </Link>
+                    </div>
+
                     <h1 className="text-4xl font-bold mb-6">Welcome to Movie Haven!</h1>
                     <p className="text-x text-center max-w-md">
                         We're excited to have you. Sign Up to create your new account and watch free pirated movies anytime.
