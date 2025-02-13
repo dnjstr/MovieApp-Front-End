@@ -57,21 +57,21 @@ const Footer = () => {
                 className="w-48 px-6 py-1 bg-blue-600 text-white rounded-full 
                 hover:bg-blue-700 transition-colors"
               >
-               ▶️ Join Telegram
+                ▶️ Join Telegram
               </a>
               <a 
                 href="https://www.reddit.com/"
                 className="w-48 px-6 py-1 bg-orange-600 text-white rounded-full 
                 hover:bg-orange-700 transition-colors"
               >
-               🐽 Join Reddit
+                🐽 Join Reddit
               </a>
               <a 
                 href="https://x.com"
                 className="w-48 px-6 py-1 bg-sky-500 text-white rounded-full 
                 hover:bg-sky-600 transition-colors"
               >
-               🐤 Join Twitter
+                🐤 Join Twitter
               </a>
             </div>
           </div>
