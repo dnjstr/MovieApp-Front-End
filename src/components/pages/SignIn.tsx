@@ -7,7 +7,7 @@ const SignIn: React.FC = () => {
             <div className="flex">
                 <div className="movie-card-photo text-white p-8 rounded-l-lg flex flex-col justify-center items-center w-1/2 relative">
                     
-                    {/* Back to Home Button */}
+                    {/* Back to Home Button eut*/}
                     <Link to="/" className="absolute top-4 left-4 bg-orange-500 text-white font-bold px-4 py-2 rounded-lg hover:bg-orange-600 transition duration-200">
                         ← Back to Home
                     </Link>
@@ -16,7 +16,7 @@ const SignIn: React.FC = () => {
                     <p className="text-x text-center max-w-md">
                         We're excited to have you back. Sign in to access your account and continue your journey with us.
                     </p>
-                    <div className="mt-8">
+                    <div className="animate-spin mt-9 ">
                         <svg
                         className="w-16 h-16 text-black"
                         xmlns="http://www.w3.org/2000/svg"
