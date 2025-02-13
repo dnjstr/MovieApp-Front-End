@@ -3,7 +3,7 @@ const Footer = () => {
   return (
     <footer className="bg-gray-9d00 text-gray-300 py-12">
       <div className="max-w-full mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 ">
+        <div className="grid grid-cols-1 lgx:grid-cols-3 gap-8 ">
 
 
 
@@ -24,23 +24,27 @@ const Footer = () => {
             
             <div className=" "> 
               <h3 className="font-semibold text-white mb-4">Genres</h3>
-              <div className="grid grid-cols-2 gap-x-10 gap-y-2 ">
-                <a href="/genre" className="text-sm whitespace-nowrap 
-                hover:text-orange-400 transition-colors">📂 Adult</a>
-                <a href="/genre" className="text-sm whitespace-nowrap 
-                hover:text-orange-400 transition-colors">📂 Horror</a>
-                <a href="/genre" className="text-sm whitespace-nowrap 
-                hover:text-orange-400 transition-colors">📂 Comedy</a>
-                <a href="/genre" className="text-sm whitespace-nowrap 
-                hover:text-orange-400 transition-colors">📂 Drama</a>
-                <a href="/genre" className="text-sm whitespace-nowrap 
-                hover:text-orange-400 transition-colors">📂 Romance</a>
-                <a href="/genre" className="text-sm whitespace-nowrap 
-                hover:text-orange-400 transition-colors">📂 Action</a>
-                <a href="/genre" className="text-sm whitespace-nowrap 
-                hover:text-orange-400 transition-colors">📂 Musical</a>
-                <a href="/genre" className="text-sm whitespace-nowrap 
-                hover:text-orange-400 transition-colors">📂 Mystery</a>
+              <div className="flex gap-5 ">
+                <div className="flex flex-col space-y-2">
+                  <a href="/genre" className="text-sm whitespace-nowrap
+                  hover:text-orange-400 transition-colors">📂 Adult</a>
+                  <a href="/genre" className="text-sm whitespace-nowrap
+                  hover:text-orange-400 transition-colors">📂 Horror</a>
+                  <a href="/genre" className="text-sm whitespace-nowrap
+                  hover:text-orange-400 transition-colors">📂 Comedy</a>
+                  <a href="/genre" className="text-sm whitespace-nowrap
+                  hover:text-orange-400 transition-colors">📂 Drama</a>
+                </div>
+                <div className="flex flex-col space-y-2">
+                  <a href="/genre" className="text-sm whitespace-nowrap
+                  hover:text-orange-400 transition-colors">📂 Romance</a>
+                  <a href="/genre" className="text-sm whitespace-nowrap
+                  hover:text-orange-400 transition-colors">📂 Action</a>
+                  <a href="/genre" className="text-sm whitespace-nowrap
+                  hover:text-orange-400 transition-colors">📂 Musical</a>
+                  <a href="/genre" className="text-sm whitespace-nowrap
+                  hover:text-orange-400 transition-colors">📂 Mystery</a>
+                </div>
               </div>
             </div>
           </div>
