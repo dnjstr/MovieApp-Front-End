@@ -3,8 +3,14 @@ import Footer from '../layout/Footer';
 import { useNavigate } from 'react-router-dom';
 
 const MovieListSection: React.FC = () => {
+  interface Movie {
+    id: number;
+    title: string;
+    main_cast: string;
+    poster_image: string;
+  }
   const navigate = useNavigate();
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
 
   const handleMovieClick = (id: number) => {
     navigate(`/movies/${id}`);
