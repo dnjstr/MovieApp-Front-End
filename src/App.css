@@ -71,7 +71,7 @@ body {
 .gradient-text {
     font-size: 2rem;
     font-weight: bold;
-    background: linear-gradient(to left, #feb47b, #ff7e5f);
+    background: linear-gradient(to left, #feb47b, #ea580c);
     background-clip: text;
     -webkit-text-fill-color: transparent;
     position: relative;
@@ -99,6 +99,14 @@ body {
       left: 0%;
     }
   } */
+/* .rotate {
+    animation: rotate 2s linear infinite;}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+} */
 
   @keyframes shimmer-text {
     0% {
@@ -160,3 +168,10 @@ body {
 }
 
 
+.search-container {
+  transition: all 0.3s ease-in-out;
+}
+
+.search-container:hover {
+  box-shadow: 0 0 2px rgb(107, 107, 107);
+}

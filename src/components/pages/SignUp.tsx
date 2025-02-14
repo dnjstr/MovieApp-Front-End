@@ -11,9 +11,9 @@ const SignUp: React.FC = () => {
                     
                     <Link
                         to="/"
-                        className="absolute top-4 left-4 bg-orange-500 text-white font-bold px-4 py-2 rounded-lg hover:bg-orange-600 transition duration-200"
+                        className=" absolute top-4 left-4 text-white font-bold px-4 py-2 rounded-lg hover:bg-orange-600 transition duration-200"
                         >
-                        ← Back to Home
+                        ←
                     </Link>
 
                     <div>
