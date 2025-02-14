@@ -71,8 +71,8 @@ body {
 .gradient-text {
     font-size: 2rem;
     font-weight: bold;
-    background: linear-gradient(to left, #feb47b, #ff7e5f);
-    -webkit-background-clip: text;
+    background: linear-gradient(to left, #feb47b, #ea580c);
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     position: relative;
     overflow: hidden;
@@ -142,3 +142,10 @@ body {
     background-color: #ea580c; /* Tailwind orange-600 */
 }
 
+.search-container {
+  transition: all 0.3s ease-in-out;
+}
+
+.search-container:hover {
+  box-shadow: 0 0 2px white;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Footer from '../layout/Footer';
+
 
 const genres = [
   { name: 'Action', icon: '🚀', color: 'bg-red-500', count: '2 Movies' },

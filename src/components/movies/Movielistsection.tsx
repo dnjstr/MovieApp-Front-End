@@ -26,7 +26,7 @@ const MovieListSection: React.FC = () => {
         Popular on <span className='gradient-text'>Movie Haven</span>
       </h2>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
         {movies.map((movie) => (
           <div
             key={movie.id}
@@ -42,9 +42,13 @@ const MovieListSection: React.FC = () => {
             </div>
 
 
-            <div className="absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center text-center opacity-0 group-hover:opacity-100 transition-opacity p-4">
-              <h3 className="text-lg font-semibold text-white">{movie.title}</h3>
-              <p className="text-sm text-gray-300 mt-1">{movie.cast}</p>
+            <div className="absolute inset-0 bg-black bg-opacity-60 flex flex-col mx-3 items-center justify-center text-center opacity-0 group-hover:opacity-100 transition-opacity p-4">
+              <h2 className="text-2x1 font-semibold text-white">
+                {movie.title}
+                </h2>
+              <p className="text-xs text-gray-300 mt-1">
+                {movie.cast}
+                </p>
             </div>
           </div>
         ))}
