@@ -50,17 +50,17 @@ const Navbar: React.FC = () => {
         </button>
 
         {isDropdownOpen && (
-          <div className="absolute right-0 mt-10 bg-black bg-opacity-100 rounded-md shadow-lg py-2 w-36">
+          <div className="sign-in-up-container absolute top-3 right-6 mt-10 bg-black bg-opacity-100 rounded-md shadow-lg py-2 w-36">
             <Link 
               to="/sign-in" 
-              className="block px-4 py-2 text-white hover:bg-orange-600"
+              className="sign-in-up-hover block px-4 py-2 text-white"
               onClick={() => { setIsDropdownOpen(false); setIsMenuOpen(false); }}
             >
               Sign In
             </Link>
             <Link 
               to="/sign-up" 
-              className="block px-4 py-2 text-white hover:bg-orange-600"
+              className="sign-in-up-hover block px-4 py-2 text-white"
               onClick={() => { setIsDropdownOpen(false); setIsMenuOpen(false); }}
             >
               Sign Up

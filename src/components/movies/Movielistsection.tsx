@@ -45,8 +45,8 @@ const MovieListSection: React.FC = () => {
 
 
             <div className="absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center text-center opacity-0 group-hover:opacity-100 transition-opacity p-4">
-              <h3 className="text-lg font-semibold text-white">{movie.title}</h3>
-              <p className="text-sm text-gray-300 mt-1">{movie.main_cast}</p>
+              <h3 className="text-lg font-semibold text-white px-2">{movie.title}</h3>
+              <p className="text-xs text-gray-300 mt-1 px-3">{movie.main_cast}</p>
             </div>
           </div>
         ))}

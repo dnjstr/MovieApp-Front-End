@@ -147,7 +147,7 @@ body {
 }
 
 .back-to-home:hover {
-    background-color: #ea580c; /* Tailwind orange-600 */
+    background-color: rgb(234, 88, 12); /* Tailwind orange-600 */
 }
 
 
@@ -174,4 +174,14 @@ body {
 
 .search-container:hover {
   box-shadow: 0 0 2px rgb(107, 107, 107);
+}
+
+
+/* signIn or signUp */
+.sign-in-up-container {
+    background: linear-gradient(to left, rgba(0, 0, 0, 0) 20%, rgba(234, 88, 12, 0.5) 70%, rgba(234, 88, 12, 0.8) 90%);
+}
+
+.sign-in-up-hover:hover {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0) 20%, rgba(234, 88, 12, 0.3) 70%, rgba(234, 88, 12, 0.8) 90%);
 }
