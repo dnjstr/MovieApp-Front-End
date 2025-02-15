@@ -1,25 +1,64 @@
-    import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUp: React.FC = () => {
+    const navigate = useNavigate();
+
+    // State for user input
+    const [fullName, setFullName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        
+        // Basic validation
+        if (!fullName || !email || !phone || !password) {
+            setError("All fields are required.");
+            return;
+        }
+
+        if (password.length < 6) {
+            setError("Password must be at least 6 characters long.");
+            return;
+        }
+
+        // Retrieve existing users from localStorage
+        const existingUsers = JSON.parse(localStorage.getItem("users") || "[]");
+
+        // Check if email is already registered
+        if (existingUsers.some((user: any) => user.email === email)) {
+            setError("Email already registered. Please sign in.");
+            return;
+        }
+
+        // Save the new user
+        const newUser = { fullName, email, phone, password };
+        existingUsers.push(newUser);
+        localStorage.setItem("users", JSON.stringify(existingUsers));
+
+        alert("Account created successfully! You can now sign in.");
+        navigate("/sign-in");
+    };
+
     return (
-        <div className=" flex justify-center items-center min-h-screen ">
+        <div className="flex justify-center items-center min-h-screen">
             <div className="flex">
+                {/* Left Section */}
                 <div className="movie-card-photo text-white p-8 rounded-l-lg flex flex-col justify-center items-center w-1/2 relative">
-                    
-                    {/* Back to Home Button */}
-                    
                     <Link
                         to="/"
-                        className=" absolute top-4 left-4 text-white font-bold px-4 py-2 rounded-lg hover:bg-orange-600 transition duration-200"
-                        >
+                        className="absolute top-4 left-4 text-white font-bold px-4 py-2 rounded-lg hover:bg-orange-600 transition duration-200"
+                    >
                         ←
                     </Link>
 
                     <div>
                         <h1 className="text-4xl font-bold mb-6">Welcome to Movie Haven!</h1>
                         <p className="text-x text-center max-w-md">
-                            We're excited to have you. Sign Up to create your new account and watch free pirated movies anytime.
+                            We're excited to have you. Sign up to create your new account and enjoy your movie experience.
                         </p>
                     </div>
 
@@ -28,7 +67,8 @@ const SignUp: React.FC = () => {
                             className="w-16 h-16 text-black"
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 512 512"
-                            fill="currentColor">
+                            fill="currentColor"
+                        >
                             <path
                                 d="M343.656 451.109C410 411.438 454.422 338.906 454.422 256c0-125.484-101.719
                                 -227.219-227.203-227.219C101.719 28.781 0 130.516 0 256s101.719 227.219 227.219 227.219H512v-32.109H343.656zM318.484 145.875c23.547
@@ -42,17 +82,21 @@ const SignUp: React.FC = () => {
                                 22.047 49.219 49.234-22.031 49.234-49.219 49.234-49.25-22.047-49.25-49.234z"/>
                         </svg>
                     </div>
-
                 </div>
+
+                {/* Right Section */}
                 <div className="bg-white p-8 rounded-r-lg shadow-lg w-2/3">
                     <h2 className="text-2xl text-black font-bold text-center mb-4">Sign Up</h2>
                     <p className="text-center text-black mb-6">Create a new account to continue.</p>
-                    <form>
+
+                    <form onSubmit={handleSubmit}>
                         <div className="mb-4">
                             <input
                                 type="text"
                                 placeholder="Full Name"
                                 className="text-black w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                                value={fullName}
+                                onChange={(e) => setFullName(e.target.value)}
                             />
                         </div>
                         <div className="mb-4">
@@ -60,6 +104,8 @@ const SignUp: React.FC = () => {
                                 type="email"
                                 placeholder="Email Address"
                                 className="text-black w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
                         <div className="mb-4">
@@ -67,6 +113,8 @@ const SignUp: React.FC = () => {
                                 type="text"
                                 placeholder="Phone Number"
                                 className="text-black w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                                value={phone}
+                                onChange={(e) => setPhone(e.target.value)}
                             />
                         </div>
                         <div className="mb-4 relative">
@@ -74,12 +122,22 @@ const SignUp: React.FC = () => {
                                 type="password"
                                 placeholder="Password"
                                 className="text-black w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
-                        <button className="w-full bg-orange-500 text-white py-3 rounded-md font-bold hover:bg-orange-600 transition">
+
+                        {/* Display error message if any */}
+                        {error && <p className="text-red-500 text-sm text-center mb-4">{error}</p>}
+
+                        <button
+                            type="submit"
+                            className="w-full bg-orange-500 text-white py-3 rounded-md font-bold hover:bg-orange-600 transition"
+                        >
                             Sign Up
                         </button>
                     </form>
+
                     <p className="text-center text-gray-600 mt-4">
                         Already have an account?{" "}
                         <Link to="/sign-in" className="text-orange-500 font-semibold hover:underline">

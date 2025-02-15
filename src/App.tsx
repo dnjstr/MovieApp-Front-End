@@ -9,6 +9,7 @@ import SignUp from "./components/pages/SignUp";
 import Popular from "./components/pages/Popular";
 import Genre from "./components/pages/Genre";
 import MyList from "./components/pages/MyList";
+import { AuthProvider } from "./context/AuthContext";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
@@ -24,19 +25,21 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<><MainPage /><MovieListSection /></>} />
-          <Route path="/popular" element={<Popular />} />
-          <Route path="/genre" element={<Genre />} />
-          <Route path="/my-list" element={<MyList />} />
-          <Route path="/movies/:id" element={<MovieDetail />} />
-          <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/sign-up" element={<SignUp />} />
-        </Routes>
-      </Layout>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<><MainPage /><MovieListSection /></>} />
+            <Route path="/popular" element={<Popular />} />
+            <Route path="/genre" element={<Genre />} />
+            <Route path="/my-list" element={<MyList />} />
+            <Route path="/movies/:id" element={<MovieDetail />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/sign-up" element={<SignUp />} />
+          </Routes>
+        </Layout>
+      </Router>
+    </AuthProvider>
   );
 };
 
