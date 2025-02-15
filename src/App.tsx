@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import MainPage from "./components/layout/MainPage";
 import MovieListSection from "./components/movies/Movielistsection";
@@ -10,18 +10,25 @@ import Popular from "./components/pages/Popular";
 import Genre from "./components/pages/Genre";
 import MyList from "./components/pages/MyList";
 import ProfilePage from "./components/pages/ProfilePage";
-import { AuthProvider } from "./context/AuthContext";
+import { AuthProvider, useAuth } from "./context/AuthContext";
 
+// Layout Component
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
-  const hideNavbar = location.pathname === "/sign-in" || location.pathname === "/sign-up";
+  const hideNavbar = ["/sign-in", "/sign-up"].includes(location.pathname);
 
   return (
     <>
       {!hideNavbar && <Navbar />}
-      <div className="bg-black text-white min-h-screen p-6">{children}</div>
+      <main className="bg-black text-white min-h-screen p-6">{children}</main>
     </>
   );
+};
+
+// Protected Route Wrapper
+const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
+  const { user } = useAuth();
+  return user ? children : <Navigate to="/sign-in" replace />;
 };
 
 const App: React.FC = () => {
@@ -33,11 +40,11 @@ const App: React.FC = () => {
             <Route path="/" element={<><MainPage /><MovieListSection /></>} />
             <Route path="/popular" element={<Popular />} />
             <Route path="/genre" element={<Genre />} />
-            <Route path="/my-list" element={<MyList />} />
+            <Route path="/my-list" element={<ProtectedRoute><MyList /></ProtectedRoute>} />
             <Route path="/movies/:id" element={<MovieDetail />} />
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/sign-up" element={<SignUp />} />
-            <Route path="/profilepage" element={<ProfilePage />} />
+            <Route path="/profilepage" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
           </Routes>
         </Layout>
       </Router>
