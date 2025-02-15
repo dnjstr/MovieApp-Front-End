@@ -53,23 +53,27 @@ const Genre: React.FC = () => {
         <footer className=" text-gray-300 py-12">
         <div className="max-w-full mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="flex justify-center">
-              <div className="space-y-2">
-                <h3 className="font-semibold text-white mb-4 text-center">Quick Links</h3>
+            <div className="flex justify-start">
+              <div className="space-y-2 pr-16">
+                <h3 className="font-semibold text-white mb-4">Quick Links</h3>
                 <div className="space-y-2">
-                  <a href="/about" className="block text-sm whitespace-nowrap hover:text-white transition-colors text-center">
+                  <Link to="/about" className="block text-sm whitespace-nowrap 
+                  hover:text-white transition-colors">
                     About Us
-                  </a>
-                  <a href="/terms" className="block text-sm whitespace-nowrap hover:text-white transition-colors text-center">
+                  </Link>
+                  <Link to="/TermsandCondition" className="block text-sm whitespace-nowrap 
+                  hover:text-white transition-colors">
                     Terms of Service
-                  </a>
-                  <a href="/contact" className="block text-sm whitespace-nowrap hover:text-white transition-colors text-center">
+                  </Link>
+                  <Link to="/contact" className="block text-sm whitespace-nowrap 
+                  hover:text-white transition-colors">
                     Contact
-                  </a>
-                  <a href="/faq" className="block text-sm whitespace-nowrap hover:text-white transition-colors text-center">
+                  </Link>
+                  <Link to="/faq" className="block text-sm whitespace-nowrap 
+                  hover:text-white transition-colors">
                     FAQ
-                  </a>
-                </div>
+                  </Link>
+                  </div>
               </div>
             </div>
             <div className="text-center space-y-1">
@@ -95,7 +99,7 @@ const Genre: React.FC = () => {
                 </a>
               </div>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-end">
               <Link to="/">
                 <img
                   src="/Logo.png"

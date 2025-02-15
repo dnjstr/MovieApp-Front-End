@@ -10,18 +10,23 @@ const Footer = () => {
             <div className="space-y-2 pr-16">
               <h3 className="font-semibold text-white mb-4">Quick Links</h3>
               <div className="space-y-2">
-                <a href="/about" className="block text-sm whitespace-nowrap 
-                hover:text-white transition-colors">About Us</a>
-                <a href="/terms" className="block text-sm whitespace-nowrap 
-                hover:text-white transition-colors">Terms of Service</a>
-                <a href="/contact" className="block text-sm whitespace-nowrap 
-                hover:text-white transition-colors">Contact</a>
-                <a href="/faq" className="block text-sm whitespace-nowrap 
-                hover:text-white transition-colors">FAQ</a>
-                <Link to= "/profilepage">
-                  Temp Profile
+                <Link to="/about" className="block text-sm whitespace-nowrap 
+                hover:text-white transition-colors">
+                  About Us
                 </Link>
-              </div>
+                <Link to="/TermsandCondition" className="block text-sm whitespace-nowrap 
+                hover:text-white transition-colors">
+                  Terms of Service
+                </Link>
+                <Link to="/contact" className="block text-sm whitespace-nowrap 
+                hover:text-white transition-colors">
+                  Contact
+                </Link>
+                <Link to="/faq" className="block text-sm whitespace-nowrap 
+                hover:text-white transition-colors">
+                  FAQ
+                </Link>
+                </div>
             </div>
             
             <div className=" "> 

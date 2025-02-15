@@ -11,6 +11,10 @@ import Genre from "./components/pages/Genre";
 import MyList from "./components/pages/MyList";
 import ProfilePage from "./components/pages/ProfilePage";
 import { AuthProvider, useAuth } from "./context/AuthContext";
+import About from "./components/pages/about";
+import Contact from "./components/pages/contact";
+import FAQ from "./components/pages/faq";
+import TermsAndCondition from "./components/pages/TermsandCondition";
 
 // Layout Component
 const Layout = ({ children }: { children: React.ReactNode }) => {
@@ -45,6 +49,10 @@ const App: React.FC = () => {
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/profilepage" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
+            <Route path="/about" element={<About />} />
+            <Route path="/TermsandCondition" element={<TermsAndCondition />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/faq" element={<FAQ />} />
           </Routes>
         </Layout>
       </Router>
