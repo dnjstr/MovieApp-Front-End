@@ -11,7 +11,7 @@ export default {
         "lgx": "1105px"
       },
       animation: {
-        spin: 'spin 1s linear infinite',
+        spin: 'spin 3s linear infinite',
       },
       keyframes: {
         spin: {
