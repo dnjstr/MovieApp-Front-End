@@ -56,7 +56,7 @@ const Navbar: React.FC = () => {
             {isDropdownOpen && (
               <div className="absolute top-full right-0 mt-2 w-48 bg-black rounded-md shadow-lg py-1">
                 <Link 
-                  to="/profile"
+                  to="/ProfilePage"
                   className="px-4 py-2 text-sm text-white hover:bg-orange-600 flex items-center space-x-2"
                   onClick={() => setIsDropdownOpen(false)}
                 >
@@ -127,7 +127,7 @@ const Navbar: React.FC = () => {
             {isAuthenticated ? (
               <>
                 <Link
-                  to="/profile"
+                  to="/ProfilePage"
                   className="block px-4 py-2 text-white hover:bg-orange-600 rounded-md"
                   onClick={() => { setIsMenuOpen(false); }}
                 >
