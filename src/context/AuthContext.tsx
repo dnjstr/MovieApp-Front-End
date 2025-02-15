@@ -1,51 +1,46 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
-
-
-interface User {
-    id: string;
-    name: string;
-    email: string;
-    profilePic?: string; 
-}
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 interface AuthContextType {
-    user: User | null;
-    login: (userData: User) => void;
-    logout: () => void;
+  isAuthenticated: boolean;
+  user: any | null;
+  logout: () => void;
+  setAuthStatus: (status: boolean) => void;
 }
 
+const AuthContext = createContext<AuthContextType>({
+  isAuthenticated: false,
+  user: null,
+  logout: () => {},
+  setAuthStatus: () => {},
+});
 
-const AuthContext = createContext<AuthContextType | null>(null);
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [user, setUser] = useState<any>(null);
 
-
-export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    const [user, setUser] = useState<User | null>(null);
-
-
-    const login = (userData: User) => {
-        setUser(userData);
-        localStorage.setItem('user', JSON.stringify(userData)); 
-    };
-
-
-    const logout = () => {
-        setUser(null);
-        localStorage.removeItem('user');
-    };
-
-    return (
-        <AuthContext.Provider value={{ user, login, logout }}>
-            {children}
-        </AuthContext.Provider>
-    );
-};
-
-export const useAuth = () => {
-    const context = useContext(AuthContext);
-    if (!context) {
-        throw new Error('useAuth must be used within an AuthProvider');
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsAuthenticated(true);
+      // You can fetch user data here using the token
     }
-    return context;
+  }, []);
+
+  const logout = () => {
+    localStorage.removeItem('token');
+    setIsAuthenticated(false);
+    setUser(null);
+  };
+
+  const setAuthStatus = (status: boolean) => {
+    setIsAuthenticated(status);
+  };
+
+  return (
+    <AuthContext.Provider value={{ isAuthenticated, user, logout, setAuthStatus }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
-export default AuthContext;
+export const useAuth = () => useContext(AuthContext);

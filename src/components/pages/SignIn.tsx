@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from '../../context/AuthContext';
 
 const SignIn: React.FC = () => {
     const navigate = useNavigate();
+    const { setAuthStatus } = useAuth();
 
     const [identifier, setIdentifier] = useState("");
     const [password, setPassword] = useState("");
@@ -14,7 +16,6 @@ const SignIn: React.FC = () => {
     
         try {
             const requestBody = { identifier, password };
-            console.log("Request Body:", requestBody); // Debugging
     
             const response = await fetch("http://127.0.0.1:8000/api/login/", {
                 method: "POST",
@@ -25,10 +26,10 @@ const SignIn: React.FC = () => {
             });
     
             const data = await response.json();
-            console.log("Response Data:", data); // Debugging
     
             if (response.ok) {
                 localStorage.setItem("token", data.token);
+                setAuthStatus(true);
                 setTimeout(() => {
                     navigate("/");
                 }, 200);
