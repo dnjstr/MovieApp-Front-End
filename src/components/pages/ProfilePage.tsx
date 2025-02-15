@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
 interface User {
     name: string;
     email: string;
@@ -11,6 +10,13 @@ interface User {
 const ProfilePage = () => {
     const [user, setUser] = useState<User | null>(null);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+            setUser(JSON.parse(storedUser)); 
+        }
+    }, []);
 
     const handleLogout = () => {
         localStorage.removeItem('user');

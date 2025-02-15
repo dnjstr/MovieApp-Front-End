@@ -9,6 +9,7 @@ import SignUp from "./components/pages/SignUp";
 import Popular from "./components/pages/Popular";
 import Genre from "./components/pages/Genre";
 import MyList from "./components/pages/MyList";
+import ProfilePage from "./components/pages/ProfilePage";
 import { AuthProvider } from "./context/AuthContext";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
@@ -36,6 +37,7 @@ const App: React.FC = () => {
             <Route path="/movies/:id" element={<MovieDetail />} />
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/profilepage" element={<ProfilePage />} />
           </Routes>
         </Layout>
       </Router>

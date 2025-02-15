@@ -63,7 +63,7 @@ const Navbar: React.FC = () => {
         </button>
 
         {isDropdownOpen && (
-          <div className="absolute right-0 mt-10 bg-black bg-opacity-100 rounded-md shadow-lg py-2 w-36">
+          <div className="absolute right-0 mt-36 bg-black   bg-opacity-100 rounded-md shadow-lg py-2 w-36">
             {user ? (
               <>
                 <Link 
