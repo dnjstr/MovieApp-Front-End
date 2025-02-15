@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+interface SignUpFormData {
+    fullName: string;
+    email: string;
+    phoneNumber: string;
+    password: string;
+}
+
 const SignUp: React.FC = () => {
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState<SignUpFormData>({
         fullName: "",
         email: "",
         phoneNumber: "",
@@ -11,6 +18,7 @@ const SignUp: React.FC = () => {
 
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
     const navigate = useNavigate();
 
@@ -22,6 +30,14 @@ const SignUp: React.FC = () => {
         e.preventDefault();
         setError("");
         setSuccess("");
+        setIsLoading(true);
+
+        // Validate that either email or phone is provided
+        if (!formData.email && !formData.phoneNumber) {
+            setError("Either email or phone number is required");
+            setIsLoading(false);
+            return;
+        }
 
         try {
             const response = await fetch("http://127.0.0.1:8000/api/register/", {
@@ -35,16 +51,34 @@ const SignUp: React.FC = () => {
             const data = await response.json();
 
             if (!response.ok) {
-                setError(data.error || "Something went wrong");
-            } else {
-                setSuccess("Account created successfully!");
-                setFormData({ fullName: "", email: "", phoneNumber: "", password: "" });
-                setTimeout(() => {
-                    navigate("/sign-in");
-                }, 2000);
+                setError(data.error || "Registration failed");
+                setIsLoading(false);
+                return;
             }
+
+            setSuccess("Account created successfully! Redirecting to login...");
+            
+            // Store the identifier (email or phone) to pass to sign in
+            const identifier = formData.email || formData.phoneNumber;
+            
+            setFormData({
+                fullName: "",
+                email: "",
+                phoneNumber: "",
+                password: "",
+            });
+
+            // Delay navigation to show success message and pass the identifier
+            setTimeout(() => {
+                navigate("/sign-in", { 
+                    state: { identifier } 
+                });
+            }, 2000);
+
         } catch (error) {
             setError("Failed to connect to server");
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -62,7 +96,7 @@ const SignUp: React.FC = () => {
                     <div>
                         <h1 className="text-4xl font-bold mb-6">Welcome to Movie Haven!</h1>
                         <p className="text-x text-center max-w-md">
-                            We're excited to have you. Sign Up to create your new account and watch free pirated movies anytime.
+                            We're excited to have you. Sign Up to create your new account and watch free movies anytime.
                         </p>
                     </div>
 
@@ -92,8 +126,16 @@ const SignUp: React.FC = () => {
                     <h2 className="text-2xl text-black font-bold text-center mb-4">Sign Up</h2>
                     <p className="text-center text-black mb-6">Create a new account to continue.</p>
 
-                    {error && <p className="text-red-500 text-center mb-4">{error}</p>}
-                    {success && <p className="text-green-500 text-center mb-4">{success}</p>}
+                    {error && (
+                        <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+                            {error}
+                        </div>
+                    )}
+                    {success && (
+                        <div className="mb-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded">
+                            {success}
+                        </div>
+                    )}
 
                     <form onSubmit={handleSubmit}>
                         <div className="mb-4">
@@ -113,9 +155,8 @@ const SignUp: React.FC = () => {
                                 name="email"
                                 value={formData.email}
                                 onChange={handleChange}
-                                placeholder="Email Address"
+                                placeholder="Email Address (Optional if phone provided)"
                                 className="text-black w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                                required
                             />
                         </div>
                         <div className="mb-4">
@@ -124,7 +165,7 @@ const SignUp: React.FC = () => {
                                 name="phoneNumber"
                                 value={formData.phoneNumber}
                                 onChange={handleChange}
-                                placeholder="Phone Number"
+                                placeholder="Phone Number (Optional if email provided)"
                                 className="text-black w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                             />
                         </div>
@@ -141,9 +182,12 @@ const SignUp: React.FC = () => {
                         </div>
                         <button
                             type="submit"
-                            className="w-full bg-orange-500 text-white py-3 rounded-md font-bold hover:bg-orange-600 transition"
+                            disabled={isLoading}
+                            className={`w-full bg-orange-500 text-white py-3 rounded-md font-bold 
+                                ${isLoading ? 'opacity-70 cursor-not-allowed' : 'hover:bg-orange-600'} 
+                                transition duration-300`}
                         >
-                            Sign Up
+                            {isLoading ? "Creating Account..." : "Sign Up"}
                         </button>
                     </form>
                     <p className="text-center text-gray-600 mt-4">

@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { FaHome, FaSearch, FaBars, FaTimes, FaUser, FaCog, FaSignOutAlt } from 'react-icons/fa';
 import { useAuth } from '../../context/AuthContext';
 import SearchResults from '../search/SearchResults';
@@ -16,12 +16,28 @@ interface Movie {
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, logout, role } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<Movie[]>([]);
   const [showResults, setShowResults] = useState(false);
   const searchContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const checkAdminState = () => {
+      const savedRole = localStorage.getItem('userRole');
+      if (savedRole === 'admin') {
+        window.location.reload();
+      }
+    };
+
+    window.addEventListener('popstate', checkAdminState);
+    
+    return () => {
+      window.removeEventListener('popstate', checkAdminState);
+    };
+  }, []);
 
   const handleLogout = () => {
     logout();
@@ -79,7 +95,7 @@ const Navbar: React.FC = () => {
           <FaHome size={20} />
           <span className="hidden md:inline">Home</span>
         </Link>
-        <Link to="/popular" className="hover:text-orange-600 ease-in-out duration-300">New & Popular</Link>
+        <Link to="/popular" className="hover:text-orange-600 ease-in-out duration-300">Coming Soon</Link>
         <Link to="/genre" className="hover:text-orange-600 ease-in-out duration-300">Genre</Link>
         <Link to="/my-list" className="hover:text-orange-600 ease-in-out duration-300">My List</Link>
       </div>
@@ -108,7 +124,7 @@ const Navbar: React.FC = () => {
 
       {/* Desktop Profile/Auth Dropdown */}
       <div className="hidden md:flex items-center space-x-4 relative">
-        {isAuthenticated ? (
+        {isAuthenticated && role === 'user' ? (
           <div className="relative">
             <button
               className="bg-orange-600 text-white px-4 py-2 rounded-md flex items-center space-x-2"
@@ -147,30 +163,25 @@ const Navbar: React.FC = () => {
             )}
           </div>
         ) : (
-          <button
-            className="bg-orange-600 text-white px-4 py-2 rounded-md"
-            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-          >
-            <FaUser />
-          </button>
-        )}
+          <div className="relative">
+            <button
+              className="bg-orange-600 text-white px-4 py-2 rounded-md"
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            >
+              <FaUser />
+            </button>
 
-        {!isAuthenticated && isDropdownOpen && (
-          <div className="sign-in-up-container absolute top-3 right-6 mt-10 bg-black bg-opacity-100 rounded-md shadow-lg py-2 w-36">
-            <Link 
-              to="/sign-in" 
-              className="sign-in-up-hover block px-4 py-2 text-white"
-              onClick={() => { setIsDropdownOpen(false); setIsMenuOpen(false); }}
-            >
-              Sign In
-            </Link>
-            {/* <Link 
-              to="/sign-up" 
-              className="sign-in-up-hover block px-4 py-2 text-white"
-              onClick={() => { setIsDropdownOpen(false); setIsMenuOpen(false); }}
-            >
-              Sign Up
-            </Link> */}
+            {isDropdownOpen && (
+              <div className="absolute top-full right-0 mt-2 w-48 bg-black rounded-md shadow-lg py-1">
+                <Link 
+                  to="/sign-in" 
+                  className="block px-4 py-2 text-sm text-white hover:bg-orange-600"
+                  onClick={() => setIsDropdownOpen(false)}
+                >
+                  Sign In
+                </Link>
+              </div>
+            )}
           </div>
         )}
       </div>
