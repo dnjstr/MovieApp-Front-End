@@ -11,11 +11,35 @@ const SignIn: React.FC = () => {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
+    const mockUsers = [
+        { id: 1, name: "Den Jester", email: "den@example.com", password: "password123", profilePic: "" },
+        { id: 2, name: "Glenn Anino", email: "glenn@example.com", password: "password456", profilePic: "" },
+    ];
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError("");
         setLoading(true);
 
+        // ✅ Use the already declared mockUsers (Removed duplicate declaration)
+        const localUser = mockUsers.find(
+            user => (user.email === identifier || user.id.toString() === identifier) && user.password === password
+        );
+
+        if (localUser) {
+            login({
+                id: localUser.id.toString(), // Convert id to string to match User type
+                name: localUser.name,
+                email: localUser.email,
+                profilePic: localUser.profilePic ? localUser.profilePic : "" // Ensure profilePic has a default value
+            });
+
+            setTimeout(() => navigate("/"), 300);
+            setLoading(false);
+            return; // Stop further execution
+        }
+
+        // If no local user, proceed with backend authentication
         try {
             const response = await fetch("http://127.0.0.1:8000/api/login/", {
                 method: "POST",
@@ -28,15 +52,14 @@ const SignIn: React.FC = () => {
             const data = await response.json();
 
             if (response.ok) {
-                const user = {
-                    id: data.user.id,
+                login({
+                    id: data.user.id.toString(),
                     name: data.user.name,
                     email: data.user.email,
-                    profilePic: data.user.profilePic || "", // Ensure profilePic is handled
-                };
+                    profilePic: data.user.profilePic ? data.user.profilePic : "",
+                });
 
-                login(user); // Set authenticated user
-                setTimeout(() => navigate("/"), 300); // Delay for UX
+                setTimeout(() => navigate("/"), 300);
             } else {
                 setError(data.error || "Invalid credentials. Please try again.");
             }
@@ -73,12 +96,11 @@ const SignIn: React.FC = () => {
                         </svg>
                     </div>
                 </div>
-
                 {/* Right Section */}
                 <div className="bg-white p-16 rounded-r-lg w-2/3">
                     <h2 className="text-2xl text-black font-bold text-center mb-4">Sign In</h2>
                     <p className="text-black text-center mb-6">Access your account</p>
-                    
+
                     {error && <p className="text-red-600 text-center mb-4">{error}</p>}
 
                     <form onSubmit={handleSubmit}>

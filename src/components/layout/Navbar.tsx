@@ -75,7 +75,7 @@ const Navbar: React.FC = () => {
 
                 <button 
                   onClick={handleLogout}
-                  className="w-full text-left px-4 py-2 text-sm text-white hover:bg-orange-600 flex items-center space-x-2"
+                  className="w-full text-left px-4 py-2 text-sm text-white hover:bg-red-600 flex items-center space-x-2"
                 >
                   <FaSignOutAlt className="text-sm" />
                   <span>Sign Out</span>
@@ -142,7 +142,7 @@ const Navbar: React.FC = () => {
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="w-full text-left px-4 py-2 text-white hover:bg-orange-600 rounded-md"
+                  className="w-full text-left px-4 py-2 text-white hover:bg-red-600 rounded-md"
                 >
                   Sign Out
                 </button>
