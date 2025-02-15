@@ -11,6 +11,7 @@ import Genre from "./components/pages/Genre";
 import MyList from "./components/pages/MyList";
 import { AuthProvider } from "./context/AuthContext";
 import ProfilePage from "./components/pages/ProfilePage";
+import GenreMovies from './components/pages/GenreMovies';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
@@ -33,6 +34,7 @@ const App: React.FC = () => {
             <Route path="/" element={<><MainPage /><MovieListSection /></>} />
             <Route path="/popular" element={<Popular />} />
             <Route path="/genre" element={<Genre />} />
+            <Route path="/genre/:genreName" element={<GenreMovies />} />
             <Route path="/my-list" element={<MyList />} />
             <Route path="/movies/:id" element={<MovieDetail />} />
             <Route path="/sign-in" element={<SignIn />} />
