@@ -10,6 +10,7 @@ import Popular from "./components/pages/Popular";
 import Genre from "./components/pages/Genre";
 import MyList from "./components/pages/MyList";
 import { AuthProvider } from "./context/AuthContext";
+import ProfilePage from "./components/pages/ProfilePage";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
@@ -36,6 +37,7 @@ const App: React.FC = () => {
             <Route path="/movies/:id" element={<MovieDetail />} />
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/profile" element={<ProfilePage />} />
           </Routes>
         </Layout>
       </Router>

@@ -11,16 +11,6 @@ const ProfilePage = () => {
     const [user, setUser] = useState<User | null>(null);
     const navigate = useNavigate();
 
-    useEffect(() => {
-
-        const loggedInUser = localStorage.getItem('user');
-        if (!loggedInUser) {
-            navigate('/sign-in');
-        } else {
-            setUser(JSON.parse(loggedInUser) as User);
-        }
-    }, [navigate]);
-
     const handleLogout = () => {
         localStorage.removeItem('user');
         navigate('/sign-in'); 
