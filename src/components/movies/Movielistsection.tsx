@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Footer from '../layout/Footer';
 import { useNavigate } from 'react-router-dom';
+import { FaBookmark } from 'react-icons/fa';
 
 const movies = [
   { id: 1, title: "BATMAN(2022)", cast: "Cast: Robert Pattinson, Zoe Kravitz ", image: "https://cdn.prod.website-files.com/6009ec8cda7f305645c9d91b/66a4263d01a185d5ea22eeec_6408f6e7b5811271dc883aa8_batman-min.png" },
@@ -15,9 +16,16 @@ const movies = [
 
 const MovieListSection: React.FC = () => {
   const navigate = useNavigate();
+  const [bookmarkedMovies, setBookmarkedMovies] = useState<number[]>([]);
 
   const handleMovieClick = (id: number) => {
     navigate(`/movies/${id}`);
+  };
+
+  const toggleBookmark = (id: number) => {
+    setBookmarkedMovies((prev) =>
+      prev.includes(id) ? prev.filter(movieId => movieId !== id) : [...prev, id]
+    );
   };
 
   return (
@@ -40,8 +48,16 @@ const MovieListSection: React.FC = () => {
                 className="w-full h-[350px] object-cover rounded-md" 
               />
             </div>
-
-
+            <button 
+              className="absolute top-2 right-2 text-white bg-black bg-opacity-50 p-2 rounded-full hover:bg-opacity-80 transition"
+              onClick={(e) => { e.stopPropagation(); toggleBookmark(movie.id); }}
+            >
+              {bookmarkedMovies.includes(movie.id) ? (
+                <FaBookmark className="text-yellow-400" />
+              ) : (
+                <FaBookmark className="text-gray-400" />
+              )}
+            </button>
             <div className="absolute inset-0 bg-black bg-opacity-60 flex flex-col mx-3 items-center justify-center text-center opacity-0 group-hover:opacity-100 transition-opacity p-4">
               <h2 className="text-2x1 font-semibold text-white">
                 {movie.title}
@@ -53,7 +69,6 @@ const MovieListSection: React.FC = () => {
           </div>
         ))}
       </div>
-
 
       <div className='mt-4'>
         <Footer />

@@ -1,6 +1,7 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { FaArrowLeft } from 'react-icons/fa';
+import { FaArrowLeft, FaBookmark, FaRegBookmark, FaTrash } from 'react-icons/fa';
+
 
 const movies = [
     {
@@ -122,6 +123,49 @@ const MovieDetail: React.FC = () => {
     const navigate = useNavigate();
     const movie = movies.find((movie) => movie.id === parseInt(id || '', 10));
 
+    const [bookmarked, setBookmarked] = useState(false);
+    const [reviews, setReviews] = useState(movie?.reviews || []);
+    const [newReview, setNewReview] = useState({ source: "", review: "", rating: 0 });
+
+    useEffect(() => {
+        const storedBookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
+        setBookmarked(storedBookmarks.includes(movie?.id));
+    }, [movie]);
+
+    const toggleBookmark = () => {
+        let storedBookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
+
+        if (bookmarked) {
+            storedBookmarks = storedBookmarks.filter((movieId: number) => movieId !== movie?.id);
+        } else {
+            storedBookmarks.push(movie?.id);
+        }
+
+        localStorage.setItem('bookmarks', JSON.stringify(storedBookmarks));
+        setBookmarked(!bookmarked);
+    };
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setNewReview({ ...newReview, [name]: value });
+    };
+
+    const handleAddReview = () => {
+        if (!newReview.source || !newReview.review || newReview.rating < 1) {
+            alert("Please provide all details and a rating of at least 1 star.");
+            return;
+        }
+
+        const updatedReviews = [...reviews, newReview];
+        setReviews(updatedReviews);
+        setNewReview({ source: "", review: "", rating: 0 });
+    };
+
+    const handleDeleteReview = (index: number) => {
+        const updatedReviews = reviews.filter((_, i) => i !== index);
+        setReviews(updatedReviews);
+    };
+
     if (!movie) {
         return <div className="text-white text-center mt-10">Movie not found.</div>;
     }
@@ -132,21 +176,32 @@ const MovieDetail: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black"></div>
 
             <div className="relative z-10 p-8 w-full max-w-full">
-                <button
-                    onClick={() => (window.history.length > 2 ? navigate(-1) : navigate('/'))}
-                    className="flex items-center gap-2 mb-4 px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-900 transition duration-300 mt-8 shadow-md"
-                >
-                    <FaArrowLeft /> Back
-                </button>
+                <div className="flex justify-between items-center">
+                    <button
+                        onClick={() => (window.history.length > 2 ? navigate(-1) : navigate('/'))}
+                        className="flex items-center gap-2 px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-900 transition duration-300 mt-8 shadow-md"
+                    >
+                        <FaArrowLeft /> Back
+                    </button>
 
-                <div className="flex flex-col md:flex-row items-center">
+                    <button
+                        onClick={toggleBookmark}
+                        className="text-orange-500 hover:text-orange-700 transition duration-300 text-3xl"
+                    >
+                        {bookmarked ? <FaBookmark /> : <FaRegBookmark />}
+                    </button>
+                </div>
+
+                {/* Movie Details Section */}
+                <div className="flex flex-col md:flex-row items-center mt-6">
                     <img src={movie.image} alt={movie.title} className="w-80 h-96 object-cover rounded-md shadow-lg border border-gray-700" />
                     <div className="md:ml-8 text-center md:text-left">
                         <h1 className="text-4xl font-bold">{movie.title}</h1>
                         <p className="text-lg mt-2 text-gray-300">{movie.description}</p>
                     </div>
-                </div>
+                </div> 
 
+                {/* Cast Section */}
                 {movie.cast && (
                     <>
                         <h2 className="text-2xl font-bold mt-6 text-center border-b border-orange-600 pb-2">Cast</h2>
@@ -162,23 +217,69 @@ const MovieDetail: React.FC = () => {
                     </>
                 )}
 
-                {movie.reviews && (
+                {/* Reviews Section */}
+                {reviews.length > 0 && (
                     <>
                         <h2 className="text-2xl font-bold mt-6 text-center border-b border-orange-600 pb-2">Ratings & Reviews</h2>
                         <div className="space-y-4 mt-4">
-                            {movie.reviews.map((review, index) => (
-                                <div key={index} className="border-l-4 border-orange-600 pl-4 bg-black/40 p-3 rounded-md shadow-md">
-                                    <p className="text-lg font-semibold text-orange-400">{review.source}</p>
-                                    <p className="text-sm italic text-gray-300">"{review.review}"</p>
-                                    <p className="text-yellow-400">{'⭐'.repeat(review.rating)}</p>
+                            {reviews.map((review, index) => (
+                                <div key={index} className="border-l-4 border-orange-600 pl-4 bg-black/40 p-3 rounded-md shadow-md flex justify-between items-center">
+                                    <div>
+                                        <p className="text-lg font-semibold text-orange-400">{review.source}</p>
+                                        <p className="text-sm italic text-gray-300">"{review.review}"</p>
+                                        <p className="text-yellow-400">{'⭐'.repeat(review.rating)}</p>
+                                    </div>
+                                    <button
+                                        onClick={() => handleDeleteReview(index)}
+                                        className="text-red-500 hover:text-red-700 transition duration-300"
+                                    >
+                                        <FaTrash />
+                                    </button>
                                 </div>
                             ))}
                         </div>
                     </>
                 )}
+
+                {/* Add Review Form */}
+                <div className="mt-6 p-4 bg-black/50 rounded-md shadow-md">
+                    <h2 className="text-xl font-bold text-center">Add Your Review</h2>
+                    <input
+                        type="text"
+                        name="source"
+                        value={newReview.source}
+                        onChange={handleInputChange}
+                        placeholder="Your Name"
+                        className="w-full p-2 mt-2 rounded bg-gray-800 text-white border border-gray-600"
+                    />
+                    <textarea
+                        name="review"
+                        value={newReview.review}
+                        onChange={handleInputChange}
+                        placeholder="Write your review..."
+                        className="w-full p-2 mt-2 rounded bg-gray-800 text-white border border-gray-600"
+                    />
+                    <input
+                        type="number"
+                        name="rating"
+                        value={newReview.rating}
+                        onChange={handleInputChange}
+                        min="1"
+                        max="5"
+                        placeholder="Rating (1-5)"
+                        className="w-full p-2 mt-2 rounded bg-gray-800 text-white border border-gray-600"
+                    />
+                    <button
+                        onClick={handleAddReview}
+                        className="mt-3 w-full bg-orange-600 text-white py-2 rounded-md hover:bg-orange-800 transition"
+                    >
+                        Submit Review
+                    </button>
+                </div>
             </div>
         </div>
     );
-};
+}
+
 
 export default MovieDetail;
