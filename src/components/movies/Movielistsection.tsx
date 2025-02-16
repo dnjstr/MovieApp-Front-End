@@ -1,26 +1,63 @@
 import React, { useState, useEffect } from 'react';
 import Footer from '../layout/Footer';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+
+interface Movie {
+  id: number;
+  title: string;
+  main_cast: string;
+  poster_image: string;
+  release_date: string;
+}
 
 const MovieListSection: React.FC = () => {
-  interface Movie {
-    id: number;
-    title: string;
-    main_cast: string;
-    poster_image: string;
-  }
   const navigate = useNavigate();
+  const location = useLocation();
   const [movies, setMovies] = useState<Movie[]>([]);
-
-  const handleMovieClick = (id: number) => {
-    navigate(`/movies/${id}`);
-  };
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/movies/')
-      .then((response) => response.json())
-      .then((data) =>setMovies(data));
+    // Restore scroll position when navigating back
+    if (location.state && location.state.scrollPosition) {
+      setTimeout(() => {
+        window.scrollTo(0, location.state.scrollPosition);
+      }, 0);
+    }
+  }, [location]);
+
+  useEffect(() => {
+    fetch('http://127.0.0.1:8000/api/movies/released/')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setMovies(data);
+        } else {
+          console.error('Received non-array data:', data);
+          setMovies([]);
+        }
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching released movies:', error);
+        setMovies([]);
+        setLoading(false);
+      });
   }, []);
+
+  const handleMovieClick = (id: number) => {
+    // Save current scroll position before navigating
+    const scrollPosition = window.pageYOffset;
+    navigate(`/movies/${id}`, { state: { scrollPosition } });
+  };
+
+  if (loading) {
+    return <div className="text-white text-center">Loading...</div>;
+  }
 
   return (
     <div className="px-8 py-10">
@@ -43,15 +80,14 @@ const MovieListSection: React.FC = () => {
               />
             </div>
 
-
             <div className="absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center text-center opacity-0 group-hover:opacity-100 transition-opacity p-4">
               <h3 className="text-lg font-semibold text-white px-2">{movie.title}</h3>
               <p className="text-xs text-gray-300 mt-1 px-3">{movie.main_cast}</p>
+              <p className="text-xs text-gray-400 mt-1">Released: {movie.release_date}</p>
             </div>
           </div>
         ))}
       </div>
-
 
       <div className='mt-4'>
         <Footer />

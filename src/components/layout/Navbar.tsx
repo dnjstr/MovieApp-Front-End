@@ -163,26 +163,12 @@ const Navbar: React.FC = () => {
             )}
           </div>
         ) : (
-          <div className="relative">
-            <button
-              className="bg-orange-600 text-white px-4 py-2 rounded-md"
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            >
-              <FaUser />
-            </button>
-
-            {isDropdownOpen && (
-              <div className="absolute top-full right-0 mt-2 w-48 bg-black rounded-md shadow-lg py-1">
-                <Link 
-                  to="/sign-in" 
-                  className="block px-4 py-2 text-sm text-white hover:bg-orange-600"
-                  onClick={() => setIsDropdownOpen(false)}
-                >
-                  Sign In
-                </Link>
-              </div>
-            )}
-          </div>
+          <Link 
+            to="/sign-in" 
+            className="bg-orange-600 text-white px-4 py-2 rounded-md hover:bg-orange-700 transition duration-300"
+          >
+            Sign In
+          </Link>
         )}
       </div>
 
