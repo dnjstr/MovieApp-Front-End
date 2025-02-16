@@ -129,16 +129,16 @@ const MovieDetail: React.FC = () => {
 
     useEffect(() => {
         const storedBookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
-        setBookmarked(storedBookmarks.includes(movie?.id));
+        setBookmarked(storedBookmarks.some((bookmark: any) => bookmark.id === movie?.id));
     }, [movie]);
 
     const toggleBookmark = () => {
         let storedBookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
 
         if (bookmarked) {
-            storedBookmarks = storedBookmarks.filter((movieId: number) => movieId !== movie?.id);
+            storedBookmarks = storedBookmarks.filter((bookmark: any) => bookmark.id !== movie?.id);
         } else {
-            storedBookmarks.push(movie?.id);
+            storedBookmarks.push(movie);
         }
 
         localStorage.setItem('bookmarks', JSON.stringify(storedBookmarks));
