@@ -65,25 +65,25 @@ const MovieListSection: React.FC = () => {
         Popular on <span className='gradient-text'>Movie Haven</span>
       </h2>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-4">
         {movies.map((movie) => (
           <div
             key={movie.id}
-            className="relative group movie-card-bg text-white p-4 rounded-lg shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer mb-4"
+            className="relative group cursor-pointer hover:scale-105 transition-transform duration-300 w-full max-w-[240px] mx-auto"
             onClick={() => handleMovieClick(movie.id)}
           >
-            <div className='movie-card-photo w-full p-1 flex justify-center rounded-md'>
+            <div className="aspect-[2/3] relative rounded-lg overflow-hidden shadow-lg">
               <img 
                 src={movie.poster_image} 
                 alt={movie.title} 
-                className="w-full h-[350px] object-cover rounded-md" 
+                className="w-full h-full object-cover" 
               />
-            </div>
 
-            <div className="absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center text-center opacity-0 group-hover:opacity-100 transition-opacity p-4">
-              <h3 className="text-lg font-semibold text-white px-2">{movie.title}</h3>
-              <p className="text-xs text-gray-300 mt-1 px-3">{movie.main_cast}</p>
-              <p className="text-xs text-gray-400 mt-1">Released: {movie.release_date}</p>
+              <div className="absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center text-center opacity-0 group-hover:opacity-100 transition-opacity p-4">
+                <h3 className="text-lg font-semibold text-white mb-2">{movie.title}</h3>
+                <p className="text-xs text-gray-300 mb-2 line-clamp-2">{movie.main_cast}</p>
+                <p className="text-xs text-gray-400">Released: {movie.release_date}</p>
+              </div>
             </div>
           </div>
         ))}
