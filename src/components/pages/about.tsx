@@ -1,12 +1,10 @@
-/*TEMPORARY */
-/*TEMPORARY */
-/*TEMPORARY */
-/*TEMPORARY */
-/*TEMPORARY */
-/*TEMPORARY */
-/*TEMPORARY */
+import React, { useEffect } from 'react';
 
 const AboutUs = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+}, []);
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,

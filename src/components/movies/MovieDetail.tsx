@@ -127,6 +127,17 @@ const MovieDetail: React.FC = () => {
     const [reviews, setReviews] = useState(movie?.reviews || []);
     const [newReview, setNewReview] = useState({ source: "", review: "", rating: 0 });
 
+
+    /*
+    
+    scroll to TOP
+    
+    */
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    
     useEffect(() => {
         const storedBookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
         setBookmarked(storedBookmarks.some((bookmark: any) => bookmark.id === movie?.id));
@@ -269,12 +280,14 @@ const MovieDetail: React.FC = () => {
                         placeholder="Rating (1-5)"
                         className="w-full p-2 mt-2 rounded bg-gray-800 text-white border border-gray-600"
                     />
-                    <button
-                        onClick={handleAddReview}
-                        className="mt-3 w-full bg-orange-600 text-white py-2 rounded-md hover:bg-orange-800 transition"
-                    >
-                        Submit Review
-                    </button>
+                    <div className='flex justify-center'>
+                        <button
+                            onClick={handleAddReview}
+                            className="mt-3 w-60 bg-orange-600 text-white py-2 rounded-full hover:bg-orange-800 transition"
+                        >
+                            Submit Review
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
