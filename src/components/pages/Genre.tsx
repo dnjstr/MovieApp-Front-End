@@ -153,7 +153,7 @@ const Genre = () => {
         </div>
 
         {/* Stats Section */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-2">
           {[
             { label: 'Total Movies', value: '69' },
             { label: 'Users', value: '2' },
@@ -168,10 +168,7 @@ const Genre = () => {
         </div>
 
     {/* Footer */}
-      <div className="mt-12 pt-2 border-t border-gray-800 text-center text-sm">
-
-        </div>
-    <footer className="mt-9 text-gray-300">
+    <footer className="mt-9  text-gray-300">
       <div className="max-w">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Quick Links */}

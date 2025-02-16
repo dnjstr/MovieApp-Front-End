@@ -83,7 +83,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="flex justify-center md:justify-end ">
+          <div className="flex justify-center md:justify-center ">
             <Link to="/">
               <img 
                 src="/Logo.png" 
