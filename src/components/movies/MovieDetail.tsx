@@ -141,7 +141,7 @@ const MovieDetail: React.FC = () => {
                         <p className="text-yellow-400 text-xl">{'⭐'.repeat(Math.round(movie.average_rating))}</p>
                         <p className="text-sm text-gray-400">Average Rating: {movie.average_rating} / 10</p>
                     </div>
-                </div>
+                </div> 
 
                 {/* Reviews section */}
                 <div className="max-w-4xl mx-auto mt-8 p-6">
@@ -237,6 +237,7 @@ const MovieDetail: React.FC = () => {
             </div>
         </div>
     );
-};
+}
+
 
 export default MovieDetail;

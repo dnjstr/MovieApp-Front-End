@@ -85,6 +85,7 @@ const SignUp: React.FC = () => {
     return (
         <div className="flex justify-center items-center min-h-screen">
             <div className="flex">
+                {/* Left Section */}
                 <div className="movie-card-photo text-white p-8 rounded-l-lg flex flex-col justify-center items-center w-1/2 relative">
                     <Link
                         to="/"
@@ -122,6 +123,8 @@ const SignUp: React.FC = () => {
                         </svg>
                     </div>
                 </div>
+
+                {/* Right Section */}
                 <div className="bg-white p-8 rounded-r-lg shadow-lg w-2/3">
                     <h2 className="text-2xl text-black font-bold text-center mb-4">Sign Up</h2>
                     <p className="text-center text-black mb-6">Create a new account to continue.</p>
@@ -157,6 +160,8 @@ const SignUp: React.FC = () => {
                                 onChange={handleChange}
                                 placeholder="Email Address (Optional if phone provided)"
                                 className="text-black w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                           
+                              
                             />
                         </div>
                         <div className="mb-4">
@@ -167,6 +172,7 @@ const SignUp: React.FC = () => {
                                 onChange={handleChange}
                                 placeholder="Phone Number (Optional if email provided)"
                                 className="text-black w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                           
                             />
                         </div>
                         <div className="mb-4">
@@ -190,6 +196,7 @@ const SignUp: React.FC = () => {
                             {isLoading ? "Creating Account..." : "Sign Up"}
                         </button>
                     </form>
+
                     <p className="text-center text-gray-600 mt-4">
                         Already have an account?{" "}
                         <Link to="/sign-in" className="text-orange-500 font-semibold hover:underline">

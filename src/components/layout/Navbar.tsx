@@ -83,13 +83,14 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className="flex items-center justify-between px-4 py-3 fixed w-full bg-black bg-opacity-75 z-50">
-      
+      {/* Logo */}
       <div className="flex items-center space-x-2">
         <Link to="/">
           <img src="/Logo.png" alt="MovieHaven Logo" className="h-8 cursor-pointer" />
         </Link>
       </div>
 
+      {/* Desktop Navigation Links */}
       <div className="hidden md:flex space-x-6 text-white gap-3 text-sm">
         <Link to="/" className="flex items-center space-x-2 hover:text-orange-600">
           <FaHome size={20} />
@@ -172,12 +173,16 @@ const Navbar: React.FC = () => {
         )}
       </div>
 
-      {/* Mobile Menu Button */}
-      <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden text-white">
+      {/* Mobile Menu Toggle */}
+      <button
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        className="md:hidden text-white"
+        aria-label="Toggle mobile menu"
+      >
         {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
       </button>
 
-      {/* Mobile Dropdown Menu */}
+      {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="absolute top-16 right-0 w-48 bg-black rounded-md bg-opacity-100 flex flex-col items-center p-4 space-y-4 md:hidden">
           <Link to="/" className="text-white hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>Home</Link>

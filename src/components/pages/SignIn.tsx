@@ -106,6 +106,7 @@ const SignIn: React.FC = () => {
     return (
         <div className="flex justify-center items-center min-h-screen">
             <div className="flex">
+                {/* Left Section */}
                 <div className="movie-card-photo text-white p-8 rounded-l-lg flex flex-col justify-center items-center w-1/2 relative">
                     <Link
                         to="/"
