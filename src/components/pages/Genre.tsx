@@ -122,20 +122,20 @@ const Genre: React.FC = () => {
                 <footer className=" text-gray-300 py-12">
                 <div className="max-w-full mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        <div className="flex justify-center">
+                        <div className="flex justify-start">
                             <div className="space-y-2">
-                                <h3 className="font-semibold text-white mb-4 text-center">Quick Links</h3>
-                                <div className="space-y-2">
-                                    <a href="/about" className="block text-sm whitespace-nowrap hover:text-white transition-colors text-center">
+                                <h3 className="font-semibold text-white mb-4 text-start">Quick Links</h3>
+                                <div className="space-y-2  ">
+                                    <a href="/about" className=" flex justify-start text-sm whitespace-nowrap hover:text-white transition-colors text-center">
                                         About Us
                                     </a>
-                                    <a href="/terms" className="block text-sm whitespace-nowrap hover:text-white transition-colors text-center">
+                                    <a href="/terms" className="flex justify-start text-sm whitespace-nowrap hover:text-white transition-colors text-center">
                                         Terms of Service
                                     </a>
-                                    <a href="/contact" className="block text-sm whitespace-nowrap hover:text-white transition-colors text-center">
+                                    <a href="/contact" className="flex justify-start text-sm whitespace-nowrap hover:text-white transition-colors text-center">
                                         Contact
                                     </a>
-                                    <a href="/faq" className="block text-sm whitespace-nowrap hover:text-white transition-colors text-center">
+                                    <a href="/faq" className="flex justify-start text-sm whitespace-nowrap hover:text-white transition-colors text-center">
                                         FAQ
                                     </a>
                                 </div>
@@ -164,7 +164,7 @@ const Genre: React.FC = () => {
                                 </a>
                             </div>
                         </div>
-                        <div className="flex justify-center">
+                        <div className="flex justify-end">
                             <Link to="/">
                                 <img
                                     src="/Logo.png"
