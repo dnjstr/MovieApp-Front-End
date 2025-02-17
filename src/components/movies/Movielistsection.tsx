@@ -1,32 +1,63 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Footer from '../layout/Footer';
-import { useNavigate } from 'react-router-dom';
-import { FaBookmark } from 'react-icons/fa';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-const movies = [
-  { id: 1, title: "BATMAN(2022)", cast: "Cast: Robert Pattinson, Zoe Kravitz ", image: "https://cdn.prod.website-files.com/6009ec8cda7f305645c9d91b/66a4263d01a185d5ea22eeec_6408f6e7b5811271dc883aa8_batman-min.png" },
-  { id: 2, title: "SHADOW AND BONE", cast: "Cast: Jessie Mei Li, Ben Barnes ", image: "https://m.media-amazon.com/images/M/MV5BZWM1NTJiNzUtYTJlYy00NWYyLTliNjUtN2FjNzdkOWQxNWRjXkEyXkFqcGc@._V1_.jpg" },
-  { id: 3, title: "US", cast: "Cast: Lupita Nyong'o, Winston Duke ", image: "https://i.ebayimg.com/images/g/FKsAAOSw8DZgGo2i/s-l1200.jpg" },
-  { id: 4, title: "DUNE: PART 2", cast: "Cast: Timothée Chalamet, Zendaya ", image: "https://vice-press.com/cdn/shop/files/dune-part-two-movie-poster-matt-ferguson_ac86f8c9-f410-450c-805b-c4352aac4a55_540x.jpg?v=1730814717" },
-  { id: 5, title: "OPPENHEIMER", cast: "Cast: Cillian Murphy, Florence Pugh ", image: "https://creativereview.imgix.net/content/uploads/2023/12/Oppenheimer.jpg?auto=compress,format&q=60&w=1263&h=2000" },
-  { id: 6, title: "SMILE", cast: "Cast: Sosie Bacon, Kyle Gallner ", image: "https://cdn.prod.website-files.com/6009ec8cda7f305645c9d91b/66a4263d01a185d5ea22eeda_6408f76710a9935109f855d4_smile-min.png" },
-  { id: 7, title: "WONDER WOMAN", cast: "Cast: Gal Gadot, Chris Pine ", image: "https://rukminim2.flixcart.com/image/850/1000/jt8yxe80/poster/e/w/k/medium-wonder-wom11-woman-movie-poster-original-imafem3hvgkhfvuj.jpeg?q=20&crop=false" },
-  { id: 8, title: "CAPTAIN AMERICA: THE WINTER SOLDIER",cast: "Cast: Chris Evans, Sebastian Stan", image: "https://anniehaydesign.weebly.com/uploads/9/5/4/6/95469676/landscape-poster-3_orig.jpg" },
-];
+interface Movie {
+  id: number;
+  title: string;
+  main_cast: string;
+  poster_image: string;
+  release_date: string;
+}
 
 const MovieListSection: React.FC = () => {
   const navigate = useNavigate();
-  const [bookmarkedMovies, setBookmarkedMovies] = useState<number[]>([]);
+  const location = useLocation();
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Restore scroll position when navigating back
+    if (location.state && location.state.scrollPosition) {
+      setTimeout(() => {
+        window.scrollTo(0, location.state.scrollPosition);
+      }, 0);
+    }
+  }, [location]);
+
+  useEffect(() => {
+    fetch('http://127.0.0.1:8000/api/movies/released/')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setMovies(data);
+        } else {
+          console.error('Received non-array data:', data);
+          setMovies([]);
+        }
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching released movies:', error);
+        setMovies([]);
+        setLoading(false);
+      });
+  }, []);
 
   const handleMovieClick = (id: number) => {
-    navigate(`/movies/${id}`);
+    // Save current scroll position before navigating
+    const scrollPosition = window.pageYOffset;
+    navigate(`/movies/${id}`, { state: { scrollPosition } });
   };
 
-  const toggleBookmark = (id: number) => {
-    setBookmarkedMovies((prev) =>
-      prev.includes(id) ? prev.filter(movieId => movieId !== id) : [...prev, id]
-    );
-  };
+  if (loading) {
+    return <div className="text-white text-center">Loading...</div>;
+  }
 
   return (
     <div className="px-8 py-10">
@@ -34,37 +65,25 @@ const MovieListSection: React.FC = () => {
         Popular on <span className='gradient-text'>Movie Haven</span>
       </h2>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-4">
         {movies.map((movie) => (
           <div
             key={movie.id}
-            className="relative group movie-card-bg text-white p-4 rounded-lg shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer mb-4"
+            className="relative group cursor-pointer hover:scale-105 transition-transform duration-300 w-full max-w-[240px] mx-auto"
             onClick={() => handleMovieClick(movie.id)}
           >
-            <div className='movie-card-photo w-full p-1 flex justify-center rounded-md'>
+            <div className="aspect-[2/3] relative rounded-lg overflow-hidden shadow-lg">
               <img 
-                src={movie.image} 
+                src={movie.poster_image} 
                 alt={movie.title} 
-                className="w-full h-[350px] object-cover rounded-md" 
+                className="w-full h-full object-cover" 
               />
-            </div>
-            <button 
-              className="absolute top-2 right-2 text-white bg-black bg-opacity-50 p-2 rounded-full hover:bg-opacity-80 transition"
-              onClick={(e) => { e.stopPropagation(); toggleBookmark(movie.id); }}
-            >
-              {bookmarkedMovies.includes(movie.id) ? (
-                <FaBookmark className="text-yellow-400" />
-              ) : (
-                <FaBookmark className="text-gray-400" />
-              )}
-            </button>
-            <div className="absolute inset-0 bg-black bg-opacity-60 flex flex-col mx-3 items-center justify-center text-center opacity-0 group-hover:opacity-100 transition-opacity p-4">
-              <h2 className="text-2x1 font-semibold text-white">
-                {movie.title}
-                </h2>
-              <p className="text-xs text-gray-300 mt-1">
-                {movie.cast}
-                </p>
+
+              <div className="absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center text-center opacity-0 group-hover:opacity-100 transition-opacity p-4">
+                <h3 className="text-lg font-semibold text-white mb-2">{movie.title}</h3>
+                <p className="text-xs text-gray-300 mb-2 line-clamp-2">{movie.main_cast}</p>
+                <p className="text-xs text-gray-400">Released: {movie.release_date}</p>
+              </div>
             </div>
           </div>
         ))}

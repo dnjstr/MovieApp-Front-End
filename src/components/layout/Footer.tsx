@@ -60,21 +60,21 @@ const Footer = () => {
             <h3 className="font-semibold text-white mb-2">Contact Us</h3>
             <div className="space-y-3 flex flex-col items-center ">
               <a 
-          href="https://web.telegram.org/"
+          href="https://web.telegram.org/" target='_blank'
           className="w-48 px-6 py-1 bg-blue-600 text-white rounded-full 
           hover:bg-blue-700 transition-colors"
               >
           ▶️ Join Telegram
               </a>
               <a 
-          href="https://www.reddit.com/"
+          href="https://www.reddit.com/" target='_blank'
           className="w-48 px-6 py-1 bg-orange-600 text-white rounded-full 
           hover:bg-orange-700 transition-colors"
               >
           🐽 Join Reddit
               </a>
               <a 
-          href="https://x.com"
+          href="https://x.com" target='_blank'
           className="w-48 px-6 py-1 bg-sky-500 text-white rounded-full 
           hover:bg-sky-600 transition-colors"
               >
