@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
 const ProfilePage = () => {
-    const { user, logout } = useAuth(); // Use user and logout from useAuth
+    const { user, logout } = useAuth();
     const navigate = useNavigate();
 
     // Redirect to sign-in if no user is logged in
@@ -39,6 +39,14 @@ const ProfilePage = () => {
 
     return (
         <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center">
+            {/* Back Button */}
+            <button 
+                className="absolute top-6 left-6 px-4 py-2 bg-orange-700 text-white rounded-lg hover:bg-red-700 transition"
+                onClick={() => navigate(-1)} 
+            >
+                ←
+            </button>
+
             {/* Title */}
             <h1 className="text-4xl font-bold mb-8">Who's Watching?</h1>
 
@@ -50,21 +58,18 @@ const ProfilePage = () => {
                         className="flex flex-col items-center cursor-pointer hover:scale-105 transition-transform relative"
                         onClick={() => {
                             if (profile.name === "Add Profile") {
-                                // Handle adding a new profile
                                 console.log("Add Profile clicked");
                             } else {
-                                // Navigate to the selected profile
                                 navigate("/");
                             }
                         }}
                     >
-                        {/* Profile Image */}
                         <img
                             src={profile.profilePic}
                             alt={profile.name}
                             className={`w-32 h-32 rounded-lg border-2 ${
                                 user?.name === profile.name
-                                    ? "border-orange-600" // Highlight the current user
+                                    ? "border-orange-600"
                                     : "border-transparent hover:border-white"
                             }`}
                             onError={(e) => {
@@ -72,10 +77,8 @@ const ProfilePage = () => {
                                     "https://tr.rbxcdn.com/180DAY-d2aa8b558f4c73dc77ab184210a56788/420/420/Hat/Png/noFilter";
                             }}
                         />
-                        {/* Profile Name */}
                         <p className="mt-2 text-lg text-gray-400">{profile.name}</p>
 
-                        {/* Current User Indicator */}
                         {user?.name === profile.name && (
                             <div className="absolute top-0 right-0 bg-orange-600 rounded-full p-1">
                                 <svg
@@ -98,7 +101,7 @@ const ProfilePage = () => {
 
             {/* Logout Button */}
             <button
-                className="mt-12 px-6 py-2 bg-transparent border-2 border-gray-500 text-gray-500 rounded-lg hover:bg-gray-500 hover:text-white transition"
+                className="mt-12 px-6 py-2 bg-transparent border-2 border-orange-500 text-gray-500 rounded-lg hover:bg-red-700 hover:text-white transition"
                 onClick={logout}
             >
                 Logout

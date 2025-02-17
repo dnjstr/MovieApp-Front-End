@@ -15,11 +15,12 @@ import About from "./components/pages/about";
 import Contact from "./components/pages/contact";
 import FAQ from "./components/pages/faq";
 import TermsAndCondition from "./components/pages/TermsandCondition";
+import Settings from "./components/pages/Settings";
 
 // Layout Component
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
-  const hideNavbar = ["/sign-in", "/sign-up"].includes(location.pathname);
+  const hideNavbar = ["/sign-in", "/sign-up", "/settings", "/ProfilePage"].includes(location.pathname);
 
   return (
     <>
@@ -53,6 +54,7 @@ const App: React.FC = () => {
             <Route path="/TermsandCondition" element={<TermsAndCondition />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/faq" element={<FAQ />} />
+            <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
           </Routes>
         </Layout>
       </Router>
