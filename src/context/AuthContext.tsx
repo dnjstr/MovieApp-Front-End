@@ -16,6 +16,7 @@ export const AuthContext = createContext<AuthContextType>({
   logout: () => {},
 });
 
+
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [token, setToken] = useState<string | null>(null);

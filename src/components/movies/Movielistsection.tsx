@@ -8,6 +8,7 @@ interface Movie {
   main_cast: string;
   poster_image: string;
   release_date: string;
+  average_rating: number;
 }
 
 const MovieListSection: React.FC = () => {
@@ -83,6 +84,9 @@ const MovieListSection: React.FC = () => {
                 <h3 className="text-lg font-semibold text-white mb-2">{movie.title}</h3>
                 <p className="text-xs text-gray-300 mb-2 line-clamp-2">{movie.main_cast}</p>
                 <p className="text-xs text-gray-400">Released: {movie.release_date}</p>
+                <div className="flex items-center mt-2">
+                    <span className="text-yellow-400 text-xs">{'⭐'.repeat(Math.round(movie.average_rating))}</span>
+                </div>
               </div>
             </div>
           </div>
