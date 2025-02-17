@@ -8,6 +8,7 @@ interface Review {
     user: {
         fullName: string;
     }
+    // user: string;
     rating: number;
     review_text: string;
     created_at: string;
@@ -64,9 +65,10 @@ const MovieDetail: React.FC = () => {
                 },
                 body: JSON.stringify(newReview)
             });
-
+            
+            const data = await response.json();
             if (response.ok) {
-                const data = await response.json();
+                // const data = await response.json();
                 setReviews([...reviews, data]);
                 setNewReview({ rating: 0, review_text: '' });
                 
@@ -74,6 +76,8 @@ const MovieDetail: React.FC = () => {
                 const movieResponse = await fetch(`http://127.0.0.1:8000/api/movie/${id}/`);
                 const movieData = await movieResponse.json();
                 setMovie(movieData);
+            } else {
+                console.error("Server error:", data);
             }
         } catch (error) {
             console.error('Error submitting review:', error);
