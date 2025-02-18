@@ -3,16 +3,48 @@ import Footer from "../layout/Footer";
 
 const MyList: React.FC = () => {
     const [myList, setMyList] = useState<any[]>([]);
+    const userToken = localStorage.getItem("userToken"); // Get token
 
     useEffect(() => {
-        const storedBookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
-        setMyList(storedBookmarks);
-    }, []);
+        const fetchBookmarks = async () => {
+            try {
+                const response = await fetch("http://127.0.0.1:8000/api/bookmarks/", {
+                    headers: {
+                        Authorization: `Bearer ${userToken}`,
+                    },
+                });
 
-    const removeFromList = (id: number) => {
-        const updatedList = myList.filter((movie) => movie.id !== id);
-        setMyList(updatedList);
-        localStorage.setItem("bookmarks", JSON.stringify(updatedList));
+                if (!response.ok) throw new Error("Failed to fetch bookmarks");
+
+                const data = await response.json();
+                setMyList(data);
+            } catch (error) {
+                console.error("Error fetching bookmarks:", error);
+            }
+        };
+
+        if (userToken) fetchBookmarks(); 
+    }, [userToken]);
+
+
+    const removeFromList = async (movieId: number) => {
+        try {
+            const response = await fetch("http://127.0.0.1:8000/api/bookmarks/", {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${userToken}`,
+                },
+                body: JSON.stringify({ movie_id: movieId }),
+            });
+
+            if (!response.ok) throw new Error("Failed to remove bookmark");
+
+            // Remove the movie from state
+            setMyList(myList.filter((movie) => movie.id !== movieId));
+        } catch (error) {
+            console.error("Error removing bookmark:", error);
+        }
     };
 
     return (
@@ -40,7 +72,7 @@ const MyList: React.FC = () => {
                                     </p>
                                 </div>
                                 <button
-                                    onClick={() => removeFromList(item.id)}
+                                    onClick={() => removeFromList(item.id)} 
                                     className="text-black hover:text-red-900 text-xl"
                                 >
                                     ✖

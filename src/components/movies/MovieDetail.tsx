@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { FaArrowLeft, FaStar } from 'react-icons/fa';
+import { FaArrowLeft, FaStar, FaBookmark } from 'react-icons/fa';
 import { useAuth } from '../../context/AuthContext';
+
 
 interface Review {
     id: number;
@@ -28,6 +29,41 @@ const MovieDetail: React.FC = () => {
     const [error, setError] = useState('');
     const [showSignInMessage, setShowSignInMessage] = useState(false);
     const [showReviewForm, setShowReviewForm] = useState(false);
+    const [isBookmarked, setIsBookmarked] = useState(false);
+
+    useEffect(() => {
+        // Check if the movie is already bookmarked
+        const storedBookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
+        const isMovieBookmarked = storedBookmarks.some((bookmark: any) => bookmark.id === movie?.id);
+        setIsBookmarked(isMovieBookmarked);
+    }, [movie]);
+
+    const toggleBookmark = async () => {
+        if (!isAuthenticated) {
+            alert("Please sign in to bookmark movies.");
+            return;
+        }
+
+        try {
+            const method = isBookmarked ? 'DELETE' : 'POST';
+            const response = await fetch(`http://127.0.0.1:8000/api/movie/${movie.id}/bookmark/`, {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Token ${token}`
+                }
+            });
+
+            if (response.ok) {
+                setIsBookmarked(!isBookmarked);
+            } else {
+                const data = await response.json();
+                console.error("Failed to update bookmark:", data);
+            }
+        } catch (error) {
+            console.error("Error updating bookmark:", error);
+        }
+    };
 
     useEffect(() => {
         fetch(`http://127.0.0.1:8000/api/movie/${id}/`)
@@ -120,6 +156,12 @@ const MovieDetail: React.FC = () => {
                             <p className="text-sm text-gray-400">Duration: {movie.duration}</p>
                             <p className="text-sm text-gray-400">Genre: {movie.genre}</p>
                             <p className="text-sm text-gray-400">Director: {movie.director}</p>
+                            <button
+                                onClick={toggleBookmark}
+                                className="mt-4 px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-900 transition duration-300 flex items-center gap-2"
+                            >
+                                <FaBookmark /> {isBookmarked ? 'Remove from My List' : 'Add to My List'}
+                            </button>
                         </div>
                     </div>
 
@@ -237,7 +279,6 @@ const MovieDetail: React.FC = () => {
             </div>
         </div>
     );
-}
-
+};
 
 export default MovieDetail;
