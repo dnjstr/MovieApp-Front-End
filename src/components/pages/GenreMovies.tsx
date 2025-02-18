@@ -6,6 +6,7 @@ interface Movie {
     id: number;
     title: string;
     genre: string;
+    main_cast: string;
     description: string;
     release_date: string;
     poster_image: string;
@@ -91,9 +92,10 @@ const GenreMovies: React.FC = () => {
                                 <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 transition-all duration-300">
                                     <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
                                         <h3 className="text-white text-lg font-bold text-center mb-2">{movie.title}</h3>
+                                        <p className="text-xs text-gray-300 mb-2 line-clamp-2">{movie.main_cast}</p>
                                         <p className="text-gray-300 text-sm text-center mb-2">{movie.release_date}</p>
                                         <div className="flex items-center">
-                                            <span className="text-yellow-400">{'⭐'.repeat(Math.round(movie.average_rating/2))}</span>
+                                            <span className="text-yellow-400 text-xs">{'⭐'.repeat(Math.round(movie.average_rating))}</span>
                                         </div>
                                     </div>
                                 </div>
