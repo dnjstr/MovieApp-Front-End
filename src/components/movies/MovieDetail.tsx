@@ -32,11 +32,40 @@ const MovieDetail: React.FC = () => {
     const [isBookmarked, setIsBookmarked] = useState(false);
 
     useEffect(() => {
-        // Check if the movie is already bookmarked
-        const storedBookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
-        const isMovieBookmarked = storedBookmarks.some((bookmark: any) => bookmark.id === movie?.id);
-        setIsBookmarked(isMovieBookmarked);
-    }, [movie]);
+        // Fetch movie details
+        fetch(`http://127.0.0.1:8000/api/movie/${id}/`)
+            .then(response => response.json())
+            .then(data => {
+                setMovie(data);
+                setLoading(false);
+            })
+            .catch(error => {
+                setError(error.message);
+                setLoading(false);
+            });
+
+        // Fetch reviews
+        fetch(`http://127.0.0.1:8000/api/movie/${id}/reviews/`)
+            .then(response => response.json())
+            .then(data => setReviews(data))
+            .catch(error => console.error('Error fetching reviews:', error));
+
+        // Check if the movie is bookmarked
+        const checkBookmark = async () => {
+            if (isAuthenticated) {
+                const response = await fetch(`http://127.0.0.1:8000/api/bookmarks/`, {
+                    headers: {
+                        'Authorization': `Token ${token}`
+                    }
+                });
+                const bookmarks = await response.json();
+                const isMovieBookmarked = bookmarks.some((bookmark: any) => bookmark.movie === parseInt(id!));
+                setIsBookmarked(isMovieBookmarked);
+            }
+        };
+
+        checkBookmark();
+    }, [id, isAuthenticated, token]);
 
     const toggleBookmark = async () => {
         if (!isAuthenticated) {
@@ -45,8 +74,18 @@ const MovieDetail: React.FC = () => {
         }
 
         try {
-            const method = isBookmarked ? 'DELETE' : 'POST';
-            const response = await fetch(`http://127.0.0.1:8000/api/movie/${movie.id}/bookmark/`, {
+            let url = '';
+            let method = '';
+
+            if (isBookmarked) {
+                url = `http://127.0.0.1:8000/api/bookmarks/remove/${movie.id}/`;
+                method = 'DELETE';
+            } else {
+                url = `http://127.0.0.1:8000/api/bookmarks/add/${movie.id}/`;
+                method = 'POST';
+            }
+
+            const response = await fetch(url, {
                 method: method,
                 headers: {
                     'Content-Type': 'application/json',
@@ -64,25 +103,6 @@ const MovieDetail: React.FC = () => {
             console.error("Error updating bookmark:", error);
         }
     };
-
-    useEffect(() => {
-        fetch(`http://127.0.0.1:8000/api/movie/${id}/`)
-            .then(response => response.json())
-            .then(data => {
-                setMovie(data);
-                setLoading(false);
-            })
-            .catch(error => {
-                setError(error.message);
-                setLoading(false);
-            });
-
-        // Fetch reviews
-        fetch(`http://127.0.0.1:8000/api/movie/${id}/reviews/`)
-            .then(response => response.json())
-            .then(data => setReviews(data))
-            .catch(error => console.error('Error fetching reviews:', error));
-    }, [id]);
 
     const handleReviewSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -160,7 +180,7 @@ const MovieDetail: React.FC = () => {
                                 onClick={toggleBookmark}
                                 className="mt-4 px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-900 transition duration-300 flex items-center gap-2"
                             >
-                                <FaBookmark /> {isBookmarked ? 'Remove from My List' : 'Add to My List'}
+                                <FaBookmark /> {isBookmarked ? 'Remove Bookmark' : 'Bookmark'}
                             </button>
                         </div>
                     </div>

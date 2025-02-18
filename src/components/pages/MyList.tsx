@@ -3,14 +3,14 @@ import Footer from "../layout/Footer";
 
 const MyList: React.FC = () => {
     const [myList, setMyList] = useState<any[]>([]);
-    const userToken = localStorage.getItem("userToken"); // Get token
+    const userToken = localStorage.getItem("token") || "";
 
     useEffect(() => {
         const fetchBookmarks = async () => {
             try {
                 const response = await fetch("http://127.0.0.1:8000/api/bookmarks/", {
                     headers: {
-                        Authorization: `Bearer ${userToken}`,
+                        Authorization: `Token ${userToken}`,
                     },
                 });
 
@@ -26,22 +26,20 @@ const MyList: React.FC = () => {
         if (userToken) fetchBookmarks(); 
     }, [userToken]);
 
-
     const removeFromList = async (movieId: number) => {
         try {
             const response = await fetch("http://127.0.0.1:8000/api/bookmarks/", {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${userToken}`,
+                    Authorization: `Token ${userToken}`,
                 },
                 body: JSON.stringify({ movie_id: movieId }),
             });
 
             if (!response.ok) throw new Error("Failed to remove bookmark");
 
-            // Remove the movie from state
-            setMyList(myList.filter((movie) => movie.id !== movieId));
+            setMyList(myList.filter((movie) => movie.movie.id !== movieId));
         } catch (error) {
             console.error("Error removing bookmark:", error);
         }
@@ -61,18 +59,18 @@ const MyList: React.FC = () => {
                                 className="flex items-center p-4 rounded-lg bg-gradient-to-r from-orange-900 via-orange-700 to-orange-500"
                             >
                                 <img
-                                    src={item.image}
-                                    alt={item.title}
+                                    src={item.movie_poster}
+                                    alt={item.movie_title}
                                     className="w-[80px] h-[120px] object-cover rounded-md mr-4"
                                 />
                                 <div className="flex-grow">
-                                    <h2 className="text-lg font-bold">{item.title}</h2>
+                                    <h2 className="text-lg font-bold">{item.movie_title}</h2>
                                     <p className="text-gray-300 text-sm">
-                                        {item.year} • {item.rating} • {item.duration}
+                                        {item.movie_release_date} • Directed by: {item.movie_director}
                                     </p>
                                 </div>
                                 <button
-                                    onClick={() => removeFromList(item.id)} 
+                                    onClick={() => removeFromList(item.movie.id)} 
                                     className="text-black hover:text-red-900 text-xl"
                                 >
                                     ✖
