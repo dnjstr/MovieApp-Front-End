@@ -15,6 +15,7 @@ import About from "./components/pages/about";
 import Contact from "./components/pages/contact";
 import FAQ from "./components/pages/faq";
 import TermsAndCondition from "./components/pages/TermsandCondition";
+import GenreMovies from "./components/pages/GenreMovies";
 
 // Layout Component
 const Layout = ({ children }: { children: React.ReactNode }) => {
@@ -44,6 +45,7 @@ const App: React.FC = () => {
             <Route path="/" element={<><MainPage /><MovieListSection /></>} />
             <Route path="/popular" element={<Popular />} />
             <Route path="/genre" element={<Genre />} />
+            <Route path="/genre/:genreName" element={<GenreMovies />} />
             <Route path="/my-list" element={<MyList />} />
             <Route path="/movies/:id" element={<MovieDetail />} />
             <Route path="/sign-in" element={<SignIn />} />
