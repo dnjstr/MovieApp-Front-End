@@ -29,6 +29,7 @@ const MovieDetail: React.FC = () => {
     const [showSignInMessage, setShowSignInMessage] = useState(false);
     const [showReviewForm, setShowReviewForm] = useState(false);
     const [isBookmarked, setIsBookmarked] = useState(false);
+    const [isPlayerOpen, setIsPlayerOpen] = useState(false);
 
     useEffect(() => {
         // Fetch movie details
@@ -59,7 +60,7 @@ const MovieDetail: React.FC = () => {
                 });
                 const bookmarks = await response.json();
                 const isMovieBookmarked = bookmarks.some(
-                    (bookmark: any) => bookmark.movie === parseInt(id!)
+                    (bookmark: any) => bookmark.movie.id === parseInt(id!)
                 );
                 setIsBookmarked(isMovieBookmarked);
             }
@@ -148,6 +149,18 @@ const MovieDetail: React.FC = () => {
         } catch (error) {
             console.error('Error submitting review:', error);
         }
+    };
+
+    const handleWatchNow = () => {
+        if (movie && movie.video_url) {
+            setIsPlayerOpen(true);
+        } else {
+            alert("Video URL is not available.");
+        }
+    };
+
+    const closePlayer = () => {
+        setIsPlayerOpen(false);
     };
 
     if (loading) {

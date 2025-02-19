@@ -82,7 +82,7 @@ const Navbar: React.FC = () => {
   });
 
   return (
-    <nav className="flex items-center justify-between px-4 py-3 fixed w-full bg-black bg-opacity-75 z-50">
+    <nav className="flex items-center justify-between px-4 py-3 fixed w-full bg-black bg-opacity-75 z-10">
       {/* Logo */}
       <div className="flex items-center space-x-2">
         <Link to="/">

@@ -20,7 +20,7 @@ const MainPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative h-screen w-full flex flex-col items-start justify-center text-white text-left px-4">
+    <div className="relative h-screen w-full flex flex-col items-start justify-center text-white text-left px-4 z-0">
       {/* Background Video */}
       <div className="absolute top-0 left-0 w-full h-full">
         <video
