@@ -17,8 +17,6 @@ import Contact from "./components/pages/contact";
 import FAQ from "./components/pages/faq";
 import TermsAndCondition from "./components/pages/TermsandCondition";
 import Preferences from "./components/pages/Preferences";
-import MovieVideoPlayer from "./components/movies/Movievideoplayer";
-import MoviePlayer from "./components/movies/MoviePlayer";
 
 // Layout Component (Uses Global Background Color)
 const Layout = ({ children }: { children: React.ReactNode }) => {
@@ -64,7 +62,6 @@ const App: React.FC = () => {
               <Route path="/contact" element={<Contact />} />
               <Route path="/faq" element={<FAQ />} />
               <Route path="/settings" element={<Preferences />} />
-              <Route path="/watch/:id" element={<MovieVideoPlayer src="your-video-url-here" />} />
             </Routes>
           </Layout>
         </Router>
