@@ -3,13 +3,11 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaStar, FaBookmark } from 'react-icons/fa';
 import { useAuth } from '../../context/AuthContext';
 
-
 interface Review {
     id: number;
     user: {
         fullName: string;
-    }
-    // user: string;
+    };
     rating: number;
     review_text: string;
     created_at: string;
@@ -59,13 +57,19 @@ const MovieDetail: React.FC = () => {
                     }
                 });
                 const bookmarks = await response.json();
-                const isMovieBookmarked = bookmarks.some((bookmark: any) => bookmark.movie === parseInt(id!));
+                const isMovieBookmarked = bookmarks.some(
+                    (bookmark: any) => bookmark.movie === parseInt(id!)
+                );
                 setIsBookmarked(isMovieBookmarked);
             }
         };
 
         checkBookmark();
     }, [id, isAuthenticated, token]);
+
+    // Determine if the movie is released
+    // (Assuming movie.release_date is in a format that can be parsed by Date)
+    const isReleased = movie ? new Date(movie.release_date) <= new Date() : false;
 
     const toggleBookmark = async () => {
         if (!isAuthenticated) {
@@ -112,6 +116,12 @@ const MovieDetail: React.FC = () => {
             return;
         }
 
+        // Prevent submitting reviews for movies that haven't been released
+        if (!isReleased) {
+            alert("Reviews can only be added to released movies.");
+            return;
+        }
+
         try {
             const response = await fetch(`http://127.0.0.1:8000/api/movie/${id}/reviews/add/`, {
                 method: 'POST',
@@ -124,7 +134,6 @@ const MovieDetail: React.FC = () => {
             
             const data = await response.json();
             if (response.ok) {
-                // const data = await response.json();
                 setReviews([...reviews, data]);
                 setNewReview({ rating: 0, review_text: '' });
                 
@@ -209,20 +218,24 @@ const MovieDetail: React.FC = () => {
                 <div className="max-w-4xl mx-auto mt-8 p-6">
                     <div className="flex justify-between items-center mb-6">
                         <h2 className="text-2xl font-bold">Reviews</h2>
-                        <button
-                            onClick={() => setShowReviewForm(true)}
-                            className={`px-4 py-2 rounded-md ${
-                                isAuthenticated 
-                                    ? 'bg-orange-600 hover:bg-orange-700' 
-                                    : 'bg-gray-600 cursor-not-allowed'
-                            }`}
-                            disabled={!isAuthenticated}
-                        >
-                            Add Review
-                        </button>
+                        {isReleased ? (
+                            <button
+                                onClick={() => setShowReviewForm(true)}
+                                className={`px-4 py-2 rounded-md ${
+                                    isAuthenticated 
+                                        ? 'bg-orange-600 hover:bg-orange-700' 
+                                        : 'bg-gray-600 cursor-not-allowed'
+                                }`}
+                                disabled={!isAuthenticated}
+                            >
+                                Add Review
+                            </button>
+                        ) : (
+                            <span className="text-gray-400">Coming Soon - Reviews Unavailable</span>
+                        )}
                     </div>
 
-                    {showReviewForm && (
+                    {showReviewForm && isReleased && (
                         <form onSubmit={handleReviewSubmit} className="mb-8 bg-gray-900 p-6 rounded-lg">
                             <div className="mb-4">
                                 <label className="block mb-2">Rating (1-10)</label>
