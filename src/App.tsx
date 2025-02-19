@@ -16,6 +16,8 @@ import Contact from "./components/pages/contact";
 import FAQ from "./components/pages/faq";
 import TermsAndCondition from "./components/pages/TermsandCondition";
 import Settings from "./components/pages/Settings";
+import MovieVideoPlayer from "./components/movies/Movievideoplayer";
+import WatchMovie from "./components/movies/WatchMovie";
 
 // Layout Component
 const Layout = ({ children }: { children: React.ReactNode }) => {
@@ -58,6 +60,8 @@ const App: React.FC = () => {
             <Route path="/contact" element={<Contact />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/watch/:id" element={<MovieVideoPlayer src="your-video-url-here" />} />
+            <Route path="/watch/:id" element={<WatchMovie />} />
           </Routes>
         </Layout>
       </Router>
