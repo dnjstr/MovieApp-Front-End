@@ -151,7 +151,7 @@ const Navbar: React.FC = () => {
                   onClick={() => setIsDropdownOpen(false)}
                 >
                   <FaCog className="text-sm" />
-                  <span>Settings</span>
+                  <span>Preferences</span>
                 </Link>
                 <button
                   onClick={handleLogout}

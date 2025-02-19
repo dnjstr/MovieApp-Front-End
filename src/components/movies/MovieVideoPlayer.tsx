@@ -1,7 +1,9 @@
 import React, { useRef, useState, useEffect } from "react";
-import { FaPlay, FaPause, FaVolumeUp, FaVolumeMute, FaExpand } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { FaPlay, FaPause, FaVolumeUp, FaVolumeMute, FaExpand, FaArrowLeft } from "react-icons/fa";
 
 const MovieVideoPlayer: React.FC<{ src: string }> = ({ src }) => {
+    const navigate = useNavigate();
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [isMuted, setIsMuted] = useState(false);
@@ -41,10 +43,8 @@ const MovieVideoPlayer: React.FC<{ src: string }> = ({ src }) => {
 
     // Enter Fullscreen Mode
     const enterFullScreen = () => {
-        if (videoRef.current) {
-            if (videoRef.current.requestFullscreen) {
-                videoRef.current.requestFullscreen();
-            }
+        if (videoRef.current?.requestFullscreen) {
+            videoRef.current.requestFullscreen();
         }
     };
 
@@ -100,9 +100,17 @@ const MovieVideoPlayer: React.FC<{ src: string }> = ({ src }) => {
 
     return (
         <div 
-            className="relative w-full max-w-3xl mx-auto"
+            className="relative w-full max-w-3xl mx-auto mt-10"
             onMouseMove={() => setShowControls(true)}
         >
+            {/* Back Button */}
+            <button 
+                onClick={() => navigate(-1)} 
+                className="absolute top-4 left-4 bg-orange-600/50 text-white p-2 rounded-full hover:bg-red-800/70 transition duration-300 z-10"
+            >
+                <FaArrowLeft className="text-xl" />
+            </button>
+
             {/* Video Player */}
             <video
                 ref={videoRef}
