@@ -5,41 +5,40 @@ const MyList: React.FC = () => {
     const [myList, setMyList] = useState<any[]>([]);
     const userToken = localStorage.getItem("token") || "";
 
-    useEffect(() => {
-        const fetchBookmarks = async () => {
-            try {
-                const response = await fetch("http://127.0.0.1:8000/api/bookmarks/", {
-                    headers: {
-                        Authorization: `Token ${userToken}`,
-                    },
-                });
-
-                if (!response.ok) throw new Error("Failed to fetch bookmarks");
-
-                const data = await response.json();
-                setMyList(data);
-            } catch (error) {
-                console.error("Error fetching bookmarks:", error);
-            }
-        };
-
-        if (userToken) fetchBookmarks(); 
-    }, [userToken]);
-
-    const removeFromList = async (movieId: number) => {
+    const fetchBookmarks = async () => {
         try {
             const response = await fetch("http://127.0.0.1:8000/api/bookmarks/", {
+                headers: {
+                    Authorization: `Token ${userToken}`,
+                },
+            });
+
+            if (!response.ok) throw new Error("Failed to fetch bookmarks");
+
+            const data = await response.json();
+            setMyList(data);
+        } catch (error) {
+            console.error("Error fetching bookmarks:", error);
+        }
+    };
+
+    useEffect(() => {
+        if (userToken) fetchBookmarks();
+    }, [userToken]);
+
+    const removeFromList = async (MovieId: number) => {
+        try {
+            const response = await fetch(`http://127.0.0.1:8000/api/bookmarks/remove/${MovieId}/`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Token ${userToken}`,
                 },
-                body: JSON.stringify({ movie_id: movieId }),
             });
 
             if (!response.ok) throw new Error("Failed to remove bookmark");
 
-            setMyList(myList.filter((movie) => movie.movie.id !== movieId));
+            await fetchBookmarks();
         } catch (error) {
             console.error("Error removing bookmark:", error);
         }
@@ -70,7 +69,7 @@ const MyList: React.FC = () => {
                                     </p>
                                 </div>
                                 <button
-                                    onClick={() => removeFromList(item.movie.id)} 
+                                    onClick={() => removeFromList(item.movie)}
                                     className="text-black hover:text-red-900 text-xl"
                                 >
                                     ✖
