@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Footer from "../layout/Footer";
+import { useNavigate } from "react-router-dom";
 
 const MyList: React.FC = () => {
     const [myList, setMyList] = useState<any[]>([]);
     const userToken = localStorage.getItem("token") || "";
+    const navigate = useNavigate();
 
     const fetchBookmarks = async () => {
         try {
@@ -55,6 +57,7 @@ const MyList: React.FC = () => {
                         myList.map((item) => (
                             <div
                                 key={item.id}
+                                onClick={() => navigate(`/movies/${item.movie}/`)}
                                 className="flex items-center p-4 rounded-lg bg-gradient-to-r from-orange-900 via-orange-700 to-orange-500"
                             >
                                 <img
