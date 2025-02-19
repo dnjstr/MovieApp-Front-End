@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { FaArrowLeft, FaBookmark } from 'react-icons/fa';
+import { FaArrowLeft, FaStar, FaBookmark } from 'react-icons/fa';
 import { useAuth } from '../../context/AuthContext';
-import { FaPlay } from "react-icons/fa";
+import MoviePlayer from './MoviePlayer';
 
 interface Review {
     id: number;
@@ -170,15 +170,15 @@ const MovieDetail: React.FC = () => {
     if (error || !movie) {
         return <div className="text-white text-center mt-10">{error || 'Movie not found.'}</div>;
     }
-    
+
     return (
-        <div className="relative text-white bg-black min-h-screen">
+        <div className="relative text-white bg-black min-h-screen z-0">
             {/* Background layers */}
             <div className="fixed inset-0 bg-cover bg-center opacity-50" 
                 style={{ backgroundImage: `url(${movie.poster_image})` }}>
             </div>
             <div className="fixed inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black"></div>
-    
+
             {/* Content container */}
             <div className="relative z-10">
                 {/* Movie details section */}
@@ -189,7 +189,7 @@ const MovieDetail: React.FC = () => {
                     >
                         <FaArrowLeft /> Back
                     </button>
-    
+
                     <div className="flex flex-col md:flex-row items-center">
                         <img src={movie.poster_image} alt={movie.title} className="w-80 h-96 object-cover rounded-md shadow-lg border border-gray-700" />
                         <div className="md:ml-8 text-center md:text-left">
@@ -201,25 +201,20 @@ const MovieDetail: React.FC = () => {
                             <p className="text-sm text-gray-400">Director: {movie.director}</p>
                             <button
                                 onClick={toggleBookmark}
-                                className="mt-4 px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-900 transition duration-300 flex items-center gap-2"
+                                className={`mt-4 px-4 py-2 rounded  flex items-center gap-2 ${isAuthenticated ? 'bg-orange-600 text-white hover:bg-orange-900 transition duration-300' : 'bg-gray-600 text-white cursor-not-allowed'}`}
+                                disabled={!isAuthenticated}
                             >
                                 <FaBookmark /> {isBookmarked ? 'Remove Bookmark' : 'Bookmark'}
                             </button>
-    
-                            {/* Watch Now Button */}
-                            {isReleased ? (
-                                <button
-                                    onClick={() => navigate(`/watch/${movie.id}`)}
-                                    className="mt-4 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-800 transition duration-300 flex items-center gap-2 text-lg"
-                                >
-                                    <FaPlay /> Watch Now
-                                </button>
-                            ) : (
-                                <p className="text-red-500 text-lg mt-4">This movie is not released yet.</p>
-                            )}
+                            <button
+                                onClick={handleWatchNow}
+                                className="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition duration-300"
+                            >
+                                Watch Now
+                            </button>
                         </div>
                     </div>
-    
+
                     {movie.main_cast && (
                         <>
                             <h2 className="text-2xl font-bold mt-6 text-center border-b border-orange-600 pb-2">Main Cast</h2>
@@ -232,14 +227,22 @@ const MovieDetail: React.FC = () => {
                             </div>
                         </>
                     )}
-    
+
                     <h2 className="text-2xl font-bold mt-6 text-center border-b border-orange-600 pb-2">Ratings & Reviews</h2>
                     <div className="text-center mt-4">
                         <p className="text-yellow-400 text-xl">{'⭐'.repeat(Math.round(movie.average_rating))}</p>
                         <p className="text-sm text-gray-400">Average Rating: {movie.average_rating} / 10</p>
                     </div>
                 </div> 
-    
+
+                {/* Movie Player */}
+                {isPlayerOpen && (
+                    <MoviePlayer 
+                        videoUrl={movie.video_url} 
+                        onClose={closePlayer} 
+                    />
+                )}
+
                 {/* Reviews section */}
                 <div className="max-w-4xl mx-auto mt-8 p-6">
                     <div className="flex justify-between items-center mb-6">
@@ -260,7 +263,7 @@ const MovieDetail: React.FC = () => {
                             <span className="text-gray-400">Coming Soon - Reviews Unavailable</span>
                         )}
                     </div>
-    
+
                     {showReviewForm && isReleased && (
                         <form onSubmit={handleReviewSubmit} className="mb-8 bg-gray-900 p-6 rounded-lg">
                             <div className="mb-4">
@@ -307,13 +310,13 @@ const MovieDetail: React.FC = () => {
                             </div>
                         </form>
                     )}
-    
+
                     {showSignInMessage && (
                         <div className="bg-red-600 text-white p-4 rounded mb-4">
                             Please sign in to submit a review
                         </div>
                     )}
-    
+
                     {/* Reviews List */}
                     <h2 className="text-2xl font-bold mb-4">User Reviews</h2>
                     {reviews.length === 0 ? (
@@ -339,4 +342,5 @@ const MovieDetail: React.FC = () => {
         </div>
     );
 };
+
 export default MovieDetail;
