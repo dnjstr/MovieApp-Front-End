@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { FaArrowLeft, FaStar, FaBookmark } from 'react-icons/fa';
+import { FaArrowLeft, FaBookmark } from 'react-icons/fa';
 import { useAuth } from '../../context/AuthContext';
 import MoviePlayer from './MoviePlayer';
 

@@ -11,17 +11,17 @@ import Genre from "./components/pages/Genre";
 import MyList from "./components/pages/MyList";
 import ProfilePage from "./components/pages/ProfilePage";
 import { AuthProvider, useAuth } from "./context/AuthContext";
-import { PreferencesProvider, usePreferences } from "./context/PreferencesContext"; // Import PreferencesContext
+import { PreferencesProvider, usePreferences } from "./context/PreferencesContext"; 
 import About from "./components/pages/about";
 import Contact from "./components/pages/contact";
 import FAQ from "./components/pages/faq";
 import TermsAndCondition from "./components/pages/TermsandCondition";
 import Preferences from "./components/pages/Preferences";
 
-// Layout Component (Uses Global Background Color)
+// Layout Component (Uses Global Background Color
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
-  const { bgColor } = usePreferences(); // Get global background color
+  const { bgColor } = usePreferences();
   const hideNavbar = ["/sign-in", "/sign-up", "/settings", "/profile"].includes(location.pathname);
 
   return (
@@ -45,7 +45,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 const App: React.FC = () => {
   return (
     <AuthProvider>
-      <PreferencesProvider> {/* Wrap with PreferencesProvider */}
+      <PreferencesProvider>
         <Router>
           <Layout>
             <Routes>

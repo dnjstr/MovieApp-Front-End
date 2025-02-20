@@ -1,5 +1,4 @@
 import React from 'react';
-import { FaExpand, FaArrowLeft } from 'react-icons/fa';
 
 interface MoviePlayerProps {
   videoUrl: string; 
