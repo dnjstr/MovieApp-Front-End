@@ -65,7 +65,7 @@ const MainPage: React.FC = () => {
                   {slide.title}
                 </h1>
                 <p className="z-20 mt-4 pe-5 text-sm w-6/12 text-gray-300">{slide.description}</p>
-                <button className="homepage-watch-btn z-20 mt-4  hover:bg-orange-500 text-white px-6 py-3 rounded-md text-lg font-semibold transition-all ease-in-out duration-300">
+                <button className="homepage-watch-btn z-20 mt-4 border border-orange-600  hover:bg-orange-600 text-white px-6 py-3 rounded-md text-base font-semibold transition-all ease-in-out duration-300">
                   Watch Now
                 </button>
               </div>
