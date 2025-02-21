@@ -66,7 +66,7 @@ const MainPage: React.FC = () => {
                 </h1>
                 <p className="z-20 mt-4 pe-5 text-sm w-6/12 text-gray-300">{slide.description}</p>
                 <button className="z-20 mt-4 bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-md text-lg font-semibold transition-all ease-in-out duration-300">
-                  Get Started
+                  Watch Now
                 </button>
               </div>
             </SwiperSlide>

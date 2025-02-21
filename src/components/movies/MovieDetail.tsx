@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaBookmark } from 'react-icons/fa';
 import { useAuth } from '../../context/AuthContext';
+import MoviePlayer from './MoviePlayer';
 
 interface Review {
     id: number;
@@ -205,6 +206,12 @@ const MovieDetail: React.FC = () => {
                             >
                                 <FaBookmark /> {isBookmarked ? 'Remove Bookmark' : 'Bookmark'}
                             </button>
+                            <button
+                                onClick={handleWatchNow}
+                                className="mt-4 px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-900 transition duration-300"
+                            >   
+                                Watch Now
+                                </button>
                         </div>
                     </div>
 
@@ -227,6 +234,14 @@ const MovieDetail: React.FC = () => {
                         <p className="text-sm text-gray-400">Average Rating: {movie.average_rating} / 10</p>
                     </div>
                 </div> 
+                    
+                    {/* Video player */}
+                    {isPlayerOpen && (
+                        <MoviePlayer
+                            videoUrl={movie.video_url}
+                            onClose={closePlayer}
+                        />
+                    )}
 
                 {/* Reviews section */}
                 <div className="max-w-4xl mx-auto mt-8 p-6">
