@@ -29,10 +29,8 @@ const Genre: React.FC = () => {
     useEffect(() => {
         const fetchGenreCounts = async () => {
             try {
-                console.log('Fetching genres...');
                 const response = await fetch('http://127.0.0.1:8000/api/genres/');
                 const data = await response.json();
-                console.log('Received data:', data);
 
                 if (response.ok) {
                     if (Array.isArray(data)) {
@@ -49,7 +47,6 @@ const Genre: React.FC = () => {
                                 item && item.genre && typeof item.genre === 'string'
                             );
                         }
-                        console.log('Valid genres:', validGenres);
                         setGenreCounts(validGenres);
                     } else {
                         console.error('Received non-array data:', data);

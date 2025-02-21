@@ -30,20 +30,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const storedToken = localStorage.getItem("token");
       const storedRole = localStorage.getItem("userRole") as "admin" | "user" | null;
       const storedUser = localStorage.getItem("user");
-
-      if (storedToken && storedUser && storedRole) {
+  
+      if (storedToken && storedUser !== null && storedRole) {
         setIsAuthenticated(true);
         setToken(storedToken);
         setRole(storedRole);
         setUser(JSON.parse(storedUser));
-      }
+      }      
     } catch (error) {
       console.error("Error loading authentication data:", error);
-      logout(); 
     } finally {
       setLoading(false); 
     }
-  }, []);
+  }, []);  
 
   const login = (token: string, role: "admin" | "user", user: User) => {
     localStorage.setItem("token", token);

@@ -53,24 +53,26 @@ const MovieDetail: React.FC = () => {
         // Check if the movie is bookmarked
         const checkBookmark = async () => {
             if (isAuthenticated) {
-                const response = await fetch(`http://127.0.0.1:8000/api/bookmarks/`, {
-                    headers: {
-                        'Authorization': `Token ${token}`
-                    }
+              try {
+                const response = await fetch(`http://127.0.0.1:8000/api/bookmarks/?t=${new Date().getTime()}`, {
+                  headers: {
+                    'Authorization': `Token ${token}`
+                  }
                 });
                 const bookmarks = await response.json();
                 const isMovieBookmarked = bookmarks.some(
-                    (bookmark: any) => bookmark.movie.id === parseInt(id!)
+                  (bookmark: any) => bookmark.movie_id === parseInt(id!, 10)
                 );
                 setIsBookmarked(isMovieBookmarked);
+              } catch (error) {
+                console.error("Error fetching bookmarks:", error);
+              }
             }
-        };
+        };          
 
         checkBookmark();
     }, [id, isAuthenticated, token]);
 
-    // Determine if the movie is released
-    // (Assuming movie.release_date is in a format that can be parsed by Date)
     const isReleased = movie ? new Date(movie.release_date) <= new Date() : false;
 
     const toggleBookmark = async () => {
@@ -199,19 +201,21 @@ const MovieDetail: React.FC = () => {
                             <p className="text-sm text-gray-400">Duration: {movie.duration}</p>
                             <p className="text-sm text-gray-400">Genre: {movie.genre}</p>
                             <p className="text-sm text-gray-400">Director: {movie.director}</p>
-                            <button
-                                onClick={toggleBookmark}
-                                className={`mt-4 px-4 py-2 rounded  flex items-center gap-2 ${isAuthenticated ? 'bg-orange-600 text-white hover:bg-orange-900 transition duration-300' : 'bg-gray-600 text-white cursor-not-allowed'}`}
-                                disabled={!isAuthenticated}
-                            >
-                                <FaBookmark /> {isBookmarked ? 'Remove Bookmark' : 'Bookmark'}
-                            </button>
-                            <button
-                                onClick={handleWatchNow}
-                                className="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition duration-300"
-                            >
-                                Watch Now
-                            </button>
+                            <div className='flex gap-4'>
+                                <button
+                                    onClick={toggleBookmark}
+                                    className={`mt-4 px-4 py-2 rounded  flex items-center gap-2 ${isAuthenticated ? 'bg-orange-600 text-white hover:bg-orange-900 transition duration-300' : 'bg-gray-600 text-white cursor-not-allowed'}`}
+                                    disabled={!isAuthenticated}
+                                >
+                                    <FaBookmark /> {isBookmarked ? 'Remove Bookmark' : 'Bookmark'}
+                                </button>
+                                <button
+                                    onClick={handleWatchNow}
+                                    className="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition duration-300"
+                                >
+                                    Watch Now
+                                </button>
+                            </div>
                         </div>
                     </div>
 

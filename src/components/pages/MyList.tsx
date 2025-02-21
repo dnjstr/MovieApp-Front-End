@@ -57,15 +57,18 @@ const MyList: React.FC = () => {
                         myList.map((item) => (
                             <div
                                 key={item.id}
-                                onClick={() => navigate(`/movies/${item.movie}/`)}
                                 className="flex items-center p-4 rounded-lg bg-gradient-to-r from-orange-900 via-orange-700 to-orange-500"
                             >
                                 <img
                                     src={item.movie_poster}
                                     alt={item.movie_title}
                                     className="w-[80px] h-[120px] object-cover rounded-md mr-4"
+                                    onClick={() => navigate(`/movies/${item.movie}/`)}
                                 />
-                                <div className="flex-grow">
+                                <div 
+                                    className="flex-grow"
+                                    onClick={() => navigate(`/movies/${item.movie}/`)}
+                                >
                                     <h2 className="text-lg font-bold">{item.movie_title}</h2>
                                     <p className="text-gray-300 text-sm">
                                         {item.movie_release_date} • Directed by: {item.movie_director}
