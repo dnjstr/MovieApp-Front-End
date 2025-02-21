@@ -22,6 +22,9 @@ export default {
       maxHeight: {
         "400": "500px",
       },
+      height: {
+        "700": "700px",
+      },
     },
   },
   plugins: [],
