@@ -4,7 +4,7 @@
 
 /* Global variables */
 :root {
-    --primary-movie-bg-color: rgb(249, 115, 22);
+    --primary-movie-bg-color: rgb(194, 65, 12);
 }
 
 /* Custom Styles */
@@ -52,6 +52,10 @@ body {
     font-size: 14px;
 }
 
+.search-container:hover {
+    box-shadow: 0 0 2px rgb(107, 107, 107);
+  }
+
 .search-container:hover .search-icon {
     color: #ff6347; 
 }
@@ -71,7 +75,7 @@ body {
 .gradient-text {
     font-size: 2rem;
     font-weight: bold;
-    background: linear-gradient(to left, #feb47b, #ea580c);
+    background: linear-gradient(to left, #feb47b, var(--primary-movie-bg-color));
     background-clip: text;
     -webkit-text-fill-color: transparent;
     position: relative;
@@ -108,14 +112,14 @@ body {
     }
 } */
 
-  @keyframes shimmer-text {
-    0% {
-      background-position: 200% 0;
-    }
-    100% {
-      background-position: -200% 0;
-    }
-  }
+@keyframes shimmer-text {
+0% {
+    background-position: 200% 0;
+}
+100% {
+    background-position: -200% 0;
+}
+}
 
 .swiper-pagination-bullet {
     background: white !important;
@@ -167,16 +171,6 @@ body {
     background: radial-gradient(circle at right, transparent, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 1) 70%, black 100%);
 }
 
-
-.search-container {
-  transition: all 0.3s ease-in-out;
-}
-
-.search-container:hover {
-  box-shadow: 0 0 2px rgb(107, 107, 107);
-}
-
-
 /* signIn or signUp */
 .sign-in-up-container {
     background: linear-gradient(to left, rgba(0, 0, 0, 0) 20%, rgba(234, 88, 12, 0.5) 70%, rgba(234, 88, 12, 0.8) 90%);
@@ -196,3 +190,47 @@ body {
 /* .homepage-watch-btn {
     border: 1px solid var(--primary-movie-bg-color);
 } */
+
+.nav-bar-container {
+    background: linear-gradient( rgba(255, 255, 255, 0) 20%, rgba(0, 0, 0, 0.2) 70%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+.signin-navbar-btn {
+    background: linear-gradient( rgba(255, 255, 255, 0) 20%, rgba(0, 0, 0, 0.5) 70%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+.homepage-watch-btn {
+    background: linear-gradient( rgba(255, 255, 255, 0) 20%, rgba(0, 0, 0, 0.5) 70%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+.search-results-container {
+    background: linear-gradient( rgba(255, 255, 255, 0) 20%, rgba(0, 0, 0, 0.5) 70%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+/* Bookmark Styles */
+.bookmark-item {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.1) 30%, rgba(54, 54, 54, 0.5) 55%, transparent 100%);
+}
+
+/* Customize scrollbar */
+.bookmark-scroll-bar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.bookmark-scroll-bar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1); 
+}
+
+.bookmark-scroll-bar::-webkit-scrollbar-thumb {
+    background: rgba(54, 54, 54, 0.7); 
+    border-radius: 6px; 
+}
+
+.bookmark-scroll-bar::-webkit-scrollbar-thumb:hover {
+    background: rgba(54, 54, 54, 0.9); 
+}
+
+/* Profile Button */ 
+.profile-button {
+    background: linear-gradient( rgba(255, 255, 255, 0) 20%, rgba(0, 0, 0, 0.5) 70%, rgba(0, 0, 0, 0.5) 100%);
+}

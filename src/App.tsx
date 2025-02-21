@@ -28,7 +28,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       {!hideNavbar && <Navbar />}
-      <main className={`${bgColor} text-white min-h-screen p-6 transition-all duration-500`}>
+      <main className={`${bgColor} text-white min-h-screen px-6 pt-1 transition-all duration-500`}>
         {children}
       </main>
     </>

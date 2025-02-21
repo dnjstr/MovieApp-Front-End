@@ -18,7 +18,10 @@ export default {
           '0%': { transform: 'rotate(0deg)' },
           '100%': { transform: 'rotate(360deg)' },
         },
-    },
+      },
+      maxHeight: {
+        "400": "500px",
+      },
     },
   },
   plugins: [],
