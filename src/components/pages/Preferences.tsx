@@ -20,11 +20,8 @@ const Preferences: React.FC = () => {
                     className="bg-black text-white border border-white p-1 rounded"
                     value={bgColor} // Ensure the selected value is displayed
                 >
-                    <option value="bg-black">Black</option>
-                    <option value="bg-gray-800">Dark Gray</option>
-                    <option value="bg-blue-900">Dark Blue</option>
-                    <option value="bg-red-900">Dark Red</option>
-                    <option value="bg-green-900">Dark Green</option>
+                    <option value="bg-black">Dark</option>
+                    <option value="bg-gray-300">Light</option>
                 </select>
             </div>
 

@@ -20,7 +20,7 @@ const MainPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative h-screen w-full flex flex-col items-start justify-center text-white text-left px-4 z-0">
+    <div className="relative h-screen w-full flex flex-col items-start justify-center text-white text-left z-0">
       {/* Background Video */}
       <div className="absolute top-0 left-0 w-full h-full">
         <video
@@ -36,7 +36,7 @@ const MainPage: React.FC = () => {
       </div>
 
       {/* Overlay */}
-      <div className=" absolute top-0 left-0 w-full h-full bg-black/50"></div>
+      <div className="absolute top-0 left-0 w-full h-full bg-black/50"></div>
 
       {/* Swiper Container */}
       <div className="relative z-10 w-full h-full flex items-center">
@@ -53,7 +53,7 @@ const MainPage: React.FC = () => {
           {slides.map((slide, index) => (
             <SwiperSlide key={index}>
               <div
-                className="flex flex-col justify-center items-start w-full h-screen px-20"
+                className="flex flex-col justify-center items-start w-full h-screen px-20 rounded-sm"
                 style={{
                   backgroundImage: `url(${slide.poster_image})`,
                   backgroundSize: "contain",
@@ -65,7 +65,7 @@ const MainPage: React.FC = () => {
                   {slide.title}
                 </h1>
                 <p className="z-20 mt-4 pe-5 text-sm w-6/12 text-gray-300">{slide.description}</p>
-                <button className="z-20 mt-4 bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-md text-lg font-semibold transition-all ease-in-out duration-300">
+                <button className="homepage-watch-btn z-20 mt-4 border border-orange-700  hover:bg-orange-700 text-white px-6 py-3 rounded-md text-base font-semibold transition-all ease-in-out duration-300">
                   Watch Now
                 </button>
               </div>

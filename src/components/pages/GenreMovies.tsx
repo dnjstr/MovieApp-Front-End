@@ -25,8 +25,6 @@ const GenreMovies: React.FC = () => {
             if (!genreName) return;
 
             try {
-                console.log('Fetching movies for genre:', genreName);
-                // Use the movies/genre endpoint instead of filter
                 const response = await fetch(`http://127.0.0.1:8000/api/movies/genre/${encodeURIComponent(genreName)}/`);
                 
                 if (!response.ok) {
@@ -34,7 +32,6 @@ const GenreMovies: React.FC = () => {
                 }
                 
                 const data = await response.json();
-                console.log('Received movies:', data);
                 
                 if (Array.isArray(data)) {
                     setMovies(data);
@@ -68,7 +65,7 @@ const GenreMovies: React.FC = () => {
                     onClick={() => navigate('/genre')}
                     className="flex items-center gap-2 px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700 transition duration-300"
                 >
-                    <FaArrowLeft /> Back to Genres
+                    <FaArrowLeft /> Back
                 </button>
                 <h1 className="text-3xl font-bold text-white ml-4 capitalize">{genreName} Movies</h1>
             </div>

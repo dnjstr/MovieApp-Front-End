@@ -9,14 +9,14 @@ interface User {
 }
 
 const ProfilePage = () => {
-    const { user, logout, loading } = useAuth(); // Get loading state
+    const { user, logout, loading } = useAuth();
     const [currentUser, setCurrentUser] = useState<User | null>(null);
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (loading) return; // ✅ Wait until loading is finished
+        if (loading) return;
         if (!user) {
-            navigate("/sign-in"); // Redirect to sign-in if user is null
+            navigate("/sign-in");
         } else {
             setCurrentUser(user);
         }
@@ -33,7 +33,7 @@ const ProfilePage = () => {
     ];
 
     if (loading) {
-        return <div className="text-white min-h-screen flex items-center justify-center">Loading...</div>; // ✅ Show loading state
+        return <div className="text-white min-h-screen flex items-center justify-center">Loading...</div>;
     }
 
     return (

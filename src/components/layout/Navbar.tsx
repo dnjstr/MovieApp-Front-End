@@ -81,7 +81,7 @@ const Navbar: React.FC = () => {
   });
 
   return (
-    <nav className="flex items-center justify-between px-4 py-3 fixed w-full bg-black bg-opacity-75 z-10">
+    <nav className="nav-bar-container flex items-center justify-between px-8 py-3 fixed w-full bg-black bg-opacity-75 z-10">
       {/* Logo */}
       <div className="flex items-center space-x-2">
         <Link to="/">
@@ -127,7 +127,7 @@ const Navbar: React.FC = () => {
         {isAuthenticated && role === 'user' ? (
           <div className="relative">
             <button
-              className="bg-orange-600 text-white px-4 py-2 rounded-md flex items-center space-x-2"
+              className="profile-button border border-orange-700 text-orange-100 hover:bg-orange-700 px-4 py-2 rounded-md flex items-center space-x-2"
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             >
               <FaUser />
@@ -135,7 +135,7 @@ const Navbar: React.FC = () => {
             </button>
 
             {isDropdownOpen && (
-              <div className="absolute top-full right-0 mt-2 w-48 bg-black rounded-md shadow-lg py-1">
+              <div className="profile-dropdown-desktop absolute top-12 right-0 mt-2 w-48 bg-black rounded-md shadow-lg py-1">
                 <Link
                   to="/profile"
                   className=" px-4 py-2 text-sm text-white hover:bg-orange-600 flex items-center space-x-2"
@@ -165,7 +165,7 @@ const Navbar: React.FC = () => {
         ) : (
           <Link 
             to="/sign-in" 
-            className="bg-orange-600 text-white px-4 py-2 rounded-md hover:bg-orange-700 transition duration-300"
+            className="signin-navbar-btn border border-orange-700 text-white px-4 py-2 rounded-md  hover:bg-orange-700 transition duration-300"
           >
             Sign In
           </Link>

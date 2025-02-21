@@ -29,10 +29,8 @@ const Genre: React.FC = () => {
     useEffect(() => {
         const fetchGenreCounts = async () => {
             try {
-                console.log('Fetching genres...');
                 const response = await fetch('http://127.0.0.1:8000/api/genres/');
                 const data = await response.json();
-                console.log('Received data:', data);
 
                 if (response.ok) {
                     if (Array.isArray(data)) {
@@ -49,7 +47,6 @@ const Genre: React.FC = () => {
                                 item && item.genre && typeof item.genre === 'string'
                             );
                         }
-                        console.log('Valid genres:', validGenres);
                         setGenreCounts(validGenres);
                     } else {
                         console.error('Received non-array data:', data);
@@ -83,7 +80,7 @@ const Genre: React.FC = () => {
     }
 
     return (
-        <div className="container mx-auto px-4 py-8 mt-28">
+        <div className="container mx-auto px-4 py-8 mt-12">
             <div className="text-center mb-12">
                 <h1 className="text-4xl font-bold mb-4 text-white">Browse by Genre</h1>
                 <p className="text-gray-400">Discover your next favorite movie across multiple genres</p>
@@ -118,66 +115,66 @@ const Genre: React.FC = () => {
                 })}
             </div>
 
-            <div>
-                <footer className=" text-gray-300 py-12">
-                <div className="max-w-full mx-auto">
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        <div className="flex justify-start">
-                            <div className="space-y-2">
-                                <h3 className="font-semibold text-white mb-4 text-start">Quick Links</h3>
-                                <div className="space-y-2  ">
-                                    <a href="/about" className=" flex justify-start text-sm whitespace-nowrap hover:text-white transition-colors text-center">
-                                        About Us
+            <div className='w-full mt-12'>
+                <footer className="text-gray-300 pt-12">
+                    <div className="max-w-full mx-auto">
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                            <div className="flex justify-start">
+                                <div className="space-y-2">
+                                    <h3 className="font-semibold text-white mb-4 text-start">Quick Links</h3>
+                                    <div className="space-y-2  ">
+                                        <a href="/about" className=" flex justify-start text-sm whitespace-nowrap hover:text-white transition-colors text-center">
+                                            About Us
+                                        </a>
+                                        <a href="/terms" className="flex justify-start text-sm whitespace-nowrap hover:text-white transition-colors text-center">
+                                            Terms of Service
+                                        </a>
+                                        <a href="/contact" className="flex justify-start text-sm whitespace-nowrap hover:text-white transition-colors text-center">
+                                            Contact
+                                        </a>
+                                        <a href="/faq" className="flex justify-start text-sm whitespace-nowrap hover:text-white transition-colors text-center">
+                                            FAQ
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="text-center space-y-1">
+                                <h3 className="font-semibold text-white mb-2">Contact Us</h3>
+                                <div className="space-y-3 flex flex-col items-center">
+                                    <a
+                                        href="https://web.telegram.org/"
+                                        className="w-48 px-6 py-1 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
+                                    >
+                                        ▶️ Join Telegram
                                     </a>
-                                    <a href="/terms" className="flex justify-start text-sm whitespace-nowrap hover:text-white transition-colors text-center">
-                                        Terms of Service
+                                    <a
+                                        href="https://www.reddit.com/"
+                                        className="w-48 px-6 py-1 bg-orange-600 text-white rounded-full hover:bg-orange-700 transition-colors"
+                                    >
+                                        🐽 Join Reddit
                                     </a>
-                                    <a href="/contact" className="flex justify-start text-sm whitespace-nowrap hover:text-white transition-colors text-center">
-                                        Contact
-                                    </a>
-                                    <a href="/faq" className="flex justify-start text-sm whitespace-nowrap hover:text-white transition-colors text-center">
-                                        FAQ
+                                    <a
+                                        href="https://x.com"
+                                        className="w-48 px-6 py-1 bg-sky-500 text-white rounded-full hover:bg-sky-600 transition-colors"
+                                    >
+                                        🐤 Join Twitter
                                     </a>
                                 </div>
                             </div>
-                        </div>
-                        <div className="text-center space-y-1">
-                            <h3 className="font-semibold text-white mb-2">Contact Us</h3>
-                            <div className="space-y-3 flex flex-col items-center">
-                                <a
-                                    href="https://web.telegram.org/"
-                                    className="w-48 px-6 py-1 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
-                                >
-                                    ▶️ Join Telegram
-                                </a>
-                                <a
-                                    href="https://www.reddit.com/"
-                                    className="w-48 px-6 py-1 bg-orange-600 text-white rounded-full hover:bg-orange-700 transition-colors"
-                                >
-                                    🐽 Join Reddit
-                                </a>
-                                <a
-                                    href="https://x.com"
-                                    className="w-48 px-6 py-1 bg-sky-500 text-white rounded-full hover:bg-sky-600 transition-colors"
-                                >
-                                    🐤 Join Twitter
-                                </a>
+                            <div className="flex justify-end">
+                                <Link to="/">
+                                    <img
+                                        src="/Logo.png"
+                                        alt="Haven Movie Logo"
+                                        className="h-14 w-auto object-contain"
+                                    />
+                                </Link>
                             </div>
                         </div>
-                        <div className="flex justify-end">
-                            <Link to="/">
-                                <img
-                                    src="/Logo.png"
-                                    alt="Haven Movie Logo"
-                                    className="h-14 w-auto object-contain"
-                                />
-                            </Link>
+                        <div className="mt-12 pt-8 border-t border-gray-800 text-center text-sm">
+                            <p>© 2025 Haven Movie. All rights reserved.</p>
                         </div>
                     </div>
-                    <div className="mt-12 pt-8 border-t border-gray-800 text-center text-sm">
-                        <p>© 2025 Haven Movie. All rights reserved.</p>
-                    </div>
-                </div>
                 </footer>
             </div>
         </div>
