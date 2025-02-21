@@ -66,11 +66,11 @@ const MovieListSection: React.FC = () => {
         Popular on <span className='gradient-text'>Movie Haven</span>
       </h2>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+      <div className="movie-list-container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-4 max-h-96">
         {movies.map((movie) => (
           <div
             key={movie.id}
-            className="relative group cursor-pointer hover:scale-105 transition-transform duration-300 w-full max-w-[240px] mx-auto"
+            className="relative group cursor-pointer hover:scale-105 transition-transform duration-300 w-full max-w-[240px] mx-auto mt-6"
             onClick={() => handleMovieClick(movie.id)}
           >
             <div className="aspect-[2/3] relative rounded-lg overflow-hidden shadow-lg">

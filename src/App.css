@@ -10,7 +10,7 @@
 /* Custom Styles */
 body {
     font-family: 'Arial', sans-serif;
-    
+    background-color: black;
 }
 
 .mainbg {
@@ -184,4 +184,15 @@ body {
 
 .sign-in-up-hover:hover {
     background: linear-gradient(to right, rgba(0, 0, 0, 0) 20%, rgba(234, 88, 12, 0.3) 70%, rgba(234, 88, 12, 0.8) 90%);
+}
+
+
+
+.movie-list-container {
+    border-top: 3px solid var(--primary-movie-bg-color);
+    border-radius: 5px;
+}
+
+.homepage-watch-btn {
+    border: 1px solid var(--primary-movie-bg-color);
 }

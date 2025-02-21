@@ -232,8 +232,8 @@ const MovieDetail: React.FC = () => {
                         </>
                     )}
 
-                    <h2 className="text-2xl font-bold mt-6 text-center border-b border-orange-600 pb-2">Ratings & Reviews</h2>
-                    <div className="text-center mt-4">
+                    <h2 className="text-2xl font-bold mt-6 text-center">Ratings & Reviews</h2>
+                    <div className="text-center mt-4 border-t-2 border-orange-600 pt-3 rounded">
                         <p className="text-yellow-400 text-xl">{'⭐'.repeat(Math.round(movie.average_rating))}</p>
                         <p className="text-sm text-gray-400">Average Rating: {movie.average_rating} / 10</p>
                     </div>
