@@ -344,3 +344,4 @@ const MovieDetail: React.FC = () => {
 };
 
 export default MovieDetail;
+
