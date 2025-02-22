@@ -3,10 +3,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
+import { useNavigate } from 'react-router-dom';
 
 const MainPage: React.FC = () => {
   const [slides, setSlides] = useState<any[]>([]);
-  const [currentVideo, setCurrentVideo] = useState<string>("");
+  const [currentVideo, setCurrentVideo] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/movies/")
@@ -16,23 +18,28 @@ const MainPage: React.FC = () => {
         if (data.length > 0) {
           setCurrentVideo(data[0].video);
         }
-      });
+      })
+      .catch((error) => console.error("Error fetching movies:", error));
   }, []);
+
+  const duplicatedSlides = slides.length > 1 ? slides : [...slides, ...slides];
 
   return (
     <div className="relative h-screen w-full flex flex-col items-start justify-center text-white text-left z-0">
       {/* Background Video */}
       <div className="absolute top-0 left-0 w-full h-full">
-        <video
-          key={currentVideo}
-          className="w-full h-full object-cover"
-          autoPlay
-          loop
-          muted
-          playsInline
-        >
-          <source src={currentVideo} type="video/mp4" />
-        </video>
+        {currentVideo && (
+          <video
+            key={currentVideo}
+            className="w-full h-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+          >
+            <source src={currentVideo} type="video/mp4" />
+          </video>
+        )}
       </div>
 
       {/* Overlay */}
@@ -43,14 +50,14 @@ const MainPage: React.FC = () => {
         <Swiper
           modules={[Pagination, Autoplay]}
           pagination={{ clickable: true }}
-          autoplay={{ delay: 4000, disableOnInteraction: false }}
-          loop={true}
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          loop={slides.length > 1} 
           className="w-full h-full"
           onSlideChange={(swiper) =>
-            setCurrentVideo(slides[swiper.realIndex]?.video || "")
+            setCurrentVideo(slides[swiper.realIndex]?.video || null)
           }
         >
-          {slides.map((slide, index) => (
+          {duplicatedSlides.map((slide, index) => (
             <SwiperSlide key={index}>
               <div
                 className="flex flex-col justify-center items-start w-full h-screen px-20 rounded-sm"
@@ -64,10 +71,22 @@ const MainPage: React.FC = () => {
                 <h1 className="z-20 text-5xl text-orange-600 font-bold">
                   {slide.title}
                 </h1>
-                <p className="z-20 mt-4 pe-5 text-sm w-6/12 text-gray-300">{slide.description}</p>
-                <button className="homepage-watch-btn z-20 mt-4 border border-orange-700  hover:bg-orange-700 text-white px-6 py-3 rounded-md text-base font-semibold transition-all ease-in-out duration-300">
-                  Watch Now
-                </button>
+                <p className="z-20 mt-4 pe-5 text-sm w-6/12 text-gray-300">
+                  {slide.description}
+                </p>
+
+                {new Date(slide.release_date) <= new Date() ? (
+                  <button
+                    onClick={() => navigate(`/movies/${slide.id}`)}
+                    className="homepage-watch-btn z-20 mt-4 border border-orange-700 hover:bg-orange-700 text-white px-6 py-3 rounded-md text-base font-semibold transition-all ease-in-out duration-300"
+                  >
+                    Watch Now
+                  </button>
+                ) : (
+                  <span className="z-20 mt-4 bg-gray-700 text-white px-6 py-3 rounded-md text-base font-semibold">
+                    Coming Soon
+                  </span>
+                )}
               </div>
             </SwiperSlide>
           ))}
