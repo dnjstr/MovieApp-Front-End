@@ -61,9 +61,12 @@ const MainPage: React.FC = () => {
                 }}
               >
                 <div className="swiper-container-overlay"></div>
-                <h1 className="z-20 text-5xl text-orange-600 font-bold">
+                <h1 className="z-20 mb-1 text-5xl text-orange-600 font-bold">
                   {slide.title}
                 </h1>
+                <div className="z-20 mx-1 mb-0 rounded-xl border-gray-400 border">
+                  <p className="text-xs px-3 z-20 text-black">{slide.genre}</p>
+                </div>
                 <p className="z-20 mt-4 pe-5 text-sm w-6/12 text-gray-300">{slide.description}</p>
                 <button className="z-20 mt-4 bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-md text-lg font-semibold transition-all ease-in-out duration-300">
                   Get Started
