@@ -71,7 +71,7 @@ const MainPage: React.FC = () => {
                 <h1 className="z-20 mb-1 text-5xl text-orange-600 w-6/12 break-words font-bold">
                   {slide.title}
                 </h1>
-                <p className="z-20 mt-4 pe-5 text-sm w-6/12 text-gray-300">
+                <p className="z-20 mt-4 pe-5 text-sm hidden txtlg:block w-6/12 text-gray-300">
                   {slide.description}
                 </p>
 

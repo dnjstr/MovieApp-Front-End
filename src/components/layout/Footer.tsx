@@ -14,7 +14,7 @@ const Footer = () => {
                   hover:text-white transition-colors">
                     About Us
                   </Link>
-                  <Link to="/TermsandCondition" className="block text-sm whitespace-nowrap
+                  <Link to="/terms-and-condition" className="block text-sm whitespace-nowrap
                   hover:text-white transition-colors">
                     Terms of Service
                   </Link>
@@ -63,22 +63,22 @@ const Footer = () => {
             <div className="space-y-3 flex items-center justify-center">
               <a 
                 href="https://web.telegram.org/" target='_blank'
-                className="w-48 px-6 mx-1 py-1 mt-3 bg-red-400 text-white rounded-full 
-                hover:text-orange-400 transition-colors"
+                className="w-48 px-6 mx-1 py-1 mt-3 bg-orange-600 text-white rounded-full 
+                hover:text-blue-300 transition-colors"
               >
                 Telegram
               </a>
               <a 
                 href="https://www.reddit.com/" target='_blank'
-                className="w-48 px-6 py-1 mx-1 bg-red-400 text-white rounded-full 
-                hover:text-orange-400 transition-colors"
+                className="w-48 px-6 py-1 mx-1 bg-orange-600 text-white rounded-full 
+                hover:text-orange-300 transition-colors"
               >
                 Reddit
               </a>
               <a 
                 href="https://x.com" target='_blank'
-                className="w-48 px-6 py-1 mx-1 bg-red-400 text-white rounded-full 
-                hover:text-orange-400 transition-colors"
+                className="w-48 px-6 py-1 mx-1 bg-orange-600 text-white rounded-full 
+                hover:text-gray-400 transition-colors"
               >
                 Twitter
               </a>

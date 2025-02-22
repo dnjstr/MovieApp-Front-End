@@ -183,33 +183,36 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="absolute top-16 right-0 w-48 bg-black rounded-md bg-opacity-100 flex flex-col items-center p-4 space-y-4 md:hidden">
+        <div className="absolute top-16 text-sm right-0 w-48 bg-black rounded-md bg-opacity-70 flex flex-col items-center p-4 space-y-4 md:hidden">
           <Link to="/" className="text-white hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>Home</Link>
           <Link to="/popular" className="text-white hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>New & Popular</Link>
           <Link to="/genre" className="text-white hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>Genre</Link>
           <Link to="/my-list" className="text-white hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>My List</Link>
 
-          <div className="relative w-full">
+          <div className="relative text-sm pt-3 w-full">
             {isAuthenticated ? (
               <>
                 <Link
                   to="/profile"
-                  className="block px-4 py-2 text-white hover:bg-orange-600 rounded-md"
+                  className=" px-4 py-2 flex text-white hover:bg-orange-600 rounded-md"
                   onClick={() => { setIsMenuOpen(false); }}
-                >
+                > 
+                <FaUser className="mt-1 mr-2" />
                   My Profile
                 </Link>
                 <Link
                   to="/settings"
-                  className="block px-4 py-2 text-white hover:bg-orange-600 rounded-md"
+                  className="flex px-4 py-2 text-white hover:bg-orange-600 rounded-md"
                   onClick={() => { setIsMenuOpen(false); }}
                 >
+                  <FaCog className="mt-1 mr-2" />
                   Settings
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="w-full text-left px-4 py-2 text-white hover:bg-orange-600 rounded-md"
+                  className="w-full text-left px-4 py-2 text-white flex hover:bg-orange-600 rounded-md"
                 >
+                  <FaSignOutAlt className="mt-1 mr-2" />
                   Sign Out
                 </button>
               </>
@@ -217,9 +220,10 @@ const Navbar: React.FC = () => {
               <>
                 <Link
                   to="/sign-in"
-                  className="block px-4 py-2 text-white hover:bg-orange-600 rounded-md"
+                  className=" px-4 py-2 flex text-white hover:bg-orange-600 rounded-md"
                   onClick={() => { setIsMenuOpen(false); }}
                 >
+                  <FaSignOutAlt className="mt-1 mr-2" />
                   Sign In
                 </Link>
                 {/* <Link
