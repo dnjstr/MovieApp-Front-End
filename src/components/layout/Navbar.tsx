@@ -5,6 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import SearchResults from '../search/SearchResults';
 import { debounce } from 'lodash';
 import { useClickOutside } from '../../hooks/useClickOutside';
+import PreferencesModal from '../pages/PreferencesModal';
 
 interface Movie {
     id: number;
@@ -22,6 +23,7 @@ const Navbar: React.FC = () => {
   const [searchResults, setSearchResults] = useState<Movie[]>([]);
   const [showResults, setShowResults] = useState(false);
   const searchContainerRef = useRef<HTMLDivElement>(null);
+  const [isPreferencesOpen, setIsPreferencesOpen] = useState(false);
 
   useEffect(() => {
     const checkAdminState = () => {
@@ -144,14 +146,18 @@ const Navbar: React.FC = () => {
                   <FaUser className="text-sm" />
                   <span>My Profile</span>
                 </Link>
-                <Link
-                  to="/settings"
-                  className=" px-4 py-2 text-sm text-white hover:bg-orange-600 flex items-center space-x-2"
-                  onClick={() => setIsDropdownOpen(false)}
+
+                <button
+                  className=" px-4 py-2 w-full text-sm text-white hover:bg-orange-600 flex items-center space-x-2"
+                  onClick={() => {
+                    setIsDropdownOpen(false);
+                    setIsPreferencesOpen(true);
+                  }}
                 >
                   <FaCog className="text-sm" />
                   <span>Preferences</span>
-                </Link>
+                </button>
+
                 <button
                   onClick={handleLogout}
                   className="w-full text-left px-4 py-2 text-sm text-white hover:bg-orange-600 flex items-center space-x-2"
@@ -238,6 +244,10 @@ const Navbar: React.FC = () => {
           </div>
         </div>
       )}
+      <PreferencesModal
+        isOpen={isPreferencesOpen}
+        onRequestClose={() => setIsPreferencesOpen(false)}
+      />
     </nav>
   );
 };
