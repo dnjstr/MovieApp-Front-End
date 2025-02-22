@@ -190,7 +190,7 @@ const MovieDetail: React.FC = () => {
                 <div className="p-8 w-full max-w-full">
                     <button
                         onClick={() => (window.history.length > 2 ? navigate(-1) : navigate('/'))}
-                        className="flex items-center gap-2 mb-4 px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-900 transition duration-300 mt-8 shadow-md"
+                        className="flex items-center gap-2 mb-4 px-4 py-2 bg-gradient-to-b from-orange-600 to-orange-900 text-white rounded hover:bg-orange-900 transition duration-300 mt-8 shadow-md"
                     >
                         <FaArrowLeft /> Back
                     </button>
@@ -207,7 +207,7 @@ const MovieDetail: React.FC = () => {
                             <div className='flex gap-4'>
                                 <button
                                     onClick={toggleBookmark}
-                                    className={`mt-4 px-4 py-2 rounded  flex items-center gap-2 ${isAuthenticated ? 'bg-orange-600 text-white hover:bg-orange-900 transition duration-300' : 'bg-gray-600 text-white cursor-not-allowed'}`}
+                                    className={`bookmark-btn-hover mt-4 px-4 py-2 rounded  flex items-center gap-2 ${isAuthenticated ? 'bg-gradient-to-b from-orange-600 to-orange-900 text-white' : 'bg-gray-600 text-white cursor-not-allowed'}`}
                                     disabled={!isAuthenticated}
                                 >
                                     <FaBookmark /> {isBookmarked ? 'Remove Bookmark' : 'Bookmark'}
@@ -241,7 +241,7 @@ const MovieDetail: React.FC = () => {
                     )}
 
                     <h2 className="text-2xl font-bold mt-6 text-center">Ratings & Reviews</h2>
-                    <div className="text-center mt-4 border-t-2 border-orange-600 pt-3 rounded">
+                    <div className="text-center mt-4 border-t-2 border-orange-700 pt-3 rounded">
                         <p className="text-yellow-400 text-xl">{'⭐'.repeat(Math.round(movie.average_rating))}</p>
                         <p className="text-sm text-gray-400">Average Rating: {movie.average_rating} / 10</p>
                     </div>
@@ -267,7 +267,7 @@ const MovieDetail: React.FC = () => {
                                 }}
                                 className={`px-4 py-2 rounded-md ${
                                     isAuthenticated && !isButtonDisabled
-                                        ? 'bg-orange-600 hover:bg-orange-700' 
+                                        ? 'bg-gradient-to-b from-orange-600 to-orange-900' 
                                         : 'bg-gray-600 cursor-not-allowed'
                                 }`}
                                 disabled={!isAuthenticated || isButtonDisabled}
@@ -308,7 +308,7 @@ const MovieDetail: React.FC = () => {
                             <div className="flex gap-2">
                                 <button
                                     type="submit"
-                                    className="px-4 py-2 bg-orange-600 hover:bg-orange-700 rounded"
+                                    className="px-4 py-2 bg-gradient-to-b from-orange-600 to-orange-900 rounded"
                                 >
                                     Submit Review
                                 </button>
