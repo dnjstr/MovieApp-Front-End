@@ -84,39 +84,42 @@ const Genre: React.FC = () => {
     }
 
     return (
-        <div className="container mx-auto px-4 py-8 flex justify-between flex-col h-screen mt-12">
-            <div className="text-center mb-12">
-                <h1 className="text-4xl font-bold mb-4 text-white">Browse by Genre</h1>
-                <p className="text-gray-400">Discover your next favorite movie across multiple genres</p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {genreCounts.map((genre) => {
-                    if (!genre.genre) return null;
-                    
-                    const genreName = genre.genre.trim();
-                    return (
-                        <Link 
-                            key={genreName}
-                            to={`/genre/${genreName.toLowerCase()}`}
-                            className="relative overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer bg-gray-800 rounded-lg"
-                        >
-                            <div className={`absolute inset-0 ${genreIcons[genreName]?.color || 'bg-gray-500'} opacity-10 hover:opacity-20 transition-opacity duration-300`} />
-                            <div className="p-6">
-                                <div className="flex items-center justify-between mb-4">
-                                    <div className={`${genreIcons[genreName]?.color || 'bg-gray-500'} text-white p-3 rounded-lg`}>
-                                        <span className="text-2xl">{genreIcons[genreName]?.icon || '🎬'}</span>
+        <div className="container mx-auto px-4 flex justify-start flex-col h-screen">
+            <div>
+                <div className="text-center mt-20 mb-4">
+                    <h1 className="text-4xl font-bold mb-2 text-white">Browse by Genre</h1>
+                    <p className="text-gray-400">Discover your next favorite movie across multiple genres</p>
+                </div>
+                <div className='bookmark-scroll-bar overflow-y-scroll h-[530px] px-5'>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                        {genreCounts.map((genre) => {
+                            if (!genre.genre) return null;
+                
+                            const genreName = genre.genre.trim();
+                            return (
+                                <Link
+                                    key={genreName}
+                                    to={`/genre/${genreName.toLowerCase()}`}
+                                    className="relative overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer bg-gray-800 rounded-lg"
+                                >
+                                    <div className={`absolute inset-0 ${genreIcons[genreName]?.color || 'bg-gray-500'} opacity-10 hover:opacity-20 transition-opacity duration-300`} />
+                                    <div className="p-6">
+                                        <div className="flex items-center justify-between mb-4">
+                                            <div className={`${genreIcons[genreName]?.color || 'bg-gray-500'} text-white p-3 rounded-lg`}>
+                                                <span className="text-2xl">{genreIcons[genreName]?.icon || '🎬'}</span>
+                                            </div>
+                                            <span className="text-sm text-gray-400">{genre.count || 0} Movies</span>
+                                        </div>
+                                        <h3 className="text-xl font-semibold mb-2 text-white hover:text-blue-400 transition-colors duration-300">
+                                            {genreName}
+                                        </h3>
+                                        <div className="h-1 w-12 bg-gray-700 group-hover:w-full group-hover:bg-blue-500 transition-all duration-300" />
                                     </div>
-                                    <span className="text-sm text-gray-400">{genre.count || 0} Movies</span>
-                                </div>
-                                <h3 className="text-xl font-semibold mb-2 text-white hover:text-blue-400 transition-colors duration-300">
-                                    {genreName}
-                                </h3>
-                                <div className="h-1 w-12 bg-gray-700 group-hover:w-full group-hover:bg-blue-500 transition-all duration-300" />
-                            </div>
-                        </Link>
-                    );
-                })}
+                                </Link>
+                            );
+                        })}
+                    </div>
+                </div>
             </div>
 
             <div className=''>
