@@ -95,7 +95,7 @@ const Navbar: React.FC = () => {
           <FaHome size={20} />
           <span className="hidden md:inline">Home</span>
         </Link>
-        <Link to="/popular" className="hover:text-orange-600 ease-in-out duration-300">Coming Soon</Link>
+        <Link to="/comingsoon" className="hover:text-orange-600 ease-in-out duration-300">Coming Soon</Link>
         <Link to="/genre" className="hover:text-orange-600 ease-in-out duration-300">Genre</Link>
         <Link to="/my-list" className="hover:text-orange-600 ease-in-out duration-300">Bookmarks</Link>
       </div>

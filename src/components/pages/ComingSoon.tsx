@@ -11,7 +11,7 @@ interface Movie {
     average_rating: number;
 }
 
-const Popular: React.FC = () => {
+const ComingSoon: React.FC = () => {
     const [movies, setMovies] = useState<Movie[]>([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
@@ -72,4 +72,4 @@ const Popular: React.FC = () => {
     );
 };
 
-export default Popular;
+export default ComingSoon;

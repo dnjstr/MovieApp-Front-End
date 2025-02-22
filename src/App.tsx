@@ -6,7 +6,7 @@ import MovieListSection from "./components/movies/Movielistsection";
 import MovieDetail from "./components/movies/MovieDetail";
 import SignIn from "./components/pages/SignIn";
 import SignUp from "./components/pages/SignUp";
-import Popular from "./components/pages/Popular";
+import ComingSoon from "./components/pages/ComingSoon";
 import Genre from "./components/pages/Genre";
 import MyList from "./components/pages/MyList";
 import ProfilePage from "./components/pages/ProfilePage";
@@ -51,7 +51,7 @@ const App: React.FC = () => {
           <Layout>
             <Routes>
               <Route path="/" element={<><MainPage /><MovieListSection /></>} />
-              <Route path="/popular" element={<Popular />} />
+              <Route path="/comingsoon" element={<ComingSoon />} />
               <Route path="/genre/" element={<Genre />} />
               <Route path="/genre/:genreName" element={<GenreMovies />} />
               <Route path="/my-list" element={<MyList />} />

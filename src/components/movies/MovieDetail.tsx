@@ -53,20 +53,20 @@ const MovieDetail: React.FC = () => {
         // Check if the movie is bookmarked
         const checkBookmark = async () => {
             if (isAuthenticated) {
-              try {
-                const response = await fetch(`http://127.0.0.1:8000/api/bookmarks/?t=${new Date().getTime()}`, {
-                  headers: {
-                    'Authorization': `Token ${token}`
-                  }
+                try {
+                    const response = await fetch(`http://127.0.0.1:8000/api/bookmarks/?t=${new Date().getTime()}`, {
+                        headers: {
+                        'Authorization': `Token ${token}`
+                    }
                 });
                 const bookmarks = await response.json();
                 const isMovieBookmarked = bookmarks.some(
-                  (bookmark: any) => bookmark.movie_id === parseInt(id!, 10)
+                    (bookmark: any) => bookmark.movie_id === parseInt(id!, 10)
                 );
                 setIsBookmarked(isMovieBookmarked);
-              } catch (error) {
+                } catch (error) {
                 console.error("Error fetching bookmarks:", error);
-              }
+                }
             }
         };          
 
@@ -210,10 +210,15 @@ const MovieDetail: React.FC = () => {
                                     <FaBookmark /> {isBookmarked ? 'Remove Bookmark' : 'Bookmark'}
                                 </button>
                                 <button
-                                    onClick={handleWatchNow}
-                                    className="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition duration-300"
+                                    onClick={isReleased ? handleWatchNow : undefined}
+                                        className={`mt-4 px-4 py-2 rounded transition duration-300 ${
+                                            isReleased 
+                                                ? 'bg-green-600 text-white hover:bg-green-700' 
+                                                : 'bg-gray-600 text-gray-400 cursor-not-allowed'
+                                            }`}
+                                            disabled={!isReleased}
                                 >
-                                    Watch Now
+                                {isReleased ? "Watch Now" : "Coming Soon"}
                                 </button>
                             </div>
                         </div>
