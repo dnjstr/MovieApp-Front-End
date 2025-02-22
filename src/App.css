@@ -240,4 +240,50 @@ body {
     background: linear-gradient( rgba(0, 0, 0, 0.7) 20%, rgba(0, 0, 0, 0.7) 70%, rgba(0, 0, 0, 0.7) 100%);
 }
 
+
+
+
 /* Movie detail hover */
+
+
+
+
+
+/* 
+    Genre Movies 
+*/
+.genre-movies-container {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 20%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.3) 80%);
+}
+
+.genre-scroll-bar::-webkit-scrollbar {
+    height: 5px;
+}
+
+.genre-scroll-bar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1); 
+}
+
+.genre-scroll-bar::-webkit-scrollbar-thumb {
+    background: rgba(54, 54, 54, 0.7); 
+    border-radius: 6px; 
+}
+
+.genre-scroll-bar::-webkit-scrollbar-thumb:hover {
+    background: rgba(54, 54, 54, 0.9); 
+}
+
+/* .genre-movies-page {
+    background: radial-gradient(circle at left, black 50%, rgb(255, 123, 0) 70%, black 100%);
+} */
+
+.movie-genre-overlay::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: linear-gradient(rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.8) 80%, rgba(0, 0, 0, 0.8) 100%);   
+}
