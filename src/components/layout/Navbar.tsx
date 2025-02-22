@@ -206,14 +206,16 @@ const Navbar: React.FC = () => {
                 <FaUser className="mt-1 mr-2" />
                   My Profile
                 </Link>
-                <Link
-                  to="/settings"
+                <button
                   className="flex px-4 py-2 text-white hover:bg-orange-600 rounded-md"
-                  onClick={() => { setIsMenuOpen(false); }}
+                  onClick={() => {
+                    setIsDropdownOpen(false);
+                    setIsPreferencesOpen(true);
+                  }}
                 >
                   <FaCog className="mt-1 mr-2" />
-                  Settings
-                </Link>
+                  <span>Preferences</span>
+                </button>
                 <button
                   onClick={handleLogout}
                   className="w-full text-left px-4 py-2 text-white flex hover:bg-orange-600 rounded-md"

@@ -14,7 +14,7 @@ const PreferencesModal: React.FC<{ isOpen: boolean; onRequestClose: () => void }
             onRequestClose={onRequestClose}
             ariaHideApp={false}
             className="modal-content bg-black rounded-lg outline-none border border-gray-700"
-            overlayClassName="z-20 modal-overlay fixed inset-0 bg-black backdrop-blur-sm bg-opacity-80 flex justify-center items-center"
+            overlayClassName="z-20 modal-overlay fixed inset-0 bg-black backdrop-blur-sm bg-opacity-40 flex justify-center items-center"
         >
             <div className="w-full max-w-md px-8 py-6">
                 <h1 className="text-xl font-bold mb-8 text-orange-600">Preferences</h1>

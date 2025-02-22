@@ -16,14 +16,13 @@ import About from "./components/pages/about";
 import Contact from "./components/pages/contact";
 import FAQ from "./components/pages/faq";
 import TermsAndCondition from "./components/pages/TermsandCondition";
-import Preferences from "./components/pages/Preferences";
 import GenreMovies from "./components/pages/GenreMovies";
 
 // Layout Component (Uses Global Background Color
 const Layout = ({ children }: { children: React.ReactNode }) => {
     const location = useLocation();
     const { bgColor } = usePreferences(); // Get global background color
-    const hideNavbar = ["/sign-in", "/sign-up", "/settings", "/profile"].includes(location.pathname);
+    const hideNavbar = ["/sign-in", "/sign-up", "/profile"].includes(location.pathname);
 
   return (
     <>
@@ -63,7 +62,6 @@ const App: React.FC = () => {
               <Route path="/terms-and-condition" element={<TermsAndCondition />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/faq" element={<FAQ />} />
-              <Route path="/settings" element={<Preferences />} />
             </Routes>
           </Layout>
         </Router>
