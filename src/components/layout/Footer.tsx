@@ -4,11 +4,11 @@ const Footer = () => {
   return (
     <footer className="bg-gray-9d00 text-gray-300 pt-12">
       <div className="max-w-full mx-auto">
-        <div className="grid grid-cols-1 lgx:grid-cols-3 gap-8 ">
+        <div className="grid grid-cols-1 flg:grid-cols-3  gap-8 ">
 
-          <div className="flex items-center justify-between px-8 ">
-            <div className="space-y-2 pr-16">
-              <h3 className="font-semibold text-white mb-4">Quick Links</h3>
+          <div className="flex items-center justify-center flg:justify-between px-8 ">
+            <div className="space-y-2 lfg:pr-16 text-center flg:text-left">
+                <h3 className="font-semibold text-white mb-4 ">Quick Links</h3>
               <div className="flex gap-5">
                   <Link to="/about" className="block text-sm whitespace-nowrap
                   hover:text-white transition-colors">
@@ -58,26 +58,26 @@ const Footer = () => {
             </div> */}
           </div>
 
-          <div className="text-center">
+          <div className="text-center flex flex-col">
             <h3 className="font-semibold text-white mb-2">Contact Us</h3>
-            <div className="space-y-3 flex items-center ">
+            <div className="space-y-3 flex items-center justify-center">
               <a 
                 href="https://web.telegram.org/" target='_blank'
-                className="w-48 px-6 py-1 mt-3 bg-red-400 text-white rounded-full 
+                className="w-48 px-6 mx-1 py-1 mt-3 bg-red-400 text-white rounded-full 
                 hover:text-orange-400 transition-colors"
               >
                 Telegram
               </a>
               <a 
                 href="https://www.reddit.com/" target='_blank'
-                className="w-48 px-6 py-1 bg-red-400 text-white rounded-full 
+                className="w-48 px-6 py-1 mx-1 bg-red-400 text-white rounded-full 
                 hover:text-orange-400 transition-colors"
               >
                 Reddit
               </a>
               <a 
                 href="https://x.com" target='_blank'
-                className="w-48 px-6 py-1 bg-red-400 text-white rounded-full 
+                className="w-48 px-6 py-1 mx-1 bg-red-400 text-white rounded-full 
                 hover:text-orange-400 transition-colors"
               >
                 Twitter
@@ -85,7 +85,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="justify-center md:justify-end hidden lg:flex">
+          <div className="justify-center mt-7  hidden lg:justify-center lg:flex">
             <Link to="/">
               <img 
                 src="/Logo.png" 

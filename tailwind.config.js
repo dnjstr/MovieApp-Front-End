@@ -8,7 +8,10 @@ export default {
     extend: {
       screens: {
         "mdx": "909px",
-        "lgx": "1105px"
+        "lgx": "1105px",
+        "fsm": "100px",
+        "flg": "1173px",
+        "txtlg": "856px"
       },
       animation: {
         spin: 'spin 3s linear infinite',
