@@ -82,9 +82,6 @@ const GenreMovies: React.FC = () => {
 
     return (
         <div className="genre-movies-page mx-auto px-32 py-8 pt-28 z-10">
-            {/* <div className="movie-genre-overlay absolute top-0 left-0 w-full h-full z-0">
-                <img src={randomMovie?.poster_image} alt="Movie poster" className='w-full h-full object-cover' />
-            </div> */}
             <div className="relative z-10">
                 <div className="flex justify-between mb-8">
                     <div className="flex flex-col gap-2">
@@ -132,32 +129,34 @@ const GenreMovies: React.FC = () => {
                 {movies.length === 0 ? (
                     <p className="text-white text-center">No movies found in this genre.</p>
                 ) : (
-                    <div className="genre-scroll-bar overflow-x-scroll genre-movies-container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-8 gap-8 border-t-4 border-orange-700 rounded px-5 py-4">
-                        {movies.map((movie) => (
-                            <div
-                                key={movie.id}
-                                onClick={() => navigate(`/movies/${movie.id}`)}
-                                className="relative group cursor-pointer transition-transform duration-300 hover:scale-105"
-                            >
-                                <div className="relative overflow-hidden rounded-lg">
-                                    <img
-                                        src={movie.poster_image}
-                                        alt={movie.title}
-                                        className="w-full h-[300px] object-cover rounded-lg"
-                                    />
-                                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 transition-all duration-300">
-                                        <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
-                                            <h3 className="text-white text-lg font-bold text-center mb-2">{movie.title}</h3>
-                                            <p className="text-xs text-gray-300 mb-2 line-clamp-2">{movie.main_cast}</p>
-                                            <p className="text-gray-300 text-sm text-center mb-2">{movie.release_date}</p>
-                                            <div className="flex items-center">
-                                                <span className="text-yellow-400 text-xs">{'⭐'.repeat(Math.round(movie.average_rating))}</span>
+                    <div className="genre-scroll-bar overflow-x-scroll whitespace-nowrap border-t-4 border-orange-700 rounded px-5 py-4">
+                        <div className="flex gap-8">
+                            {movies.map((movie) => (
+                                <div
+                                    key={movie.id}
+                                    onClick={() => navigate(`/movies/${movie.id}`)}
+                                    className="relative group cursor-pointer transition-transform duration-300 hover:scale-105"
+                                >
+                                    <div className="relative overflow-hidden rounded-lg w-[190px]">
+                                        <img
+                                            src={movie.poster_image}
+                                            alt={movie.title}
+                                            className="w-[190px] h-[300px] object-cover rounded-lg"
+                                        />
+                                        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 transition-all duration-300">
+                                            <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
+                                                <h3 className="text-white text-lg font-bold text-center mb-2">{movie.title}</h3>
+                                                <p className="text-xs text-gray-300 mb-2 line-clamp-2">{movie.main_cast}</p>
+                                                <p className="text-gray-300 text-sm text-center mb-2">{movie.release_date}</p>
+                                                <div className="flex items-center">
+                                                    <span className="text-yellow-400 text-xs">{'⭐'.repeat(Math.round(movie.average_rating))}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
                 )}
             </div>
