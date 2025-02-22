@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { FaArrowLeft, FaStar } from 'react-icons/fa';
+import { FaArrowLeft, FaBookmark } from 'react-icons/fa';
 import { useAuth } from '../../context/AuthContext';
+import MoviePlayer from './MoviePlayer';
 
 interface Review {
     id: number;
     user: {
         fullName: string;
-    }
-    // user: string;
+    };
     rating: number;
     review_text: string;
     created_at: string;
@@ -28,8 +28,11 @@ const MovieDetail: React.FC = () => {
     const [error, setError] = useState('');
     const [showSignInMessage, setShowSignInMessage] = useState(false);
     const [showReviewForm, setShowReviewForm] = useState(false);
+    const [isBookmarked, setIsBookmarked] = useState(false);
+    const [isPlayerOpen, setIsPlayerOpen] = useState(false);
 
     useEffect(() => {
+        // Fetch movie details
         fetch(`http://127.0.0.1:8000/api/movie/${id}/`)
             .then(response => response.json())
             .then(data => {
@@ -46,13 +49,80 @@ const MovieDetail: React.FC = () => {
             .then(response => response.json())
             .then(data => setReviews(data))
             .catch(error => console.error('Error fetching reviews:', error));
-    }, [id]);
+
+        // Check if the movie is bookmarked
+        const checkBookmark = async () => {
+            if (isAuthenticated) {
+                try {
+                    const response = await fetch(`http://127.0.0.1:8000/api/bookmarks/?t=${new Date().getTime()}`, {
+                        headers: {
+                        'Authorization': `Token ${token}`
+                    }
+                });
+                const bookmarks = await response.json();
+                const isMovieBookmarked = bookmarks.some(
+                    (bookmark: any) => bookmark.movie_id === parseInt(id!, 10)
+                );
+                setIsBookmarked(isMovieBookmarked);
+                } catch (error) {
+                console.error("Error fetching bookmarks:", error);
+                }
+            }
+        };          
+
+        checkBookmark();
+    }, [id, isAuthenticated, token]);
+
+    const isReleased = movie ? new Date(movie.release_date) <= new Date() : false;
+
+    const toggleBookmark = async () => {
+        if (!isAuthenticated) {
+            alert("Please sign in to bookmark movies.");
+            return;
+        }
+
+        try {
+            let url = '';
+            let method = '';
+
+            if (isBookmarked) {
+                url = `http://127.0.0.1:8000/api/bookmarks/remove/${movie.id}/`;
+                method = 'DELETE';
+            } else {
+                url = `http://127.0.0.1:8000/api/bookmarks/add/${movie.id}/`;
+                method = 'POST';
+            }
+
+            const response = await fetch(url, {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Token ${token}`
+                }
+            });
+
+            if (response.ok) {
+                setIsBookmarked(!isBookmarked);
+            } else {
+                const data = await response.json();
+                console.error("Failed to update bookmark:", data);
+            }
+        } catch (error) {
+            console.error("Error updating bookmark:", error);
+        }
+    };
 
     const handleReviewSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!isAuthenticated) {
             setShowSignInMessage(true);
             setTimeout(() => setShowSignInMessage(false), 3000);
+            return;
+        }
+
+        // Prevent submitting reviews for movies that haven't been released
+        if (!isReleased) {
+            alert("Reviews can only be added to released movies.");
             return;
         }
 
@@ -68,7 +138,6 @@ const MovieDetail: React.FC = () => {
             
             const data = await response.json();
             if (response.ok) {
-                // const data = await response.json();
                 setReviews([...reviews, data]);
                 setNewReview({ rating: 0, review_text: '' });
                 
@@ -84,6 +153,18 @@ const MovieDetail: React.FC = () => {
         }
     };
 
+    const handleWatchNow = () => {
+        if (movie && movie.video_url) {
+            setIsPlayerOpen(true);
+        } else {
+            alert("Video URL is not available.");
+        }
+    };
+
+    const closePlayer = () => {
+        setIsPlayerOpen(false);
+    };
+
     if (loading) {
         return <div className="text-white text-center mt-10">Loading...</div>;
     }
@@ -93,7 +174,7 @@ const MovieDetail: React.FC = () => {
     }
 
     return (
-        <div className="relative text-white bg-black min-h-screen">
+        <div className="relative text-white bg-black min-h-screen z-0">
             {/* Background layers */}
             <div className="fixed inset-0 bg-cover bg-center opacity-50" 
                 style={{ backgroundImage: `url(${movie.poster_image})` }}>
@@ -120,6 +201,26 @@ const MovieDetail: React.FC = () => {
                             <p className="text-sm text-gray-400">Duration: {movie.duration}</p>
                             <p className="text-sm text-gray-400">Genre: {movie.genre}</p>
                             <p className="text-sm text-gray-400">Director: {movie.director}</p>
+                            <div className='flex gap-4'>
+                                <button
+                                    onClick={toggleBookmark}
+                                    className={`mt-4 px-4 py-2 rounded  flex items-center gap-2 ${isAuthenticated ? 'bg-orange-600 text-white hover:bg-orange-900 transition duration-300' : 'bg-gray-600 text-white cursor-not-allowed'}`}
+                                    disabled={!isAuthenticated}
+                                >
+                                    <FaBookmark /> {isBookmarked ? 'Remove Bookmark' : 'Bookmark'}
+                                </button>
+                                <button
+                                    onClick={isReleased ? handleWatchNow : undefined}
+                                        className={`mt-4 px-4 py-2 rounded transition duration-300 ${
+                                            isReleased 
+                                                ? 'bg-green-600 text-white hover:bg-green-700' 
+                                                : 'bg-gray-600 text-gray-400 cursor-not-allowed'
+                                            }`}
+                                            disabled={!isReleased}
+                                >
+                                {isReleased ? "Watch Now" : "Coming Soon"}
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -136,31 +237,43 @@ const MovieDetail: React.FC = () => {
                         </>
                     )}
 
-                    <h2 className="text-2xl font-bold mt-6 text-center border-b border-orange-600 pb-2">Ratings & Reviews</h2>
-                    <div className="text-center mt-4">
+                    <h2 className="text-2xl font-bold mt-6 text-center">Ratings & Reviews</h2>
+                    <div className="text-center mt-4 border-t-2 border-orange-600 pt-3 rounded">
                         <p className="text-yellow-400 text-xl">{'⭐'.repeat(Math.round(movie.average_rating))}</p>
                         <p className="text-sm text-gray-400">Average Rating: {movie.average_rating} / 10</p>
                     </div>
                 </div> 
+                    
+                    {/* Video player */}
+                    {isPlayerOpen && (
+                        <MoviePlayer
+                            videoUrl={movie.video_url}
+                            onClose={closePlayer}
+                        />
+                    )}
 
                 {/* Reviews section */}
                 <div className="max-w-4xl mx-auto mt-8 p-6">
                     <div className="flex justify-between items-center mb-6">
                         <h2 className="text-2xl font-bold">Reviews</h2>
-                        <button
-                            onClick={() => setShowReviewForm(true)}
-                            className={`px-4 py-2 rounded-md ${
-                                isAuthenticated 
-                                    ? 'bg-orange-600 hover:bg-orange-700' 
-                                    : 'bg-gray-600 cursor-not-allowed'
-                            }`}
-                            disabled={!isAuthenticated}
-                        >
-                            Add Review
-                        </button>
+                        {isReleased ? (
+                            <button
+                                onClick={() => setShowReviewForm(true)}
+                                className={`px-4 py-2 rounded-md ${
+                                    isAuthenticated 
+                                        ? 'bg-orange-600 hover:bg-orange-700' 
+                                        : 'bg-gray-600 cursor-not-allowed'
+                                }`}
+                                disabled={!isAuthenticated}
+                            >
+                                Add Review
+                            </button>
+                        ) : (
+                            <span className="text-gray-400">Coming Soon - Reviews Unavailable</span>
+                        )}
                     </div>
 
-                    {showReviewForm && (
+                    {showReviewForm && isReleased && (
                         <form onSubmit={handleReviewSubmit} className="mb-8 bg-gray-900 p-6 rounded-lg">
                             <div className="mb-4">
                                 <label className="block mb-2">Rating (1-10)</label>
@@ -237,7 +350,7 @@ const MovieDetail: React.FC = () => {
             </div>
         </div>
     );
-}
-
+};
 
 export default MovieDetail;
+

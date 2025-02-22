@@ -8,6 +8,7 @@ interface Movie {
   main_cast: string;
   poster_image: string;
   release_date: string;
+  average_rating: number;
 }
 
 const MovieListSection: React.FC = () => {
@@ -65,11 +66,11 @@ const MovieListSection: React.FC = () => {
         Popular on <span className='gradient-text'>Movie Haven</span>
       </h2>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+      <div className="movie-list-container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-4 ">
         {movies.map((movie) => (
           <div
             key={movie.id}
-            className="relative group cursor-pointer hover:scale-105 transition-transform duration-300 w-full max-w-[240px] mx-auto"
+            className="relative group cursor-pointer hover:scale-105 transition-transform duration-300 w-full max-w-[240px] mx-auto mt-6"
             onClick={() => handleMovieClick(movie.id)}
           >
             <div className="aspect-[2/3] relative rounded-lg overflow-hidden shadow-lg">
@@ -83,6 +84,9 @@ const MovieListSection: React.FC = () => {
                 <h3 className="text-lg font-semibold text-white mb-2">{movie.title}</h3>
                 <p className="text-xs text-gray-300 mb-2 line-clamp-2">{movie.main_cast}</p>
                 <p className="text-xs text-gray-400">Released: {movie.release_date}</p>
+                <div className="flex items-center mt-2">
+                    <span className="text-yellow-400 text-xs">{'⭐'.repeat(Math.round(movie.average_rating))}</span>
+                </div>
               </div>
             </div>
           </div>

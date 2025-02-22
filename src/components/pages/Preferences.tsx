@@ -1,14 +1,30 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaPalette } from "react-icons/fa";
+import { usePreferences } from "../../context/PreferencesContext"; // Import global preferences
 
-const Settings: React.FC = () => {
+const Preferences: React.FC = () => {
     const navigate = useNavigate();
+    const { bgColor, setBgColor } = usePreferences(); // Get and set global background color
     const [emailNotifications, setEmailNotifications] = useState(false);
     const [autoplayPreviews, setAutoplayPreviews] = useState(true);
     const [language, setLanguage] = useState("English");
 
     return (
-        <div className="w-full h-screen bg-black text-white flex flex-col items-center overflow-auto py-10">
+        <div className={`w-full h-screen ${bgColor} text-white flex flex-col items-center overflow-auto py-10 transition duration-500`}>
+            {/* Background Changer */}
+            <div className="absolute top-6 right-6 flex items-center space-x-2 bg-black/50 p-2 rounded-lg">
+                <FaPalette className="text-white text-xl" />
+                <select
+                    onChange={(e) => setBgColor(e.target.value)}
+                    className="bg-black text-white border border-white p-1 rounded"
+                    value={bgColor} // Ensure the selected value is displayed
+                >
+                    <option value="bg-black">Dark</option>
+                    <option value="bg-gray-300">Light</option>
+                </select>
+            </div>
+
             {/* Back Button */}
             <button 
                 className="absolute top-6 left-6 px-4 py-2 bg-orange-700 rounded hover:bg-red-700"
@@ -17,7 +33,7 @@ const Settings: React.FC = () => {
                 ←
             </button>
 
-            <h1 className="text-3xl font-bold mb-6">Settings</h1>
+            <h1 className="text-3xl font-bold mb-6">Preferences</h1>
 
             <div className="w-80 space-y-6">
                 {/* Language Selection */}
@@ -65,4 +81,4 @@ const Settings: React.FC = () => {
     );
 };
 
-export default Settings;
+export default Preferences;
