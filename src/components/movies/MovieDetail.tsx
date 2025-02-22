@@ -216,7 +216,7 @@ const MovieDetail: React.FC = () => {
                                     onClick={isReleased ? handleWatchNow : undefined}
                                         className={`mt-4 px-4 py-2 rounded transition duration-300 ${
                                             isReleased 
-                                                ? 'bg-green-600 text-white hover:bg-green-700' 
+                                                ? 'bg-gradient-to-b from-green-600 to-green-900 text-white' 
                                                 : 'bg-gray-600 text-gray-400 cursor-not-allowed'
                                             }`}
                                             disabled={!isReleased}
