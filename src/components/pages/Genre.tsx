@@ -20,6 +20,11 @@ const genreIcons: { [key: string]: { icon: string; color: string } } = {
     'Adventure': { icon: '🗺️', color: 'bg-green-600' },
     'Family': { icon: '👨‍👩‍👧‍👦', color: 'bg-blue-400' },
     'Fairy Tale': { icon: '🧚‍♀️', color: 'bg-pink-400' },
+    'Space Opera': { icon: '👽', color: 'bg-indigo-400' },
+    'Science Fiction': { icon: '🤖', color: 'bg-red-400' },
+    'Thriller': { icon: '🔪', color: 'bg-gray-500' },
+    'Suspense': { icon: '🕵️', color: 'bg-gray-600' },
+    
 };
 
 const Genre: React.FC = () => {
