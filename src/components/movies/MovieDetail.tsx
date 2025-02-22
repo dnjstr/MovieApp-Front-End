@@ -30,6 +30,8 @@ const MovieDetail: React.FC = () => {
     const [showReviewForm, setShowReviewForm] = useState(false);
     const [isBookmarked, setIsBookmarked] = useState(false);
     const [isPlayerOpen, setIsPlayerOpen] = useState(false);
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
 
     useEffect(() => {
         // Fetch movie details
@@ -44,13 +46,11 @@ const MovieDetail: React.FC = () => {
                 setLoading(false);
             });
 
-        // Fetch reviews
         fetch(`http://127.0.0.1:8000/api/movie/${id}/reviews/`)
             .then(response => response.json())
             .then(data => setReviews(data))
             .catch(error => console.error('Error fetching reviews:', error));
 
-        // Check if the movie is bookmarked
         const checkBookmark = async () => {
             if (isAuthenticated) {
                 try {
@@ -120,11 +120,12 @@ const MovieDetail: React.FC = () => {
             return;
         }
 
-        // Prevent submitting reviews for movies that haven't been released
         if (!isReleased) {
             alert("Reviews can only be added to released movies.");
             return;
         }
+
+        setIsButtonDisabled(true);
 
         try {
             const response = await fetch(`http://127.0.0.1:8000/api/movie/${id}/reviews/add/`, {
@@ -141,7 +142,6 @@ const MovieDetail: React.FC = () => {
                 setReviews([...reviews, data]);
                 setNewReview({ rating: 0, review_text: '' });
                 
-                // Refresh movie details to get updated average rating
                 const movieResponse = await fetch(`http://127.0.0.1:8000/api/movie/${id}/`);
                 const movieData = await movieResponse.json();
                 setMovie(movieData);
@@ -150,6 +150,9 @@ const MovieDetail: React.FC = () => {
             }
         } catch (error) {
             console.error('Error submitting review:', error);
+        } finally {
+            setIsButtonDisabled(false);
+            setShowReviewForm(false);
         }
     };
 
@@ -258,13 +261,16 @@ const MovieDetail: React.FC = () => {
                         <h2 className="text-2xl font-bold">Reviews</h2>
                         {isReleased ? (
                             <button
-                                onClick={() => setShowReviewForm(true)}
+                                onClick={() => {
+                                    setShowReviewForm(true);
+                                    setIsButtonDisabled(true); 
+                                }}
                                 className={`px-4 py-2 rounded-md ${
-                                    isAuthenticated 
+                                    isAuthenticated && !isButtonDisabled
                                         ? 'bg-orange-600 hover:bg-orange-700' 
                                         : 'bg-gray-600 cursor-not-allowed'
                                 }`}
-                                disabled={!isAuthenticated}
+                                disabled={!isAuthenticated || isButtonDisabled}
                             >
                                 Add Review
                             </button>
@@ -311,6 +317,7 @@ const MovieDetail: React.FC = () => {
                                     onClick={() => {
                                         setShowReviewForm(false);
                                         setNewReview({ rating: 0, review_text: '' });
+                                        setIsButtonDisabled(false);
                                     }}
                                     className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded"
                                 >
