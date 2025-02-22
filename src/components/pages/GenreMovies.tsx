@@ -81,10 +81,10 @@ const GenreMovies: React.FC = () => {
     }
 
     return (
-        <div className="genre-movies-page mx-auto px-28 py-8 pt-28 z-10">
-            <div className="movie-genre-overlay absolute top-0 left-0 w-full h-full z-0">
+        <div className="genre-movies-page mx-auto px-32 py-8 pt-28 z-10">
+            {/* <div className="movie-genre-overlay absolute top-0 left-0 w-full h-full z-0">
                 <img src={randomMovie?.poster_image} alt="Movie poster" className='w-full h-full object-cover' />
-            </div>
+            </div> */}
             <div className="relative z-10">
                 <div className="flex justify-between mb-8">
                     <div className="flex flex-col gap-2">
