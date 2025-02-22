@@ -36,13 +36,11 @@ const Genre: React.FC = () => {
                     if (Array.isArray(data)) {
                         let validGenres;
                         if (typeof data[0] === 'string') {
-                            // Handle array of strings
                             validGenres = data.map(genre => ({
                                 genre: genre,
-                                count: 0  // We don't have counts in this format
+                                count: 0  
                             }));
                         } else {
-                            // Handle array of objects
                             validGenres = data.filter(item => 
                                 item && item.genre && typeof item.genre === 'string'
                             );
