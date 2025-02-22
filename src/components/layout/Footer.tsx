@@ -85,7 +85,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="justify-center mt-7  hidden lg:justify-center lg:flex">
+          <div className="justify-center mt-7  hidden flg:justify-end lg:flex">
             <Link to="/">
               <img 
                 src="/Logo.png" 
