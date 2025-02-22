@@ -20,7 +20,7 @@ const GenreMovies: React.FC = () => {
     const [movies, setMovies] = useState<Movie[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const [randomMovie, setRandomMovie] = useState<Movie | null>(null);
+    const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
     const [infoType, setInfoType] = useState<'description' | 'genreRelease' | 'mainCastDirector'>('description');
     const navigate = useNavigate();
 
@@ -39,10 +39,7 @@ const GenreMovies: React.FC = () => {
                 
                 if (Array.isArray(data)) {
                     setMovies(data);
-
-                    // Select a random movie
-                    const randomIndex = Math.floor(Math.random() * data.length);
-                    setRandomMovie(data[randomIndex]);
+                    setSelectedMovie(data[Math.floor(Math.random() * data.length)]); // Set initial movie
                 } else {
                     console.error('Received non-array data:', data);
                     setError('Invalid data format received');
@@ -82,85 +79,74 @@ const GenreMovies: React.FC = () => {
 
     return (
         <div className="genre-movies-page mx-auto px-32 py-8 pt-28 z-10">
-            {/* <div className="movie-genre-overlay absolute top-0 left-0 w-full h-full z-0">
-                <img src={randomMovie?.poster_image} alt="Movie poster" className='w-full h-full object-cover' />
-            </div> */}
-            <div className="relative z-10">
-                <div className="flex justify-between mb-8">
-                    <div className="flex flex-col gap-2">
-                        <div>
-                            <button
-                                onClick={() => navigate('/genre')}
-                                className="flex items-center gap-2 px-4 py-2 text-white rounded bg-gradient-to-b from-orange-600 to-orange-900 transition duration-300"
-                            >
-                                <FaArrowLeft /> Back
-                            </button>
-                        </div>
-                        <div className='flex items-center gap-5'>
-                            {randomMovie && (
-                                <img src={randomMovie.poster_image} alt="Movie poster" className='rounded w-[175px] h-[250px]' />
-                            )}
-                            <div className='flex flex-col justify-start h-[100px]'>
-                                <p className='text-2xl font-bold'>{randomMovie?.title}</p>
-                                <div className='w-[1310px]'>
-                                    <div className='text-gray-400 text-sm ps-1'>
-                                        {infoType === 'description' && (
-                                            <p>{randomMovie?.description}</p>
-                                        )}
-                                        {infoType === 'genreRelease' && (
-                                            <>
-                                                {randomMovie?.genre && <p>{randomMovie.genre}</p>}
-                                                {randomMovie?.release_date && <p>{randomMovie.release_date}</p>}
-                                                {randomMovie?.duration && <p>{randomMovie.duration}</p>}
-                                            </>
-                                        )}
-                                        {infoType === 'mainCastDirector' && (
-                                            <>
-                                                {randomMovie?.main_cast && <p>Main Cast: {randomMovie.main_cast}</p>}
-                                                {randomMovie?.director && <p>Director: {randomMovie.director}</p>}
-                                            </>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            {/* Background Header Section */}
+            <div 
+                className="relative z-10 p-6 rounded-lg transition-all duration-500 flex items-center" 
+                style={{ 
+                    height: '400px',
+                    backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url(${selectedMovie?.poster_image})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    transition: 'background-image 0.5s ease-in-out',
+                }}
+            >
+                {/* Back Button */}
+                <button
+                    onClick={() => navigate('/genre')}
+                    className="absolute top-4 left-4 flex items-center gap-2 px-4 py-2 text-white rounded bg-gradient-to-b from-orange-600 to-orange-900 transition duration-300"
+                >
+                    <FaArrowLeft /> Back
+                </button>
+
+                {/* Movie Details */}
+                <div className="px-6 text-white">
+                    <p className="text-3xl font-bold">{selectedMovie?.title}</p>
+                    <div className="text-gray-400 text-lg">
+                        {infoType === 'description' && <p>{selectedMovie?.description}</p>}
+                        {infoType === 'genreRelease' && (
+                            <>
+                                <p>{selectedMovie?.genre}</p>
+                                <p>{selectedMovie?.release_date}</p>
+                                <p>{selectedMovie?.duration}</p>
+                            </>
+                        )}
+                        {infoType === 'mainCastDirector' && (
+                            <>
+                                <p>Main Cast: {selectedMovie?.main_cast}</p>
+                                <p>Director: {selectedMovie?.director}</p>
+                            </>
+                        )}
                     </div>
                 </div>
-                <div className="mb-2">
-                    <h1 className="text-3xl font-bold text-white capitalize mt-3">{genreName} Movies</h1>
-                </div>
-                {movies.length === 0 ? (
-                    <p className="text-white text-center">No movies found in this genre.</p>
-                ) : (
-                    <div className="genre-scroll-bar overflow-x-scroll genre-movies-container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-8 gap-8 border-t-4 border-orange-700 rounded px-5 py-4">
-                        {movies.map((movie) => (
-                            <div
-                                key={movie.id}
-                                onClick={() => navigate(`/movies/${movie.id}`)}
-                                className="relative group cursor-pointer transition-transform duration-300 hover:scale-105"
-                            >
-                                <div className="relative overflow-hidden rounded-lg">
-                                    <img
-                                        src={movie.poster_image}
-                                        alt={movie.title}
-                                        className="w-full h-[300px] object-cover rounded-lg"
-                                    />
-                                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 transition-all duration-300">
-                                        <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
-                                            <h3 className="text-white text-lg font-bold text-center mb-2">{movie.title}</h3>
-                                            <p className="text-xs text-gray-300 mb-2 line-clamp-2">{movie.main_cast}</p>
-                                            <p className="text-gray-300 text-sm text-center mb-2">{movie.release_date}</p>
-                                            <div className="flex items-center">
-                                                <span className="text-yellow-400 text-xs">{'⭐'.repeat(Math.round(movie.average_rating))}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                )}
             </div>
+
+            {/* Movies Grid Section */}
+            <div className="mb-2 mt-5">
+                <h1 className="text-3xl font-bold text-white capitalize">{genreName} Movies</h1>
+            </div>
+            {movies.length === 0 ? (
+                <p className="text-white text-center">No movies found in this genre.</p>
+            ) : (
+                <div className="genre-scroll-bar overflow-x-scroll genre-movies-container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-8 gap-8 border-t-4 border-orange-700 rounded px-5 py-4">
+                    {movies.map((movie) => (
+                        <div
+                            key={movie.id}
+                            onMouseEnter={() => setSelectedMovie(movie)}
+                            onClick={() => navigate(`/movies/${movie.id}`)}
+                            className="relative group cursor-pointer transition-transform duration-300 hover:scale-105"
+                        >
+                            <div className="relative overflow-hidden rounded-lg">
+                                <img
+                                    src={movie.poster_image}
+                                    alt={movie.title}
+                                    className="w-full h-[300px] object-cover rounded-lg"
+                                />
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )}
         </div>
     );
 };
