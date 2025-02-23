@@ -250,13 +250,13 @@ const FAQ = () => {
         </section>
 
         <footer className="text-center text-sm text-gray-500 mt-16 pb-8">
-          <p className="mb-4">Last Updated: February 15, 2025</p>
+          <p className="mb-5">Last Updated: February 15, 2025</p>
           <a 
             href="#" 
             className="text-blue-400 hover:text-blue-300"
             onClick={(e) => {
               e.preventDefault();
-              window.location.href = '/customer-service';
+              window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
             }}
           >
             Need help? Contact Customer Service
