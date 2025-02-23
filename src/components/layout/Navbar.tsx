@@ -6,6 +6,7 @@ import SearchResults from '../search/SearchResults';
 import { debounce } from 'lodash';
 import { useClickOutside } from '../../hooks/useClickOutside';
 import PreferencesModal from '../pages/PreferencesModal';
+import ProfileModal from '../pages/ProfilePageModal';
 
 interface Movie {
     id: number;
@@ -24,6 +25,7 @@ const Navbar: React.FC = () => {
   const [showResults, setShowResults] = useState(false);
   const searchContainerRef = useRef<HTMLDivElement>(null);
   const [isPreferencesOpen, setIsPreferencesOpen] = useState(false);
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
 
   useEffect(() => {
     const checkAdminState = () => {
@@ -138,14 +140,16 @@ const Navbar: React.FC = () => {
 
             {isDropdownOpen && (
               <div className="profile-dropdown-desktop absolute top-12 right-0 mt-2 w-48 bg-black rounded-md shadow-lg py-1 z-10">
-                <Link
-                  to="/profile"
-                  className=" px-4 py-2 text-sm text-white hover:bg-orange-600 flex items-center space-x-2"
-                  onClick={() => setIsDropdownOpen(false)}
+                <button
+                  className="px-4 py-2 text-sm text-white hover:bg-orange-600 flex items-center space-x-2 w-full text-left"
+                  onClick={() => {
+                    setIsDropdownOpen(false);
+                    setIsProfileModalOpen(true);
+                  }}
                 >
                   <FaUser className="text-sm" />
                   <span>My Profile</span>
-                </Link>
+                </button>
 
                 <button
                   className=" px-4 py-2 w-full text-sm text-white hover:bg-orange-600 flex items-center space-x-2"
@@ -198,16 +202,20 @@ const Navbar: React.FC = () => {
           <div className="relative text-sm pt-3 w-full">
             {isAuthenticated ? (
               <>
-                <Link
-                  to="/profile"
-                  className=" px-4 py-2 flex text-white hover:bg-orange-600 rounded-md"
-                  onClick={() => { setIsMenuOpen(false); }}
-                > 
-                <FaUser className="mt-1 mr-2" />
-                  My Profile
-                </Link>
+
                 <button
-                  className="flex px-4 py-2 text-white hover:bg-orange-600 rounded-md"
+                  className="px-4 flex py-2 text-sm text-white hover:bg-orange-600 w-full rounded-md"
+                  onClick={() => {
+                    setIsDropdownOpen(false);
+                    setIsProfileModalOpen(true);
+                  }}
+                >
+                  <FaUser className="mt-1 mr-1" />
+                  <span>My Profile</span>
+                </button>
+
+                <button
+                  className="flex px-4 py-2 text-white hover:bg-orange-600 w-full rounded-md"
                   onClick={() => {
                     setIsDropdownOpen(false);
                     setIsPreferencesOpen(true);
@@ -250,6 +258,12 @@ const Navbar: React.FC = () => {
         isOpen={isPreferencesOpen}
         onRequestClose={() => setIsPreferencesOpen(false)}
       />
+
+      <ProfileModal 
+        isOpen={isProfileModalOpen}
+        onRequestClose={() => setIsProfileModalOpen(false)}
+      />
+
     </nav>
   );
 };

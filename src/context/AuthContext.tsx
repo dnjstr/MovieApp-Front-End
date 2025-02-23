@@ -35,7 +35,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setIsAuthenticated(true);
         setToken(storedToken);
         setRole(storedRole);
-        setUser(JSON.parse(storedUser));
+        
+        if (storedToken && storedUser !== "undefined") {
+          setUser(JSON.parse(storedUser));
+        } else {
+          setUser(null);
+        }
+
       }      
     } catch (error) {
       console.error("Error loading authentication data:", error);

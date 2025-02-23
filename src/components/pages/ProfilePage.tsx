@@ -1,16 +1,21 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import Avatar from "../../assets/Avatar";
 
 interface User {
-    name: string;
-    email: string;
-    profilePic?: string;
+    name?: string;
+    email?: string;
+    user?: {
+        fullName?: string;
+    };
+    profileImage?: string;
 }
 
 const ProfilePage = () => {
     const { user, logout, loading } = useAuth();
     const [currentUser, setCurrentUser] = useState<User | null>(null);
+    const [currentTime, setCurrentTime] = useState<string>(new Date().toLocaleTimeString());
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -18,66 +23,75 @@ const ProfilePage = () => {
         if (!user) {
             navigate("/sign-in");
         } else {
-            setCurrentUser(user);
+            setCurrentUser(user as User);
         }
     }, [user, loading, navigate]);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentTime(new Date().toLocaleTimeString());
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, []);
 
     const handleLogout = () => {
         logout();
         navigate("/sign-in");
     };
 
-    const userProfiles = [
-        ...(currentUser ? [{ id: 1, name: currentUser.name, profilePic: currentUser.profilePic || "https://example.com/default.png" }] : []),
-        { id: 2, name: "Add Profile", profilePic: "https://example.com/add.png" },
-    ];
+    // Get display name safely
+    const getDisplayName = () => {
+        if (currentUser?.user?.fullName) return currentUser.user.fullName;
+        if (currentUser?.name) return currentUser.name;
+        return 'User';
+    };
 
     if (loading) {
         return <div className="text-white min-h-screen flex items-center justify-center">Loading...</div>;
     }
 
     return (
-        <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center">
-            <h1 className="text-4xl font-bold mb-8">Who's Watching?</h1>
-
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                {userProfiles.map((profile) => (
-                    <div
-                        key={profile.id}
-                        className="flex flex-col items-center cursor-pointer hover:scale-105 transition-transform relative"
-                        onClick={() => profile.name !== "Add Profile" && navigate("/")}
-                    >
-                        <img
-                            src={profile.profilePic}
-                            alt={profile.name}
-                            className={`w-32 h-32 rounded-lg border-2 ${
-                                user?.name === profile.name
-                                    ? "border-orange-600"
-                                    : "border-transparent hover:border-white"
-                            }`}
-                            onError={(e) => {
-                                e.currentTarget.src = "https://tr.rbxcdn.com/default-profile.png";
-                            }}
-                        />
-                        <p className="mt-2 text-lg text-gray-400">{profile.name}</p>
-
-                        {user?.name === profile.name && (
-                            <div className="absolute top-0 right-0 bg-orange-600 rounded-full p-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                </svg>
-                            </div>
-                        )}
-                    </div>
-                ))}
+        <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center relative">
+            <div className="absolute top-4 left-4 text-lg font-semibold text-gray-300">
+                {currentTime}
             </div>
 
-            <button
-                className="mt-12 px-6 py-2 bg-transparent border-2 border-gray-500 text-gray-500 rounded-lg hover:bg-gray-500 hover:text-white transition"
-                onClick={handleLogout}
-            >
-                Logout
-            </button>
+            {currentUser ? (
+                <div className="bg-gray-800 p-8 rounded-lg shadow-lg text-center w-96">
+                    <div className="flex justify-center mb-6">
+                        <Avatar 
+                            name={getDisplayName()}
+                            imageUrl={currentUser.profileImage}
+                            size="lg"
+                        />
+                    </div>
+                    <h2 className="text-2xl font-semibold">
+                        {getDisplayName()}
+                    </h2>
+                    <p className="text-gray-400 mt-2">
+                        {currentUser.email || 'No email provided'}
+                    </p>
+                </div>
+            ) : (
+                <p className="text-gray-400">No user information available.</p>
+            )}
+
+            <div className="mt-6 flex space-x-4">
+                <button
+                    className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+                    onClick={() => navigate("/")}
+                >
+                    Back to Home
+                </button>
+
+                <button
+                    className="px-6 py-2 bg-transparent border-2 border-gray-500 text-gray-500 rounded-lg hover:bg-gray-500 hover:text-white transition"
+                    onClick={handleLogout}
+                >
+                    Logout
+                </button>
+            </div>
         </div>
     );
 };

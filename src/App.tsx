@@ -9,7 +9,6 @@ import SignUp from "./components/pages/SignUp";
 import ComingSoon from "./components/pages/ComingSoon";
 import Genre from "./components/pages/Genre";
 import MyList from "./components/pages/MyList";
-import ProfilePage from "./components/pages/ProfilePage";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import { PreferencesProvider, usePreferences } from "./context/PreferencesContext"; 
 import About from "./components/pages/about";
@@ -34,14 +33,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-    const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
-        const { user, loading } = useAuth();
-
-        if (loading) return <div>Loading...</div>; 
-
-        return user ? children : <Navigate to="/sign-in" replace />;
-    };
-
 const App: React.FC = () => {
   return (
     <AuthProvider>
@@ -57,7 +48,6 @@ const App: React.FC = () => {
               <Route path="/movies/:id" element={<MovieDetail />} />
               <Route path="/sign-in" element={<SignIn />} />
               <Route path="/sign-up" element={<SignUp />} />
-              <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
               <Route path="/about" element={<About />} />
               <Route path="/terms-and-condition" element={<TermsAndCondition />} />
               <Route path="/contact" element={<Contact />} />
