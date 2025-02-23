@@ -269,3 +269,7 @@ const Navbar: React.FC = () => {
 };
 
 export default Navbar;
+
+
+
+// ang mag erase sa mga comments kay ang mga comments
