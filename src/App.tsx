@@ -63,4 +63,7 @@ const App: React.FC = () => {
   );
 };
 
+
+/*ANG MO DELETE ANI NGA COMMENT KAY PALAUTOG PISOT */
+
 export default App;
