@@ -74,7 +74,7 @@ const SignIn: React.FC = () => {
                     ? "Login successful! Redirecting to admin panel..." 
                     : "Login successful! Redirecting to homepage..."
             );
-            login(data.token, data.role);
+            login(data.token, data.role, { name: "", email: formData.identifier });
             
             // Clear form
             setFormData({ identifier: "", password: "" });
