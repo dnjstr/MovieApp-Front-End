@@ -88,7 +88,7 @@ const SignUp: React.FC = () => {
                 {/* Left Section */}
                 <div className="movie-card-photo text-white p-8 rounded-l-lg flex flex-col justify-center items-center w-1/2 relative">
                     <Link
-                        to="/"
+                        to="/sign-in"
                         className="absolute top-4 left-4 text-white font-bold px-4 py-2 rounded-lg hover:bg-orange-600 transition duration-200"
                     >
                         ←

@@ -7,6 +7,7 @@ export default {
   theme: {
     extend: {
       screens: {
+        "smx": "600px",
         "mdx": "909px",
         "lgx": "1105px",
         "fsm": "100px",
