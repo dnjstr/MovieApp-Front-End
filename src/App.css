@@ -312,11 +312,15 @@ body {
     pointer-events: none;    
 } */
 
-.sign-in-up-input:-webkit-autofill {
-  background-color: rgba(0, 0, 0, 0.3) !important;
+.sign-in-up-input:-webkit-autofill,
+.sign-in-up-input:-webkit-autofill:hover,
+.sign-in-up-input:-webkit-autofill:focus,
+.sign-in-up-input:-webkit-autofill:active {
+  background: none !important;
+  background-color: transparent !important;
   color: #ffffff !important;
-  -webkit-box-shadow: 0 0 0 30px rgba(0, 0, 0) inset !important;
-  -webkit-text-fill-color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important; 
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+  transition: background-color 5000s ease-in-out 0s !important;
 }
 
-  

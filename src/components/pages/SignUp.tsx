@@ -58,7 +58,6 @@ const SignUp: React.FC = () => {
 
             setSuccess("Account created successfully! Redirecting to login...");
             
-            // Store the identifier (email or phone) to pass to sign in
             const identifier = formData.email || formData.phoneNumber;
             
             setFormData({
@@ -68,7 +67,6 @@ const SignUp: React.FC = () => {
                 password: "",
             });
 
-            // Delay navigation to show success message and pass the identifier
             setTimeout(() => {
                 navigate("/sign-in", { 
                     state: { identifier } 
@@ -84,26 +82,15 @@ const SignUp: React.FC = () => {
 
     return (
         <div className="flex justify-center items-center min-h-screen">
-            <div className="flex">
-                {/* Left Section */}
-                <div className="movie-card-photo text-white p-8 rounded-l-lg flex flex-col justify-center items-center w-1/2 relative">
+            <div className="signin-page-container absolute top-0 left-0 w-full h-full z-0"></div>
+            <div className="flex z-10">
+                <div className="bg-black bg-opacity-25 p-8 rounded-lg shadow-lg relative w-[380px] px-4 border border-gray-700">
                     <Link
                         to="/sign-in"
-                        className="absolute top-4 left-4 text-white font-bold px-4 py-2 rounded-lg hover:bg-orange-600 transition duration-200"
-                    >
-                        ←
-                    </Link>
-
-                    <div>
-                        <h1 className="text-4xl font-bold mb-6">Welcome to Movie Haven!</h1>
-                        <p className="text-x text-center max-w-md">
-                            We're excited to have you. Sign Up to create your new account and watch free movies anytime.
-                        </p>
-                    </div>
-
-                    <div className="mt-8 animate-spin">
+                        className="absolute top-2 left-0 text-orange-500 font-bold px-4 py-2 rounded-lg hover:text-orange-600 transition duration-200 animate-spin"
+                    >   
                         <svg
-                            className="w-16 h-16 text-black"
+                            className="w-5 text-white hover:text-orange-600 transition duration-200"
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 512 512"
                             fill="currentColor"
@@ -121,24 +108,22 @@ const SignUp: React.FC = () => {
                                 22.047 49.219 49.234-22.031 49.234-49.219 49.234-49.25-22.047-49.25-49.234z"
                             />
                         </svg>
+                    </Link>
+                    <h2 className="text-2xl text-white font-bold text-center mb-4">Sign Up</h2>
+                    <p className="text-center text-gray-200 mb-6 text-[15px]">Create a new account to continue.</p>
+
+                    <div className="h-[5px] w-full mb-5">
+                        {error && (
+                            <div className="text-red-700 rounded text-center text-xs font-bold">
+                                {error}
+                            </div>
+                        )}
+                        {success && (
+                            <div className="text-green-500 rounded text-center text-xs">
+                                {success}
+                            </div>
+                        )}
                     </div>
-                </div>
-
-                {/* Right Section */}
-                <div className="bg-white p-8 rounded-r-lg shadow-lg w-2/3">
-                    <h2 className="text-2xl text-black font-bold text-center mb-4">Sign Up</h2>
-                    <p className="text-center text-black mb-6">Create a new account to continue.</p>
-
-                    {error && (
-                        <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
-                            {error}
-                        </div>
-                    )}
-                    {success && (
-                        <div className="mb-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded">
-                            {success}
-                        </div>
-                    )}
 
                     <form onSubmit={handleSubmit}>
                         <div className="mb-4">
@@ -148,7 +133,7 @@ const SignUp: React.FC = () => {
                                 value={formData.fullName}
                                 onChange={handleChange}
                                 placeholder="Full Name"
-                                className="text-black w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                                className="sign-in-up-input bg-black bg-opacity-30 text-white w-full p-3 px-3 border-l-2 border-orange-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
                                 required
                             />
                         </div>
@@ -158,8 +143,8 @@ const SignUp: React.FC = () => {
                                 name="email"
                                 value={formData.email}
                                 onChange={handleChange}
-                                placeholder="Email Address (Optional if phone provided)"
-                                className="text-black w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                                placeholder="Email Address"
+                                className="sign-in-up-input bg-black bg-opacity-30 text-white w-full p-3 px-3 border-l-2 border-orange-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
                            
                               
                             />
@@ -170,8 +155,8 @@ const SignUp: React.FC = () => {
                                 name="phoneNumber"
                                 value={formData.phoneNumber}
                                 onChange={handleChange}
-                                placeholder="Phone Number (Optional if email provided)"
-                                className="text-black w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                                placeholder="Phone Number"
+                                className="sign-in-up-input bg-black bg-opacity-30 text-white w-full p-3 px-3 border-l-2 border-orange-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
                            
                             />
                         </div>
@@ -182,24 +167,24 @@ const SignUp: React.FC = () => {
                                 value={formData.password}
                                 onChange={handleChange}
                                 placeholder="Password"
-                                className="text-black w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                                className="sign-in-up-input bg-black bg-opacity-30 text-white w-full p-3 px-3 border-l-2 border-orange-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
                                 required
                             />
                         </div>
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className={`w-full bg-orange-500 text-white py-3 rounded-md font-bold 
-                                ${isLoading ? 'opacity-70 cursor-not-allowed' : 'hover:bg-orange-600'} 
+                            className={`w-full bg-black bg-opacity-30 border border-orange-700 text-white py-3 rounded-md font-bold 
+                                ${isLoading ? 'opacity-70 cursor-not-allowed' : 'hover:bg-orange-600 hover:bg-opacity-40'} 
                                 transition duration-300`}
                         >
                             {isLoading ? "Creating Account..." : "Sign Up"}
                         </button>
                     </form>
 
-                    <p className="text-center text-gray-600 mt-4">
+                    <p className="text-center text-gray-400 mt-4 text-sm">
                         Already have an account?{" "}
-                        <Link to="/sign-in" className="text-orange-500 font-semibold hover:underline">
+                        <Link to="/sign-in" className="text-orange-500 font-semibold hover:underline text-[16px]">
                             Sign In
                         </Link>
                     </p>
