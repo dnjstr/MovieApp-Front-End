@@ -89,6 +89,7 @@ const GenreMovies: React.FC = () => {
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
                     transition: 'background-image 0.5s ease-in-out',
+                    zIndex: 1
                 }}
             >
                 {/* Back Button */}
@@ -100,9 +101,9 @@ const GenreMovies: React.FC = () => {
                 </button>
 
                 {/* Movie Details */}
-                <div className="px-6 text-white">
+                <div className="px-6 text-white flex flex-col h-[100px]">
                     <p className="text-3xl font-bold">{selectedMovie?.title}</p>
-                    <div className="text-gray-400 text-lg">
+                    <div className="text-gray-400 text-sm ps-3">
                         {infoType === 'description' && <p>{selectedMovie?.description}</p>}
                         {infoType === 'genreRelease' && (
                             <>
@@ -128,13 +129,13 @@ const GenreMovies: React.FC = () => {
             {movies.length === 0 ? (
                 <p className="text-white text-center">No movies found in this genre.</p>
             ) : (
-                <div className="genre-scroll-bar overflow-x-scroll genre-movies-container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-8 gap-8 border-t-4 border-orange-700 rounded px-5 py-4">
+                <div className="genre-scroll-bar overflow-x-scroll genre-movies-container grid grid-flow-col auto-cols-max gap-8 border-t-4 border-orange-700 rounded px-5 py-4 h-[342px]">
                     {movies.map((movie) => (
                         <div
                             key={movie.id}
                             onMouseEnter={() => setSelectedMovie(movie)}
                             onClick={() => navigate(`/movies/${movie.id}`)}
-                            className="relative group cursor-pointer transition-transform duration-300 hover:scale-105"
+                            className="relative group cursor-pointer transition-transform duration-300 hover:scale-105 w-[190px]"
                         >
                             <div className="relative overflow-hidden rounded-lg">
                                 <img
@@ -142,6 +143,14 @@ const GenreMovies: React.FC = () => {
                                     alt={movie.title}
                                     className="w-full h-[300px] object-cover rounded-lg"
                                 />
+                                <div className="absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center text-center opacity-0 group-hover:opacity-100 transition-opacity p-4 rounded-lg">
+                                    <p className="text-lg font-bold mb-2">{movie.title}</p>
+                                    <p className="text-xs text-gray-400 line-clamp-3 mb-2">{movie.main_cast}</p>
+                                    <p className="text-xs text-gray-300 mb-2">Release Date: {movie.release_date}</p>
+                                    <div className="flex items-center">
+                                        <span className="text-yellow-400 text-xs">{'⭐'.repeat(Math.round(movie.average_rating))}</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     ))}

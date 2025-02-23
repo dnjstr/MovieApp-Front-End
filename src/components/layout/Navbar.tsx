@@ -137,7 +137,7 @@ const Navbar: React.FC = () => {
             </button>
 
             {isDropdownOpen && (
-              <div className="profile-dropdown-desktop absolute top-12 right-0 mt-2 w-48 bg-black rounded-md shadow-lg py-1">
+              <div className="profile-dropdown-desktop absolute top-12 right-0 mt-2 w-48 bg-black rounded-md shadow-lg py-1 z-10">
                 <Link
                   to="/profile"
                   className=" px-4 py-2 text-sm text-white hover:bg-orange-600 flex items-center space-x-2"

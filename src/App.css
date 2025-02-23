@@ -257,7 +257,7 @@ body {
 }
 
 .genre-scroll-bar::-webkit-scrollbar {
-    height: 5px;
+    height: 6px;
 }
 
 .genre-scroll-bar::-webkit-scrollbar-track {

@@ -51,7 +51,6 @@ const MovieListSection: React.FC = () => {
   }, []);
 
   const handleMovieClick = (id: number) => {
-    // Save current scroll position before navigating
     const scrollPosition = window.pageYOffset;
     navigate(`/movies/${id}`, { state: { scrollPosition } });
   };
