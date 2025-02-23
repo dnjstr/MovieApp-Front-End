@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import MainPage from "./components/layout/MainPage";
 import MovieListSection from "./components/movies/Movielistsection";
@@ -9,19 +9,22 @@ import SignUp from "./components/pages/SignUp";
 import ComingSoon from "./components/pages/ComingSoon";
 import Genre from "./components/pages/Genre";
 import MyList from "./components/pages/MyList";
-import { AuthProvider, useAuth } from "./context/AuthContext";
-import { PreferencesProvider, usePreferences } from "./context/PreferencesContext"; 
+import { AuthProvider } from "./context/AuthContext";
+import { PreferencesProvider, usePreferences } from "./context/PreferencesContext";
 import About from "./components/pages/about";
 import Contact from "./components/pages/contact";
 import FAQ from "./components/pages/faq";
 import TermsAndCondition from "./components/pages/TermsandCondition";
 import GenreMovies from "./components/pages/GenreMovies";
 
-// Layout Component (Uses Global Background Color
+// Layout Component (Uses Global Background Color)
 const Layout = ({ children }: { children: React.ReactNode }) => {
-    const location = useLocation();
-    const { bgColor } = usePreferences(); // Get global background color
-    const hideNavbar = ["/sign-in", "/sign-up", "/profile"].includes(location.pathname);
+  const location = useLocation();
+  const { bgColor = "bg-default" } = usePreferences(); // Added a default value
+
+  // Improved hideNavbar logic to handle dynamic paths
+  const hideNavbar = ["/sign-in", "/sign-up"].includes(location.pathname) || 
+                     location.pathname.startsWith("/profile");
 
   return (
     <>
@@ -35,14 +38,14 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
 const App: React.FC = () => {
   return (
-    <AuthProvider>
-      <PreferencesProvider>
-        <Router>
+    <Router>
+      <AuthProvider>
+        <PreferencesProvider>
           <Layout>
             <Routes>
               <Route path="/" element={<><MainPage /><MovieListSection /></>} />
               <Route path="/comingsoon" element={<ComingSoon />} />
-              <Route path="/genre/" element={<Genre />} />
+              <Route path="/genre" element={<Genre />} />
               <Route path="/genre/:genreName" element={<GenreMovies />} />
               <Route path="/my-list" element={<MyList />} />
               <Route path="/movies/:id" element={<MovieDetail />} />
@@ -54,10 +57,10 @@ const App: React.FC = () => {
               <Route path="/faq" element={<FAQ />} />
             </Routes>
           </Layout>
-        </Router>
-      </PreferencesProvider>
-    </AuthProvider>
+        </PreferencesProvider>
+      </AuthProvider>
+    </Router>
   );
 };
 
-    export default App;
+export default App;
