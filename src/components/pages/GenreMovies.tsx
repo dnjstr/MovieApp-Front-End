@@ -39,7 +39,7 @@ const GenreMovies: React.FC = () => {
                 
                 if (Array.isArray(data)) {
                     setMovies(data);
-                    setSelectedMovie(data[Math.floor(Math.random() * data.length)]); // Set initial movie
+                    setSelectedMovie(data[Math.floor(Math.random() * data.length)]); 
                 } else {
                     console.error('Received non-array data:', data);
                     setError('Invalid data format received');
@@ -147,7 +147,7 @@ const GenreMovies: React.FC = () => {
                                     <p className="text-lg font-bold mb-2">{movie.title}</p>
                                     <p className="text-xs text-gray-400 line-clamp-3 mb-2">{movie.main_cast}</p>
                                     <p className="text-xs text-gray-300 mb-2">Release Date: {movie.release_date}</p>
-                                    <div className="flex items-center">
+                                    <div className="flex items-center mt-2">
                                         <span className="text-yellow-400 text-xs">{'⭐'.repeat(Math.round(movie.average_rating))}</span>
                                     </div>
                                 </div>
