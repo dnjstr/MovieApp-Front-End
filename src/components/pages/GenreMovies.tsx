@@ -79,7 +79,7 @@ const GenreMovies: React.FC = () => {
     }
 
     return (
-        <div className="genre-movies-page mx-auto px-32 py-8 pt-28 z-10">
+        <div className="genre-movies-page mx-auto lg:px-32 py-8 pt-28 z-10">
             {/* Background Header Section */}
             <div 
                 className="relative z-10 p-6 rounded-lg transition-all duration-500 flex items-center" 
