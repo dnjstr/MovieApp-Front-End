@@ -52,9 +52,9 @@ const MyList: React.FC = () => {
     };
 
     return (
-        <div className="flex flex-col justify-between h-screen text-white px-6">
-            <div className="flex justify-around h-screen mt-24">
-                <div className="text-center flex-1">
+        <div className="flex flex-col txtlg:justify-between h-screen text-white px-6">
+            <div className="flex flex-col txtlg:flex-row txtlg:justify-around gap-10 h-screen mt-10 txtlg:mt-24">
+                <div className="text-center lg:flex-1">
                     <h1 className="text-5xl font-bold mb-2 mt-12">My List</h1>
                     <p className="text-lg text-gray-300 mb-6">Keep track of your favorite movies and shows here!</p>
 
@@ -79,14 +79,14 @@ const MyList: React.FC = () => {
                         </Swiper>
                     </div>
                 </div>
-                <div className="bookmark-scroll-bar space-y-4 mt-12 flex-auto overflow-y-scroll max-h-400">
+                <div className="bookmark-scroll-bar txtlg:space-y-4 txtlg:mt-12 flex-auto overflow-y-scroll max-h-400">
                     {myList.length === 0 ? (
                         <p className="text-gray-400 flex justify-center p-48">No movies added yet.</p>
                     ) : (
                         myList.map((item) => (
                             <div
                                 key={item.id}
-                                className="bookmark-item flex items-center p-4 rounded-lg border-s-2 border-orange-700"
+                                className="bookmark-item flex items-center p-4 rounded-lg border-s-2 border-orange-700 "
                             >
                                 <img
                                     src={item.movie_poster}
@@ -105,7 +105,7 @@ const MyList: React.FC = () => {
                                 </div>
                                 <button
                                     onClick={() => removeFromList(item.movie)}
-                                    className="text-white hover:text-red-900 text-xl"
+                                    className="text-white hover:text-red-900 text-xl ms-5"
                                 >
                                     ✖
                                 </button>
