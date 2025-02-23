@@ -191,7 +191,7 @@ const Navbar: React.FC = () => {
       {isMenuOpen && (
         <div className="absolute top-16 text-sm right-0 w-48 bg-black rounded-md bg-opacity-70 flex flex-col items-center p-4 space-y-4 md:hidden">
           <Link to="/" className="text-white hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>Home</Link>
-          <Link to="/popular" className="text-white hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>New & Popular</Link>
+          <Link to="/comingsoon" className="text-white hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>Coming Soon</Link>
           <Link to="/genre" className="text-white hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>Genre</Link>
           <Link to="/my-list" className="text-white hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>My List</Link>
 
