@@ -110,7 +110,7 @@ const SignUp: React.FC = () => {
                         </svg>
                     </Link>
                     <h2 className="text-2xl text-white font-bold text-center mb-4">Sign Up</h2>
-                    <p className="text-center text-gray-200 mb-6">Create a new account to continue.</p>
+                    <p className="text-center text-gray-200 mb-6 text-[15px]">Create a new account to continue.</p>
 
                     <div className="h-[5px] w-full mb-5">
                         {error && (
@@ -143,7 +143,7 @@ const SignUp: React.FC = () => {
                                 name="email"
                                 value={formData.email}
                                 onChange={handleChange}
-                                placeholder="Email Address (Optional if phone provided)"
+                                placeholder="Email Address"
                                 className="sign-in-up-input bg-black bg-opacity-30 text-white w-full p-3 px-3 border-l-2 border-orange-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
                            
                               
@@ -155,7 +155,7 @@ const SignUp: React.FC = () => {
                                 name="phoneNumber"
                                 value={formData.phoneNumber}
                                 onChange={handleChange}
-                                placeholder="Phone Number (Optional if email provided)"
+                                placeholder="Phone Number"
                                 className="sign-in-up-input bg-black bg-opacity-30 text-white w-full p-3 px-3 border-l-2 border-orange-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
                            
                             />
@@ -175,7 +175,7 @@ const SignUp: React.FC = () => {
                             type="submit"
                             disabled={isLoading}
                             className={`w-full bg-black bg-opacity-30 border border-orange-700 text-white py-3 rounded-md font-bold 
-                                ${isLoading ? 'opacity-70 cursor-not-allowed' : 'hover:bg-orange-600'} 
+                                ${isLoading ? 'opacity-70 cursor-not-allowed' : 'hover:bg-orange-600 hover:bg-opacity-40'} 
                                 transition duration-300`}
                         >
                             {isLoading ? "Creating Account..." : "Sign Up"}
