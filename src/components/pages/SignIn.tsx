@@ -101,7 +101,7 @@ const SignIn: React.FC = () => {
         <div className="flex justify-center items-center min-h-screen bg-black bg-opacity-50 mx-auto">
             <div className="signin-page-container absolute top-0 right-0 w-full h-full z-0"></div>
             <div className="flex z-10">
-                <div className="bg-black bg-opacity-35 p-8 rounded-lg shadow-lg relative w-[350px] px-4 border border-gray-700">
+                <div className="bg-black bg-opacity-25 p-8 rounded-lg shadow-lg relative w-[350px] px-4 border border-gray-700">
                     <Link
                         to="/"
                         className="absolute top-2 left-0 text-orange-500 font-bold px-4 py-2 rounded-lg hover:text-orange-600 transition duration-200 animate-spin"
@@ -118,12 +118,12 @@ const SignIn: React.FC = () => {
     
                     <h2 className="text-2xl text-white font-bold text-center mb-2">Sign In</h2>
                     <p className="text-center text-sm text-orange-500 mb-2">Welcome back! 
-                        <span className="text-white ms-1 text-xs">Please sign in to continue.</span>
+                        <span className="text-gray-200 ms-1 text-xs">Please sign in to continue.</span>
                     </p>
     
                     <div className="h-[5px] w-full mb-5">
                         {error && (
-                            <div className="text-red-700 rounded">
+                            <div className="text-red-700 rounded text-center text-xs font-bold">
                                 {error}
                             </div>
                         )}
@@ -160,7 +160,7 @@ const SignIn: React.FC = () => {
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className={`w-full bg-black bg-opacity-50 border border-orange-700 text-white py-3 rounded-md font-bold 
+                            className={`w-full bg-black bg-opacity-30 border border-orange-700 text-white py-3 rounded-md font-bold 
                                 ${isLoading ? 'opacity-70 cursor-not-allowed' : 'hover:bg-orange-600 hover:bg-opacity-40'} 
                                 transition duration-300`}
                         >

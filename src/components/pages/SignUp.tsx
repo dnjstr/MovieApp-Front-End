@@ -84,26 +84,15 @@ const SignUp: React.FC = () => {
 
     return (
         <div className="flex justify-center items-center min-h-screen">
-            <div className="flex">
-                {/* Left Section */}
-                <div className="movie-card-photo text-white p-8 rounded-l-lg flex flex-col justify-center items-center w-1/2 relative">
+            <div className="signin-page-container absolute top-0 left-0 w-full h-full z-0"></div>
+            <div className="flex z-10">
+                <div className="bg-black bg-opacity-25 p-8 rounded-lg shadow-lg relative w-[380px] px-4 border border-gray-700">
                     <Link
                         to="/sign-in"
-                        className="absolute top-4 left-4 text-white font-bold px-4 py-2 rounded-lg hover:bg-orange-600 transition duration-200"
-                    >
-                        ←
-                    </Link>
-
-                    <div>
-                        <h1 className="text-4xl font-bold mb-6">Welcome to Movie Haven!</h1>
-                        <p className="text-x text-center max-w-md">
-                            We're excited to have you. Sign Up to create your new account and watch free movies anytime.
-                        </p>
-                    </div>
-
-                    <div className="mt-8 animate-spin">
+                        className="absolute top-2 left-0 text-orange-500 font-bold px-4 py-2 rounded-lg hover:text-orange-600 transition duration-200 animate-spin"
+                    >   
                         <svg
-                            className="w-16 h-16 text-black"
+                            className="w-5 text-white hover:text-orange-600 transition duration-200"
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 512 512"
                             fill="currentColor"
@@ -121,13 +110,9 @@ const SignUp: React.FC = () => {
                                 22.047 49.219 49.234-22.031 49.234-49.219 49.234-49.25-22.047-49.25-49.234z"
                             />
                         </svg>
-                    </div>
-                </div>
-
-                {/* Right Section */}
-                <div className="bg-white p-8 rounded-r-lg shadow-lg w-2/3">
-                    <h2 className="text-2xl text-black font-bold text-center mb-4">Sign Up</h2>
-                    <p className="text-center text-black mb-6">Create a new account to continue.</p>
+                    </Link>
+                    <h2 className="text-2xl text-white font-bold text-center mb-4">Sign Up</h2>
+                    <p className="text-center text-gray-200 mb-6">Create a new account to continue.</p>
 
                     {error && (
                         <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
@@ -197,9 +182,9 @@ const SignUp: React.FC = () => {
                         </button>
                     </form>
 
-                    <p className="text-center text-gray-600 mt-4">
+                    <p className="text-center text-gray-400 mt-4 text-sm">
                         Already have an account?{" "}
-                        <Link to="/sign-in" className="text-orange-500 font-semibold hover:underline">
+                        <Link to="/sign-in" className="text-orange-500 font-semibold hover:underline text-[16px]">
                             Sign In
                         </Link>
                     </p>
