@@ -58,7 +58,6 @@ const SignUp: React.FC = () => {
 
             setSuccess("Account created successfully! Redirecting to login...");
             
-            // Store the identifier (email or phone) to pass to sign in
             const identifier = formData.email || formData.phoneNumber;
             
             setFormData({
@@ -68,7 +67,6 @@ const SignUp: React.FC = () => {
                 password: "",
             });
 
-            // Delay navigation to show success message and pass the identifier
             setTimeout(() => {
                 navigate("/sign-in", { 
                     state: { identifier } 
@@ -114,16 +112,18 @@ const SignUp: React.FC = () => {
                     <h2 className="text-2xl text-white font-bold text-center mb-4">Sign Up</h2>
                     <p className="text-center text-gray-200 mb-6">Create a new account to continue.</p>
 
-                    {error && (
-                        <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
-                            {error}
-                        </div>
-                    )}
-                    {success && (
-                        <div className="mb-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded">
-                            {success}
-                        </div>
-                    )}
+                    <div className="h-[5px] w-full mb-5">
+                        {error && (
+                            <div className="text-red-700 rounded text-center text-xs font-bold">
+                                {error}
+                            </div>
+                        )}
+                        {success && (
+                            <div className="text-green-500 rounded text-center text-xs">
+                                {success}
+                            </div>
+                        )}
+                    </div>
 
                     <form onSubmit={handleSubmit}>
                         <div className="mb-4">
@@ -133,7 +133,7 @@ const SignUp: React.FC = () => {
                                 value={formData.fullName}
                                 onChange={handleChange}
                                 placeholder="Full Name"
-                                className="text-black w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                                className="sign-in-up-input bg-black bg-opacity-30 text-white w-full p-3 px-3 border-l-2 border-orange-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
                                 required
                             />
                         </div>
@@ -144,7 +144,7 @@ const SignUp: React.FC = () => {
                                 value={formData.email}
                                 onChange={handleChange}
                                 placeholder="Email Address (Optional if phone provided)"
-                                className="text-black w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                                className="sign-in-up-input bg-black bg-opacity-30 text-white w-full p-3 px-3 border-l-2 border-orange-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
                            
                               
                             />
@@ -156,7 +156,7 @@ const SignUp: React.FC = () => {
                                 value={formData.phoneNumber}
                                 onChange={handleChange}
                                 placeholder="Phone Number (Optional if email provided)"
-                                className="text-black w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                                className="sign-in-up-input bg-black bg-opacity-30 text-white w-full p-3 px-3 border-l-2 border-orange-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
                            
                             />
                         </div>
@@ -167,14 +167,14 @@ const SignUp: React.FC = () => {
                                 value={formData.password}
                                 onChange={handleChange}
                                 placeholder="Password"
-                                className="text-black w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                                className="sign-in-up-input bg-black bg-opacity-30 text-white w-full p-3 px-3 border-l-2 border-orange-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
                                 required
                             />
                         </div>
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className={`w-full bg-orange-500 text-white py-3 rounded-md font-bold 
+                            className={`w-full bg-black bg-opacity-30 border border-orange-700 text-white py-3 rounded-md font-bold 
                                 ${isLoading ? 'opacity-70 cursor-not-allowed' : 'hover:bg-orange-600'} 
                                 transition duration-300`}
                         >
