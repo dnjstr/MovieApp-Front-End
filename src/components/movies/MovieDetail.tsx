@@ -204,7 +204,7 @@ const MovieDetail: React.FC = () => {
                             <p className="text-sm text-gray-400">Duration: {movie.duration}</p>
                             <p className="text-sm text-gray-400">Genre: {movie.genre}</p>
                             <p className="text-sm text-gray-400">Director: {movie.director}</p>
-                            <div className='flex gap-4'>
+                            <div className='flex gap-4 justify-between md:justify-start'>
                                 <button
                                     onClick={toggleBookmark}
                                     className={`bookmark-btn-hover mt-4 px-4 py-2 rounded  flex items-center gap-2 ${isAuthenticated ? 'bg-gradient-to-b from-orange-600 to-orange-900 text-white' : 'bg-gray-600 text-white cursor-not-allowed'}`}
