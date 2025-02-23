@@ -24,7 +24,6 @@ const genreIcons: { [key: string]: { icon: string; color: string } } = {
     'Science Fiction': { icon: '🤖', color: 'bg-red-400' },
     'Thriller': { icon: '🔪', color: 'bg-gray-500' },
     'Suspense': { icon: '🕵️', color: 'bg-gray-600' },
-    
 };
 
 const Genre: React.FC = () => {
@@ -84,14 +83,14 @@ const Genre: React.FC = () => {
     }
 
     return (
-        <div className="container mx-auto px-4 flex justify-start flex-col h-screen">
-            <div>
+        <div className="mx-auto px-7 flex justify-start flex-col h-screen">
+            <div className="">
                 <div className="text-center mt-20 mb-4">
                     <h1 className="text-4xl font-bold mb-2 text-white">Browse by Genre</h1>
                     <p className="text-gray-400">Discover your next favorite movie across multiple genres</p>
                 </div>
                 <div className='bookmark-scroll-bar overflow-y-scroll h-[530px] px-5'>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
                         {genreCounts.map((genre) => {
                             if (!genre.genre) return null;
                 
@@ -100,7 +99,7 @@ const Genre: React.FC = () => {
                                 <Link
                                     key={genreName}
                                     to={`/genre/${genreName.toLowerCase()}`}
-                                    className="relative overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer bg-gray-800 rounded-lg"
+                                    className="relative overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer bg-gray-800 rounded-lg min-w-full"
                                 >
                                     <div className={`absolute inset-0 ${genreIcons[genreName]?.color || 'bg-gray-500'} opacity-10 hover:opacity-20 transition-opacity duration-300`} />
                                     <div className="p-6">
