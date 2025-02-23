@@ -106,7 +106,7 @@ const SignIn: React.FC = () => {
                         to="/"
                         className="absolute top-2 left-0 text-orange-500 font-bold px-4 py-2 rounded-lg hover:text-orange-600 transition duration-200 animate-spin"
                     >
-                         <svg
+                        <svg
                             className="w-5 text-white hover:text-orange-600 transition duration-200"
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 512 512"
