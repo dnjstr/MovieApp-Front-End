@@ -27,7 +27,7 @@ const GenreMovies: React.FC = () => {
     useEffect(() => {
         const fetchMoviesByGenre = async () => {
             if (!genreName) return;
-
+    
             try {
                 const response = await fetch(`http://127.0.0.1:8000/api/movies/genre/${encodeURIComponent(genreName)}/`);
                 
@@ -37,12 +37,12 @@ const GenreMovies: React.FC = () => {
                 
                 const data = await response.json();
                 
-                if (Array.isArray(data)) {
+                if (Array.isArray(data) && data.length > 0) {
                     setMovies(data);
-                    setSelectedMovie(data[Math.floor(Math.random() * data.length)]); // Set initial movie
+                    setSelectedMovie(data[0]);
                 } else {
-                    console.error('Received non-array data:', data);
-                    setError('Invalid data format received');
+                    console.error('Received non-array data or empty list:', data);
+                    setError('No movies found for this genre.');
                 }
             } catch (error) {
                 console.error('Error fetching movies:', error);
@@ -51,9 +51,10 @@ const GenreMovies: React.FC = () => {
                 setLoading(false);
             }
         };
-
+    
         fetchMoviesByGenre();
     }, [genreName]);
+    
 
     useEffect(() => {
         const interval = setInterval(() => {
