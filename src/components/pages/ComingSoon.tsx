@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import Footer from '../layout/Footer';
 
 interface Movie {
     id: number;
