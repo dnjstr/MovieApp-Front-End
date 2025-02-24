@@ -60,7 +60,7 @@ const FAQ = () => {
   ];
 
   return (
-    <div className="flex w-full min-h-screen bg-black text-white mt-11">
+    <div className="flex w-full min-h-screen bg-black text-white">
     
       <div className="w-full lg:w-3/4 p-4 md:p-8">
         <button
@@ -277,7 +277,7 @@ const FAQ = () => {
 
       {/*navigation*/}
       <div className="hidden lg:block w-1/4 fixed right-0 top-0 h-screen bg-neutral-900 p-8 overflow-y-auto">
-        <div className="sticky mt-16 top-8">
+        <div className="sticky top-8">
           <h3 className="text-lg font-semibold mb-6">On this page</h3>
           <nav className="space-y-2">
             {sections.map(section => (

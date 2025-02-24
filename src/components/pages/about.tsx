@@ -58,11 +58,11 @@ const AboutUs = () => {
   ];
 
   return (
-    <div className="flex w-full min-h-screen bg-black text-white mt-11">
+    <div className="flex w-full min-h-screen bg-black text-white ">
       
       <div className="w-full lg:w-3/4 p-4 md:p-8">
         <button
-          className="bg-neutral-800 text-white py-2 px-4 rounded-md hover:bg-neutral-700 mb-8"
+          className="bg-orange-700 border border-gray-900 text-white py-2 px-4 rounded-md hover:bg-orange-900 mb-8"
           onClick={() => window.history.back()}
         >
           Back
@@ -74,7 +74,7 @@ const AboutUs = () => {
         </p>
 
         <section id="story" className="mb-16">
-          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-neutral-800">Our Story</h2>
+          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-orange-800">Our Story</h2>
           <div className="space-y-8">
             <div>
               <p className="text-gray-400">
@@ -93,7 +93,7 @@ const AboutUs = () => {
         </section>
 
         <section id="mission" className="mb-16">
-          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-neutral-800">Our Mission</h2>
+          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-orange-800">Our Mission</h2>
           <div className="space-y-8">
             <div>
               <p className="text-gray-400">
@@ -122,7 +122,7 @@ const AboutUs = () => {
         </section>
 
         <section id="values" className="mb-16">
-          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-neutral-800">Our Values</h2>
+          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-orange-800">Our Values</h2>
           <div className="space-y-8">
             <div>
               <ul className="space-y-4 text-gray-400">
@@ -141,7 +141,7 @@ const AboutUs = () => {
         </section>
 
         <section id="offers" className="mb-16">
-          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-neutral-800">What We Offer</h2>
+          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-orange-800">What We Offer</h2>
           <div className="space-y-8">
             <div>
               <p className="text-gray-400 mb-4">Our platform provides a range of resources for film enthusiasts, including:</p>
@@ -156,7 +156,7 @@ const AboutUs = () => {
         </section>
 
         <section id="vision" className="mb-16">
-          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-neutral-800">Our Vision</h2>
+          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-orange-800">Our Vision</h2>
           <div className="space-y-8">
             <div>
               <p className="text-gray-400">
@@ -172,7 +172,7 @@ const AboutUs = () => {
         </section>
 
         <section id="team" className="mb-16">
-          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-neutral-800">Meet the Team</h2>
+          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-orange-800">Meet the Team</h2>
           <div className="space-y-8">
             <div>
               <p className="text-gray-400">
@@ -189,7 +189,7 @@ const AboutUs = () => {
         </section>
 
         <section id="goals" className="mb-16">
-          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-neutral-800">Future Goals</h2>
+          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-orange-800">Future Goals</h2>
           <div className="space-y-8">
             <div>
               <p className="text-gray-400 mb-4">While Movie Haven started as a college project, we have big dreams for its future. Our goals include:</p>
@@ -206,42 +206,140 @@ const AboutUs = () => {
                 <li><strong>Developing Multimedia Content</strong> – To make learning about films more engaging, we will introduce podcasts, video essays, and even online courses. 
                 These resources will offer deeper insights into filmmaking, screenwriting, cinematography, and film theory.</li>
                 
-                <li><strong>Creating Educational Resources</strong> – We believe in the power of education, and we plan to provide resources for students and aspiring filmmakers. 
-                This may include film study guides, recommended reading lists, and tutorials on various aspects of filmmaking.</li>
-                
                 <li><strong>Encouraging Community Engagement</strong> – We want Movie Haven to be more than just a website; we want it to be a place where people can 
                 connect. In the future, we plan to introduce features such as user-submitted reviews, discussion forums, and interactive polls where users can share 
                 their opinions on different movies.</li>
                 
                 <li><strong>Exploring Partnerships & Collaborations</strong> – To expand our reach, we hope to collaborate with film organizations, schools, and online 
                 platforms to bring more valuable content to our audience.</li>
-                
-                <li><strong>Keeping Up with Industry Trends</strong> – Cinema is always evolving, and we want to stay updated on the latest trends in filmmaking, technology, 
-                and storytelling. We aim to cover topics such as streaming platforms, emerging directors, and the future of the film industry.</li>
               </ul>
             </div>
           </div>
         </section>
 
         <section id="contact" className="mb-16">
-          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-neutral-800">Contact Us</h2>
-          <div className="space-y-8">
-            <div>
-              <p className="text-gray-400">
-                Have any questions, suggestions, or just want to chat about movies? We'd love to hear from you! Feel free to reach out to us anytime.
-              </p>
-              <p className="text-gray-400 mt-4">
-                <strong>Email:</strong> <a href="mailto:supportden@moviehaven.com" className="text-blue-400 hover:underline">supportden@moviehaven.com</a>
-              </p>
-              <p className="text-gray-400">
-                <strong>Address:</strong> [University of Science and Technology]
-              </p>
-              <p className="text-gray-400 mt-4">
-                You can also follow us on our social media pages to stay updated on new content, discussions, and events!
-              </p>
+          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-orange-800">Contact Us</h2>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Contact Info */}
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-lg  font-semibold mb-4">Get In Touch</h3>
+                <p className="text-gray-400">
+                  Have any questions, suggestions, or just want to chat about movies? We'd love to hear from you!  
+                  Feel free to reach out to us anytime through email, phone, or social media. Our support team is ready to assist you promptly.
+                </p>
+
+                <div className="mt-6 space-y-3">
+                  <p className="text-gray-400 flex items-center">
+                    <span className="mr-2">📧</span> <strong>Email:</strong> 
+                    <a href="mailto:supportden@moviehaven.com" className="text-blue-400 hover:underline ml-2">supportden@moviehaven.com</a>
+                  </p>
+
+                  <p className="text-gray-400 flex items-center">
+                    <span className="mr-2">📞</span> <strong>Phone:</strong> 
+                    <a href="tel:+1234567890" className="text-blue-400 hover:underline ml-2">+63 965 236 4460</a>
+                  </p>
+
+                  <p className="text-gray-400 flex items-center">
+                    <span className="mr-2">📱</span> <strong>Customer Support:</strong> 
+                    <a href="tel:+1800123456" className="text-blue-400 hover:underline ml-2">+63 994 434 4420</a>
+                  </p>
+
+                  <p className="text-gray-400 flex items-center">
+                    <span className="mr-2">📍</span> <strong>Address:</strong> 
+                    <span className="ml-2">University of Science and Technology 
+                    <br />Building ICT, 6, Room 28<br />Near SHS, Terminal<br />Cagayan de oro City, Philippines 9000</span>
+                  </p>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-lg  font-semibold mb-4">Working Hours</h3>
+                <div className="grid grid-cols-2 gap-2 text-gray-400">
+                  <p>Monday - Thursday:</p>
+                  <p>9:00 AM - 6:00 PM</p>
+                  
+                  <p>Friday:</p>
+                  <p>9:00 AM - 8:00 PM</p>
+                  
+                  <p>Saturday:</p>
+                  <p>10:00 AM - 4:00 PM</p>
+                  
+                  <p>Sunday:</p>
+                  <p>Closed</p>
+                  
+                  <p>Holidays:</p>
+                  <p>Hours may vary</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Social Media and Subscription */}
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-lg  font-semibold mb-4">Follow Us</h3>
+                <p className="text-gray-400 mb-4">Stay updated with our latest releases, events, and promotions!</p>
+                <div className="grid grid-cols-2 gap-4">
+                  <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center text-gray-400 hover:text-blue-500 transition-colors">
+                    <span className="mr-2 text-lg">Facebook</span>
+                  </a>
+                  <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center text-gray-400 hover:text-sky-400 transition-colors">
+                    <span className="mr-2 text-lg">Twitter</span>
+                  </a>
+                  <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center text-gray-400 hover:text-pink-500 transition-colors">
+                    <span className="mr-2 text-lg">Instagram</span>
+                  </a>
+                  <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center text-gray-400 hover:text-red-500 transition-colors">
+                    <span className="mr-2 text-lg">YouTube</span>
+                  </a>
+                  <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" 
+                    target="_blank"
+                    rel="noopener noreferrer" 
+                    className="flex items-center text-gray-400 hover:text-blue-600 transition-colors">
+                    <span className="mr-2 text-lg">LinkedIn</span>
+                  </a>
+                  <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" 
+                    target="_blank"
+                    rel="noopener noreferrer" 
+                    className="flex items-center text-gray-400 hover:text-purple-500 transition-colors">
+                    <span className="mr-2 text-lg">Discord</span>
+                  </a>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-lg  font-semibold mb-4">Our Locations</h3>
+                <p className="text-gray-400">
+                  Main Office: Springfield, MA<br />
+                  Regional Offices: Los Angeles, New York, London, Tokyo
+                </p>
+              </div>
+              
+              <div>
+                <h3 className="text-lg font-semibold mb-4">Emergency Support</h3>
+                <p className="text-gray-400">
+                  For urgent assistance outside regular hours:<br />
+                  FB: Den Gwapo KO 143<br />
+                  Available 24/7 for bulog user
+                </p>
+              </div>
             </div>
           </div>
         </section>
+
 
 
         {/*footer */}
@@ -262,7 +360,7 @@ const AboutUs = () => {
 
       {/* Navigation */}
       <div className="hidden lg:block w-1/4 fixed right-0 top-0 h-screen bg-neutral-900 p-8 overflow-y-auto">
-        <div className="sticky mt-16 top-8">
+        <div className="sticky mt-8 top-8">
           <h3 className="text-lg font-semibold mb-6">On this page</h3>
           <nav className="space-y-2">
             {sections.map(section => (
@@ -271,8 +369,8 @@ const AboutUs = () => {
                 onClick={() => scrollToSection(section.id)}
                 className={`block w-full text-left px-4 py-2 rounded transition-colors duration-200 ${
                   activeSection === section.id
-                    ? 'bg-neutral-800 text-white'
-                    : 'text-gray-400 hover:bg-neutral-800'
+                    ? 'bg-orange-700 text-white'
+                    : 'text-gray-400 hover:bg-orange-800'
                 }`}
               >
                 {section.title}
@@ -283,7 +381,7 @@ const AboutUs = () => {
       </div>
 
       <button
-        className={`fixed right-8 bottom-8 border border-gray-700 bg-neutral-800 text-white p-4 rounded-full transition-opacity duration-300 hover:bg-neutral-700 ${
+        className={`fixed stbutton bottom-8 border border-gray-700 bg-orange-700 text-white p-4 rounded-full transition-opacity duration-300 hover:bg-orange-900 ${
           showScrollTop ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
         onClick={scrollToTop}

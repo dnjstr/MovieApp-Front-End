@@ -67,11 +67,11 @@ const TermsAndConditions = () => {
   ];
 
   return (
-    <div className="flex w-full min-h-screen bg-black text-white mt-11">
+    <div className="flex w-full min-h-screen bg-black text-white">
     
       <div className="w-full lg:w-3/4 p-4 md:p-8">
         <button
-          className="bg-neutral-800 text-white py-2 px-4 rounded-md hover:bg-neutral-700 mb-8"
+          className="bg-orange-700 border border-gray-900 text-white py-2 px-4 rounded-md hover:bg-orange-900 mb-8"
           onClick={() => window.history.back()}
         >
           Back
@@ -81,7 +81,7 @@ const TermsAndConditions = () => {
         <p className="text-gray-400 mb-12">Effective Date: January 2, 2025</p>
 
         <section id="copyright-warning" className="mb-16">
-          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-neutral-800">Copyright Warning</h2>
+          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-orange-800">Copyright Warning</h2>
           <div className="space-y-8">
             <div className="bg-red-900/20 border border-red-500/50 rounded-lg p-6">
               <p className="text-gray-400">
@@ -103,7 +103,7 @@ const TermsAndConditions = () => {
         </section>
 
         <section id="introduction" className="mb-16">
-          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-neutral-800">Introduction</h2>
+          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-orange-800">Introduction</h2>
           <div className="space-y-8">
             <div>
               <p className="text-gray-400">
@@ -116,21 +116,25 @@ const TermsAndConditions = () => {
         </section>
 
         <section id="disclaimer" className="mb-16">
-          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-neutral-800">Educational Disclaimer</h2>
+          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-orange-800">Educational Disclaimer</h2>
           <div className="space-y-8">
             <div>
               <p className="text-gray-400">
-                Movie Haven is a college project created solely for educational purposes. This platform is not intended for commercial use and does not host or distribute copyrighted content. All materials and content provided on this platform are for educational and informational purposes only.
+                Movie Haven is a college project created solely for educational purposes. This platform is not intended for 
+                commercial use and does not host or distribute copyrighted content. All materials and content provided on this 
+                platform are for educational and informational purposes only.
               </p>
               <p className="text-gray-400 mt-4">
-                The creators of Movie Haven do not claim ownership of any media or content displayed on this platform. Any copyrighted material used is done so under the fair use doctrine for educational purposes. If you believe any content infringes on your copyright, please contact us immediately at support@moviehaven.com.
+                The creators of Movie Haven do not claim ownership of any media or content displayed on this platform. Any copyrighted 
+                material used is done so under the fair use doctrine for educational purposes. If you believe any content infringes on 
+                your copyright, please contact us immediately at support@moviehaven.com.
               </p>
             </div>
           </div>
         </section>
 
         <section id="agreement" className="mb-16">
-          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-neutral-800">User Agreement</h2>
+          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-orange-800">User Agreement</h2>
           <div className="space-y-8">
             <div>
               <p className="text-gray-400 mb-4">By using Movie Haven, you agree to the following terms:</p>
@@ -147,14 +151,18 @@ const TermsAndConditions = () => {
         {/*ajubbuisdh continue gher */}
 
         <section id="conduct" className="mb-16">
-          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-neutral-800">User Conduct</h2>
+          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-orange-800">User Conduct</h2>
           <div className="space-y-8">
             <div>
               <p className="text-gray-400">
-              Users must behave responsibly and ethically while using our platform, ensuring that their actions do not violate any laws, regulations, or the rights of others. Any form of harassment, abusive behavior, hate speech, fraud, or unauthorized access to restricted areas of the platform is strictly prohibited. 
+              Users must behave responsibly and ethically while using our platform, ensuring that their actions do not violate any 
+              laws, regulations, or the rights of others. Any form of harassment, abusive behavior, hate speech, fraud, or unauthorized 
+              access to restricted areas of the platform is strictly prohibited. 
               </p>
               <p className="text-gray-400 mt-4">
-              Users are expected to engage respectfully with others, provide accurate information when required, and refrain from exploiting vulnerabilities or engaging in activities that could compromise the security and integrity of the platform. Any violation of these guidelines may result in account suspension, termination, or legal action, depending on the severity of the misconduct.
+              Users are expected to engage respectfully with others, provide accurate information when required, and refrain from 
+              exploiting vulnerabilities or engaging in activities that could compromise the security and integrity of the platform. 
+              Any violation of these guidelines may result in account suspension, termination, or legal action, depending on the severity of the misconduct.
               </p>
               <p className="text-gray-400 mt-4">
               Any violation of these guidelines may result in account suspension, termination, or legal action, depending on the severity of the misconduct.
@@ -164,17 +172,20 @@ const TermsAndConditions = () => {
         </section>
 
         <section id="third-party" className="mb-16">
-          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-neutral-800">Third-Party Content</h2>
+          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-orange-800">Third-Party Content</h2>
           <div className="space-y-8">
             <div>
               <p className="text-gray-400">
-              Our platform may feature content from third-party sources, including but not limited to images, videos, articles, advertisements, and external links. Such content remains the intellectual property of its respective owners, and we do not claim ownership or responsibility for its accuracy, legality, or reliability. 
+              Our platform may feature content from third-party sources, including but not limited to images, videos, articles, advertisements, 
+              and external links. Such content remains the intellectual property of its respective owners, and we do not claim ownership or responsibility for its accuracy, legality, or reliability. 
               </p>
               <p className="text-gray-400 mt-4">
-              We strive to ensure that third-party content is appropriate and relevant, but we cannot guarantee its authenticity, and users should exercise their own judgment before interacting with it.
+              We strive to ensure that third-party content is appropriate and relevant, but we cannot guarantee its authenticity, and users 
+              should exercise their own judgment before interacting with it.
               </p>
               <p className="text-gray-400 mt-4">
-              Any disputes or concerns regarding third-party content should be directed to the respective content owner or provider, and we are not liable for any damages or losses incurred as a result of reliance on such material.
+              Any disputes or concerns regarding third-party content should be directed to the respective content owner or provider, and we 
+              are not liable for any damages or losses incurred as a result of reliance on such material.
               </p>
             </div>
           </div>
@@ -207,7 +218,7 @@ const TermsAndConditions = () => {
         {/*on the way bro*/}
 
         <section id="contact" className="mb-16">
-          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-neutral-800">Contact Information</h2>
+          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-orange-800">Contact Information</h2>
           <div className="space-y-8">
             <div>
               <p className="text-gray-400">If you have any questions about these Terms and Conditions, please contact us at:</p>
@@ -234,7 +245,7 @@ const TermsAndConditions = () => {
 
       {/* Navigation */}
       <div className="hidden lg:block w-1/4 fixed right-0 top-0 h-screen bg-neutral-900 p-8 overflow-y-auto">
-        <div className="sticky mt-16 top-8">
+        <div className="sticky mt-8 top-8">
           <h3 className="text-lg font-semibold mb-6">On this page</h3>
           <nav className="space-y-2">
             {sections.map(section => (
@@ -243,8 +254,8 @@ const TermsAndConditions = () => {
                 onClick={() => scrollToSection(section.id)}
                 className={`block w-full text-left px-4 py-2 rounded transition-colors duration-200 ${
                   activeSection === section.id
-                    ? 'bg-neutral-800 text-white'
-                    : 'text-gray-400 hover:bg-neutral-800'
+                    ? 'bg-orange-700 text-white'
+                    : 'text-gray-400 hover:bg-orange-800'
                 }`}
               >
                 {section.title}
@@ -255,7 +266,7 @@ const TermsAndConditions = () => {
       </div>
 
       <button
-        className={`fixed right-8 bottom-8 border border-gray-700 bg-neutral-800 text-white p-4 rounded-full transition-opacity duration-300 hover:bg-neutral-700 ${
+        className={`fixed stbutton bottom-8 border border-gray-700 bg-orange-700 text-white p-4 rounded-full transition-opacity duration-300 hover:bg-orange-900 ${
           showScrollTop ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
         onClick={scrollToTop}
