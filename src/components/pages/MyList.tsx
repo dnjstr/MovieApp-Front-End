@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -21,7 +21,21 @@ const MyList: React.FC = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { data: myList = [], isLoading, isError, refetch } = useQuery<Bookmark[], Error>({
+  if (!userToken) {
+    return (
+      <div className="flex flex-col justify-center items-center h-[788px] text-white">
+        <p className="text-lg mb-4">You have no bookmarks.</p>
+        <p className="text-gray-400">Please <Link to="/sign-in" className="text-orange-500 px-1 font-bold">sign in</Link> to add bookmarks.</p>
+      </div>
+    );
+  }
+
+  const {
+    data: myList = [],
+    isLoading,
+    isError,
+    refetch,
+  } = useQuery<Bookmark[], Error>({
     queryKey: ["bookmarks", userToken],
     queryFn: async () => {
       const response = await axiosInstance.get("/bookmarks/", {
@@ -34,10 +48,10 @@ const MyList: React.FC = () => {
     refetchOnMount: true,
     refetchOnWindowFocus: true,
   });
-  
+
   React.useEffect(() => {
     refetch();
-  }, []);  
+  }, [refetch]);
 
   const removeMutation = useMutation<void, Error, number>({
     mutationFn: async (movieId: number) => {
