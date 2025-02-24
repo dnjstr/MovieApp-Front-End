@@ -18,7 +18,7 @@ const AboutUs = () => {
         }
       });
     };
-
+ 
     window.addEventListener('scroll', handleScroll);
     window.scrollTo(0, 0);
     
@@ -62,7 +62,7 @@ const AboutUs = () => {
       
       <div className="w-full lg:w-3/4 p-4 md:p-8">
         <button
-          className="bg-orange-700 border border-gray-900 text-white py-2 px-4 rounded-md hover:bg-orange-900 mb-8"
+          className="bg-orange-600 border border-gray-900 text-white py-2 px-4 rounded-md hover:bg-orange-800 mb-8"
           onClick={() => window.history.back()}
         >
           Back
@@ -369,7 +369,7 @@ const AboutUs = () => {
                 onClick={() => scrollToSection(section.id)}
                 className={`block w-full text-left px-4 py-2 rounded transition-colors duration-200 ${
                   activeSection === section.id
-                    ? 'bg-orange-700 text-white'
+                    ? 'bg-orange-600 text-white'
                     : 'text-gray-400 hover:bg-orange-800'
                 }`}
               >
@@ -381,7 +381,7 @@ const AboutUs = () => {
       </div>
 
       <button
-        className={`fixed stbutton bottom-8 border border-gray-700 bg-orange-700 text-white p-4 rounded-full transition-opacity duration-300 hover:bg-orange-900 ${
+        className={`fixed stbutton bottom-8 border border-gray-700 bg-orange-600 text-white p-4 rounded-full transition-opacity duration-300 hover:bg-orange-800 ${
           showScrollTop ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
         onClick={scrollToTop}

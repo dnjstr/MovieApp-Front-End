@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { useAuth } from "../../context/AuthContext";
 import Avatar from "../../assets/Avatar";
+import { useQuery } from '@tanstack/react-query';
 
 interface User {
     name?: string;
@@ -17,14 +18,18 @@ const ProfileModal: React.FC<{ isOpen: boolean; onRequestClose: () => void }> = 
     onRequestClose 
 }) => {
     const { user, logout } = useAuth();
-    const [currentUser, setCurrentUser] = useState<User | null>(null);
     const [currentTime, setCurrentTime] = useState<string>(new Date().toLocaleTimeString());
 
-    useEffect(() => {
-        if (user) {
-            setCurrentUser(user as User);
-        }
-    }, [user]);
+    const { data: currentUser } = useQuery<User | null>({
+        queryKey: ['user'],
+        queryFn: async () => {
+            if (user) {
+                return user as User;
+            }
+            return null;
+        },
+        enabled: !!user,
+    });
 
     useEffect(() => {
         const interval = setInterval(() => {
