@@ -77,7 +77,7 @@ const TermsAndConditions = () => {
           Back
         </button>
 
-        <h1 className="text-4xl font-bold mb-6">Terms and Conditions</h1>
+        <h1 className="text-4xl font-bold mb-6">Terms and Service</h1>
         <p className="text-gray-400 mb-12">Effective Date: January 2, 2025</p>
 
         <section id="copyright-warning" className="mb-16">
