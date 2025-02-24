@@ -105,10 +105,10 @@ const FAQ = () => {
             </div>
 
             <div>
-              <h3 className="text-xl mb-3">Does Jhon Cyril have a girlfriend?</h3>
-              <p className="text-gray-400">Currently, Jhon Cyril does not have a girlfriend because he is busy 
+              <h3 className="text-xl mb-3">Does John Cyril have a girlfriend?</h3>
+              <p className="text-gray-400">Currently, John Cyril does not have a girlfriend because he is busy 
                 developing the Haven Movie app with his team. However, he is available and open to a relationship. 
-                You can contact him on Facebool (Jhon Cyril Espina) or talk to him in person. he’s usually at the terminal 
+                You can contact him on Facebool (John Cyril Espina) if you want a fubu or talk to him in person. he’s usually at the terminal 
                 since that’s his usual hangout spot.</p>
             </div>
 

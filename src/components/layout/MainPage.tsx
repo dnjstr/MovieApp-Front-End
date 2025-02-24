@@ -68,17 +68,20 @@ const MainPage: React.FC = () => {
                 }}
               >
                 <div className="swiper-container-overlay"></div>
-                <h1 className="z-20 mb-1 text-5xl text-orange-600 w-6/12 break-words font-bold">
+                <h1 className="z-20 mb-1 text-2xl md:text-4xl text-orange-600 txtlg:text-5xl  w-6/12 break-words font-bold">
                   {slide.title}
                 </h1>
                 <p className="z-20 mt-4 pe-5 text-sm hidden txtlg:block w-6/12 text-gray-300">
                   {slide.description}
                 </p>
 
+                {/*mt-4 px-6 py-3*/}
+
                 {new Date(slide.release_date) <= new Date() ? (
                   <button
                     onClick={() => navigate(`/movies/${slide.id}`)}
-                    className="homepage-watch-btn z-20 mt-4 border border-orange-700 hover:bg-orange-700 text-white px-6 py-3 rounded-md text-base font-semibold transition-all ease-in-out duration-300"
+                    className="homepage-watch-btn z-20 mt-2 px-4 py-2 md:mt-4 md:px-6 md:py-3 border border-orange-700 hover:bg-orange-700 text-white  
+                    rounded-md text-xs md:text-base font-semibold transition-all ease-in-out duration-300"
                   >
                     Watch Now
                   </button>
