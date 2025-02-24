@@ -249,22 +249,24 @@ const FAQ = () => {
           </div>
         </section>
 
+        {/*footer */}
+
         <footer className="text-center text-sm text-gray-500 mt-16 pb-8">
           <p className="mb-5">Last Updated: February 15, 2025</p>
           <a 
-            href="#" 
+            href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" 
             className="text-blue-400 hover:text-blue-300"
-            onClick={(e) => {
-              e.preventDefault();
-              window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
-            }}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             Need help? Contact Customer Service
           </a>
         </footer>
+
+
       </div>
 
-      {/*Navigation*/}
+      {/*navigation*/}
       <div className="hidden lg:block w-1/4 fixed right-0 top-0 h-screen bg-neutral-900 p-8 overflow-y-auto">
         <div className="sticky mt-16 top-8">
           <h3 className="text-lg font-semibold mb-6">On this page</h3>
@@ -286,7 +288,7 @@ const FAQ = () => {
         </div>
       </div>
 
-   
+      {/* scrol top*/}
       <button
         className={`fixed right-8 bottom-8 border border-gray-700 bg-neutral-800 text-white p-4 rounded-full transition-opacity duration-300 hover:bg-neutral-700 ${
           showScrollTop ? 'opacity-100' : 'opacity-0 pointer-events-none'
