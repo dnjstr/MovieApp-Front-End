@@ -18,7 +18,7 @@ const MyList: React.FC = () => {
     }, [userToken, fetchBookmarks]);
 
     return (
-        <div className="flex flex-col txtlg:justify-between text-white px-6 mb-[127px]">
+        <div className="flex flex-col txtlg:justify-between text-white px-6 mb-[60px]">
             <div className="flex flex-col txtlg:flex-row txtlg:justify-around txtlg:items-center gap-10 mt-10 txtlg:mt-24">
                 <div className="text-center lg:flex-1">
                     <h1 className="text-5xl font-bold mb-2 mt-12">My List</h1>
