@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import axiosInstance from "../../api/axiosInstance";
 
 interface GenreCount {
@@ -26,51 +27,32 @@ const genreIcons: { [key: string]: { icon: string; color: string } } = {
     'Suspense': { icon: '🕵️', color: 'bg-gray-600' },
 };
 
+// Fetch function
+const fetchGenres = async (): Promise<GenreCount[]> => {
+    const { data } = await axiosInstance.get("/genres/");
+    if (!Array.isArray(data)) {
+        throw new Error("Invalid data format received");
+    }
+
+    return data.map((item: any) => ({
+        genre: typeof item === 'string' ? item : item.genre,
+        count: item.count || 0
+    }));
+};
+
 const Genre: React.FC = () => {
-    const [genreCounts, setGenreCounts] = useState<GenreCount[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+    const { data: genreCounts = [], isLoading, isError, error } = useQuery({
+        queryKey: ['genres'],
+        queryFn: fetchGenres,
+        staleTime: 1000 * 60 * 5, // Cache for 5 minutes
+    });
 
-    useEffect(() => {
-        const fetchGenreCounts = async () => {
-            try {
-                const response = await axiosInstance.get("/genres/");
-                const data = response.data;
-
-                if (Array.isArray(data)) {
-                    let validGenres;
-                    if (typeof data[0] === 'string') {
-                        validGenres = data.map((genre: string) => ({
-                            genre: genre,
-                            count: 0  
-                        }));
-                    } else {
-                        validGenres = data.filter((item: any) => 
-                            item && item.genre && typeof item.genre === 'string'
-                        );
-                    }
-                    setGenreCounts(validGenres);
-                } else {
-                    console.error('Received non-array data:', data);
-                    setError('Invalid data format received');
-                }
-            } catch (err) {
-                console.error('Error fetching genre counts:', err);
-                setError('Error loading genres');
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchGenreCounts();
-    }, []);
-
-    if (loading) {
+    if (isLoading) {
         return <div className="text-white text-center mt-32">Loading...</div>;
     }
 
-    if (error) {
-        return <div className="text-white text-center mt-32">Error: {error}</div>;
+    if (isError) {
+        return <div className="text-white text-center mt-32">Error: {(error as Error).message}</div>;
     }
 
     if (genreCounts.length === 0) {
