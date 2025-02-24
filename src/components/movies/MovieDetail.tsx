@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaBookmark } from 'react-icons/fa';
 import { useAuth } from '../../context/AuthContext';
 import MoviePlayer from './MoviePlayer';
+import axiosInstance from '../../api/axiosInstance';
 
 interface Review {
     id: number;
@@ -32,44 +33,48 @@ const MovieDetail: React.FC = () => {
     const [isPlayerOpen, setIsPlayerOpen] = useState(false);
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
-
     useEffect(() => {
-        // Fetch movie details
-        fetch(`http://127.0.0.1:8000/api/movie/${id}/`)
-            .then(response => response.json())
-            .then(data => {
-                setMovie(data);
+        const fetchMovieDetails = async () => {
+            try {
+                const response = await axiosInstance.get(`/movie/${id}/`);
+                setMovie(response.data);
+            } catch (err: any) {
+                setError(err.message);
+            } finally {
                 setLoading(false);
-            })
-            .catch(error => {
-                setError(error.message);
-                setLoading(false);
-            });
+            }
+        };
 
-        fetch(`http://127.0.0.1:8000/api/movie/${id}/reviews/`)
-            .then(response => response.json())
-            .then(data => setReviews(data))
-            .catch(error => console.error('Error fetching reviews:', error));
+        const fetchMovieReviews = async () => {
+            try {
+                const response = await axiosInstance.get(`/movie/${id}/reviews/`);
+                setReviews(response.data);
+            } catch (err) {
+                console.error('Error fetching reviews:', err);
+            }
+        };
 
         const checkBookmark = async () => {
             if (isAuthenticated) {
                 try {
-                    const response = await fetch(`http://127.0.0.1:8000/api/bookmarks/?t=${new Date().getTime()}`, {
+                    const response = await axiosInstance.get(`/bookmarks/?t=${new Date().getTime()}`, {
                         headers: {
-                        'Authorization': `Token ${token}`
-                    }
-                });
-                const bookmarks = await response.json();
-                const isMovieBookmarked = bookmarks.some(
-                    (bookmark: any) => bookmark.movie_id === parseInt(id!, 10)
-                );
-                setIsBookmarked(isMovieBookmarked);
-                } catch (error) {
-                console.error("Error fetching bookmarks:", error);
+                            'Authorization': `Token ${token}`
+                        }
+                    });
+                    const bookmarks = response.data;
+                    const isMovieBookmarked = bookmarks.some(
+                        (bookmark: any) => bookmark.movie_id === parseInt(id!, 10)
+                    );
+                    setIsBookmarked(isMovieBookmarked);
+                } catch (err) {
+                    console.error("Error fetching bookmarks:", err);
                 }
             }
-        };          
+        };
 
+        fetchMovieDetails();
+        fetchMovieReviews();
         checkBookmark();
     }, [id, isAuthenticated, token]);
 
@@ -83,17 +88,17 @@ const MovieDetail: React.FC = () => {
 
         try {
             let url = '';
-            let method = '';
-
+            let method: 'post' | 'delete';
             if (isBookmarked) {
-                url = `http://127.0.0.1:8000/api/bookmarks/remove/${movie.id}/`;
-                method = 'DELETE';
+                url = `/bookmarks/remove/${movie.id}/`;
+                method = 'delete';
             } else {
-                url = `http://127.0.0.1:8000/api/bookmarks/add/${movie.id}/`;
-                method = 'POST';
+                url = `/bookmarks/add/${movie.id}/`;
+                method = 'post';
             }
 
-            const response = await fetch(url, {
+            const response = await axiosInstance.request({
+                url: url,
                 method: method,
                 headers: {
                     'Content-Type': 'application/json',
@@ -101,14 +106,13 @@ const MovieDetail: React.FC = () => {
                 }
             });
 
-            if (response.ok) {
+            if (response.status >= 200 && response.status < 300) {
                 setIsBookmarked(!isBookmarked);
             } else {
-                const data = await response.json();
-                console.error("Failed to update bookmark:", data);
+                console.error("Failed to update bookmark:", response.data);
             }
-        } catch (error) {
-            console.error("Error updating bookmark:", error);
+        } catch (err) {
+            console.error("Error updating bookmark:", err);
         }
     };
 
@@ -128,28 +132,25 @@ const MovieDetail: React.FC = () => {
         setIsButtonDisabled(true);
 
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/movie/${id}/reviews/add/`, {
-                method: 'POST',
+            const response = await axiosInstance.post(`/movie/${id}/reviews/add/`, newReview, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Token ${token}`
-                },
-                body: JSON.stringify(newReview)
+                }
             });
             
-            const data = await response.json();
-            if (response.ok) {
-                setReviews([...reviews, data]);
+            if (response.status >= 200 && response.status < 300) {
+                setReviews([...reviews, response.data]);
                 setNewReview({ rating: 0, review_text: '' });
                 
-                const movieResponse = await fetch(`http://127.0.0.1:8000/api/movie/${id}/`);
-                const movieData = await movieResponse.json();
-                setMovie(movieData);
+                // Refresh movie details to update review-related info
+                const movieResponse = await axiosInstance.get(`/movie/${id}/`);
+                setMovie(movieResponse.data);
             } else {
-                console.error("Server error:", data);
+                console.error("Server error:", response.data);
             }
-        } catch (error) {
-            console.error('Error submitting review:', error);
+        } catch (err) {
+            console.error('Error submitting review:', err);
         } finally {
             setIsButtonDisabled(false);
             setShowReviewForm(false);
@@ -207,21 +208,21 @@ const MovieDetail: React.FC = () => {
                             <div className='flex gap-4 justify-between md:justify-start'>
                                 <button
                                     onClick={toggleBookmark}
-                                    className={`bookmark-btn-hover mt-4 px-4 py-2 rounded  flex items-center gap-2 ${isAuthenticated ? 'bg-gradient-to-b from-orange-600 to-orange-900 text-white' : 'bg-gray-600 text-white cursor-not-allowed'}`}
+                                    className={`bookmark-btn-hover mt-4 px-4 py-2 rounded flex items-center gap-2 ${isAuthenticated ? 'bg-gradient-to-b from-orange-600 to-orange-900 text-white' : 'bg-gray-600 text-white cursor-not-allowed'}`}
                                     disabled={!isAuthenticated}
                                 >
                                     <FaBookmark /> {isBookmarked ? 'Remove Bookmark' : 'Bookmark'}
                                 </button>
                                 <button
                                     onClick={isReleased ? handleWatchNow : undefined}
-                                        className={`mt-4 px-4 py-2 rounded transition duration-300 ${
-                                            isReleased 
-                                                ? 'bg-gradient-to-b from-green-600 to-green-900 text-white' 
-                                                : 'bg-gray-600 text-gray-400 cursor-not-allowed'
-                                            }`}
-                                            disabled={!isReleased}
+                                    className={`mt-4 px-4 py-2 rounded transition duration-300 ${
+                                        isReleased 
+                                            ? 'bg-gradient-to-b from-green-600 to-green-900 text-white' 
+                                            : 'bg-gray-600 text-gray-400 cursor-not-allowed'
+                                    }`}
+                                    disabled={!isReleased}
                                 >
-                                {isReleased ? "Watch Now" : "Coming Soon"}
+                                    {isReleased ? "Watch Now" : "Coming Soon"}
                                 </button>
                             </div>
                         </div>
@@ -247,13 +248,13 @@ const MovieDetail: React.FC = () => {
                     </div>
                 </div> 
                     
-                    {/* Video player */}
-                    {isPlayerOpen && (
-                        <MoviePlayer
-                            videoUrl={movie.video_url}
-                            onClose={closePlayer}
-                        />
-                    )}
+                {/* Video player */}
+                {isPlayerOpen && (
+                    <MoviePlayer
+                        videoUrl={movie.video_url}
+                        onClose={closePlayer}
+                    />
+                )}
 
                 {/* Reviews section */}
                 <div className="max-w-4xl mx-auto mt-8 p-6">
@@ -267,7 +268,7 @@ const MovieDetail: React.FC = () => {
                                 }}
                                 className={`px-4 py-2 rounded-md ${
                                     isAuthenticated && !isButtonDisabled
-                                        ? 'bg-gradient-to-b from-orange-600 to-orange-900' 
+                                        ? 'bg-gradient-to-b from-orange-600 to-orange-900'
                                         : 'bg-gray-600 cursor-not-allowed'
                                 }`}
                                 disabled={!isAuthenticated || isButtonDisabled}
@@ -360,5 +361,3 @@ const MovieDetail: React.FC = () => {
 };
 
 export default MovieDetail;
-
-
