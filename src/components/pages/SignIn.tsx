@@ -142,7 +142,7 @@ const SignIn: React.FC = () => {
                                 value={formData.identifier}
                                 onChange={handleChange}
                                 placeholder="Email or Phone Number"
-                                className="sign-in-up-input bg-black bg-opacity-30 text-white w-full p-3 px-3 border-l-2 border-orange-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                                className="sign-in-up-input bg-black bg-opacity-30 text-white w-full p-3 px-3 border-l-2 border-orange-700 rounded-md focus:outline-none focus:border-r-2 focus:border-orange-700 text-sm"
                                 required
                             />
                         </div>
@@ -153,7 +153,7 @@ const SignIn: React.FC = () => {
                                 value={formData.password}
                                 onChange={handleChange}
                                 placeholder="Password"
-                                className="sign-in-up-input bg-black bg-opacity-30 text-white w-full p-3 px-3 border-l-2 border-orange-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                                className="sign-in-up-input bg-black bg-opacity-30 text-white w-full p-3 px-3 border-l-2 border-orange-700 rounded-md focus:outline-none focus:border-r-2 focus:border-orange-700 text-sm"
                                 required
                             />
                         </div>
