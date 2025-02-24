@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axiosInstance from "../../api/axiosInstance";
 
 interface GenreCount {
     genre: string;
@@ -33,33 +34,28 @@ const Genre: React.FC = () => {
     useEffect(() => {
         const fetchGenreCounts = async () => {
             try {
-                const response = await fetch('http://127.0.0.1:8000/api/genres/');
-                const data = await response.json();
+                const response = await axiosInstance.get("/genres/");
+                const data = response.data;
 
-                if (response.ok) {
-                    if (Array.isArray(data)) {
-                        let validGenres;
-                        if (typeof data[0] === 'string') {
-                            validGenres = data.map(genre => ({
-                                genre: genre,
-                                count: 0  
-                            }));
-                        } else {
-                            validGenres = data.filter(item => 
-                                item && item.genre && typeof item.genre === 'string'
-                            );
-                        }
-                        setGenreCounts(validGenres);
+                if (Array.isArray(data)) {
+                    let validGenres;
+                    if (typeof data[0] === 'string') {
+                        validGenres = data.map((genre: string) => ({
+                            genre: genre,
+                            count: 0  
+                        }));
                     } else {
-                        console.error('Received non-array data:', data);
-                        setError('Invalid data format received');
+                        validGenres = data.filter((item: any) => 
+                            item && item.genre && typeof item.genre === 'string'
+                        );
                     }
+                    setGenreCounts(validGenres);
                 } else {
-                    console.error('Response not OK:', response.status);
-                    setError('Failed to fetch genres');
+                    console.error('Received non-array data:', data);
+                    setError('Invalid data format received');
                 }
-            } catch (error) {
-                console.error('Error fetching genre counts:', error);
+            } catch (err) {
+                console.error('Error fetching genre counts:', err);
                 setError('Error loading genres');
             } finally {
                 setLoading(false);
@@ -83,16 +79,16 @@ const Genre: React.FC = () => {
 
     return (
         <div className="mx-auto px-7 flex justify-start flex-col mb-[93px]">
-            <div className="">
+            <div>
                 <div className="text-center mt-20 mb-4">
                     <h1 className="text-4xl font-bold mb-2 text-white">Browse by Genre</h1>
                     <p className="text-gray-400">Discover your next favorite movie across multiple genres</p>
                 </div>
-                <div className='bookmark-scroll-bar overflow-y-scroll h-[530px] px-5'>
+                <div className="bookmark-scroll-bar overflow-y-scroll h-[530px] px-5">
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
                         {genreCounts.map((genre) => {
                             if (!genre.genre) return null;
-                
+                            
                             const genreName = genre.genre.trim();
                             return (
                                 <Link
@@ -119,10 +115,6 @@ const Genre: React.FC = () => {
                     </div>
                 </div>
             </div>
-
-            {/* <div className=''>
-                <Footer/>
-            </div> */}
         </div>
     );
 };

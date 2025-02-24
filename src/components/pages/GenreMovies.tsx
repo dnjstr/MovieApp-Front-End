@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
+import axiosInstance from "../../api/axiosInstance";
 
 interface Movie {
     id: number;
@@ -27,16 +28,10 @@ const GenreMovies: React.FC = () => {
     useEffect(() => {
         const fetchMoviesByGenre = async () => {
             if (!genreName) return;
-    
+
             try {
-                const response = await fetch(`http://127.0.0.1:8000/api/movies/genre/${encodeURIComponent(genreName)}/`);
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
-                const data = await response.json();
-                
+                const response = await axiosInstance.get(`/movies/genre/${encodeURIComponent(genreName)}/`);
+                const data = response.data;
                 if (Array.isArray(data) && data.length > 0) {
                     setMovies(data);
                     setSelectedMovie(data[0]);
@@ -44,17 +39,16 @@ const GenreMovies: React.FC = () => {
                     console.error('Received non-array data or empty list:', data);
                     setError('No movies found for this genre.');
                 }
-            } catch (error) {
-                console.error('Error fetching movies:', error);
-                setError(error instanceof Error ? error.message : 'Error loading movies');
+            } catch (err) {
+                console.error('Error fetching movies:', err);
+                setError(err instanceof Error ? err.message : 'Error loading movies');
             } finally {
                 setLoading(false);
             }
         };
-    
+
         fetchMoviesByGenre();
     }, [genreName]);
-    
 
     useEffect(() => {
         const interval = setInterval(() => {
