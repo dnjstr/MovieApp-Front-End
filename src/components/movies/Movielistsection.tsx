@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Footer from '../layout/Footer';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 interface Movie {

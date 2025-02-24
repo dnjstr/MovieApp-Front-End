@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import Footer from "../layout/Footer";
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
