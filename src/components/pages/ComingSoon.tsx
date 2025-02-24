@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../api/axiosInstance"; 
 
 interface Movie {
     id: number;
@@ -16,16 +17,18 @@ const ComingSoon: React.FC = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('http://127.0.0.1:8000/api/movies/coming-soon/')
-            .then(response => response.json())
-            .then(data => {
-                setMovies(data);
+        const fetchMovies = async () => {
+            try {
+                const response = await axiosInstance.get("/movies/coming-soon/");
+                setMovies(response.data);
+            } catch (error) {
+                console.error("Error fetching coming soon movies:", error);
+            } finally {
                 setLoading(false);
-            })
-            .catch(error => {
-                console.error('Error fetching coming soon movies:', error);
-                setLoading(false);
-            });
+            }
+        };
+
+        fetchMovies();
     }, []);
 
     if (loading) {
@@ -64,7 +67,7 @@ const ComingSoon: React.FC = () => {
                             </div>
                         </div>
                     ))}
-                </div>  
+                </div>
             </div>
         </div>
     );
