@@ -1,55 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Footer from "../layout/Footer";
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
-
+import useBookmarkStore from "../../store/useBookmarkStore";
 
 const MyList: React.FC = () => {
-    const [myList, setMyList] = useState<any[]>([]);
     const userToken = localStorage.getItem("token") || "";
     const navigate = useNavigate();
-
-    const fetchBookmarks = async () => {
-        try {
-            const response = await fetch("http://127.0.0.1:8000/api/bookmarks/", {
-                headers: {
-                    Authorization: `Token ${userToken}`,
-                },
-            });
-
-            if (!response.ok) throw new Error("Failed to fetch bookmarks");
-
-            const data = await response.json();
-            setMyList(data);
-        } catch (error) {
-            console.error("Error fetching bookmarks:", error);
-        }
-    };
+    
+    // Zustand store
+    const { myList, fetchBookmarks, removeFromList } = useBookmarkStore();
 
     useEffect(() => {
-        if (userToken) fetchBookmarks();
-    }, [userToken]);
-
-    const removeFromList = async (MovieId: number) => {
-        try {
-            const response = await fetch(`http://127.0.0.1:8000/api/bookmarks/remove/${MovieId}/`, {
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Token ${userToken}`,
-                },
-            });
-
-            if (!response.ok) throw new Error("Failed to remove bookmark");
-
-            await fetchBookmarks();
-        } catch (error) {
-            console.error("Error removing bookmark:", error);
-        }
-    };
+        if (userToken) fetchBookmarks(userToken);
+    }, [userToken, fetchBookmarks]);
 
     return (
         <div className="flex flex-col txtlg:justify-between h-screen text-white px-6">
@@ -104,7 +71,7 @@ const MyList: React.FC = () => {
                                     </p>
                                 </div>
                                 <button
-                                    onClick={() => removeFromList(item.movie)}
+                                    onClick={() => removeFromList(userToken, item.movie)}
                                     className="text-white hover:text-red-900 text-xl ms-5"
                                 >
                                     ✖

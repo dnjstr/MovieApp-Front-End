@@ -9,17 +9,18 @@ import Footer from "./components/layout/Footer";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
-  const { bgColor = "bg-default" } = usePreferences();
-
+  const { bgColor = "bg-black", textColor = "text-white", isLoaded } = usePreferences();
 
   const hideNavbar = ["/sign-in", "/sign-up"].includes(location.pathname) || location.pathname.startsWith("/profile");
   
   const hideFooter = ["/sign-in", "/sign-up"].includes(location.pathname);
-  
+
+  if (!isLoaded) return <div className="flex justify-center items-center min-h-screen">Loading...</div>;
+
   return (
     <>
       {!hideNavbar && <Navbar />}
-      <main className={`${bgColor} text-white min-h-screen px-6 pt-1 transition-all duration-500`}>
+      <main className={`${bgColor} ${textColor} min-h-screen px-6 pt-1 transition-all duration-500`}>
         {children}
       </main>
       {!hideFooter && <Footer />}
@@ -33,7 +34,7 @@ const App: React.FC = () => {
       <AuthProvider>
         <PreferencesProvider>
           <Layout>
-            <AppRoutes /> {/* Use the new routes file */}
+            <AppRoutes />
           </Layout>
         </PreferencesProvider>
       </AuthProvider>
