@@ -40,7 +40,7 @@ const ComingSoon: React.FC = () => {
                 <p className="text-gray-400 text-center">Discover the latest movies and TV shows coming soon.</p>
             </div>
 
-            <div className="flex flex-col justify-between h-700">
+            <div className="flex flex-col justify-between h-[537px]">
                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
                     {movies.map((movie) => (
                         <div
@@ -65,8 +65,7 @@ const ComingSoon: React.FC = () => {
                             </div>
                         </div>
                     ))}
-                </div>
-                <Footer />
+                </div>  
             </div>
         </div>
     );

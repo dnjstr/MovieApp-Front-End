@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-9d00 text-gray-300 pt-12">
+    <footer className="bg-gray-9d00 text-gray-300 py-3 border-t border-gray-700">
       <div className="max-w-full mx-auto">
-        <div className="grid grid-cols-1 flg:grid-cols-3 gap-8 ">
+        <div className="grid grid-cols-1 flg:grid-cols-3 gap-8">
 
-          <div className="flex items-center justify-center flg:justify-between px-8 ">
+          <div className="flex items-center justify-center flg:justify-between px-8">
             <div className="space-y-2 lfg:pr-16 text-center flg:text-left">
                 <h3 className="font-semibold text-white mb-4 ">Quick Links</h3>
               <div className="flex gap-5">
@@ -85,7 +85,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="justify-center mt-7  hidden flg:justify-end lg:flex">
+          <div className="justify-center mt-7 pe-6 hidden flg:justify-end lg:flex">
             <Link to="/">
               <img 
                 src="/Logo.png" 
@@ -97,8 +97,8 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-12 bg-red-50s0 pt-8 border-t 
-        border-gray-800 text-center text-sm">
+        <div className="bg-red-50s0 pt-4 border-t 
+        border-gray-800 text-center text-sm  mt-3">
           <p>© 2025 Haven Movie. All rights reserved.</p>
         </div>
       </div>

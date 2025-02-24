@@ -24,7 +24,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ results, onClose }) => {
     if (results.length === 0) return null;
 
     return (
-        <div className="bookmark-scroll-bar search-results-container absolute top-full left-0 w-full mt-2 border border-gray-700 rounded-md shadow-lg max-h-96 overflow-y-auto z-50">
+        <div className="bookmark-scroll-bar search-results-container absolute top-full left-0 w-full mt-5 border border-gray-700 rounded-md shadow-lg max-h-96 overflow-y-auto z-50">
             {results.map((movie) => (
                 <div
                     key={movie.id}
