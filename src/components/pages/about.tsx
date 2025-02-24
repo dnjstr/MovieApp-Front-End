@@ -59,7 +59,7 @@ const AboutUs = () => {
 
   return (
     <div className="flex w-full min-h-screen bg-black text-white mt-11">
-      {/* Main content */}
+      
       <div className="w-full lg:w-3/4 p-4 md:p-8">
         <button
           className="bg-neutral-800 text-white py-2 px-4 rounded-md hover:bg-neutral-700 mb-8"
@@ -210,7 +210,8 @@ const AboutUs = () => {
                 This may include film study guides, recommended reading lists, and tutorials on various aspects of filmmaking.</li>
                 
                 <li><strong>Encouraging Community Engagement</strong> – We want Movie Haven to be more than just a website; we want it to be a place where people can 
-                connect. In the future, we plan to introduce features such as user-submitted reviews, discussion forums, and interactive polls where users can share their opinions on different movies.</li>
+                connect. In the future, we plan to introduce features such as user-submitted reviews, discussion forums, and interactive polls where users can share 
+                their opinions on different movies.</li>
                 
                 <li><strong>Exploring Partnerships & Collaborations</strong> – To expand our reach, we hope to collaborate with film organizations, schools, and online 
                 platforms to bring more valuable content to our audience.</li>

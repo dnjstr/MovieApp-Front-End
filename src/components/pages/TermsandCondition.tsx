@@ -1,204 +1,203 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
-const TermsandCondition = () => {
+const TermsAndConditions = () => {
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
 
-    useEffect(() => {
-      window.scrollTo(0, 0);
-    }, []);
-
-    const scrollToTop = () => {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
-      };
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.pageYOffset;
+      setShowScrollTop(scrolled > 100);
       
+      const sections = document.querySelectorAll('section[id]');
+      sections.forEach(section => {
+        const sectionTop = (section as HTMLElement).offsetTop;
+        const sectionHeight = (section as HTMLElement).offsetHeight;
+        if (scrolled >= sectionTop - 100 && scrolled < sectionTop + sectionHeight - 100) {
+          setActiveSection(section.id);
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    window.scrollTo(0, 0);
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (sectionId: string): void => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = 20;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  const sections = [
+    { id: 'copyright-warning', title: 'Copyright Warning' },
+    { id: 'introduction', title: 'Introduction' },
+    { id: 'disclaimer', title: 'Educational Disclaimer' },
+    { id: 'agreement', title: 'User Agreement' },
+    { id: 'conduct', title: 'User Conduct' },
+    { id: 'third-party', title: 'Third-Party Content' },
+    { id: 'liability', title: 'Disclaimer of Liability' },
+    { id: 'limitation', title: 'Limitation of Liability' },
+    { id: 'termination', title: 'Termination Policy' },
+    { id: 'law', title: 'Governing Law' },
+    { id: 'modification', title: 'Modification of Terms' },
+    { id: 'ip', title: 'Intellectual Property' },
+    { id: 'privacy', title: 'Privacy Policy' },
+    { id: 'dispute', title: 'Dispute Resolution' },
+    { id: 'agreement-entire', title: 'Entire Agreement' },
+    { id: 'severability', title: 'Severability' },
+    { id: 'contact', title: 'Contact Information' }
+  ];
+
   return (
-    <div className="w-full min-h-screen p-[50px] md:p-[2%] font-sans box-border bg-black text-white">
-        <div>
+    <div className="flex w-full min-h-screen bg-black text-white mt-11">
+    
+      <div className="w-full lg:w-3/4 p-4 md:p-8">
+        <button
+          className="bg-neutral-800 text-white py-2 px-4 rounded-md hover:bg-neutral-700 mb-8"
+          onClick={() => window.history.back()}
+        >
+          Back
+        </button>
+
+        <h1 className="text-4xl font-bold mb-6">Terms and Conditions</h1>
+        <p className="text-gray-400 mb-12">Effective Date: January 2, 1993</p>
+
+        <section id="copyright-warning" className="mb-16">
+          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-neutral-800">Copyright Warning</h2>
+          <div className="space-y-8">
+            <div className="bg-red-900/20 border border-red-500/50 rounded-lg p-6">
+              <p className="text-gray-400">
+                <strong className="text-red-400">IMPORTANT NOTICE:</strong> The images and content used in this project are for educational and non-commercial purposes only. As students developing a movie-related application for academic purposes, we may use copyrighted materials as placeholders. These materials belong to their respective copyright owners, and we do not claim any ownership or rights over them.
+              </p>
+              <p className="text-gray-400 mt-4">
+              This project is not intended for public distribution or commercial use. If you are a copyright owner and have concerns about any content used, please contact us at <strong>[codercyril143@gmail.com]</strong>, and we will address the issue.
+              </p>
+              <p className="text-gray-400 mt-4">
+              Thank you for your understanding and support as we work on this educational project. We appreciate the creativity and effort of original content creators and respect their rights. 
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="introduction" className="mb-16">
+          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-neutral-800">Introduction</h2>
+          <div className="space-y-8">
+            <div>
+              <p className="text-gray-400">
+                Welcome to Movie Haven. By accessing or using this platform, you agree to be bound by these Terms and Conditions. If you do not agree to all of these terms, please do not use this service. These terms apply to all visitors, users, and others who access or use the platform.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="disclaimer" className="mb-16">
+          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-neutral-800">Educational Disclaimer</h2>
+          <div className="space-y-8">
+            <div>
+              <p className="text-gray-400">
+                Movie Haven is a college project created solely for educational purposes. This platform is not intended for commercial use and does not host or distribute copyrighted content. All materials and content provided on this platform are for educational and informational purposes only.
+              </p>
+              <p className="text-gray-400 mt-4">
+                The creators of Movie Haven do not claim ownership of any media or content displayed on this platform. Any copyrighted material used is done so under the fair use doctrine for educational purposes. If you believe any content infringes on your copyright, please contact us immediately at support@moviehaven.com.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="agreement" className="mb-16">
+          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-neutral-800">User Agreement</h2>
+          <div className="space-y-8">
+            <div>
+              <p className="text-gray-400 mb-4">By using Movie Haven, you agree to the following terms:</p>
+              <ul className="space-y-4 text-gray-400">
+                <li>You must be at least 13 years old to use this platform. If you are under 18, you must have parental or guardian consent to use this service.</li>
+                <li>You agree not to engage in any illegal activities or violate any laws while using this platform.</li>
+                <li>You are responsible for maintaining the confidentiality of your account information and for all activities that occur under your account.</li>
+                <li>You agree to provide accurate and complete information when creating an account on Movie Haven.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/*ajubbuisdh continue gher */}
+        {/*on the way bro*/}
+
+        <section id="contact" className="mb-16">
+          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-neutral-800">Contact Information</h2>
+          <div className="space-y-8">
+            <div>
+              <p className="text-gray-400">If you have any questions about these Terms and Conditions, please contact us at:</p>
+              <p className="text-gray-400 mt-4">Email: <strong>supportden@moviehaven.com</strong></p>
+              <p className="text-gray-400">Address: [University of Science and Technology]</p>
+            </div>
+          </div>
+        </section>
+
+        {/*footer */}
+
+        <footer className="text-center text-sm text-gray-500 mt-16 pb-8">
+          <p className="mb-5">Last Updated: February 15, 2025</p>
+          <a 
+            href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" 
+            className="text-blue-400 hover:text-blue-300"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Need help? Contact Customer Service
+          </a>
+        </footer>
+      </div>
+
+      {/* Navigation */}
+      <div className="hidden lg:block w-1/4 fixed right-0 top-0 h-screen bg-neutral-900 p-8 overflow-y-auto">
+        <div className="sticky mt-16 top-8">
+          <h3 className="text-lg font-semibold mb-6">On this page</h3>
+          <nav className="space-y-2">
+            {sections.map(section => (
+              <button
+                key={section.id}
+                onClick={() => scrollToSection(section.id)}
+                className={`block w-full text-left px-4 py-2 rounded transition-colors duration-200 ${
+                  activeSection === section.id
+                    ? 'bg-neutral-800 text-white'
+                    : 'text-gray-400 hover:bg-neutral-800'
+                }`}
+              >
+                {section.title}
+              </button>
+            ))}
+          </nav>
         </div>
-      {/* Back Button */}
-      <button
-        className="bg-orange-500 text-white py-3 px-7 mt-6 text-base rounded-md cursor-pointer transition-all duration-300 hover:bg-orange-600 active:scale-95 mb-5"
-        onClick={() => window.history.back()}
-      >
-        ← 
-      </button>
-
-      <h1 className="text-center text-4xl font-bold text-orange-500 mb-4">Terms and Conditions</h1>
-      <p className="text-center text-base text-gray-400 mb-8">Effective Date: [01/02/1993]</p>
-
-      {/* Introduction */}
-      <section className="mb-8 p-6 rounded-lg  w-full">
-        <p>
-          Welcome to <strong>Movie Haven</strong>. By accessing or using this platform, you agree to be bound by these Terms and Conditions. If you do not agree to all of these terms, please do not use this service. These terms apply to all visitors, users, and others who access or use the platform.
-        </p>
-      </section>
-
-      {/* Educational Disclaimer */}
-      <section className="mb-8 p-6  rounded-lg w-full">
-        <h2 className="text-2xl text-orange-500 border-b-2 border-orange-500 pb-2 mb-4"> Educational Disclaimer</h2>
-        <p>
-          <strong>Movie Haven</strong> is a <strong>college project</strong> created solely for <strong>educational purposes</strong>. This platform is not intended for commercial use and does not host or distribute copyrighted content. All materials and content provided on this platform are for educational and informational purposes only.
-        </p>
-        <p>
-          The creators of <strong>Movie Haven</strong> do not claim ownership of any media or content displayed on this platform. Any copyrighted material used is done so under the fair use doctrine for educational purposes. If you believe any content infringes on your copyright, please contact us immediately at <strong>support@moviehaven.com</strong>.
-        </p>
-      </section>
-
-      {/* User Agreement */}
-      <section className="mb-8 p-6 rounded-lg w-full">
-        <h2 className="text-2xl text-orange-500 border-b-2 border-orange-500 pb-2 mb-4"> User Agreement</h2>
-        <p>
-          By using <strong>Movie Haven</strong>, you agree to the following terms:
-        </p>
-        <ul className="list-disc pl-6 leading-relaxed">
-          <li>You must be at least <strong>13 years old</strong> to use this platform. If you are under 18, you must have parental or guardian consent to use this service.</li>
-          <li>You agree not to engage in any illegal activities or violate any laws while using this platform.</li>
-          <li>You are responsible for maintaining the confidentiality of your account information and for all activities that occur under your account.</li>
-          <li>You agree to provide accurate and complete information when creating an account on <strong>Movie Haven</strong>.</li>
-        </ul>
-      </section>
-
-      {/* User Conduct */}
-      <section className="mb-8 p-6  rounded-lg w-full">
-        <h2 className="text-2xl text-orange-500 border-b-2 border-orange-500 pb-2 mb-4"> User Conduct</h2>
-        <p>
-          Users of <strong>Movie Haven</strong> are expected to adhere to the following guidelines:
-        </p>
-        <ul className="list-disc pl-6 leading-relaxed">
-          <li>Do not upload, share, or distribute any copyrighted material without proper authorization.</li>
-          <li>Do not post or transmit any content that is harmful, offensive, abusive, or violates the rights of others.</li>
-          <li>Do not attempt to hack, disrupt, or manipulate the platform or its users.</li>
-          <li>Do not use the platform for any commercial purposes without prior written consent from <strong>Movie Haven</strong>.</li>
-        </ul>
-      </section>
-
-      {/* Third-Party Content */}
-      <section className="mb-8 p-6  rounded-lg w-full">
-        <h2 className="text-2xl text-orange-500 border-b-2 border-orange-500 pb-2 mb-4"> Third-Party Content</h2>
-        <p>
-          <strong>Movie Haven</strong> may contain links to third-party websites or services that are not owned or controlled by us. We do not endorse or assume responsibility for the content, privacy policies, or practices of any third-party sites or services. You acknowledge and agree that <strong>Movie Haven</strong> shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with the use of or reliance on any such content, goods, or services available on or through any third-party websites or services.
-        </p>
-      </section>
-
-      {/* Disclaimer of Liability */}
-      <section className="mb-8 p-6  rounded-lg w-full">
-        <h2 className="text-2xl text-orange-500 border-b-2 border-orange-500 pb-2 mb-4"> Disclaimer of Liability</h2>
-        <p>
-          <strong>Movie Haven</strong> is provided on an "AS IS" and "AS AVAILABLE" basis. We do not guarantee the following:
-        </p>
-        <ul className="list-disc pl-6 leading-relaxed">
-          <li>The accuracy, completeness, or reliability of any content on the platform.</li>
-          <li>That the platform will be error-free, uninterrupted, or available at all times.</li>
-          <li>That the platform will be free from viruses, malware, or other harmful components.</li>
-        </ul>
-        <p>
-          You agree that your use of the platform is at your sole risk. We disclaim all warranties, express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, and non-infringement.
-        </p>
-      </section>
-
-      {/* Limitation of Liability */}
-      <section className="mb-8 p-6 b rounded-lg w-full">
-        <h2 className="text-2xl text-orange-500 border-b-2 border-orange-500 pb-2 mb-4"> Limitation of Liability</h2>
-        <p>
-          To the maximum extent permitted by law, <strong>Movie Haven</strong> and its creators shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to:
-        </p>
-        <ul className="list-disc pl-6 leading-relaxed">
-          <li>Loss of profits, revenue, or data.</li>
-          <li>Business interruption or loss of business opportunities.</li>
-          <li>Damages arising from the use or inability to use the platform.</li>
-        </ul>
-        <p>
-          In no event shall our total liability to you for all claims arising out of or related to your use of the platform exceed the amount paid by you, if any, for accessing the platform.
-        </p>
-      </section>
-
-      {/* Termination Policy */}
-      <section className="mb-8 p-6 rounded-lg w-full">
-        <h2 className="text-2xl text-orange-500 border-b-2 border-orange-500 pb-2 mb-4"> Termination Policy</h2>
-        <p>
-          We reserve the right to terminate or suspend your access to <strong>Movie Haven</strong> at any time, without prior notice or liability, for any reason, including but not limited to a breach of these Terms and Conditions. Upon termination, your right to use the platform will immediately cease.
-        </p>
-      </section>
-
-      {/* Governing Law */}
-      <section className="mb-8 p-6  rounded-lg w-full">
-        <h2 className="text-2xl text-orange-500 border-b-2 border-orange-500 pb-2 mb-4"> Governing Law</h2>
-        <p>
-          These Terms and Conditions shall be governed by and construed in accordance with the laws of [Your Country/State], without regard to its conflict of law provisions. Any disputes arising under or in connection with these terms shall be subject to the exclusive jurisdiction of the courts located in [Your Country/State].
-        </p>
-      </section>
-
-      {/* Modification of Terms */}
-      <section className="mb-8 p-6  rounded-lg w-full">
-        <h2 className="text-2xl text-orange-500 border-b-2 border-orange-500 pb-2 mb-4"> Modification of Terms</h2>
-        <p>
-          We reserve the right to modify or replace these Terms and Conditions at any time. If a revision is material, we will provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion. By continuing to access or use the platform after any revisions become effective, you agree to be bound by the revised terms.
-        </p>
-      </section>
-
-      {/* Intellectual Property */}
-      <section className="mb-8 p-6  rounded-lg w-full">
-        <h2 className="text-2xl text-orange-500 border-b-2 border-orange-500 pb-2 mb-4"> Intellectual Property</h2>
-        <p>
-          All content on <strong>Movie Haven</strong>, including but not limited to text, graphics, logos, images, and software, is the property of <strong>Movie Haven</strong> or its licensors and is protected by intellectual property laws. You may not reproduce, distribute, modify, or create derivative works of any content without our express written permission.
-        </p>
-      </section>
-
-      {/* Privacy Policy */}
-      <section className="mb-8 p-6  rounded-lg w-full">
-        <h2 className="text-2xl text-orange-500 border-b-2 border-orange-500 pb-2 mb-4"> Privacy Policy</h2>
-        <p>
-          Your privacy is important to us. Please review our <a href="[Link to Privacy Policy]" target="_blank" className="text-orange-500 hover:underline">Privacy Policy</a> to understand how we collect, use, and protect your personal information. By using <strong>Movie Haven</strong>, you agree to the collection and use of your information in accordance with our Privacy Policy.
-        </p>
-      </section>
-
-      {/* Dispute Resolution */}
-      <section className="mb-8 p-6  rounded-lg w-full">
-        <h2 className="text-2xl text-orange-500 border-b-2 border-orange-500 pb-2 mb-4"> Dispute Resolution</h2>
-        <p>
-          Any disputes arising out of or related to these Terms and Conditions or your use of the platform shall be resolved through binding arbitration in accordance with the rules of [Arbitration Organization]. The arbitration shall be conducted in [Location], and the language of the arbitration shall be English. Each party shall bear its own costs and expenses related to the arbitration.
-        </p>
-      </section>
-
-      {/* Entire Agreement */}
-      <section className="mb-8 p-6  rounded-lg w-full">
-        <h2 className="text-2xl text-orange-500 border-b-2 border-orange-500 pb-2 mb-4">Entire Agreement</h2>
-        <p>
-          These Terms and Conditions constitute the entire agreement between you and <strong>Movie Haven</strong> regarding your use of the platform and supersede all prior agreements and understandings, whether written or oral. If any provision of these terms is found to be invalid or unenforceable, the remaining provisions will remain in full force and effect.
-        </p>
-      </section>
-
-      {/* Severability */}
-      <section className="mb-8 p-6 rounded-lg w-full">
-        <h2 className="text-2xl text-orange-500 border-b-2 border-orange-500 pb-2 mb-4"> Severability</h2>
-        <p>
-          If any provision of these Terms and Conditions is found to be invalid or unenforceable by a court of competent jurisdiction, the remaining provisions will remain in full force and effect. The invalid or unenforceable provision shall be replaced by a valid and enforceable provision that most closely achieves the intent of the original provision.
-        </p>
-      </section>
-
-      {/* Contact Information */}
-      <section className="mb-8 p-6 rounded-lg w-full">
-        <h2 className="text-2xl text-orange-500 border-b-2 border-orange-500 pb-2 mb-4"> Contact Information</h2>
-        <p>If you have any questions about these Terms and Conditions, please contact us at:</p>
-        <p>Email: <strong>support@moviehaven.com</strong></p>
-        <p>Address: [Your College/University Address]</p>
-      </section>
+      </div>
 
       <button
-        className="bg-orange-500 text-white py-3 px-5 text-base rounded-full cursor-pointer transition-all duration-300 hover:bg-orange-600 active:scale-95 fixed right-6 bottom-6"
+        className={`fixed right-8 bottom-8 border border-gray-700 bg-neutral-800 text-white p-4 rounded-full transition-opacity duration-300 hover:bg-neutral-700 ${
+          showScrollTop ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
         onClick={scrollToTop}
       >
-        ↑ 
+        ↑
       </button>
-
-      {/* Footer */}
-      <footer className="text-center text-sm text-gray-500 mt-10">
-        <p>Last Updated: [02/15/2025]</p>
-      </footer>
     </div>
   );
 };
 
-export default TermsandCondition;
+export default TermsAndConditions;

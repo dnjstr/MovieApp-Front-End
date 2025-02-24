@@ -61,7 +61,7 @@ const FAQ = () => {
 
   return (
     <div className="flex w-full min-h-screen bg-black text-white mt-11">
-      {/* Main content */}
+    
       <div className="w-full lg:w-3/4 p-4 md:p-8">
         <button
           className="bg-neutral-800 text-white py-2 px-4 rounded-md hover:bg-neutral-700 mb-8"
@@ -103,6 +103,15 @@ const FAQ = () => {
                   human curation, ensuring a balance between discovery and quality. We also emphasize community
                    engagement, allowing users to contribute their insights and participate in discussions.</p>
             </div>
+
+            <div>
+              <h3 className="text-xl mb-3">Does Jhon Cyril have a girlfriend?</h3>
+              <p className="text-gray-400">Currently, Jhon Cyril does not have a girlfriend because he is busy 
+                developing the Haven Movie app with his team. However, he is available and open to a relationship. 
+                You can contact him on Facebool (Jhon Cyril Espina) or talk to him in person. he’s usually at the terminal 
+                since that’s his usual hangout spot.</p>
+            </div>
+
           </div>
         </section>
 
