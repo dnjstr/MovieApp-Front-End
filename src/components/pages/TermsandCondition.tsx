@@ -78,7 +78,7 @@ const TermsAndConditions = () => {
         </button>
 
         <h1 className="text-4xl font-bold mb-6">Terms and Conditions</h1>
-        <p className="text-gray-400 mb-12">Effective Date: January 2, 1993</p>
+        <p className="text-gray-400 mb-12">Effective Date: January 2, 2025</p>
 
         <section id="copyright-warning" className="mb-16">
           <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-neutral-800">Copyright Warning</h2>
@@ -138,6 +138,45 @@ const TermsAndConditions = () => {
         </section>
 
         {/*ajubbuisdh continue gher */}
+
+        <section id="conduct" className="mb-16">
+          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-neutral-800">User Conduct</h2>
+          <div className="space-y-8">
+            <div>
+              <p className="text-gray-400">
+              Users must behave responsibly and ethically while using our platform, ensuring that their actions do not violate any laws, regulations, or the rights of others. Any form of harassment, abusive behavior, hate speech, fraud, or unauthorized access to restricted areas of the platform is strictly prohibited. 
+              </p>
+              <p className="text-gray-400 mt-4">
+              Users are expected to engage respectfully with others, provide accurate information when required, and refrain from exploiting vulnerabilities or engaging in activities that could compromise the security and integrity of the platform. Any violation of these guidelines may result in account suspension, termination, or legal action, depending on the severity of the misconduct.
+              </p>
+              <p className="text-gray-400 mt-4">
+              Any violation of these guidelines may result in account suspension, termination, or legal action, depending on the severity of the misconduct.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="third-party" className="mb-16">
+          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-neutral-800">Third-Party Content</h2>
+          <div className="space-y-8">
+            <div>
+              <p className="text-gray-400">
+              Our platform may feature content from third-party sources, including but not limited to images, videos, articles, advertisements, and external links. Such content remains the intellectual property of its respective owners, and we do not claim ownership or responsibility for its accuracy, legality, or reliability. 
+              </p>
+              <p className="text-gray-400 mt-4">
+              We strive to ensure that third-party content is appropriate and relevant, but we cannot guarantee its authenticity, and users should exercise their own judgment before interacting with it.
+              </p>
+              <p className="text-gray-400 mt-4">
+              Any disputes or concerns regarding third-party content should be directed to the respective content owner or provider, and we are not liable for any damages or losses incurred as a result of reliance on such material.
+              </p>
+            </div>
+          </div>
+        </section>
+
+                              {/*continue here latur */}
+        
+
+
         {/*on the way bro*/}
 
         <section id="contact" className="mb-16">
