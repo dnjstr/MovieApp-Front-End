@@ -193,7 +193,7 @@ const TermsAndConditions = () => {
     { id: 'severability', title: 'Severability' },
     { id: 'contact', title: 'Contact Information' }
                               
-                              */}
+        */}
         
 
 
