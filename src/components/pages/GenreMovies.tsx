@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { FaArrowLeft } from 'react-icons/fa';
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
+import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../api/axiosInstance";
 
 interface Movie {
@@ -16,80 +17,70 @@ interface Movie {
     average_rating: number;
 }
 
+const fetchMoviesByGenre = async (genreName: string) => {
+    const response = await axiosInstance.get(`/movies/genre/${encodeURIComponent(genreName)}/`);
+    return response.data;
+};
+
 const GenreMovies: React.FC = () => {
     const { genreName } = useParams<{ genreName: string }>();
-    const [movies, setMovies] = useState<Movie[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+    const navigate = useNavigate();
+    
+    const { data: movies = [], isLoading, error } = useQuery({
+        queryKey: ["moviesByGenre", genreName],
+        queryFn: () => fetchMoviesByGenre(genreName!),
+        enabled: !!genreName,
+    });
+
     const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
     const [infoType, setInfoType] = useState<'description' | 'genreRelease' | 'mainCastDirector'>('description');
-    const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchMoviesByGenre = async () => {
-            if (!genreName) return;
-
-            try {
-                const response = await axiosInstance.get(`/movies/genre/${encodeURIComponent(genreName)}/`);
-                const data = response.data;
-                if (Array.isArray(data) && data.length > 0) {
-                    setMovies(data);
-                    setSelectedMovie(data[0]);
-                } else {
-                    console.error('Received non-array data or empty list:', data);
-                    setError('No movies found for this genre.');
-                }
-            } catch (err) {
-                console.error('Error fetching movies:', err);
-                setError(err instanceof Error ? err.message : 'Error loading movies');
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchMoviesByGenre();
-    }, [genreName]);
+        if (movies.length > 0) {
+            setSelectedMovie(movies[0]);
+        }
+    }, [movies]);
 
     useEffect(() => {
         const interval = setInterval(() => {
             setInfoType((prev) =>
-                prev === 'description'
-                    ? 'genreRelease'
-                    : prev === 'genreRelease'
-                    ? 'mainCastDirector'
-                    : 'description'
+                prev === "description"
+                    ? "genreRelease"
+                    : prev === "genreRelease"
+                    ? "mainCastDirector"
+                    : "description"
             );
         }, 3000);
 
         return () => clearInterval(interval);
     }, []);
 
-    if (loading) {
+    if (isLoading) {
         return <div className="text-white text-center mt-32">Loading...</div>;
     }
 
     if (error) {
-        return <div className="text-white text-center mt-32">Error: {error}</div>;
+        return <div className="text-white text-center mt-32">Error: {error instanceof Error ? error.message : "Error loading movies"}</div>;
     }
 
     return (
         <div className="genre-movies-page mx-auto lg:px-32 py-8 pt-28 z-10">
             {/* Background Header Section */}
-            <div 
-                className="relative z-10 p-6 rounded-lg transition-all duration-500 flex items-center" 
-                style={{ 
-                    height: '400px',
+            <div
+                className="relative z-10 p-6 rounded-lg transition-all duration-500 flex items-center"
+                style={{
+                    height: "400px",
                     backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url(${selectedMovie?.poster_image})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat',
-                    transition: 'background-image 0.5s ease-in-out',
-                    zIndex: 1
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                    transition: "background-image 0.5s ease-in-out",
+                    zIndex: 1,
                 }}
             >
                 {/* Back Button */}
                 <button
-                    onClick={() => navigate('/genre')}
+                    onClick={() => navigate("/genre")}
                     className="absolute top-4 left-4 flex items-center gap-2 px-4 py-2 text-white rounded bg-gradient-to-b from-orange-600 to-orange-900 transition duration-300"
                 >
                     <FaArrowLeft /> Back
@@ -99,15 +90,15 @@ const GenreMovies: React.FC = () => {
                 <div className="px-6 text-white flex flex-col h-[100px]">
                     <p className="text-3xl font-bold">{selectedMovie?.title}</p>
                     <div className="text-gray-400 text-sm ps-3">
-                        {infoType === 'description' && <p>{selectedMovie?.description}</p>}
-                        {infoType === 'genreRelease' && (
+                        {infoType === "description" && <p>{selectedMovie?.description}</p>}
+                        {infoType === "genreRelease" && (
                             <>
                                 <p>{selectedMovie?.genre}</p>
                                 <p>{selectedMovie?.release_date}</p>
                                 <p>{selectedMovie?.duration}</p>
                             </>
                         )}
-                        {infoType === 'mainCastDirector' && (
+                        {infoType === "mainCastDirector" && (
                             <>
                                 <p>Main Cast: {selectedMovie?.main_cast}</p>
                                 <p>Director: {selectedMovie?.director}</p>
@@ -125,7 +116,7 @@ const GenreMovies: React.FC = () => {
                 <p className="text-white text-center">No movies found in this genre.</p>
             ) : (
                 <div className="genre-scroll-bar overflow-x-scroll genre-movies-container grid grid-flow-col auto-cols-max gap-8 border-t-4 border-orange-700 rounded px-5 py-4 h-[342px]">
-                    {movies.map((movie) => (
+                    {movies.map((movie: Movie) => (
                         <div
                             key={movie.id}
                             onMouseEnter={() => setSelectedMovie(movie)}
@@ -143,7 +134,7 @@ const GenreMovies: React.FC = () => {
                                     <p className="text-xs text-gray-400 line-clamp-3 mb-2">{movie.main_cast}</p>
                                     <p className="text-xs text-gray-300 mb-2">Release Date: {movie.release_date}</p>
                                     <div className="flex items-center mt-2">
-                                        <span className="text-yellow-400 text-xs">{'⭐'.repeat(Math.round(movie.average_rating))}</span>
+                                        <span className="text-yellow-400 text-xs">{"⭐".repeat(Math.round(movie.average_rating))}</span>
                                     </div>
                                 </div>
                             </div>
