@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import axiosInstance from '../../api/axiosInstance';
 
 interface Movie {
   id: number;
@@ -17,8 +18,7 @@ const MovieListSection: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Restore scroll position when navigating back
-    if (location.state && location.state.scrollPosition) {
+    if (location.state?.scrollPosition) {
       setTimeout(() => {
         window.scrollTo(0, location.state.scrollPosition);
       }, 0);
@@ -26,27 +26,19 @@ const MovieListSection: React.FC = () => {
   }, [location]);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/movies/released/')
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        if (Array.isArray(data)) {
-          setMovies(data);
-        } else {
-          console.error('Received non-array data:', data);
-          setMovies([]);
-        }
-        setLoading(false);
-      })
-      .catch(error => {
+    const fetchMovies = async () => {
+      try {
+        const response = await axiosInstance.get('/movies/released/');
+        setMovies(Array.isArray(response.data) ? response.data : []);
+      } catch (error) {
         console.error('Error fetching released movies:', error);
         setMovies([]);
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+
+    fetchMovies();
   }, []);
 
   const handleMovieClick = (id: number) => {
@@ -64,7 +56,7 @@ const MovieListSection: React.FC = () => {
         Popular on <span className='gradient-text'>Movie Haven</span>
       </h2>
 
-      <div className="movie-list-container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-4 ">
+      <div className="movie-list-container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-4">
         {movies.map((movie) => (
           <div
             key={movie.id}
@@ -90,10 +82,6 @@ const MovieListSection: React.FC = () => {
           </div>
         ))}
       </div>
-
-      {/* <div className='mt-4'>
-        <Footer />
-      </div> */}
     </div>
   );
 };
