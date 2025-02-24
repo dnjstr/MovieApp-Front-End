@@ -60,7 +60,7 @@ const MovieListSection: React.FC = () => {
   }
 
   return (
-    <div className="px-8 py-10">
+    <div className="px-8 py-10 mb-8">
       <h2 className="text-3xl font-bold mb-6">
         Popular on <span className='gradient-text'>Movie Haven</span>
       </h2>
@@ -92,9 +92,9 @@ const MovieListSection: React.FC = () => {
         ))}
       </div>
 
-      <div className='mt-4'>
+      {/* <div className='mt-4'>
         <Footer />
-      </div>
+      </div> */}
     </div>
   );
 };

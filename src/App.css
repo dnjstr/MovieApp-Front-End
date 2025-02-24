@@ -191,9 +191,9 @@ body {
     border: 1px solid var(--primary-movie-bg-color);
 } */
 
-.nav-bar-container {
+/* .nav-bar-container {
     background: linear-gradient( rgba(255, 255, 255, 0) 20%, rgba(0, 0, 0, 0.2) 70%, rgba(0, 0, 0, 0.5) 100%);
-}
+} */
 
 .signin-navbar-btn {
     background: linear-gradient( rgba(255, 255, 255, 0) 20%, rgba(0, 0, 0, 0.5) 70%, rgba(0, 0, 0, 0.5) 100%);

@@ -177,7 +177,7 @@ const MovieDetail: React.FC = () => {
     }
 
     return (
-        <div className="relative text-white bg-black min-h-screen z-0">
+        <div className="relative text-white bg-black min-h-screen">
             {/* Background layers */}
             <div className="fixed inset-0 bg-cover bg-center opacity-50" 
                 style={{ backgroundImage: `url(${movie.poster_image})` }}>
@@ -185,7 +185,7 @@ const MovieDetail: React.FC = () => {
             <div className="fixed inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black"></div>
 
             {/* Content container */}
-            <div className="relative z-10">
+            <div className="relative z-10 mt-3">
                 {/* Movie details section */}
                 <div className="p-8 w-full max-w-full">
                     <button

@@ -19,8 +19,8 @@ const MyList: React.FC = () => {
     }, [userToken, fetchBookmarks]);
 
     return (
-        <div className="flex flex-col txtlg:justify-between h-screen text-white px-6">
-            <div className="flex flex-col txtlg:flex-row txtlg:justify-around gap-10 h-screen mt-10 txtlg:mt-24">
+        <div className="flex flex-col txtlg:justify-between text-white px-6 mb-[127px]">
+            <div className="flex flex-col txtlg:flex-row txtlg:justify-around gap-10 mt-10 txtlg:mt-24">
                 <div className="text-center lg:flex-1">
                     <h1 className="text-5xl font-bold mb-2 mt-12">My List</h1>
                     <p className="text-lg text-gray-300 mb-6">Keep track of your favorite movies and shows here!</p>
@@ -80,9 +80,6 @@ const MyList: React.FC = () => {
                         ))
                     )}
                 </div>
-            </div>
-            <div className="my-6">
-                <Footer />
             </div>
         </div>
     );
