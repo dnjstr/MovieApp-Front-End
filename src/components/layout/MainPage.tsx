@@ -4,6 +4,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
 import { useNavigate } from 'react-router-dom';
+import axiosInstance from "../../api/axiosInstance";
+
 
 const MainPage: React.FC = () => {
   const [slides, setSlides] = useState<any[]>([]);
@@ -11,12 +13,12 @@ const MainPage: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/movies/")
-      .then((response) => response.json())
-      .then((data) => {
-        setSlides(data);
-        if (data.length > 0) {
-          setCurrentVideo(data[0].video);
+    axiosInstance
+      .get("/movies/")
+      .then((response) => {
+        setSlides(response.data);
+        if (response.data.length > 0) {
+          setCurrentVideo(response.data[0].video);
         }
       })
       .catch((error) => console.error("Error fetching movies:", error));

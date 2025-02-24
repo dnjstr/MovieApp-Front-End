@@ -7,6 +7,7 @@ import { debounce } from 'lodash';
 import { useClickOutside } from '../../hooks/useClickOutside';
 import PreferencesModal from '../pages/PreferencesModal';
 import ProfileModal from '../pages/ProfilePageModal';
+import axiosInstance from "../../api/axiosInstance";
 
 interface Movie {
     id: number;
@@ -53,16 +54,16 @@ const Navbar: React.FC = () => {
       setSearchResults([]);
       return;
     }
-
+  
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/movie/search/?q=${encodeURIComponent(query)}`);
-      if (response.ok) {
-        const data = await response.json();
-        setSearchResults(data);
-        setShowResults(true);
-      }
+      const response = await axiosInstance.get(`/movie/search/`, {
+        params: { q: query }, 
+      });
+  
+      setSearchResults(response.data);
+      setShowResults(true);
     } catch (error) {
-      console.error('Error searching movies:', error);
+      console.error("Error searching movies:", error);
     }
   };
 
