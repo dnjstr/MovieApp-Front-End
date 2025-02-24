@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import axiosInstance from "../api/axiosInstance";
 
 interface Bookmark {
     id: number;
@@ -20,14 +21,11 @@ const useBookmarkStore = create<BookmarkStore>((set) => ({
 
     fetchBookmarks: async (userToken) => {
         try {
-            const response = await fetch("http://127.0.0.1:8000/api/bookmarks/", {
+            const response = await axiosInstance.get("/bookmarks/", {
                 headers: { Authorization: `Token ${userToken}` },
             });
 
-            if (!response.ok) throw new Error("Failed to fetch bookmarks");
-
-            const data = await response.json();
-            set({ myList: data });
+            set({ myList: response.data });
         } catch (error) {
             console.error("Error fetching bookmarks:", error);
         }
@@ -35,19 +33,20 @@ const useBookmarkStore = create<BookmarkStore>((set) => ({
 
     removeFromList: async (userToken, movieId) => {
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/bookmarks/remove/${movieId}/`, {
-                method: "DELETE",
+            const response = await axiosInstance.delete(`/bookmarks/remove/${movieId}/`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Token ${userToken}`,
                 },
             });
 
-            if (!response.ok) throw new Error("Failed to remove bookmark");
-
-            set((state) => ({
-                myList: state.myList.filter((item) => item.movie !== movieId),
-            }));
+            if (response.status >= 200 && response.status < 300) {
+                set((state) => ({
+                    myList: state.myList.filter((item) => item.movie !== movieId),
+                }));
+            } else {
+                console.error("Failed to remove bookmark:", response.data);
+            }
         } catch (error) {
             console.error("Error removing bookmark:", error);
         }
