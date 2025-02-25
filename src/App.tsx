@@ -5,13 +5,15 @@ import { AuthProvider } from "./context/AuthContext";
 import { PreferencesProvider, usePreferences } from "./context/PreferencesContext";
 import AppRoutes from "./routes/AppRoutes"; 
 import Footer from "./components/layout/Footer";
+import { MoviePlayerProvider, useMoviePlayer  } from "./context/MoviePLayerContext";
 
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
   const { bgColor = "bg-black", textColor = "text-white", isLoaded } = usePreferences();
+  const { isPlaying } = useMoviePlayer(); // Get movie playing state
 
-  const hideNavbar = ["/sign-in", "/sign-up", "/faq", "/contact", "/terms-and-condition", "/about"].includes(location.pathname) || location.pathname.startsWith("/profile");
+  const hideNavbar = isPlaying || ["/sign-in", "/sign-up", "/faq", "/contact", "/terms-and-condition", "/about"].includes(location.pathname) || location.pathname.startsWith("/profile");
   
   const dynamicRoutes = [
     "/sign-in",
@@ -45,9 +47,11 @@ const App: React.FC = () => {
     <Router>
       <AuthProvider>
         <PreferencesProvider>
-          <Layout>
-            <AppRoutes />
-          </Layout>
+          <MoviePlayerProvider>
+            <Layout>
+              <AppRoutes />
+            </Layout>
+          </MoviePlayerProvider>
         </PreferencesProvider>
       </AuthProvider>
     </Router>

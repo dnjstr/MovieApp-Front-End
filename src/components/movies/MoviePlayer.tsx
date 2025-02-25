@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { X } from 'lucide-react'; 
+import { useMoviePlayer } from '../../context/MoviePLayerContext';
+// import { X } from 'lucide-react'; 
 
 interface MoviePlayerProps {
   videoUrl: string;
@@ -16,13 +17,15 @@ const MoviePlayer: React.FC<MoviePlayerProps> = ({ videoUrl, onClose }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const videoId = getVideoId(videoUrl);
+  const { setIsPlaying } = useMoviePlayer();
 
   useEffect(() => {
+    setIsPlaying(true);
+
     if (!videoId) {
       setHasError(true);
     }
-
-
+    
     const handleEscKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         onClose();
@@ -33,6 +36,7 @@ const MoviePlayer: React.FC<MoviePlayerProps> = ({ videoUrl, onClose }) => {
     
     return () => {
       window.removeEventListener('keydown', handleEscKey);
+      setIsPlaying(false);
     };
   }, [videoId, onClose]);
 
@@ -51,13 +55,13 @@ const MoviePlayer: React.FC<MoviePlayerProps> = ({ videoUrl, onClose }) => {
     >
       <div className="relative max-w-5xl w-full mx-4 bg-black rounded-lg overflow-hidden shadow-xl transition-all duration-300 ease-in-out">
     
-        <button
+        {/* <button
           onClick={onClose}
           className="absolute top-4 right-4 text-white hover:text-gray-300 bg-black/40 hover:bg-black/60 rounded-full p-2 transition-all duration-200 z-50"
           aria-label="Close video player"
         >
           <X size={24} />
-        </button>
+        </button> */}
 
         <div className="w-full aspect-video relative">
           {isLoading && !hasError && (
