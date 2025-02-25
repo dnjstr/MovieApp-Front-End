@@ -8,10 +8,11 @@ import Footer from "./components/layout/Footer";
 import { MoviePlayerProvider, useMoviePlayer } from "./context/MoviePlayerContext";
 
 
+
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
   const { bgColor = "bg-black", textColor = "text-white", isLoaded } = usePreferences();
-  const { isPlaying } = useMoviePlayer(); // Get movie playing state
+  const { isPlaying } = useMoviePlayer(); 
 
   const hideNavbar = isPlaying || ["/sign-in", "/sign-up", "/faq", "/contact", "/terms-and-condition", "/about"].includes(location.pathname) || location.pathname.startsWith("/profile");
   
