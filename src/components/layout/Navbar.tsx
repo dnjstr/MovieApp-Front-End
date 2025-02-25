@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaHome, FaSearch, FaBars, FaTimes, FaUser, FaCog, FaSignOutAlt, FaRegClock, FaThLarge, FaBookmark } from 'react-icons/fa';
+import { FaHome, FaSearch, FaBars, FaTimes, FaUser, FaCog, FaSignOutAlt, FaThLarge, FaBookmark } from 'react-icons/fa';
 import { useAuth } from '../../context/AuthContext';
 import SearchResults from '../search/SearchResults';
 import { debounce } from 'lodash';
@@ -101,7 +101,6 @@ const Navbar: React.FC = () => {
           <span className="hidden md:inline">Home</span>
         </Link>
         <Link to="/comingsoon" className="hover:text-orange-600 ease-in-out duration-300 flex items-center justify-center gap-2">
-          {/* <FaRegClock size={20} /> */}
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-5">
             <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 6a.75.75 0 0 0-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 0 0 0-1.5h-3.75V6Z" clipRule="evenodd" />
           </svg>
