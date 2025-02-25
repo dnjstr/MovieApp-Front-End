@@ -33,7 +33,7 @@ const ComingSoon: React.FC = () => {
   }
 
   return (
-    <div className="text-white p-6 mt-6">
+    <div className="text-white p-6 mt-7">
       <div className="my-12">
         <h1 className="text-4xl font-bold mb-4 text-center">Coming Soon</h1>
         <p className="text-gray-400 text-center">Discover the latest movies and TV shows coming soon.</p>

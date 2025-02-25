@@ -60,9 +60,9 @@ const Genre: React.FC = () => {
     }
 
     return (
-        <div className="mx-auto px-7 flex justify-start flex-col mb-[93px]">
+        <div className="mx-auto px-7 flex justify-start flex-col mb-[82px]">
             <div>
-                <div className="text-center mt-20 mb-4">
+                <div className="text-center mt-[88px] mb-4">
                     <h1 className="text-4xl font-bold mb-2 text-white">Browse by Genre</h1>
                     <p className="text-gray-400">Discover your next favorite movie across multiple genres</p>
                 </div>
