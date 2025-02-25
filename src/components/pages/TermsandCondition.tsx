@@ -1,29 +1,43 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 const TermsAndConditions = () => {
-  const [showScrollTop, setShowScrollTop] = useState(false);
-  const [activeSection, setActiveSection] = useState('');
+  const queryClient = useQueryClient();
+
+
+  const { data: scrollData } = useQuery({
+    queryKey: ['scrollState'],
+    queryFn: () => ({ showScrollTop: false, activeSection: '' }),
+    initialData: { showScrollTop: false, activeSection: '' },
+  });
 
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.pageYOffset;
-      setShowScrollTop(scrolled > 100);
-      
       const sections = document.querySelectorAll('section[id]');
-      sections.forEach(section => {
+      let activeSection = '';
+
+      sections.forEach((section) => {
         const sectionTop = (section as HTMLElement).offsetTop;
         const sectionHeight = (section as HTMLElement).offsetHeight;
+
         if (scrolled >= sectionTop - 100 && scrolled < sectionTop + sectionHeight - 100) {
-          setActiveSection(section.id);
+          activeSection = section.id;
         }
+      });
+
+      // Update state using React Query
+      queryClient.setQueryData(['scrollState'], {
+        showScrollTop: scrolled > 100,
+        activeSection,
       });
     };
 
     window.addEventListener('scroll', handleScroll);
     window.scrollTo(0, 0);
-    
+
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [queryClient]);
 
   const scrollToSection = (sectionId: string): void => {
     const element = document.getElementById(sectionId);
@@ -34,7 +48,7 @@ const TermsAndConditions = () => {
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
     }
   };
@@ -42,7 +56,7 @@ const TermsAndConditions = () => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
   };
 
@@ -91,12 +105,12 @@ const TermsAndConditions = () => {
                 respective copyright owners, and we do not claim any ownership or rights over them.
               </p>
               <p className="text-gray-400 mt-4">
-              This project is not intended for public distribution or commercial use. If you are a copyright owner and have 
-              concerns about any content used, please contact us at <strong>[codercyril143@gmail.com]</strong>, and we will address the issue.
+                This project is not intended for public distribution or commercial use. If you are a copyright owner and have 
+                concerns about any content used, please contact us at <strong>[codercyril143@gmail.com]</strong>, and we will address the issue.
               </p>
               <p className="text-gray-400 mt-4">
-              Thank you for your understanding and support as we work on this educational project. We appreciate the creativity 
-              and effort of original content creators and respect their rights. 
+                Thank you for your understanding and support as we work on this educational project. We appreciate the creativity 
+                and effort of original content creators and respect their rights. 
               </p>
             </div>
           </div>
@@ -465,13 +479,11 @@ const TermsAndConditions = () => {
   </div>
 </section>
 
-
-        {/*footer */}
-
+        {/* Footer */}
         <footer className="text-center text-sm text-gray-500 mt-16 pb-8">
           <p className="mb-5">Last Updated: February 15, 2025</p>
-          <a 
-            href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" 
+          <a
+            href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
             className="text-blue-400 hover:text-blue-300"
             target="_blank"
             rel="noopener noreferrer"
@@ -486,12 +498,12 @@ const TermsAndConditions = () => {
         <div className="sticky mt-8 top-8">
           <h3 className="text-lg font-semibold mb-6">On this page</h3>
           <nav className="space-y-2">
-            {sections.map(section => (
+            {sections.map((section) => (
               <button
                 key={section.id}
                 onClick={() => scrollToSection(section.id)}
                 className={`block w-full text-left px-4 py-2 rounded transition-colors duration-200 ${
-                  activeSection === section.id
+                  scrollData?.activeSection === section.id
                     ? 'bg-orange-600 text-white'
                     : 'text-gray-400 hover:bg-orange-800'
                 }`}
@@ -503,9 +515,10 @@ const TermsAndConditions = () => {
         </div>
       </div>
 
+      {/* Scroll to Top Button */}
       <button
         className={`fixed stbutton bottom-8 border border-gray-600 bg-orange-700 text-white p-4 rounded-full transition-opacity duration-300 hover:bg-orange-800 ${
-          showScrollTop ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          scrollData?.showScrollTop ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
         onClick={scrollToTop}
       >
