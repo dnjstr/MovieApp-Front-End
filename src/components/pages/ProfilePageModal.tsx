@@ -42,6 +42,16 @@ const ProfileModal: React.FC<{ isOpen: boolean; onRequestClose: () => void }> = 
     const getDisplayName = () => {
         if (currentUser?.user?.fullName) return currentUser.user.fullName;
         if (currentUser?.name) return currentUser.name;
+        if (currentUser?.email) {
+            const username = currentUser.email.split('@')[0];
+            
+            return username
+                ? username
+                    .replace(/[._]/g, ' ')
+                    .replace(/\b\w/g, (char) => char.toUpperCase())
+                : 'User';
+
+        }
         return 'User';
     };
 
@@ -87,13 +97,13 @@ const ProfileModal: React.FC<{ isOpen: boolean; onRequestClose: () => void }> = 
                         <div className="flex space-x-4 mt-8">
                             <button 
                                 onClick={onRequestClose}
-                                className="flex-1 px-9 py-2 text-sm border border-orange-600/30 text-gray-400 rounded-md hover:bg-orange-600/10 transition-colors"
+                                className="flex-1 px-9 py-1 text-sm border border-orange-600/30 text-gray-400 rounded-md hover:bg-orange-600/10 transition-colors"
                             >
                                 Close
                             </button>
                             <button 
                                 onClick={handleLogout}
-                                className="flex-1 px-9 py-2 text-sm bg-orange-600 text-white rounded-md hover:bg-orange-700 transition-colors"
+                                className="flex-1 px-9 py-1 text-sm bg-orange-600 text-white rounded-md hover:bg-orange-700 transition-colors"
                             >
                                 Sign Out
                             </button>
