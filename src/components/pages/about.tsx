@@ -49,9 +49,9 @@ const AboutUs = () => {
   const sections = [
     { id: 'story', title: 'Our Story' },
     { id: 'mission', title: 'Our Mission' },
+    { id: 'vision', title: 'Our Vision' },
     { id: 'values', title: 'Our Values' },
     { id: 'offers', title: 'What We Offer' },
-    { id: 'vision', title: 'Our Vision' },
     { id: 'team', title: 'Meet the Team' },
     { id: 'goals', title: 'Future Goals' },
     { id: 'contact', title: 'Contact Us' }
@@ -121,6 +121,22 @@ const AboutUs = () => {
           </div>
         </section>
 
+        <section id="vision" className="mb-16">
+          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-orange-800">Our Vision</h2>
+          <div className="space-y-8">
+            <div>
+              <p className="text-gray-400">
+                We see Movie Haven as a global platform where anyone—students, movie lovers, aspiring filmmakers, and critics—can explore, learn, and 
+                discuss the world of cinema. Our goal is to make film education accessible and engaging, helping people appreciate the art of storytelling and filmmaking.
+              </p>
+              <p className="text-gray-400 mt-4">
+                We aspire to inspire the next generation of filmmakers, critics, and enthusiasts by creating a space that encourages curiosity, creativity, 
+                and knowledge-sharing. As we grow, we hope to expand our resources, discussions, and community, making Movie Haven a go-to destination for anyone passionate about movies.
+              </p>
+            </div>
+          </div>
+        </section>
+
         <section id="values" className="mb-16">
           <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-orange-800">Our Values</h2>
           <div className="space-y-8">
@@ -151,22 +167,6 @@ const AboutUs = () => {
                 <li><strong>Community Discussions:</strong> A space for movie lovers to share opinions, recommendations, and critiques.</li>
                 <li><strong>Exclusive Features:</strong> Behind-the-scenes information, interviews, and breakdowns of famous movie scenes.</li>
               </ul>
-            </div>
-          </div>
-        </section>
-
-        <section id="vision" className="mb-16">
-          <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-orange-800">Our Vision</h2>
-          <div className="space-y-8">
-            <div>
-              <p className="text-gray-400">
-                We see Movie Haven as a global platform where anyone—students, movie lovers, aspiring filmmakers, and critics—can explore, learn, and 
-                discuss the world of cinema. Our goal is to make film education accessible and engaging, helping people appreciate the art of storytelling and filmmaking.
-              </p>
-              <p className="text-gray-400 mt-4">
-                We aspire to inspire the next generation of filmmakers, critics, and enthusiasts by creating a space that encourages curiosity, creativity, 
-                and knowledge-sharing. As we grow, we hope to expand our resources, discussions, and community, making Movie Haven a go-to destination for anyone passionate about movies.
-              </p>
             </div>
           </div>
         </section>
