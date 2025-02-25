@@ -86,7 +86,7 @@ const Navbar: React.FC = () => {
   });
 
   return (
-    <nav className="nav-bar-container flex items-center justify-between px-8 py-3 fixed w-full bg-black bg-opacity-75 z-50 border-b border-gray-700">
+    <nav className="nav-bar-container flex items-center justify-between px-3 mdx:px-8 py-3 fixed w-full bg-black bg-opacity-75 z-50 border-b border-gray-700">
       {/* Logo */}
       <div className="flex items-center space-x-2">
         <Link to="/">
@@ -95,7 +95,7 @@ const Navbar: React.FC = () => {
       </div>
 
       {/* Desktop Navigation Links */}
-      <div className="hidden md:flex space-x-6 text-white gap-3 text-sm">
+      <div className="hidden mdx:flex space-x-6 text-white gap-3 text-sm">
         <Link to="/" className="flex items-center space-x-2 hover:text-orange-600 justify-center">
           <FaHome size={20} />
           <span className="hidden md:inline">Home</span>
@@ -118,7 +118,7 @@ const Navbar: React.FC = () => {
 
       <div 
         ref={searchContainerRef}
-        className="search-container hidden mdx:flex items-center bg-gray-950 bg-opacity-70 
+        className="search-container flex items-center bg-gray-950 bg-opacity-70 
         px-3 py-2 rounded-md w-64 md:w-1/5 lg:w-1/4 xl:w-1/3 relative"
       >
         <FaSearch className="text-white search-icon" />
@@ -139,7 +139,7 @@ const Navbar: React.FC = () => {
       </div>
 
       {/* Desktop Profile/Auth Dropdown */}
-      <div className="hidden md:flex items-center space-x-4 relative">
+      <div className="hidden mdx:flex items-center space-x-4 relative">
         {isAuthenticated && role === 'user' ? (
           <div className="relative">
             <button
@@ -197,7 +197,7 @@ const Navbar: React.FC = () => {
       {/* Mobile Menu Toggle */}
       <button
         onClick={() => setIsMenuOpen(!isMenuOpen)}
-        className="md:hidden text-white"
+        className="mdx:hidden text-white"
         aria-label="Toggle mobile menu"
       >
         {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
