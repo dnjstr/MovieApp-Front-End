@@ -148,7 +148,6 @@ const TermsAndConditions = () => {
           </div>
         </section>
 
-        {/*ajubbuisdh continue gher */}
 
         <section id="conduct" className="mb-16">
           <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-orange-800">User Conduct</h2>
