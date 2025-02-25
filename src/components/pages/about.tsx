@@ -58,8 +58,8 @@ const AboutUs = () => {
   ];
 
   return (
-    <div className="flex w-full min-h-screen bg-black text-white ">
-      
+    <div className="flex w-full relative min-h-screen bg-black text-white z-10">
+      <div className='nav-links-bg absolute w-full h-full'></div>
       <div className="w-full lg:w-3/4 p-4 md:p-8">
         <button
           className="bg-orange-600 border border-gray-900 text-white py-2 px-4 rounded-md hover:bg-orange-800 mb-8"
@@ -359,7 +359,7 @@ const AboutUs = () => {
       </div>
 
       {/* Navigation */}
-      <div className="hidden lg:block w-1/4 fixed right-0 top-0 h-screen bg-neutral-900 p-8 overflow-y-auto">
+      <div className="hidden lg:block w-1/4 fixed right-0 top-0 h-screen bg-neutral-900 p-8 overflow-y-auto bg-opacity-50 border-l border-gray-700">
         <div className="sticky mt-8 top-8">
           <h3 className="text-lg font-semibold mb-6">On this page</h3>
           <nav className="space-y-2">
