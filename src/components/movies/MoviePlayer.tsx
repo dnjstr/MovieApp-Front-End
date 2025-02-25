@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useMoviePlayer } from '../../context/MoviePLayerContext';
+import { useMoviePlayer } from '../../context/MoviePlayerContext';
 // import { X } from 'lucide-react'; 
 
 interface MoviePlayerProps {
