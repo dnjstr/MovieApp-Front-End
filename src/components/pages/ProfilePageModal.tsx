@@ -94,16 +94,16 @@ const ProfileModal: React.FC<{ isOpen: boolean; onRequestClose: () => void }> = 
                         </div>
 
                         {/* Action Buttons */}
-                        <div className="flex space-x-4 mt-8">
+                        <div className="flex space-x-4 mt-8 pt-5 w-[250px]">
                             <button 
                                 onClick={onRequestClose}
-                                className="flex-1 px-9 py-2 text-sm border border-orange-600/30 text-gray-400 rounded-md hover:bg-orange-600/10 transition-colors"
+                                className="flex-1 px-2 w-[64px] py-2 text-sm border border-orange-600/30 text-gray-400 rounded-md hover:bg-orange-600/10 transition-colors"
                             >
                                 Close
                             </button>
                             <button 
                                 onClick={handleLogout}
-                                className="flex-1 px-9 py-2 text-sm bg-orange-600 text-white rounded-md hover:bg-orange-700 transition-colors"
+                                className="flex-1 px-2 w-[64px] py-2 text-sm bg-orange-600 text-white rounded-md hover:bg-orange-700 transition-colors"
                             >
                                 Sign Out
                             </button>

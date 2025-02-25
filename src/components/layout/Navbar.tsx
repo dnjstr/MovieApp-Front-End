@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaHome, FaSearch, FaBars, FaTimes, FaUser, FaCog, FaSignOutAlt } from 'react-icons/fa';
+import { FaHome, FaSearch, FaBars, FaTimes, FaUser, FaCog, FaSignOutAlt, FaRegClock, FaThLarge, FaBookmark } from 'react-icons/fa';
 import { useAuth } from '../../context/AuthContext';
 import SearchResults from '../search/SearchResults';
 import { debounce } from 'lodash';
@@ -96,13 +96,25 @@ const Navbar: React.FC = () => {
 
       {/* Desktop Navigation Links */}
       <div className="hidden md:flex space-x-6 text-white gap-3 text-sm">
-        <Link to="/" className="flex items-center space-x-2 hover:text-orange-600">
+        <Link to="/" className="flex items-center space-x-2 hover:text-orange-600 justify-center">
           <FaHome size={20} />
           <span className="hidden md:inline">Home</span>
         </Link>
-        <Link to="/comingsoon" className="hover:text-orange-600 ease-in-out duration-300">Coming Soon</Link>
-        <Link to="/genre" className="hover:text-orange-600 ease-in-out duration-300">Genre</Link>
-        <Link to="/my-list" className="hover:text-orange-600 ease-in-out duration-300">Bookmarks</Link>
+        <Link to="/comingsoon" className="hover:text-orange-600 ease-in-out duration-300 flex items-center justify-center gap-2">
+          {/* <FaRegClock size={20} /> */}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-5">
+            <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 6a.75.75 0 0 0-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 0 0 0-1.5h-3.75V6Z" clipRule="evenodd" />
+          </svg>
+          Coming Soon
+        </Link>
+        <Link to="/genre" className="hover:text-orange-600 ease-in-out duration-300 flex items-center justify-center gap-2">
+          <FaThLarge size={16} />
+          Genre 
+        </Link>
+        <Link to="/my-list" className="hover:text-orange-600 ease-in-out duration-300 flex items-center justify-center gap-2">
+          <FaBookmark size={16} />
+          Bookmarks
+        </Link>
       </div>
 
       <div 
@@ -140,35 +152,35 @@ const Navbar: React.FC = () => {
             </button>
 
             {isDropdownOpen && (
-              <div className="profile-dropdown-desktop absolute top-12 right-0 mt-2 w-48 bg-black rounded-md shadow-lg py-1 z-10">
+              <div className="profile-dropdown-desktop absolute top-[50px] right-0 mt-2 w-48 bg-black rounded-md shadow-lg z-10 border border-gray-700">
                 <button
-                  className="px-4 py-2 text-sm text-white hover:bg-orange-600 flex items-center space-x-2 w-full text-left"
+                  className="px-4 py-2 text-sm text-white hover:bg-orange-600 hover:rounded-tl-md hover:rounded-tr-md flex items-center justify-end space-x-2 w-full border-b border-gray-700"
                   onClick={() => {
                     setIsDropdownOpen(false);
                     setIsProfileModalOpen(true);
                   }}
                 >
-                  <FaUser className="text-sm" />
                   <span>My Profile</span>
+                  <FaUser className="text-sm" />
                 </button>
 
                 <button
-                  className=" px-4 py-2 w-full text-sm text-white hover:bg-orange-600 flex items-center space-x-2"
+                  className=" px-4 py-2 w-full text-sm text-white hover:bg-orange-600 flex items-center space-x-2 justify-end"
                   onClick={() => {
                     setIsDropdownOpen(false);
                     setIsPreferencesOpen(true);
                   }}
                 >
-                  <FaCog className="text-sm" />
                   <span>Preferences</span>
+                  <FaCog className="text-sm" />
                 </button>
 
                 <button
                   onClick={handleLogout}
-                  className="w-full text-left px-4 py-2 text-sm text-white hover:bg-orange-600 flex items-center space-x-2"
+                  className="w-full text-left px-4 py-2 text-sm text-white hover:bg-orange-600 hover:rounded-bl-md hover:rounded-br-md flex items-center space-x-2 justify-end border-t border-gray-700"
                 >
-                  <FaSignOutAlt className="text-sm" />
                   <span>Sign Out</span>
+                  <FaSignOutAlt className="text-sm" />
                 </button>
               </div>
             )}
@@ -194,29 +206,34 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="absolute top-16 text-sm right-0 w-48 bg-black rounded-md bg-opacity-70 flex flex-col items-center p-4 space-y-4 md:hidden">
-          <Link to="/" className="text-white hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>Home</Link>
-          <Link to="/comingsoon" className="text-white hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>Coming Soon</Link>
-          <Link to="/genre" className="text-white hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>Genre</Link>
-          <Link to="/my-list" className="text-white hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>Bookmarks</Link>
-
-          <div className="relative text-sm pt-3 w-full">
+        <div className="absolute top-[59px] text-sm w-[99%] right-0 mx-1 bg-black rounded-md flex flex-col items-end py-4 space-y-4 md:hidden border border-gray-700">
+          <div className='flex justify-around w-full'>
+            <Link to="/" className="text-white hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>Home</Link>
+            {/* <div className='h-[1px] w-full bg-gray-700'></div> */}
+            <Link to="/comingsoon" className="text-white hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>Coming Soon</Link>
+            {/* <div className='h-[1px] w-full bg-gray-700'></div> */}
+            <Link to="/genre" className="text-white hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>Genre</Link>
+            {/* <div className='h-[1px] w-full bg-gray-700'></div> */}
+            <Link to="/my-list" className="text-white hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>Bookmarks</Link>
+          </div>
+          <div className='h-[1px] w-full bg-gray-700'></div>
+          <div className="relative text-sm w-full flex justify-end">
             {isAuthenticated ? (
               <>
 
                 <button
-                  className="px-4 flex py-2 text-sm text-white hover:bg-orange-600 w-full rounded-md"
+                  className="px-4 flex py-2 text-sm text-white hover:bg-orange-600 w-full rounded-md justify-center"
                   onClick={() => {
                     setIsDropdownOpen(false);
                     setIsProfileModalOpen(true);
                   }}
                 >
-                  <FaUser className="mt-1 mr-1" />
+                  <FaUser className="mt-[2px] mr-2" />
                   <span>My Profile</span>
                 </button>
 
                 <button
-                  className="flex px-4 py-2 text-white hover:bg-orange-600 w-full rounded-md"
+                  className="flex px-4 py-2 text-white hover:bg-orange-600 w-full rounded-md justify-center"
                   onClick={() => {
                     setIsDropdownOpen(false);
                     setIsPreferencesOpen(true);
@@ -227,7 +244,7 @@ const Navbar: React.FC = () => {
                 </button>
                 <button
                   onClick={handleLogout}
-                  className="w-full text-left px-4 py-2 text-white flex hover:bg-orange-600 rounded-md"
+                  className="w-full text-left px-4 py-2 text-white flex hover:bg-orange-600 rounded-md justify-center"
                 >
                   <FaSignOutAlt className="mt-1 mr-2" />
                   Sign Out
