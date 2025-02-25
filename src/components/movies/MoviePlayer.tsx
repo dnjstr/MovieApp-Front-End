@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { X } from 'lucide-react'; // Close icon
-import { motion, AnimatePresence } from 'framer-motion'; // Smooth animations
+import { X } from 'lucide-react'; 
 
 interface MoviePlayerProps {
   videoUrl: string;
   onClose: () => void;
 }
 
-// Function to extract YouTube video ID
 const getVideoId = (url: string): string | null => {
   const regex =
     /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^&\n]{11})/;
@@ -23,65 +21,87 @@ const MoviePlayer: React.FC<MoviePlayerProps> = ({ videoUrl, onClose }) => {
     if (!videoId) {
       setHasError(true);
     }
-  }, [videoId]);
+
+
+    const handleEscKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleEscKey);
+    
+    return () => {
+      window.removeEventListener('keydown', handleEscKey);
+    };
+  }, [videoId, onClose]);
+
+  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
 
   return (
-    <AnimatePresence>
-      <motion.div
-        className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        role="dialog"
-        aria-modal="true"
-      >
-        <motion.div
-          className="relative max-w-5xl w-full mx-4 bg-black rounded-lg overflow-hidden shadow-lg"
-          initial={{ scale: 0.8 }}
-          animate={{ scale: 1 }}
-          exit={{ scale: 0.8 }}
+    <div 
+      className="fixed inset-0 backdrop-blur-md bg-black/50 flex items-center justify-center z-50"
+      onClick={handleBackdropClick}
+      role="dialog"
+      aria-modal="true"
+    >
+      <div className="relative max-w-5xl w-full mx-4 bg-black rounded-lg overflow-hidden shadow-xl transition-all duration-300 ease-in-out">
+    
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-white hover:text-gray-300 bg-black/40 hover:bg-black/60 rounded-full p-2 transition-all duration-200 z-50"
+          aria-label="Close video player"
         >
-          {/* Close Button */}
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 text-white text-3xl z-50 hover:text-gray-300 transition"
-            aria-label="Close video player"
-          >
-            <X size={28} />
-          </button>
+          <X size={24} />
+        </button>
 
-          {/* Loading State */}
+        <div className="w-full aspect-video relative">
           {isLoading && !hasError && (
-            <div className="flex items-center justify-center h-[500px]">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
+            <div className="absolute inset-0 flex items-center justify-center bg-black/80">
+              <div className="flex flex-col items-center gap-3">
+                <div className="animate-spin rounded-full h-12 w-12 border-4 border-gray-300 border-t-white"></div>
+                <p className="text-white text-sm">Loading video...</p>
+              </div>
             </div>
           )}
 
-          {/* Error State */}
           {hasError && (
-            <div className="flex items-center justify-center h-[500px] text-white text-center">
-              <p className="text-lg">⚠️ Invalid video URL or failed to load.</p>
+            <div className="absolute inset-0 flex items-center justify-center bg-black/80 text-white text-center px-4">
+              <div className="flex flex-col items-center gap-4">
+                <div className="text-red-500 text-4xl">⚠️</div>
+                <p className="text-lg font-medium">Video could not be loaded</p>
+                <p className="text-sm text-gray-300 max-w-md">
+                  The URL provided may be invalid or the video is unavailable.
+                </p>
+                <button
+                  onClick={onClose}
+                  className="mt-2 px-4 py-2 bg-white text-black rounded-md hover:bg-gray-200 transition"
+                >
+                  Close
+                </button>
+              </div>
             </div>
           )}
 
-          {/* Video Player */}
           {videoId && !hasError && (
-            <div className="w-full aspect-video">
-              <iframe
-                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&controls=1`}
-                title="YouTube video player"
-                frameBorder="0"
-                allow="autoplay; encrypted-media; picture-in-picture"
-                allowFullScreen
-                className="w-full h-full"
-                onLoad={() => setIsLoading(false)}
-                onError={() => setHasError(true)}
-              />
-            </div>
+            <iframe
+              src={`https://www.youtube.com/embed/${videoId}?autoplay=1&controls=1&rel=0&modestbranding=1`}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full"
+              onLoad={() => setIsLoading(false)}
+              onError={() => setHasError(true)}
+            />
           )}
-        </motion.div>
-      </motion.div>
-    </AnimatePresence>
+        </div>
+      </div>
+    </div>
   );
 };
 

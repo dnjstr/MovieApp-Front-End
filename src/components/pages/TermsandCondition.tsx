@@ -47,7 +47,7 @@ const TermsAndConditions = () => {
   };
 
   const sections = [
-    { id: 'copyright-warning', title: 'Copyright Warning' },
+    { id: 'copyright-warning', title:'Copyright Warning' },
     { id: 'introduction', title: 'Introduction' },
     { id: 'disclaimer', title: 'Educational Disclaimer' },
     { id: 'agreement', title: 'User Agreement' },
