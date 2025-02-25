@@ -5,7 +5,7 @@ import { AuthProvider } from "./context/AuthContext";
 import { PreferencesProvider, usePreferences } from "./context/PreferencesContext";
 import AppRoutes from "./routes/AppRoutes"; 
 import Footer from "./components/layout/Footer";
-import { MoviePlayerProvider, useMoviePlayer  } from "./context/MoviePLayerContext";
+import { MoviePlayerProvider, useMoviePlayer } from "./context/MoviePlayerContext";
 
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
