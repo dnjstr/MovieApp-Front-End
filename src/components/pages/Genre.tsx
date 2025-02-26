@@ -41,22 +41,22 @@ const fetchGenres = async (): Promise<GenreCount[]> => {
 };
 
 const Genre: React.FC = () => {
-    const { data: genreCounts = [], isLoading, isError, error } = useQuery({
+    const { data: genreCounts = [], isLoading, isError } = useQuery({
         queryKey: ['genres'],
         queryFn: fetchGenres,
         staleTime: 1000 * 60 * 5, 
     });
 
     if (isLoading) {
-        return <div className="text-white text-center my-[382px]">Loading...</div>;
+        return <div className="text-green-500 text-center my-[382px]">Loading...</div>;
     }
 
     if (isError) {
-        return <div className="text-white text-center mt-32">Error: {(error as Error).message}</div>;
+        return <div className="text-red-500 text-center my-[382px]">Failed to fetch genre.</div>;
     }
 
     if (genreCounts.length === 0) {
-        return <div className="text-white text-center mt-32">No genres found</div>;
+        return <div className="text-white text-center my-[382px]">No genres found</div>;
     }
 
     return (
