@@ -71,15 +71,15 @@ const MyList: React.FC = () => {
   });
 
   if (isLoading) {
-    return <p className="text-gray-400 flex justify-center p-48">Loading...</p>;
+    return <p className="text-green-500 flex justify-center my-[382px]">Loading...</p>;
   }
 
   if (isError) {
-    return <p className="text-red-500 flex justify-center p-48">Error fetching bookmarks.</p>;
+    return <p className="text-red-500 flex justify-center my-[382px]">Error fetching bookmarks.</p>;
   }
 
   return (
-    <div className="flex flex-col txtlg:justify-between text-white px-6 mb-[127px]">
+    <div className={`flex flex-col txtlg:justify-between text-white px-6 mb-[152px] ${myList.length === 0 ? "h-[636px] pt-10" : ""}`}>
       <div className="flex flex-col txtlg:flex-row txtlg:justify-around txtlg:items-center gap-10 mt-10 txtlg:mt-24">
         <div className="text-center lg:flex-1">
           <h1 className="text-5xl font-bold mb-2 mt-12">My List</h1>
