@@ -9,7 +9,7 @@ type PreferencesContextType = {
     isLoaded: boolean;
 };
 
-// Create context
+// Create context 
 const PreferencesContext = createContext<PreferencesContextType | undefined>(undefined);
 
 export const PreferencesProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {

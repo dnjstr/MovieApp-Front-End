@@ -6,6 +6,7 @@ import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import axiosInstance from "../../api/axiosInstance";
+import { usePreferences } from "../../context/PreferencesContext";
 
 interface Bookmark {
   id: number;
@@ -17,6 +18,7 @@ interface Bookmark {
 }
 
 const MyList: React.FC = () => {
+  const textColor = usePreferences();
   const userToken = localStorage.getItem("token") || "";
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -79,11 +81,11 @@ const MyList: React.FC = () => {
   }
 
   return (
-    <div className={`flex flex-col txtlg:justify-between text-white px-6 mb-[152px] ${myList.length === 0 ? "h-[636px] pt-10" : ""}`}>
+    <div className={`flex flex-col txtlg:justify-between ${textColor} px-6 mb-[152px] ${myList.length === 0 ? "h-[636px] pt-10" : ""}`}>
       <div className="flex flex-col txtlg:flex-row txtlg:justify-around txtlg:items-center gap-10 mt-10 txtlg:mt-24">
         <div className="text-center lg:flex-1">
           <h1 className="text-5xl font-bold mb-2 mt-12">My List</h1>
-          <p className="text-lg text-gray-300 mb-6">
+          <p className={`text-lg ${textColor} mb-6`}>
             Keep track of your favorite movies and shows here!
           </p>
 
@@ -110,7 +112,7 @@ const MyList: React.FC = () => {
         </div>
         <div className="bookmark-scroll-bar txtlg:space-y-4 txtlg:mt-12 flex-auto overflow-y-scroll max-h-400">
           {myList.length === 0 ? (
-            <p className="text-gray-400 flex justify-center p-48">
+            <p className={`${textColor} flex justify-center p-48`}>
               No movies added yet.
             </p>
           ) : (

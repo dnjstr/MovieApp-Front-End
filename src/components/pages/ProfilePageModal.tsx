@@ -3,6 +3,7 @@ import Modal from "react-modal";
 import { useAuth } from "../../context/AuthContext";
 import Avatar from "../../assets/Avatar";
 import { useQuery } from '@tanstack/react-query';
+import { usePreferences } from "../../context/PreferencesContext";
 
 interface User {
     name?: string;
@@ -19,6 +20,7 @@ const ProfileModal: React.FC<{ isOpen: boolean; onRequestClose: () => void }> = 
 }) => {
     const { user, logout } = useAuth();
     const [currentTime, setCurrentTime] = useState<string>(new Date().toLocaleTimeString());
+    const { bgColor, textColor } = usePreferences();
 
     const { data: currentUser } = useQuery<User | null>({
         queryKey: ['user'],
@@ -68,10 +70,10 @@ const ProfileModal: React.FC<{ isOpen: boolean; onRequestClose: () => void }> = 
             className="modal-content bg-black rounded-lg outline-none border border-gray-700"
             overlayClassName="z-20 modal-overlay fixed inset-0 bg-black backdrop-blur-sm bg-opacity-40 flex justify-center items-center"
         >
-            <div className="w-full max-w-md px-8 py-6">
+            <div className={`w-full max-w-md px-8 py-6 ${bgColor} rounded-lg`}>
                 <div className="flex justify-between items-center mb-8">
                     <h1 className="text-xl font-bold text-orange-600">Profile</h1>
-                    <span className="text-sm text-gray-400">{currentTime}</span>
+                    <span className={`text-sm ${textColor}`}>{currentTime}</span>
                 </div>
 
                 {currentUser ? (
@@ -85,10 +87,10 @@ const ProfileModal: React.FC<{ isOpen: boolean; onRequestClose: () => void }> = 
                         </div>
                         
                         <div className="text-center">
-                            <h2 className="text-2xl font-semibold text-white">
+                            <h2 className={`text-2xl font-semibold ${textColor}`}>
                                 {getDisplayName()}
                             </h2>
-                            <p className="text-gray-400 mt-2">
+                            <p className={`${textColor} mt-2`}>
                                 {currentUser.email || 'No email provided'}
                             </p>
                         </div>
@@ -97,7 +99,7 @@ const ProfileModal: React.FC<{ isOpen: boolean; onRequestClose: () => void }> = 
                         <div className="flex space-x-4 mt-8 pt-5 w-[250px]">
                             <button 
                                 onClick={onRequestClose}
-                                className="flex-1 px-2 w-[64px] py-2 text-sm border border-orange-600/30 text-gray-400 rounded-md hover:bg-orange-600/10 transition-colors"
+                                className={`flex-1 px-2 w-[64px] py-2 text-sm border border-orange-600/30 ${textColor} rounded-md hover:bg-orange-600/10 transition-colors`}
                             >
                                 Close
                             </button>
