@@ -37,7 +37,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       {!hideNavbar && <Navbar />}
-      <main className={`min-h-screen pt-1 transition-all duration-500 ${excludeStyles ? "" : `${textColor} ${bgColor}`}`}>
+      <main className={`min-h-screen pt-1 ${excludeStyles ? "" : "transition-all duration-500"} ${excludeStyles ? "" : `${textColor} ${bgColor}`}`}>
         {children}
         {!hideFooter && <Footer />}
       </main>

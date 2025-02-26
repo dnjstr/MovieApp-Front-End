@@ -25,9 +25,9 @@ const MyList: React.FC = () => {
 
   if (!userToken) {
     return (
-      <div className="flex flex-col justify-center items-center h-[788px] text-white">
-        <p className="text-lg mb-4">You have no bookmarks.</p>
-        <p className="text-gray-400">Please <Link to="/sign-in" className="text-orange-500 px-1 font-bold hover:text-orange-600 duration-300">sign in</Link> to add bookmarks.</p>
+      <div className={`flex flex-col justify-center items-center h-[788px] ${textColor}`}>
+        <p className={`text-lg mb-4 ${textColor}`}>You have no bookmarks.</p>
+        <p className={`${textColor}`}>Please <Link to="/sign-in" className="text-orange-500 px-1 font-bold hover:text-orange-600 duration-300">sign in</Link> to add bookmarks.</p>
       </div>
     );
   }
