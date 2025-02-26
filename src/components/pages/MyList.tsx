@@ -132,13 +132,13 @@ const MyList: React.FC = () => {
                   onClick={() => navigate(`/movies/${item.movie}/`)}
                 >
                   <h2 className="text-lg font-bold">{item.movie_title}</h2>
-                  <p className="text-gray-300 text-sm">
+                  <p className={`${textColor} text-xs ps-1`}>
                     {item.movie_release_date} • Directed by: {item.movie_director}
                   </p>
                 </div>
                 <button
                   onClick={() => removeMutation.mutate(item.movie)}
-                  className="text-white hover:text-red-900 text-xl ms-5"
+                  className={`${textColor} hover:text-red-900 text-xl ms-5`}
                 >
                   ✖
                 </button>
