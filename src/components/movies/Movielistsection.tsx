@@ -57,7 +57,10 @@ const MovieListSection: React.FC = () => {
         Popular on <span className='gradient-text'>Movie Haven</span>
       </h2>
 
-      <div className="movie-list-container grid grid-cols-2 relative md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-4 h-[280px]">
+      <div 
+        className={`movie-list-container grid grid-cols-2 relative md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-4 
+          ${movies.length === 0 ? 'h-[280px]' : ''}`}
+      >
       {loading ? (
         <div className="text-white text-center my-6 absolute top-28 left-1/2 transform -translate-x-1/2">
           Loading...
