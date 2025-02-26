@@ -44,11 +44,11 @@ const Genre: React.FC = () => {
     const { data: genreCounts = [], isLoading, isError, error } = useQuery({
         queryKey: ['genres'],
         queryFn: fetchGenres,
-        staleTime: 1000 * 60 * 5, // Cache for 5 minutes
+        staleTime: 1000 * 60 * 5, 
     });
 
     if (isLoading) {
-        return <div className="text-white text-center mt-32">Loading...</div>;
+        return <div className="text-white text-center my-[382px]">Loading...</div>;
     }
 
     if (isError) {

@@ -25,7 +25,7 @@ const ComingSoon: React.FC = () => {
   });
 
   if (isLoading) {
-    return <div className="text-white text-center mt-32">Loading...</div>;
+    return <div className="text-white text-center my-[382px]">Loading...</div>;
   }
 
   if (isError) {
