@@ -380,14 +380,25 @@ const AboutUs = () => {
         </div>
       </div>
 
+      {/* desktop scrol top*/}
       <button
-        className={`fixed stbutton bottom-8 border border-gray-700 bg-orange-600 text-white p-4 rounded-full transition-opacity duration-300 hover:bg-orange-800 ${
+        className={`fixed lg:block hidden stbutton bottom-8 border border-gray-700 bg-orange-600 text-white p-4 rounded-full transition-opacity duration-300 hover:bg-orange-800 ${
           showScrollTop ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
         onClick={scrollToTop}
       >
         ↑
       </button>
+      {/* mobile scroll top*/}
+      <button
+        className={`fixed lg:hidden block right-8  bottom-8 border border-gray-700 bg-orange-600 text-white p-4 rounded-full transition-opacity duration-300 hover:bg-orange-800 ${
+          showScrollTop ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+        onClick={scrollToTop}
+      >
+        ↑
+      </button>
+
     </div>
   );
 };
