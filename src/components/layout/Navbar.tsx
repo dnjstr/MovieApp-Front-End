@@ -95,7 +95,7 @@ const Navbar: React.FC = () => {
       </div>
 
       {/* Desktop Navigation Links */}
-      <div className="hidden mdx:flex space-x-2 lg:space-x-6 text-white gap-3 text-sm">
+      <div className="hidden mdx:flex space-x-1 lg:space-x-6 text-white gap-3 text-sm">
         <Link to="/" className="flex items-center space-x-2 hover:text-orange-600 justify-center">
           <FaHome size={20} />
           <span className="hidden md:inline">Home</span>
