@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import axiosInstance from "../../api/axiosInstance";
+import { usePreferences } from '../../context/PreferencesContext';
 
 interface GenreCount {
     genre: string;
@@ -41,30 +42,31 @@ const fetchGenres = async (): Promise<GenreCount[]> => {
 };
 
 const Genre: React.FC = () => {
-    const { data: genreCounts = [], isLoading, isError, error } = useQuery({
+    const textColor = usePreferences();
+    const { data: genreCounts = [], isLoading, isError } = useQuery({
         queryKey: ['genres'],
         queryFn: fetchGenres,
-        staleTime: 1000 * 60 * 5, // Cache for 5 minutes
+        staleTime: 1000 * 60 * 5, 
     });
 
     if (isLoading) {
-        return <div className="text-white text-center mt-32">Loading...</div>;
+        return <div className="text-green-500 text-center my-[382px]">Loading...</div>;
     }
 
     if (isError) {
-        return <div className="text-white text-center mt-32">Error: {(error as Error).message}</div>;
+        return <div className="text-red-500 text-center my-[382px]">Failed to fetch genre.</div>;
     }
 
     if (genreCounts.length === 0) {
-        return <div className="text-white text-center mt-32">No genres found</div>;
+        return <div className="text-white text-center my-[382px]">No genres found</div>;
     }
 
     return (
-        <div className="mx-auto px-7 flex justify-start flex-col mb-[82px]">
+        <div className="mx-auto px-7 flex justify-start flex-col mb-[62px]">
             <div>
                 <div className="text-center mt-[88px] mb-4">
-                    <h1 className="text-4xl font-bold mb-2 text-white">Browse by Genre</h1>
-                    <p className="text-gray-400">Discover your next favorite movie across multiple genres</p>
+                    <h1 className={`text-4xl font-bold mb-2 ${textColor}`}>Browse by Genre</h1>
+                    <p className={`${{textColor}} pb-5`}>Discover your next favorite movie across multiple genres</p>
                 </div>
                 <div className="bookmark-scroll-bar overflow-y-scroll h-[530px] px-5">
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">

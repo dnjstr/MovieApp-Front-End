@@ -25,6 +25,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     "/about"
   ];
 
+  const excludeStyles = ["/sign-in", "/sign-up"].includes(location.pathname);
+
   const hideFooter = dynamicRoutes.includes(location.pathname) ||
                    /^\/genre\/[^\/]+$/.test(location.pathname) ||
                    /^\/movies\/[^\/]+\/?$/.test(location.pathname);
@@ -35,7 +37,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       {!hideNavbar && <Navbar />}
-      <main className={`${bgColor} ${textColor} min-h-screen pt-1 transition-all duration-500`}>
+      <main className={`min-h-screen pt-1 ${excludeStyles ? "" : "transition-all duration-500"} ${excludeStyles ? "" : `${textColor} ${bgColor}`}`}>
         {children}
         {!hideFooter && <Footer />}
       </main>

@@ -1,14 +1,17 @@
 import { Link } from 'react-router-dom';
+import { usePreferences } from '../../context/PreferencesContext';
 
 const Footer = () => {
+  const { textColor } = usePreferences();
+
   return (
-    <footer className="bg-gray-9d00 text-gray-300 py-3 border-t border-gray-700">
+    <footer className={`bg-gray-9d00 ${textColor} py-3 border-t border-gray-700`}>
       <div className="max-w-full mx-auto">
         <div className="grid grid-cols-1 flg:grid-cols-3 gap-8">
 
           <div className="flex items-center justify-center flg:justify-between px-8">
             <div className="space-y-2 lfg:pr-16 text-center flg:text-left">
-                <h3 className="font-semibold text-white mb-4 ">Quick Links</h3>
+                <h3 className={`font-semibold ${textColor} mb-4`}>Quick Links</h3>
               <div className="flex gap-5">
                   <Link to="/about" className="block text-sm whitespace-nowrap
                   hover:text-white transition-colors">
@@ -59,7 +62,7 @@ const Footer = () => {
           </div>
 
           <div className="text-center flex flex-col">
-            <h3 className="font-semibold text-white mb-2">Contact Us</h3>
+            <h3 className={`font-semibold ${textColor} mb-2`}>Contact Us</h3>
             <div className="space-y-3 flex items-center justify-center">
               <a 
                 href="https://web.telegram.org/" target='_blank'
