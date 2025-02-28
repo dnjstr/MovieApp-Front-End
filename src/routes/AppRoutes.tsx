@@ -2,16 +2,16 @@ import { Routes, Route } from "react-router-dom";
 import MainPage from "../components/layout/MainPage";
 import MovieListSection from "../components/movies/Movielistsection";
 import MovieDetail from "../components/movies/MovieDetail";
-import SignIn from "../components/pages/SignIn";
-import SignUp from "../components/pages/SignUp";
-import ComingSoon from "../components/pages/ComingSoon";
-import Genre from "../components/pages/Genre";
-import MyList from "../components/pages/MyList";
-import About from "../components/pages/about";
-import Contact from "../components/pages/contact";
-import FAQ from "../components/pages/faq";
-import TermsAndCondition from "../components/pages/TermsandCondition";
-import GenreMovies from "../components/pages/GenreMovies";
+import SignIn from "../components/auth/SignIn";
+import SignUp from "../components/auth/SignUp";
+import ComingSoon from "../components/pages/comingsoon/ComingSoon";
+import Genre from "../components/pages/genres/Genre";
+import MyList from "../components/pages/my-list/MyList";
+import About from "../components/footerlinks/about";
+import Contact from "../components/footerlinks/contact";
+import FAQ from "../components/footerlinks/faq";
+import TermsAndCondition from "../components/footerlinks/TermsandCondition";
+import GenreMovies from "../components/pages/genres/GenreMovies";
 
 const AppRoutes = () => {
     return (

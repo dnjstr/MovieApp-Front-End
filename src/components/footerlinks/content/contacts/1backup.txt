@@ -1,0 +1,8 @@
+  const sections = [
+    { id: 'why-contact', title: 'Why Contact Us' },
+    { id: 'support', title: 'Support & Help' },
+    { id: 'business', title: 'Business & Collaboration' },
+    { id: 'feedback', title: 'Feedback & Suggestions' },
+    { id: 'social', title: 'Connect With Us' },
+    { id: 'contact-info', title: 'Get in Touch' }
+  ];

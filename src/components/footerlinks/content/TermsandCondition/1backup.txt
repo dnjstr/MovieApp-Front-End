@@ -1,0 +1,19 @@
+  const sections = [
+    { id: 'copyright-warning', title:'Copyright Warning' },
+    { id: 'introduction', title: 'Introduction' },
+    { id: 'disclaimer', title: 'Educational Disclaimer' },
+    { id: 'agreement', title: 'User Agreement' },
+    { id: 'conduct', title: 'User Conduct' },
+    { id: 'third-party', title: 'Third-Party Content' },
+    { id: 'liability', title: 'Disclaimer of Liability' },
+    { id: 'limitation', title: 'Limitation of Liability' },
+    { id: 'termination', title: 'Termination Policy' },
+    { id: 'law', title: 'Governing Law' },
+    { id: 'modification', title: 'Modification of Terms' },
+    { id: 'ip', title: 'Intellectual Property' },
+    { id: 'privacy', title: 'Privacy Policy' },
+    { id: 'dispute', title: 'Dispute Resolution' },
+    { id: 'agreement-entire', title: 'Entire Agreement' },
+    { id: 'severability', title: 'Severability' },
+    { id: 'contact', title: 'Contact Information' }
+  ];

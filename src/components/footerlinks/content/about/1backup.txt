@@ -1,0 +1,10 @@
+  const sections = [
+    { id: 'story', title: 'Our Story' },
+    { id: 'mission', title: 'Our Mission' },
+    { id: 'vision', title: 'Our Vision' },
+    { id: 'values', title: 'Our Values' },
+    { id: 'offers', title: 'What We Offer' },
+    { id: 'team', title: 'Meet the Team' },
+    { id: 'goals', title: 'Future Goals' },
+    { id: 'contact', title: 'Contact Us' }
+  ];
