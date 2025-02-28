@@ -30,7 +30,7 @@ const MainPage: React.FC = () => {
   const duplicatedSlides = slides.length > 1 ? slides : [...slides, ...slides];
 
   if (isLoading) {
-    return <div className="text-green-500 text-center my-[440px]">Loading...</div>;
+    return <div className="text-white text-center my-[440px]">Loading...</div>;
   }
 
   if (isError) {

@@ -73,7 +73,7 @@ const MyList: React.FC = () => {
   });
 
   if (isLoading) {
-    return <p className="text-green-500 flex justify-center my-[382px]">Loading...</p>;
+    return <p className="text-white flex justify-center my-[382px]">Loading...</p>;
   }
 
   if (isError) {
