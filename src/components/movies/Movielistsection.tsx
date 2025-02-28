@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useMovies } from "../../hooks/useMovies";
-import MovieCard from "./movieTemplates/movieCards";
+import MovieCard from "./movieTemplates/MovieCards";
 
 const MovieListSection: React.FC = () => {
   const location = useLocation();
