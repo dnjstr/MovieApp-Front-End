@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaHome, FaSearch, FaBars, FaTimes, FaUser, FaCog, FaSignOutAlt, FaThLarge, FaBookmark } from 'react-icons/fa';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../auth/AuthContext';
 import SearchResults from '../search/SearchResults';
 import { debounce } from 'lodash';
 import { useClickOutside } from '../../hooks/useClickOutside';
-import PreferencesModal from '../pages/PreferencesModal';
-import ProfileModal from '../pages/ProfilePageModal';
+import PreferencesModal from '../preference/PreferencesModal';
+import ProfileModal from '../profile/ProfilePageModal';
 import axiosInstance from "../../api/axiosInstance";
 
 interface Movie {
