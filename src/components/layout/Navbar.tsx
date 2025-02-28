@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaHome, FaSearch, FaBars, FaTimes, FaUser, FaCog, FaSignOutAlt, FaThLarge, FaBookmark } from 'react-icons/fa';
-import { useAuth } from '../auth/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 import SearchResults from '../search/SearchResults';
 import { debounce } from 'lodash';
 import { useClickOutside } from '../../hooks/useClickOutside';
