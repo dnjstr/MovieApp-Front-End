@@ -64,7 +64,7 @@ const FAQ = () => {
   ];
 
   return (
-    <div className="flex w-full relative min-h-screen bg-black text-white z-10">
+    <div className="flex w-full relative min-h-screen bg-black text-white">
       <div className='absolute top-0 left-0 w-full h-full pointer-events-none'></div>
       <div className="w-full lg:w-3/4 p-4 md:p-8">
         <button
@@ -101,7 +101,7 @@ const FAQ = () => {
         </footer>
       </div>
 
-      <div className="hidden lg:block w-1/4 fixed right-0 top-0 h-screen bg-gray-900 p-8 overflow-y-auto bg-opacity-100 border-l border-gray-700">
+      <div className="hidden lg:block w-1/4 fixed right-0 top-0 h-screen bg-gray-900 p-8 overflow-y-auto bg-opacity-80 border-l border-gray-700">
         <div className="sticky top-8">
           <h3 className="text-lg font-semibold mb-6">On this page</h3>
           <nav className="space-y-2">

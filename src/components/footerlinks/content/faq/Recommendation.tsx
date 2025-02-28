@@ -1,4 +1,4 @@
-const RecommendationsSection = () => {
+const Recommendations = () => {
   return (
     <section id="recommendations" className="mb-16">
       <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-orange-800">Movie Recommendations</h2>
@@ -22,4 +22,4 @@ const RecommendationsSection = () => {
   );
 };
 
-export default RecommendationsSection;
+export default Recommendations;

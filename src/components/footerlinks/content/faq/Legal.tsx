@@ -1,4 +1,4 @@
-const LegalSection = () => {
+const Legal = () => {
   return (
     <section id="legal" className="mb-16">
       <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-orange-800">Legal & Privacy</h2>
@@ -35,4 +35,4 @@ const LegalSection = () => {
   );
 };
 
-export default LegalSection;
+export default Legal;

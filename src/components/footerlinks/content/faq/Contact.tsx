@@ -1,4 +1,4 @@
-const ContactSection = () => {
+const Contact = () => {
   return (
     <section id="contact" className="mb-16">
       <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-orange-800">Contact & Support</h2>
@@ -42,4 +42,4 @@ const ContactSection = () => {
   );
 };
 
-export default ContactSection;
+export default Contact;

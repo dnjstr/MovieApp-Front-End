@@ -1,4 +1,4 @@
-const AccountSection = () => {
+const Account = () => {
   return (
     <section id="account" className="mb-16">
       <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-orange-800">Account & Profile</h2>
@@ -15,4 +15,4 @@ const AccountSection = () => {
   );
 };
 
-export default AccountSection;
+export default Account;

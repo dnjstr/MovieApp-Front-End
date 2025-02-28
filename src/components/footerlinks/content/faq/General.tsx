@@ -1,4 +1,4 @@
-const GeneralSection = () => {
+const General = () => {
   return (
     <section id="general" className="mb-16">
       <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-orange-800">General Questions</h2>
@@ -40,4 +40,4 @@ const GeneralSection = () => {
   );
 };
 
-export default GeneralSection;
+export default General;

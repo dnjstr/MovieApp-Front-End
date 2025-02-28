@@ -1,4 +1,4 @@
-const TechnicalSection = () => {
+const Technical = () => {
   return (
     <section id="technical" className="mb-16">
       <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-orange-800">Technical & Support</h2>
@@ -24,4 +24,4 @@ const TechnicalSection = () => {
   );
 };
 
-export default TechnicalSection;
+export default Technical;
