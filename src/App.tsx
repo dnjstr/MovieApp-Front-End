@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
-import { AuthProvider } from "./context/AuthContext";
+import { AuthProvider } from "./components/auth/AuthContext";
 import { PreferencesProvider, usePreferences } from "./context/PreferencesContext";
 import AppRoutes from "./routes/AppRoutes"; 
 import Footer from "./components/layout/Footer";
