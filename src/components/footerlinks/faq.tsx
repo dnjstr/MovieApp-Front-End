@@ -65,7 +65,7 @@ const FAQ = () => {
 
   return (
     <div className="flex w-full relative min-h-screen bg-black text-white z-10">
-      <div className='absolute top-0 left-0 w-full h-full'></div>
+      <div className='absolute top-0 left-0 w-full h-full pointer-events-none'></div>
       <div className="w-full lg:w-3/4 p-4 md:p-8">
         <button
           className="bg-orange-600 border border-gray-900 text-white py-2 px-4 rounded-md hover:bg-orange-800 mb-8"
