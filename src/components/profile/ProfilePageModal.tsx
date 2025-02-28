@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
-import { useAuth } from "../auth/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import Avatar from "../../assets/Avatar";
 import { useQuery } from '@tanstack/react-query';
 import { usePreferences } from "../../context/PreferencesContext";
