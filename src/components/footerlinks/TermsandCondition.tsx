@@ -149,17 +149,15 @@ const TermsAndConditions = () => {
         </div>
       </div>
 
-{/* Desktop ScrollToTop Button */}
-<ScrollToTopButton 
-  isVisible={scrollData?.showScrollTop || false} 
-  className=" fixed stbutton lg:block hidden bottom-8 p-4" 
-/>
+      <ScrollToTopButton 
+        isVisible={scrollData?.showScrollTop || false} 
+        className=" fixed stbutton lg:block hidden bottom-8 p-4" 
+      />
 
-{/* Mobile ScrollToTop Button */}
-<ScrollToTopButton 
-  isVisible={scrollData?.showScrollTop || false} 
-  className="fixed lg:hidden block right-8 bottom-8 p-4" 
-/>
+      <ScrollToTopButton 
+        isVisible={scrollData?.showScrollTop || false} 
+        className="fixed lg:hidden block right-8 bottom-8 p-4" 
+      />
 
     </div>
   );

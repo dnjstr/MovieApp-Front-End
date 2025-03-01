@@ -7,6 +7,8 @@ import Offers from './content/about/Offers';
 import Team from './content/about/Team';
 import Goals from './content/about/Goals';
 import Contact from './content/about/Contact';
+import BackButton from './footerbuttons/BackButton';
+import ScrollToTopButton from './footerbuttons/ScrollTopButton';
 
 const AboutUs = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -47,12 +49,6 @@ const AboutUs = () => {
     }
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
 
   const sections = [
     { id: 'story', title: 'Our Story' },
@@ -69,13 +65,8 @@ const AboutUs = () => {
     <div className="flex w-full relative min-h-screen bg-black text-white z-10">
       <div className='absolute w-full h-full pointer-events-none'></div>
       <div className="w-full lg:w-3/4 p-4 md:p-8">
-        <button
-          className="bg-orange-600 border border-gray-900 text-white py-2 px-4 rounded-md hover:bg-orange-800 mb-8"
-          onClick={() => window.history.back()}
-        >
-          Back
-        </button>
-
+        <BackButton />
+        
         <h1 className="text-4xl font-bold mb-6">About Us</h1>
         <p className="text-gray-400 mb-12">
           Learn more about our journey, values, and vision.
@@ -125,24 +116,14 @@ const AboutUs = () => {
         </div>
       </div>
 
-      <button
-        className={`fixed lg:block hidden stbutton bottom-8 border border-gray-700 bg-orange-600 text-white p-4 rounded-full transition-opacity duration-300 hover:bg-orange-800 ${
-          showScrollTop ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
-        onClick={scrollToTop}
-      >
-        ↑
-      </button>
-
-      <button
-        className={`fixed lg:hidden block right-8  bottom-8 border border-gray-700 bg-orange-600 text-white p-4 rounded-full transition-opacity duration-300 hover:bg-orange-800 ${
-          showScrollTop ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
-        onClick={scrollToTop}
-      >
-        ↑
-      </button>
-
+      <ScrollToTopButton 
+        isVisible={showScrollTop} 
+        className="fixed stbutton lg:block hidden bottom-8 p-4" 
+      />
+      <ScrollToTopButton 
+        isVisible={showScrollTop} 
+        className="fixed lg:hidden block right-8 bottom-8 p-4" 
+      />
     </div>
   );
 };
