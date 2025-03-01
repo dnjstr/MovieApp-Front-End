@@ -26,7 +26,7 @@ const MovieListSection: React.FC = () => {
           ${movies.length === 0 ? "h-[280px]" : ""}`}
       >
         {isLoading ? (
-          <div className="text-green-500 text-center my-6 absolute top-28 left-1/2 transform -translate-x-1/2">
+          <div className="text-white text-center my-6 absolute top-28 left-1/2 transform -translate-x-1/2">
             Loading...
           </div>
         ) : isError ? (
