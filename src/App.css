@@ -347,7 +347,7 @@ body {
     color: white;
     width: 100%;
     padding: 12px;
-    border-left: 2px solid orange;
+    border-left: 2px solid rgb(255, 123, 0);
     border-radius: 6px;
     font-size: 14px;
     margin-bottom: 12px;
