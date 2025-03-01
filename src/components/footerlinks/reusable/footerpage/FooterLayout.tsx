@@ -1,16 +1,20 @@
-import { useState, useEffect } from 'react';
-import Story from './content/about/Story';
-import Mission from './content/about/Mission';
-import Vision from './content/about/Vision';
-import Values from './content/about/Values';
-import Offers from './content/about/Offers';
-import Team from './content/about/Team';
-import Goals from './content/about/Goals';
-import Contact from './content/about/Contact';
-import BackButton from './reusable/footerbuttons/BackButton';
-import ScrollToTopButton from './reusable/footerbuttons/ScrollTopButton';
+import { useState, useEffect, ReactNode } from 'react';
+import BackButton from '../footerbuttons/BackButton';
+import ScrollTopButton from '../footerbuttons/ScrollTopButton';
 
-const AboutUs = () => {
+interface Section {
+  id: string;
+  title: string;
+}
+
+interface PageWithSidebarProps {
+  title: string;
+  description: string;
+  sections: Section[];
+  children: ReactNode;
+}
+
+const PageWithSidebar = ({ title, description, sections, children }: PageWithSidebarProps) => {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [activeSection, setActiveSection] = useState('');
 
@@ -28,7 +32,7 @@ const AboutUs = () => {
         }
       });
     };
- 
+
     window.addEventListener('scroll', handleScroll);
     window.scrollTo(0, 0);
     
@@ -49,37 +53,16 @@ const AboutUs = () => {
     }
   };
 
-
-  const sections = [
-    { id: 'story', title: 'Our Story' },
-    { id: 'mission', title: 'Our Mission' },
-    { id: 'vision', title: 'Our Vision' },
-    { id: 'values', title: 'Our Values' },
-    { id: 'offers', title: 'What We Offer' },
-    { id: 'team', title: 'Meet the Team' },
-    { id: 'goals', title: 'Future Goals' },
-    { id: 'contact', title: 'Contact Us' }
-  ];
-
   return (
     <div className="flex w-full relative min-h-screen bg-black text-white z-10">
       <div className='absolute w-full h-full pointer-events-none'></div>
       <div className="w-full lg:w-3/4 p-4 md:p-8">
         <BackButton />
-        
-        <h1 className="text-4xl font-bold mb-6">About Us</h1>
-        <p className="text-gray-400 mb-12">
-          Learn more about our journey, values, and vision.
-        </p>
 
-        <Story />
-        <Mission />
-        <Vision />
-        <Values />
-        <Offers />
-        <Team />  
-        <Goals />
-        <Contact />
+        <h1 className="text-4xl font-bold mb-6">{title}</h1>
+        <p className="text-gray-400 mb-12">{description}</p>
+
+        {children}
 
         <footer className="text-center text-sm text-gray-500 mt-16 pb-8">
           <p className="mb-5">Last Updated: February 15, 2025</p>
@@ -92,11 +75,10 @@ const AboutUs = () => {
             Need help? Contact Customer Service
           </a>
         </footer>
-        
       </div>
 
       <div className="hidden lg:block w-1/4 fixed right-0 top-0 h-screen bg-gray-900 p-8 overflow-y-auto bg-opacity-80 border-l border-gray-700 scrollbar-hide">
-        <div className="sticky mt-8 top-8">
+        <div className="sticky top-8">
           <h3 className="text-lg font-semibold mb-6">On this page</h3>
           <nav className="space-y-2">
             {sections.map(section => (
@@ -116,11 +98,11 @@ const AboutUs = () => {
         </div>
       </div>
 
-      <ScrollToTopButton 
+      <ScrollTopButton 
         isVisible={showScrollTop} 
         className="fixed stbutton lg:block hidden bottom-8 p-4" 
       />
-      <ScrollToTopButton 
+      <ScrollTopButton 
         isVisible={showScrollTop} 
         className="fixed lg:hidden block right-8 bottom-8 p-4" 
       />
@@ -128,4 +110,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default PageWithSidebar;

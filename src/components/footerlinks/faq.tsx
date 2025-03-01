@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import General from './content/faq/General';
-import TechnicalSection from './content/faq/Technical';
+import Technical from './content/faq/Technical';
 import Recommendation from './content/faq/Recommendation';
 import Account from './content/faq/Account';
 import Community from './content/faq/Community';
 import Legal from './content/faq/Legal';
 import Contact from './content/faq/Contact';
+import BackButton from './reusable/footerbuttons/BackButton';
+import ScrollToTopButton from './reusable/footerbuttons/ScrollTopButton';
 
 const FAQ = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -46,13 +48,6 @@ const FAQ = () => {
     }
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
-
   const sections = [
     { id: 'general', title: 'General Questions' },
     { id: 'technical', title: 'Technical & Support' },
@@ -67,12 +62,7 @@ const FAQ = () => {
     <div className="flex w-full relative min-h-screen bg-black text-white">
       <div className='absolute top-0 left-0 w-full h-full pointer-events-none'></div>
       <div className="w-full lg:w-3/4 p-4 md:p-8">
-        <button
-          className="bg-orange-600 border border-gray-900 text-white py-2 px-4 rounded-md hover:bg-orange-800 mb-8"
-          onClick={() => window.history.back()}
-        >
-          Back
-        </button>
+        <BackButton />
 
         <h1 className="text-4xl font-bold mb-6">Frequently Asked Questions</h1>
         <p className="text-gray-400 mb-12">
@@ -81,7 +71,7 @@ const FAQ = () => {
         </p>
 
         <General />
-        <TechnicalSection />
+        <Technical />
         <Recommendation />
         <Account/>
         <Community />
@@ -101,7 +91,7 @@ const FAQ = () => {
         </footer>
       </div>
 
-      <div className="hidden lg:block w-1/4 fixed right-0 top-0 h-screen bg-gray-900 p-8 overflow-y-auto bg-opacity-80 border-l border-gray-700">
+      <div className="hidden lg:block w-1/4 fixed right-0 top-0 h-screen bg-gray-900 p-8 overflow-y-auto bg-opacity-80 border-l border-gray-700 scrollbar-hide">
         <div className="sticky top-8">
           <h3 className="text-lg font-semibold mb-6">On this page</h3>
           <nav className="space-y-2">
@@ -120,24 +110,17 @@ const FAQ = () => {
         </div>
       </div>
 
-      <button
-        className={`fixed lg:block hidden stbutton bottom-8 border border-gray-700 bg-orange-600 text-white p-4 rounded-full transition-opacity duration-300 hover:bg-orange-800 ${
-          showScrollTop ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
-        onClick={scrollToTop}
-      >
-        ↑
-      </button>
-      
-      <button
-        className={`fixed lg:hidden block right-8 bottom-8 border border-gray-700 bg-orange-600 text-white p-4 rounded-full transition-opacity duration-300 hover:bg-orange-800 ${
-          showScrollTop ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
-        onClick={scrollToTop}
-      >
-        ↑
-      </button>
+      <ScrollToTopButton 
+        isVisible={showScrollTop} 
+        className="fixed stbutton lg:block hidden bottom-8 p-4" 
+      />
+
+      <ScrollToTopButton 
+        isVisible={showScrollTop} 
+        className="fixed lg:hidden block right-8 bottom-8 p-4" 
+      />
     </div>
   );
 };
+
 export default FAQ;
