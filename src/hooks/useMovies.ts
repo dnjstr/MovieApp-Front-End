@@ -8,7 +8,7 @@ interface Movie {
     poster_image: string;
     release_date: string;
     average_rating: number;
-  }
+}
 
 const fetchMovies = async (): Promise<Movie[]> => {
 try {
@@ -22,4 +22,4 @@ try {
 
 export const useMovies = () => {
     return useQuery({ queryKey: ["movies"], queryFn: fetchMovies });
-  };
+};

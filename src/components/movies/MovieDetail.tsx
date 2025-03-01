@@ -1,82 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaBookmark } from 'react-icons/fa';
 import { useAuth } from '../../context/AuthContext';
 import MoviePlayer from './MoviePlayer';
 import axiosInstance from '../../api/axiosInstance';
-
-interface Review {
-    id: number;
-    user: {
-        fullName: string;
-    };
-    rating: number;
-    review_text: string;
-    created_at: string;
-}
+import useMovieDetails from '../../hooks/useMovieDetails';
+import useMovieReviews from '../../hooks/useMovieReview';
+import useBookmarkStatus from '../../hooks/useBookmarkStatus';
 
 const MovieDetail: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const navigate = useNavigate();
     const { isAuthenticated, token } = useAuth();
-    const [movie, setMovie] = useState<any>(null);
-    const [reviews, setReviews] = useState<Review[]>([]);
+
+    if (!id) {
+        return <div>Error: Movie ID is missing</div>;
+    }
+
+    const { movie, setMovie, loading, error } = useMovieDetails(id!);
+    const { reviews, setReviews } = useMovieReviews(id!);
+    const { isBookmarked, setIsBookmarked } = useBookmarkStatus(id, isAuthenticated, token);
+
     const [newReview, setNewReview] = useState({
         rating: 0,
         review_text: ''
     });
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState('');
     const [showSignInMessage, setShowSignInMessage] = useState(false);
     const [showReviewForm, setShowReviewForm] = useState(false);
-    const [isBookmarked, setIsBookmarked] = useState(false);
     const [isPlayerOpen, setIsPlayerOpen] = useState(false);
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
-
-    useEffect(() => {
-        const fetchMovieDetails = async () => {
-            try {
-                const response = await axiosInstance.get(`/movie/${id}/`);
-                setMovie(response.data);
-            } catch (err: any) {
-                setError(err.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        const fetchMovieReviews = async () => {
-            try {
-                const response = await axiosInstance.get(`/movie/${id}/reviews/`);
-                setReviews(response.data);
-            } catch (err) {
-                console.error('Error fetching reviews:', err);
-            }
-        };
-
-        const checkBookmark = async () => {
-            if (isAuthenticated) {
-                try {
-                    const response = await axiosInstance.get(`/bookmarks/?t=${new Date().getTime()}`, {
-                        headers: {
-                            'Authorization': `Token ${token}`
-                        }
-                    });
-                    const bookmarks = response.data;
-                    const isMovieBookmarked = bookmarks.some(
-                        (bookmark: any) => bookmark.movie_id === parseInt(id!, 10)
-                    );
-                    setIsBookmarked(isMovieBookmarked);
-                } catch (err) {
-                    console.error("Error fetching bookmarks:", err);
-                }
-            }
-        };
-
-        fetchMovieDetails();
-        fetchMovieReviews();
-        checkBookmark();
-    }, [id, isAuthenticated, token]);
 
     const isReleased = movie ? new Date(movie.release_date) <= new Date() : false;
 
@@ -138,11 +90,11 @@ const MovieDetail: React.FC = () => {
                     'Authorization': `Token ${token}`
                 }
             });
-            
+
             if (response.status >= 200 && response.status < 300) {
                 setReviews([...reviews, response.data]);
                 setNewReview({ rating: 0, review_text: '' });
-                
+
                 // Refresh movie details to update review-related info
                 const movieResponse = await axiosInstance.get(`/movie/${id}/`);
                 setMovie(movieResponse.data);
@@ -170,11 +122,11 @@ const MovieDetail: React.FC = () => {
     };
 
     if (loading) {
-        return <div className="text-white text-center mt-10">Loading...</div>;
+        return <div>Loading...</div>;
     }
 
-    if (error || !movie) {
-        return <div className="text-white text-center mt-10">{error || 'Movie not found.'}</div>;
+    if (error) {
+        return <div>Error: {error}</div>;
     }
 
     return (
