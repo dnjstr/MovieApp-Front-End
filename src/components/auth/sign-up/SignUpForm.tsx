@@ -63,7 +63,7 @@ const SignUpForm: React.FC = () => {
 
     return (
         <>
-            <div className="h-[5px] w-full mb-5 text-center text-xs">
+            <div className="h-[4px] w-full text-center text-xs">
                 {error && <div className="text-red-700 font-bold">{error}</div>}
                 {success && <div className="text-green-500">{success}</div>}
             </div>

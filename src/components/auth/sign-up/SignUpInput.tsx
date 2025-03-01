@@ -10,7 +10,7 @@ interface SignUpInputProps {
 }
 
 const SignUpInput: React.FC<SignUpInputProps> = ({ type, name, value, onChange, placeholder, required = false }) => (
-    <div className="mb-4">
+    <div className="mb-1">
         <input
             type={type}
             name={name}
