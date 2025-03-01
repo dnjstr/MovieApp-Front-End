@@ -81,14 +81,14 @@ const AboutUs = () => {
           Learn more about our journey, values, and vision.
         </p>
 
-<Story />
-<Mission />
-<Vision />
-<Values />
-<Offers />
-<Team />  
-<Goals />
-<Contact />
+        <Story />
+        <Mission />
+        <Vision />
+        <Values />
+        <Offers />
+        <Team />  
+        <Goals />
+        <Contact />
 
         <footer className="text-center text-sm text-gray-500 mt-16 pb-8">
           <p className="mb-5">Last Updated: February 15, 2025</p>

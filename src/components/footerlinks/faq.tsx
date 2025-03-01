@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import General from './content/faq/General';
-import TechnicalSection from './content/faq/Technical';
+import Technical from './content/faq/Technical';
 import Recommendation from './content/faq/Recommendation';
 import Account from './content/faq/Account';
 import Community from './content/faq/Community';
@@ -81,7 +81,7 @@ const FAQ = () => {
         </p>
 
         <General />
-        <TechnicalSection />
+        <Technical />
         <Recommendation />
         <Account/>
         <Community />

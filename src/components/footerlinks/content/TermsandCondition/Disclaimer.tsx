@@ -1,17 +1,22 @@
 const Account = () => {
   return (
-    <section id="account" className="mb-16">
-      <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-orange-800">Account & Profile</h2>
-      
-      <div className="space-y-8">
-        <div>
-          <h3 className="text-xl mb-3">Account Management</h3>
-          <p className="text-gray-400">Your Movie Haven account is your personal hub for all things cinema. Customize 
-            your profile, manage your watchlist, and connect with other movie enthusiasts. We provide robust privacy controls 
-            to ensure you share only what you want to share.</p>
-        </div>
+    <section id="disclaimer" className="mb-16">
+    <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-orange-800">Educational Disclaimer</h2>
+    <div className="space-y-8">
+      <div>
+        <p className="text-gray-400">
+          Movie Haven is a college project created solely for educational purposes. This platform is not intended for 
+          commercial use and does not host or distribute copyrighted content. All materials and content provided on this 
+          platform are for educational and informational purposes only.
+        </p>
+        <p className="text-gray-400 mt-4">
+          The creators of Movie Haven do not claim ownership of any media or content displayed on this platform. Any copyrighted 
+          material used is done so under the fair use doctrine for educational purposes. If you believe any content infringes on 
+          your copyright, please contact us immediately at support@moviehaven.com.
+        </p>
       </div>
-    </section>
+    </div>
+  </section>
   );
 };
 

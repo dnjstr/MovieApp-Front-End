@@ -1,17 +1,22 @@
 const Account = () => {
   return (
-    <section id="account" className="mb-16">
-      <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-orange-800">Account & Profile</h2>
-      
-      <div className="space-y-8">
-        <div>
-          <h3 className="text-xl mb-3">Account Management</h3>
-          <p className="text-gray-400">Your Movie Haven account is your personal hub for all things cinema. Customize 
-            your profile, manage your watchlist, and connect with other movie enthusiasts. We provide robust privacy controls 
-            to ensure you share only what you want to share.</p>
-        </div>
+    <section id="liability" className="mb-16">
+    <h2 className="text-2xl font-semibold mb-8 pb-2 border-b border-orange-800">Disclaimer of Liability</h2>
+    <div className="space-y-8">
+      <div>
+        <p className="text-gray-400">
+        We provide our services on an "as is" and "as available" basis, without any warranties or guarantees of any kind, whether 
+        expressed or implied. While we strive to maintain accuracy and reliability, we do not guarantee that our platform will always be 
+        free of errors, interruptions, security breaches, or technical issues. 
+        </p>
+        <p className="text-gray-400 mt-4">
+        Users acknowledge that any reliance on the content, features, or services provided by our platform is at their own risk. We 
+        disclaim all liability for any inaccuracies, malfunctions, lost data, unauthorized access, or any damages arising from the use of 
+        our platform, and we do not take responsibility for the actions, omissions, or content of third parties.
+        </p>
       </div>
-    </section>
+    </div>
+  </section>
   );
 };
 
