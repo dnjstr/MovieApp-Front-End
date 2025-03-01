@@ -101,7 +101,7 @@ const FAQ = () => {
         </footer>
       </div>
 
-      <div className="hidden lg:block w-1/4 fixed right-0 top-0 h-screen bg-gray-900 p-8 overflow-y-auto bg-opacity-80 border-l border-gray-700">
+      <div className="hidden lg:block w-1/4 fixed right-0 top-0 h-screen bg-gray-900 p-8 overflow-y-auto bg-opacity-80 border-l border-gray-700 scrollbar-hide">
         <div className="sticky top-8">
           <h3 className="text-lg font-semibold mb-6">On this page</h3>
           <nav className="space-y-2">
