@@ -68,6 +68,7 @@ const SignInForm: React.FC = () => {
             } else {
                 setError("Failed to connect to server");
             }
+            setIsLoading(false);
         }
         
     };

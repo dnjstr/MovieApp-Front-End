@@ -1,4 +1,4 @@
-{/*Delete dis*/}
+{/*Delete dis if it's not needed.*/}
 
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
