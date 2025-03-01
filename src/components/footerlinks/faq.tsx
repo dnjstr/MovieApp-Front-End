@@ -6,8 +6,8 @@ import Account from './content/faq/Account';
 import Community from './content/faq/Community';
 import Legal from './content/faq/Legal';
 import Contact from './content/faq/Contact';
-import BackButton from './footerbuttons/BackButton';
-import ScrollToTopButton from './footerbuttons/ScrollTopButton';
+import BackButton from './reusable/footerbuttons/BackButton';
+import ScrollToTopButton from './reusable/footerbuttons/ScrollTopButton';
 
 const FAQ = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);

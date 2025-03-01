@@ -5,8 +5,8 @@ import Feedback from './content/contacts/Feedback';
 import Social from './content/contacts/Social';
 import Support from './content/contacts/Support';
 import WhyContact from './content/contacts/WhyContact';
-import BackButton from './footerbuttons/BackButton';
-import ScrollToTopButton from './footerbuttons/ScrollTopButton';
+import BackButton from './reusable/footerbuttons/BackButton';
+import ScrollToTopButton from './reusable/footerbuttons/ScrollTopButton';
 
 const ContactUs = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);

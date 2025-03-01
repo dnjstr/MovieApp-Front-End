@@ -17,8 +17,8 @@ import Privacy from './content/TermsandCondition/Privacy';
 import Severability from './content/TermsandCondition/Severability';
 import Termination from './content/TermsandCondition/Termination';
 import ThirdParty from './content/TermsandCondition/ThirdParty';
-import BackButton from './footerbuttons/BackButton';
-import ScrollToTopButton from './footerbuttons/ScrollTopButton';
+import BackButton from './reusable/footerbuttons/BackButton';
+import ScrollToTopButton from './reusable/footerbuttons/ScrollTopButton';
 
 const TermsAndConditions = () => {
   const queryClient = useQueryClient();
