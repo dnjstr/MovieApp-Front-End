@@ -8,7 +8,7 @@ interface MovieVideoPlayerProps {
     src: string;
 }
 
-const MovieVideoPlayer: React.FC<{ src: string }> = ({ src }) => {
+const MovieVideoPlayer: React.FC< MovieVideoPlayerProps > = ({ src }) => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [isMuted, setIsMuted] = useState(false);
