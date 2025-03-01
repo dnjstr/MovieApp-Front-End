@@ -17,10 +17,11 @@ import Privacy from './content/TermsandCondition/Privacy';
 import Severability from './content/TermsandCondition/Severability';
 import Termination from './content/TermsandCondition/Termination';
 import ThirdParty from './content/TermsandCondition/ThirdParty';
+import BackButton from './footerbuttons/BackButton';
+import ScrollToTopButton from './footerbuttons/ScrollTopButton';
 
 const TermsAndConditions = () => {
   const queryClient = useQueryClient();
-
 
   const { data: scrollData } = useQuery({
     queryKey: ['scrollState'],
@@ -69,13 +70,6 @@ const TermsAndConditions = () => {
     }
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
-
   const sections = [
     { id: 'copyright-warning', title:'Copyright Warning' },
     { id: 'introduction', title: 'Introduction' },
@@ -100,12 +94,7 @@ const TermsAndConditions = () => {
     <div className="flex w-full min-h-screen relative bg-black text-white z-10">
       <div className='absolute top-0 left-0 w-full h-full pointer-events-none'></div>
       <div className="w-full lg:w-3/4 p-4 md:p-8">
-        <button
-          className="bg-orange-600 border border-gray-900 text-white py-2 px-4 rounded-md hover:bg-orange-800 mb-8"
-          onClick={() => window.history.back()}
-        >
-          Back
-        </button>
+        <BackButton />
 
         <h1 className="text-4xl font-bold mb-6">Terms and Service</h1>
         <p className="text-gray-400 mb-12">Effective Date: January 2, 2025</p>
@@ -160,23 +149,17 @@ const TermsAndConditions = () => {
         </div>
       </div>
 
-      <button
-        className={`fixed lg:block hidden stbutton bottom-8 border border-gray-700 bg-orange-600 text-white p-4 rounded-full transition-opacity duration-300 hover:bg-orange-800 ${
-          scrollData?.showScrollTop ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
-        onClick={scrollToTop}
-      >
-        ↑
-      </button>
+{/* Desktop ScrollToTop Button */}
+<ScrollToTopButton 
+  isVisible={scrollData?.showScrollTop || false} 
+  className=" fixed stbutton lg:block hidden bottom-8 p-4" 
+/>
 
-      <button
-        className={`fixed lg:hidden block right-8 bottom-8 border border-gray-700 bg-orange-600 text-white p-4 rounded-full transition-opacity duration-300 hover:bg-orange-800 ${
-          scrollData?.showScrollTop ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
-        onClick={scrollToTop}
-      >
-        ↑
-      </button>
+{/* Mobile ScrollToTop Button */}
+<ScrollToTopButton 
+  isVisible={scrollData?.showScrollTop || false} 
+  className="fixed lg:hidden block right-8 bottom-8 p-4" 
+/>
 
     </div>
   );
