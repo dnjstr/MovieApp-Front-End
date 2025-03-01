@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import SignInForm from "./sign-in/SignInForm";
-import SignInHeader from "./sign-in/SignInHeader";
+import SignInForm from "../sign-in/SignInForm";
+import SignInHeader from "../sign-in/SignInHeader";
 
 const SignIn: React.FC = () => {
     return (

@@ -1,6 +1,6 @@
 import React from "react";
-import SignUpForm from "./sign-up/SignUpForm";
-import SignUpHeader from "./sign-up/SignUpHeader";
+import SignUpForm from "../sign-up/SignUpForm";
+import SignUpHeader from "../sign-up/SignUpHeader";
 
 const SignUp: React.FC = () => {
     return (
