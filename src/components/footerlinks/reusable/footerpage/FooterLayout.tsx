@@ -7,14 +7,14 @@ interface Section {
   title: string;
 }
 
-interface PageWithSidebarProps {
+interface FooterLayoutProps {
   title: string;
   description: string;
   sections: Section[];
   children: ReactNode;
 }
 
-const PageWithSidebar = ({ title, description, sections, children }: PageWithSidebarProps) => {
+const FooterLayout = ({ title, description, sections, children }: FooterLayoutProps) => {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [activeSection, setActiveSection] = useState('');
 
@@ -110,4 +110,4 @@ const PageWithSidebar = ({ title, description, sections, children }: PageWithSid
   );
 };
 
-export default PageWithSidebar;
+export default FooterLayout;
