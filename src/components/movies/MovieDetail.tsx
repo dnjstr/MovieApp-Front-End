@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { FaArrowLeft, FaBookmark } from 'react-icons/fa';
 import { useAuth } from '../../context/AuthContext';
-import MoviePlayer from './MoviePlayer';
 import axiosInstance from '../../api/axiosInstance';
 import useMovieDetails from '../../hooks/useMovieDetails';
 import useMovieReviews from '../../hooks/useMovieReview';
 import useBookmarkStatus from '../../hooks/useBookmarkStatus';
+
+import BackgroundLayers from './movieTemplates/BackgroundLayers';
+import ContentContainer from './movieTemplates/ContentContainer';
+import MovieDetailsSection from './movieTemplates/MovieDetailsSection';
+import MainCastSection from './movieTemplates/MainCastSection';
+import RatingsReviewsSection from './movieTemplates/RatingsReviewsSection';
+import ReviewsSection from './movieTemplates/ReviewsSection';
+import VideoPlayerSection from './movieTemplates/VideoPlayerSection'
 
 const MovieDetail: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -131,183 +137,38 @@ const MovieDetail: React.FC = () => {
 
     return (
         <div className="relative text-white bg-black min-h-screen">
-            {/* Background layers */}
-            <div className="fixed inset-0 bg-cover bg-center opacity-50" 
-                style={{ backgroundImage: `url(${movie.poster_image})` }}>
-            </div>
-            <div className="fixed inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black"></div>
-
-            {/* Content container */}
-            <div className="relative z-10 mt-3">
-                {/* Movie details section */}
-                <div className="p-8 w-full max-w-full">
-                    <button
-                        onClick={() => (window.history.length > 2 ? navigate(-1) : navigate('/'))}
-                        className="flex items-center gap-2 mb-4 px-4 py-2 bg-gradient-to-b from-orange-600 to-orange-900 text-white rounded hover:bg-orange-900 transition duration-300 mt-8 shadow-md"
-                    >
-                        <FaArrowLeft /> Back
-                    </button>
-
-                    <div className="flex flex-col md:flex-row items-center">
-                        <img src={movie.poster_image} alt={movie.title} className="w-80 h-96 object-cover rounded-md shadow-lg border border-gray-700" />
-                        <div className="md:ml-8 text-center md:text-left">
-                            <h1 className="text-4xl font-bold">{movie.title}</h1>
-                            <p className="text-lg mt-2 text-gray-300">{movie.description}</p>
-                            <p className="text-sm text-gray-400 mt-2">Release Date: {movie.release_date}</p>
-                            <p className="text-sm text-gray-400">Duration: {movie.duration}</p>
-                            <p className="text-sm text-gray-400">Genre: {movie.genre}</p>
-                            <p className="text-sm text-gray-400">Director: {movie.director}</p>
-                            <div className='flex gap-4 justify-between md:justify-start'>
-                                <button
-                                    onClick={toggleBookmark}
-                                    className={`bookmark-btn-hover mt-4 px-4 py-2 rounded flex items-center gap-2 ${isAuthenticated ? 'bg-gradient-to-b from-orange-600 to-orange-900 text-white' : 'bg-gray-600 text-white cursor-not-allowed'}`}
-                                    disabled={!isAuthenticated}
-                                >
-                                    <FaBookmark /> {isBookmarked ? 'Remove Bookmark' : 'Bookmark'}
-                                </button>
-                                <button
-                                    onClick={isReleased ? handleWatchNow : undefined}
-                                    className={`mt-4 px-4 py-2 rounded transition duration-300 ${
-                                        isReleased 
-                                            ? 'bg-gradient-to-b from-green-600 to-green-900 text-white' 
-                                            : 'bg-gray-600 text-gray-400 cursor-not-allowed'
-                                    }`}
-                                    disabled={!isReleased}
-                                >
-                                    {isReleased ? "Watch Now" : "Coming Soon"}
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    {movie.main_cast && (
-                        <>
-                            <h2 className="text-2xl font-bold mt-6 text-center border-b border-orange-600 pb-2">Main Cast</h2>
-                            <div className="flex flex-wrap justify-center gap-2 mt-2">
-                                {movie.main_cast.split(',').map((actor: string, index: number) => (
-                                    <span key={index} className="main-cast-bg px-3 py-1 text-white rounded-md shadow-md">
-                                        {actor.trim()}
-                                    </span>
-                                ))}
-                            </div>
-                        </>
-                    )}
-
-                    <h2 className="text-2xl font-bold mt-6 text-center">Ratings & Reviews</h2>
-                    <div className="text-center mt-4 border-t-2 border-orange-700 pt-3 rounded">
-                        <p className="text-yellow-400 text-xl">{'⭐'.repeat(Math.round(movie.average_rating))}</p>
-                        <p className="text-sm text-gray-400">Average Rating: {movie.average_rating} / 10</p>
-                    </div>
-                </div> 
-                    
-                {/* Video player */}
-                {isPlayerOpen && (
-                    <MoviePlayer
-                        videoUrl={movie.video_url}
-                        onClose={closePlayer}
-                    />
-                )}
-
-                {/* Reviews section */}
-                <div className="max-w-4xl mx-auto mt-8 p-6">
-                    <div className="flex justify-between items-center mb-6">
-                        <h2 className="text-2xl font-bold">Reviews</h2>
-                        {isReleased ? (
-                            <button
-                                onClick={() => {
-                                    setShowReviewForm(true);
-                                    setIsButtonDisabled(true); 
-                                }}
-                                className={`px-4 py-2 rounded-md ${
-                                    isAuthenticated && !isButtonDisabled
-                                        ? 'bg-gradient-to-b from-orange-600 to-orange-900'
-                                        : 'bg-gray-600 cursor-not-allowed'
-                                }`}
-                                disabled={!isAuthenticated || isButtonDisabled}
-                            >
-                                Add Review
-                            </button>
-                        ) : (
-                            <span className="text-gray-400">Coming Soon - Reviews Unavailable</span>
-                        )}
-                    </div>
-
-                    {showReviewForm && isReleased && (
-                        <form onSubmit={handleReviewSubmit} className="mb-8 bg-gray-900 p-6 rounded-lg">
-                            <div className="mb-4">
-                                <label className="block mb-2">Rating (1-10)</label>
-                                <div className="flex gap-2">
-                                    {[...Array(10)].map((_, index) => (
-                                        <button
-                                            key={index}
-                                            type="button"
-                                            onClick={() => setNewReview({ ...newReview, rating: index + 1 })}
-                                            className={`text-2xl ${index < newReview.rating ? 'text-yellow-400' : 'text-gray-400'}`}
-                                        >
-                                            ★
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
-                            <div className="mb-4">
-                                <textarea
-                                    value={newReview.review_text}
-                                    onChange={(e) => setNewReview({ ...newReview, review_text: e.target.value })}
-                                    placeholder="Write your review..."
-                                    className="w-full p-2 bg-gray-800 rounded text-white"
-                                    rows={4}
-                                />
-                            </div>
-                            <div className="flex gap-2">
-                                <button
-                                    type="submit"
-                                    className="px-4 py-2 bg-gradient-to-b from-orange-600 to-orange-900 rounded"
-                                >
-                                    Submit Review
-                                </button>
-                                <button
-                                    type="button"
-                                    onClick={() => {
-                                        setShowReviewForm(false);
-                                        setNewReview({ rating: 0, review_text: '' });
-                                        setIsButtonDisabled(false);
-                                    }}
-                                    className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded"
-                                >
-                                    Cancel
-                                </button>
-                            </div>
-                        </form>
-                    )}
-
-                    {showSignInMessage && (
-                        <div className="bg-red-600 text-white p-4 rounded mb-4">
-                            Please sign in to submit a review
-                        </div>
-                    )}
-
-                    {/* Reviews List */}
-                    <h2 className="text-2xl font-bold mb-4">User Reviews</h2>
-                    {reviews.length === 0 ? (
-                        <p className="text-gray-400">No reviews yet. Be the first to review!</p>
-                    ) : (
-                        <div className="space-y-4">
-                            {reviews.map((review) => (
-                                <div key={review.id} className="bg-gray-800 p-4 rounded">
-                                    <div className="flex justify-between items-center mb-2">
-                                        <span className="font-bold">{review.user.fullName}</span>
-                                        <span className="text-yellow-400">{'★'.repeat(review.rating)}</span>
-                                    </div>
-                                    <p className="text-gray-300">{review.review_text}</p>
-                                    <span className="text-sm text-gray-400">
-                                        {new Date(review.created_at).toLocaleDateString()}
-                                    </span>
-                                </div>
-                            ))}
-                        </div>
-                    )}
-                </div>
-            </div>
+            <BackgroundLayers image={movie.poster_image} />
+            <ContentContainer>
+                <MovieDetailsSection
+                    movie={movie}
+                    isAuthenticated={isAuthenticated}
+                    isBookmarked={isBookmarked}
+                    toggleBookmark={toggleBookmark}
+                    handleWatchNow={handleWatchNow}
+                    isReleased={isReleased}
+                    navigate={navigate}
+                />
+                {movie.main_cast && <MainCastSection main_cast={movie.main_cast} />}
+                <RatingsReviewsSection average_rating={movie.average_rating} />
+                <ReviewsSection
+                    reviews={reviews}
+                    newReview={newReview}
+                    setNewReview={setNewReview}
+                    handleReviewSubmit={handleReviewSubmit}
+                    showReviewForm={showReviewForm}
+                    setShowReviewForm={setShowReviewForm}
+                    setIsButtonDisabled={setIsButtonDisabled}
+                    isAuthenticated={isAuthenticated}
+                    isReleased={isReleased}
+                    showSignInMessage={showSignInMessage}
+                    isButtonDisabled={isButtonDisabled}
+                />
+                <VideoPlayerSection
+                    isPlayerOpen={isPlayerOpen}
+                    videoUrl={movie.video_url}
+                    closePlayer={closePlayer}
+                />
+            </ContentContainer>
         </div>
     );
 };
