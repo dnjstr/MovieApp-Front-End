@@ -51,7 +51,7 @@ const useSignIn = () => {
             setFormData({ identifier: "", password: "" });
 
             setTimeout(() => {
-                data.role === "admin" ? (window.location.href = "/admin/") : navigate("/");
+                data.role === "admin" ? (window.location.href = "http://127.0.0.1:8000/admin/") : navigate("/");
             }, 1500);
         } catch (err) {
             if (err instanceof Error) {
