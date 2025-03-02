@@ -101,7 +101,6 @@ const MovieDetail: React.FC = () => {
                 setReviews([...reviews, response.data]);
                 setNewReview({ rating: 0, review_text: '' });
 
-                // Refresh movie details to update review-related info
                 const movieResponse = await axiosInstance.get(`/movie/${id}/`);
                 setMovie(movieResponse.data);
             } else {

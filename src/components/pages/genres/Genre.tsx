@@ -50,7 +50,7 @@ const Genre: React.FC = () => {
     });
 
     if (isLoading) {
-        return <div className="text-white-500 text-center my-[382px]">Loading...</div>;
+        return <div className="text-white text-center my-[382px]">Loading...</div>;
     }
 
     if (isError) {
@@ -66,7 +66,7 @@ const Genre: React.FC = () => {
             <div>
                 <div className="text-center mt-[88px] mb-4">
                     <h1 className={`text-4xl font-bold mb-2 ${textColor}`}>Browse by Genre</h1>
-                    <p className={`${{textColor}} pb-5`}>Discover your next favorite movie across multiple genres</p>
+                    <p className={`${textColor} pb-5`}>Discover your next favorite movie across multiple genres</p>
                 </div>
                 <div className="bookmark-scroll-bar overflow-y-scroll h-[530px] px-5">
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
