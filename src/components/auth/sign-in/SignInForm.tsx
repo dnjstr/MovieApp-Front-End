@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import useSignIn from "../../../hooks/useSignIn";
 
 const SignInForm: React.FC = () => {
@@ -31,6 +32,14 @@ const SignInForm: React.FC = () => {
                 <button type="submit" disabled={isLoading} className={`sign-in-btn ${isLoading && "opacity-70"}`}>
                     {isLoading ? "Signing in..." : "Sign In"}
                 </button>
+
+                <p className="text-center text-gray-300 mt-4 text-sm">
+                        Don't have an account?{" "}
+                        <Link to="/sign-up" className="text-orange-500 text-[16px] font-semibold hover:underline">
+                            Sign Up
+                        </Link>
+                    </p>
+                    
             </form>
         </>
     );

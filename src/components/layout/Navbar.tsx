@@ -6,7 +6,7 @@ import SearchResults from '../search/SearchResults';
 import { debounce } from 'lodash';
 import { useClickOutside } from '../../hooks/useClickOutside';
 import PreferencesModal from '../preference/PreferencesModal';
-import ProfileModal from '../profile/ProfilePageModal';
+import ProfileModal from '../profile/ProfileModal';
 import axiosInstance from "../../api/axiosInstance";
 
 interface Movie {

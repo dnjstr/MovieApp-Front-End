@@ -1,7 +1,7 @@
 import React from "react";
 import { useComingSoonMovies } from "../../../hooks/useComingSoon"; 
 import { usePreferences } from "../../../context/PreferencesContext";
-import MovieList from "./components/MovieList";
+import MovieList from "./comingsoonComponents/MovieList";
 
 const ComingSoon: React.FC = () => {
   const textColor = usePreferences();
