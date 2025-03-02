@@ -1,12 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
-interface Movie {
-    id: number;
-    title: string;
-    poster_image: string;
-    release_date: string;
-}
+import { Movie } from '../../types/types';
 
 interface SearchResultsProps {
     results: Movie[];
