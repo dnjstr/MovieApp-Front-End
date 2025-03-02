@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
 import { usePreferences } from "../../../context/PreferencesContext";
-import BookmarkList from "./components/BookmarkList";
+import BookmarkList from "./my-listComponents/BookmarkList";
 import { useMyList, useRemoveFromMyList } from "../../../hooks/useMyList";
 
 const MyList: React.FC = () => {
