@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import useSignIn from "../../../hooks/useSignIn";
+import useSignIn from "../../../lib/services/authServices";
 
 const SignInForm: React.FC = () => {
     const { formData, error, success, isLoading, handleChange, handleSubmit } = useSignIn();
