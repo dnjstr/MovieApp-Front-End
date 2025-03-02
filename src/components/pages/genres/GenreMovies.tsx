@@ -18,27 +18,12 @@ const GenreMovies: React.FC = () => {
     });
 
     const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
-    const [infoType, setInfoType] = useState<'description' | 'genreRelease' | 'mainCastDirector'>('description');
 
     useEffect(() => {
         if (movies.length > 0) {
             setSelectedMovie(movies[0]);
         }
     }, [movies]);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setInfoType((prev) =>
-                prev === "description"
-                    ? "genreRelease"
-                    : prev === "genreRelease"
-                    ? "mainCastDirector"
-                    : "description"
-            );
-        }, 3000);
-
-        return () => clearInterval(interval);
-    }, []);
 
     if (isLoading) {
         return <div className="text-white text-center mt-32">Loading...</div>;
