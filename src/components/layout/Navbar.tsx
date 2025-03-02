@@ -8,13 +8,7 @@ import { useClickOutside } from '../../hooks/useClickOutside';
 import PreferencesModal from '../preference/PreferencesModal';
 import ProfileModal from '../profile/ProfileModal';
 import axiosInstance from "../../api/axiosInstance";
-
-interface Movie {
-    id: number;
-    title: string;
-    poster_image: string;
-    release_date: string;
-}
+import { Movie } from '../../types/types';
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
