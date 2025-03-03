@@ -1,14 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
-interface Bookmark {
-  id: number;
-  movie: number;
-  movie_title: string;
-  movie_poster: string;
-  movie_release_date: string;
-  movie_director: string;
-}
+import { Bookmark } from "../../../../types/types";
 
 interface BookmarkItemProps {
   bookmark: Bookmark;

@@ -31,6 +31,17 @@ export interface GenreItemProps {
 }
 
 
+// Bookmark
+export interface Bookmark {
+    id: number;
+    movie: number;
+    movie_title: string;
+    movie_poster: string;
+    movie_release_date: string;
+    movie_director: string;
+}
+
+
 // Movie Player
 export interface MoviePlayerProps {
   videoUrl: string;
