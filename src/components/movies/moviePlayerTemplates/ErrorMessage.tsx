@@ -1,8 +1,5 @@
 import React from 'react';
-
-interface ErrorMessageProps {
-  onClose: () => void;
-}
+import { ErrorMessageProps } from '../../../types/types';
 
 const ErrorMessage: React.FC<ErrorMessageProps> = ({ onClose }) => (
   <div className="absolute inset-0 flex items-center justify-center bg-black/80 text-white text-center px-4">

@@ -27,3 +27,21 @@ export interface MoviePlayerProps {
 export interface MovieVideoPlayerProps {
     src: string;
 }
+
+export interface ErrorMessageProps {
+    onClose: () => void;
+}
+
+export interface FullscreenButtonProps {
+    onClick: () => void;
+}
+
+export interface MuteButtonProps {
+  isMuted: boolean;
+  onClick: () => void;
+}
+
+export interface PlayPauseButtonProps {
+  isPlaying: boolean;
+  onClick: () => void;
+}

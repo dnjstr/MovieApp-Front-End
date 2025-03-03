@@ -6,7 +6,6 @@ import LoadingSpinner from './moviePlayerTemplates/LoadingSpinner';
 import ErrorMessage from './moviePlayerTemplates/ErrorMessage';
 import { MoviePlayerProps } from '../../types/types';
 
-
 const MoviePlayer: React.FC<MoviePlayerProps> = ({ videoUrl, onClose }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);

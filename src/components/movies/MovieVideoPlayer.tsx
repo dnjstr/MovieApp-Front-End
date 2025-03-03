@@ -4,7 +4,6 @@ import MuteButton from './moviePlayerTemplates/MuteButton';
 import FullscreenButton from './moviePlayerTemplates/FullScreenButton';
 import { MovieVideoPlayerProps } from "../../types/types";
 
-
 const MovieVideoPlayer: React.FC< MovieVideoPlayerProps > = ({ src }) => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isPlaying, setIsPlaying] = useState(false);
