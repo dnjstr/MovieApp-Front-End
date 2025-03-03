@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "react-modal";
-import ProfileAvatar from "./ProfileAvatar";
-import ProfileActions from "./ProfileActions";
+import ProfileAvatar from "./profileComponents/ProfileAvatar";
+import ProfileActions from "./profileComponents/ProfileActions";
 import useProfileModal from "../../hooks/useProfileModal";
 
 const ProfileModal: React.FC<{ isOpen: boolean; onRequestClose: () => void }> = ({ 
