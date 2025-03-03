@@ -1,11 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Movie } from '../../types/types';
-
-interface SearchResultsProps {
-    results: Movie[];
-    onClose: () => void;
-}
+import { SearchResultsProps } from '../../types/types';
 
 const SearchResults: React.FC<SearchResultsProps> = ({ results, onClose }) => {
     const navigate = useNavigate();

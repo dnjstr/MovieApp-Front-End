@@ -1,4 +1,11 @@
 
+// Search
+export interface SearchResultsProps {
+    results: Movie[];
+    onClose: () => void;
+}
+
+
 // Review
 export interface Review {
     id: number; 
