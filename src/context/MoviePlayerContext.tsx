@@ -1,9 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
-
-interface MoviePlayerContextType {
-  isPlaying: boolean;
-  setIsPlaying: (playing: boolean) => void;
-}
+import { MoviePlayerContextType } from "../types/types";
 
 const MoviePlayerContext = createContext<MoviePlayerContextType>({
   isPlaying: false,

@@ -1,15 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { PreferencesContextType } from "../types/types";
 
-// Define the context type
-type PreferencesContextType = {
-    bgColor: string;
-    setBgColor: (color: string) => void;
-    textColor: string;
-    setTextColor: (color: string) => void;
-    isLoaded: boolean;
-};
-
-// Create context
 const PreferencesContext = createContext<PreferencesContextType | undefined>(undefined);
 
 export const PreferencesProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -41,7 +32,6 @@ export const PreferencesProvider: React.FC<{ children: React.ReactNode }> = ({ c
     );
 };
 
-// Custom Hook
 export const usePreferences = (): PreferencesContextType => {
     const context = useContext(PreferencesContext);
     if (!context) {

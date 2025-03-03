@@ -77,6 +77,11 @@ export interface PlayPauseButtonProps {
   onClick: () => void;
 }
 
+export interface MoviePlayerContextType {
+  isPlaying: boolean;
+  setIsPlaying: (playing: boolean) => void;
+}
+
 
 // Preference
 export interface ActionButtonsProps {
@@ -94,4 +99,30 @@ export interface ThemeSelectorProps {
 export interface PreferencesModalProps {
     isOpen: boolean;
     onRequestClose: () => void;
+}
+
+export type PreferencesContextType = {
+    bgColor: string;
+    setBgColor: (color: string) => void;
+    textColor: string;
+    setTextColor: (color: string) => void;
+    isLoaded: boolean;
+};
+
+
+// Authentication
+export interface User {
+  name: string;
+  email: string;
+  profilePic?: string;
+}
+
+export interface AuthContextType {
+  isAuthenticated: boolean;
+  token: string | null;
+  role: "admin" | "user" | null;
+  user: User | null;
+  loading: boolean;
+  login: (token: string, role: "admin" | "user", user: User) => void;
+  logout: () => void;
 }
