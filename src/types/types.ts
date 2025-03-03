@@ -19,3 +19,7 @@ export interface Movie {
     average_rating: number;
 }
 
+export interface MoviePlayerProps {
+  videoUrl: string;
+  onClose: () => void;
+}

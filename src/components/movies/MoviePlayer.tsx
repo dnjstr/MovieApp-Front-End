@@ -4,11 +4,8 @@ import getVideoId from '../../utils/getVideoId';
 import useKeydown from '../../hooks/useKeydown';
 import LoadingSpinner from './moviePlayerTemplates/LoadingSpinner';
 import ErrorMessage from './moviePlayerTemplates/ErrorMessage';
+import { MoviePlayerProps } from '../../types/types';
 
-interface MoviePlayerProps {
-  videoUrl: string;
-  onClose: () => void;
-}
 
 const MoviePlayer: React.FC<MoviePlayerProps> = ({ videoUrl, onClose }) => {
   const [isLoading, setIsLoading] = useState(true);
