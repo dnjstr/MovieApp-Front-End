@@ -1,83 +1,59 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { FaHome, FaSearch, FaBars, FaTimes, FaUser, FaCog, FaSignOutAlt, FaThLarge, FaBookmark } from 'react-icons/fa';
-import { useAuth } from '../../context/AuthContext';
 import SearchResults from '../search/SearchResults';
-import { debounce } from 'lodash';
-import { useClickOutside } from '../../hooks/useClickOutside';
 import PreferencesModal from '../preference/PreferencesModal';
 import ProfileModal from '../profile/ProfileModal';
-import axiosInstance from "../../api/axiosInstance";
-import { Movie } from '../../types/types';
+import { useSearch } from '../../hooks/ForNavbar/useSearch';
+import { useNavigation } from '../../hooks/ForNavbar/useNavigation';
+import { useModals } from '../../hooks/ForNavbar/useModals';
 
 const Navbar: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const { isAuthenticated, logout, role } = useAuth();
-  const navigate = useNavigate();
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState<Movie[]>([]);
-  const [showResults, setShowResults] = useState(false);
-  const searchContainerRef = useRef<HTMLDivElement>(null);
-  const [isPreferencesOpen, setIsPreferencesOpen] = useState(false);
-  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
 
-  useEffect(() => {
-    const checkAdminState = () => {
-      const savedRole = localStorage.getItem('userRole');
-      if (savedRole === 'admin') {
-        window.location.reload();
-      }
-    };
+  const {
+    searchQuery,
+    searchResults,
+    showResults,
+    searchContainerRef,
+    handleSearchChange,
+    handleCloseSearch,
+    setShowResults
+  } = useSearch();
 
-    window.addEventListener('popstate', checkAdminState);
-    
-    return () => {
-      window.removeEventListener('popstate', checkAdminState);
-    };
-  }, []);
+  const {
+    isMenuOpen,
+    isDropdownOpen,
+    isAuthenticated,
+    role,
+    toggleMenu,
+    toggleDropdown,
+    closeDropdown,
+    closeMenu,
+    handleLogout
+  } = useNavigation();
 
-  const handleLogout = () => {
-    logout();
-    setIsDropdownOpen(false);
-    navigate('/');
+  const {
+    isPreferencesOpen,
+    isProfileModalOpen,
+    openPreferences,
+    closePreferences,
+    openProfileModal,
+    closeProfileModal
+  } = useModals();
+
+  const handleOpenProfileModal = () => {
+    closeDropdown();
+    openProfileModal();
   };
 
-  const searchMovies = async (query: string) => {
-    if (!query.trim()) {
-      setSearchResults([]);
-      return;
-    }
-  
-    try {
-      const response = await axiosInstance.get(`/movie/search/`, {
-        params: { q: query }, 
-      });
-  
-      setSearchResults(response.data);
-      setShowResults(true);
-    } catch (error) {
-      console.error("Error searching movies:", error);
-    }
+  const handleOpenPreferences = () => {
+    closeDropdown();
+    openPreferences();
   };
 
-  const debouncedSearch = debounce(searchMovies, 300);
-
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const query = e.target.value;
-    setSearchQuery(query);
-    debouncedSearch(query);
+  const handleMenuItemClick = () => {
+    closeMenu();
   };
-
-  const handleCloseSearch = () => {
-    setShowResults(false);
-    setSearchQuery('');
-    setSearchResults([]);
-  };
-
-  useClickOutside(searchContainerRef, () => {
-    setShowResults(false);
-  });
 
   return (
     <nav className="nav-bar-container flex items-center justify-between px-3 mdx:px-8 py-3 fixed w-full bg-black bg-opacity-75 z-50 border-b border-gray-700">
@@ -110,6 +86,7 @@ const Navbar: React.FC = () => {
         </Link>
       </div>
 
+      {/* Search Bar */}
       <div 
         ref={searchContainerRef}
         className="search-container flex items-center bg-gray-950 bg-opacity-70 
@@ -138,7 +115,7 @@ const Navbar: React.FC = () => {
           <div className="relative">
             <button
               className="profile-button border border-orange-700 text-orange-100 hover:bg-orange-700 px-4 py-2 rounded-md flex items-center space-x-2"
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              onClick={toggleDropdown}
             >
               <FaUser />
               <span>Profile</span>
@@ -148,21 +125,15 @@ const Navbar: React.FC = () => {
               <div className="profile-dropdown-desktop absolute top-[50px] right-0 mt-2 w-48 bg-black rounded-md shadow-lg z-10 border border-gray-700">
                 <button
                   className="px-4 py-2 text-sm text-white hover:bg-orange-600 hover:rounded-tl-md hover:rounded-tr-md flex items-center justify-end space-x-2 w-full border-b border-gray-700"
-                  onClick={() => {
-                    setIsDropdownOpen(false);
-                    setIsProfileModalOpen(true);
-                  }}
+                  onClick={handleOpenProfileModal}
                 >
                   <span>My Profile</span>
                   <FaUser className="text-sm" />
                 </button>
 
                 <button
-                  className=" px-4 py-2 w-full text-sm text-white hover:bg-orange-600 flex items-center space-x-2 justify-end"
-                  onClick={() => {
-                    setIsDropdownOpen(false);
-                    setIsPreferencesOpen(true);
-                  }}
+                  className="px-4 py-2 w-full text-sm text-white hover:bg-orange-600 flex items-center space-x-2 justify-end"
+                  onClick={handleOpenPreferences}
                 >
                   <span>Preferences</span>
                   <FaCog className="text-sm" />
@@ -181,7 +152,7 @@ const Navbar: React.FC = () => {
         ) : (
           <Link 
             to="/sign-in" 
-            className="signin-navbar-btn border border-orange-700 text-white px-4 py-2 rounded-md  hover:bg-orange-700 transition duration-300"
+            className="signin-navbar-btn border border-orange-700 text-white px-4 py-2 rounded-md hover:bg-orange-700 transition duration-300"
           >
             Sign In
           </Link>
@@ -190,7 +161,7 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Menu Toggle */}
       <button
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        onClick={toggleMenu}
         className="mdx:hidden text-white"
         aria-label="Toggle mobile menu"
       >
@@ -201,25 +172,18 @@ const Navbar: React.FC = () => {
       {isMenuOpen && (
         <div className="absolute top-[59px] text-sm w-[99%] right-0 mx-1 bg-black rounded-md flex flex-col items-end py-4 space-y-4 md:hidden border border-gray-700">
           <div className='flex justify-around w-full'>
-            <Link to="/" className="text-white hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>Home</Link>
-            {/* <div className='h-[1px] w-full bg-gray-700'></div> */}
-            <Link to="/comingsoon" className="text-white hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>Coming Soon</Link>
-            {/* <div className='h-[1px] w-full bg-gray-700'></div> */}
-            <Link to="/genre" className="text-white hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>Genre</Link>
-            {/* <div className='h-[1px] w-full bg-gray-700'></div> */}
-            <Link to="/my-list" className="text-white hover:text-orange-600" onClick={() => setIsMenuOpen(false)}>Bookmarks</Link>
+            <Link to="/" className="text-white hover:text-orange-600" onClick={handleMenuItemClick}>Home</Link>
+            <Link to="/comingsoon" className="text-white hover:text-orange-600" onClick={handleMenuItemClick}>Coming Soon</Link>
+            <Link to="/genre" className="text-white hover:text-orange-600" onClick={handleMenuItemClick}>Genre</Link>
+            <Link to="/my-list" className="text-white hover:text-orange-600" onClick={handleMenuItemClick}>Bookmarks</Link>
           </div>
           <div className='h-[1px] w-full bg-gray-700'></div>
           <div className="relative text-sm w-full flex justify-end">
             {isAuthenticated ? (
               <>
-
                 <button
                   className="px-4 flex py-2 text-sm text-white hover:bg-orange-600 w-full rounded-md justify-center"
-                  onClick={() => {
-                    setIsDropdownOpen(false);
-                    setIsProfileModalOpen(true);
-                  }}
+                  onClick={handleOpenProfileModal}
                 >
                   <FaUser className="mt-[2px] mr-2" />
                   <span>My Profile</span>
@@ -227,10 +191,7 @@ const Navbar: React.FC = () => {
 
                 <button
                   className="flex px-4 py-2 text-white hover:bg-orange-600 w-full rounded-md justify-center"
-                  onClick={() => {
-                    setIsDropdownOpen(false);
-                    setIsPreferencesOpen(true);
-                  }}
+                  onClick={handleOpenPreferences}
                 >
                   <FaCog className="mt-1 mr-2" />
                   <span>Preferences</span>
@@ -247,34 +208,28 @@ const Navbar: React.FC = () => {
               <>
                 <Link
                   to="/sign-in"
-                  className=" px-4 py-2 flex text-white hover:bg-orange-600 rounded-md"
-                  onClick={() => { setIsMenuOpen(false); }}
+                  className="px-4 py-2 flex text-white hover:bg-orange-600 rounded-md"
+                  onClick={handleMenuItemClick}
                 >
                   <FaSignOutAlt className="mt-1 mr-2" />
                   Sign In
                 </Link>
-                {/* <Link
-                  to="/sign-up"
-                  className="block px-4 py-2 text-white hover:bg-orange-600 rounded-md"
-                  onClick={() => { setIsMenuOpen(false); }}
-                >
-                  Sign Up
-                </Link> */}
               </>
             )}
           </div>
         </div>
       )}
+
+      {/* Modals */}
       <PreferencesModal
         isOpen={isPreferencesOpen}
-        onRequestClose={() => setIsPreferencesOpen(false)}
+        onRequestClose={closePreferences}
       />
 
       <ProfileModal 
         isOpen={isProfileModalOpen}
-        onRequestClose={() => setIsProfileModalOpen(false)}
+        onRequestClose={closeProfileModal}
       />
-
     </nav>
   );
 };
