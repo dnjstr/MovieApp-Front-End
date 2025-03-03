@@ -37,6 +37,16 @@ export interface GenreItemProps {
     count: number;
 }
 
+export interface MovieCardProps {
+    movie: Movie;
+    setSelectedMovie: (movie: Movie) => void;
+}
+
+export interface MovieHeaderProps {
+    selectedMovie: Movie | null;
+    navigate: (path: string) => void;
+}
+
 
 // Bookmark
 export interface Bookmark {
