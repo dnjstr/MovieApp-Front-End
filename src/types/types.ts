@@ -23,3 +23,7 @@ export interface MoviePlayerProps {
   videoUrl: string;
   onClose: () => void;
 }
+
+export interface MovieVideoPlayerProps {
+    src: string;
+}

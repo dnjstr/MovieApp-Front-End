@@ -1,12 +1,9 @@
 import React, { useRef, useState } from "react";
-
 import PlayPauseButton from './moviePlayerTemplates/PlayPauseButton';
 import MuteButton from './moviePlayerTemplates/MuteButton';
 import FullscreenButton from './moviePlayerTemplates/FullScreenButton';
+import { MovieVideoPlayerProps } from "../../types/types";
 
-interface MovieVideoPlayerProps {
-    src: string;
-}
 
 const MovieVideoPlayer: React.FC< MovieVideoPlayerProps > = ({ src }) => {
     const videoRef = useRef<HTMLVideoElement>(null);
