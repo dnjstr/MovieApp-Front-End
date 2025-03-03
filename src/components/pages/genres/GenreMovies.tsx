@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { Movie } from "../../../types/types";
-import { fetchMoviesByGenre } from "../../../hooks/useMovieGenre";
+import { fetchMoviesByGenre } from "../../../hooks/ForMovies/useMovieGenre";
 import MovieHeader from "./genreTemplates/MovieHeader";
 import MovieGenreCard from "./genreTemplates/MovieGenreCard";
 

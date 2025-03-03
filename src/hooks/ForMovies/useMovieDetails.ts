@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axiosInstance from '../api/axiosInstance';
+import axiosInstance from '../../api/axiosInstance';
 
 const useMovieDetails = (id: string) => {
     const [movie, setMovie] = useState<any>(null);

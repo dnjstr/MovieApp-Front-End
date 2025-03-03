@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import axiosInstance from '../../api/axiosInstance';
-import useMovieDetails from '../../hooks/useMovieDetails';
-import useMovieReviews from '../../hooks/useMovieReview';
+import useMovieDetails from '../../hooks/ForMovies/useMovieDetails';
+import useMovieReviews from '../../hooks/ForMovies/useMovieReview';
 import useBookmarkStatus from '../../hooks/useBookmarkStatus';
 
 import BackgroundLayers from './movieTemplates/BackgroundLayers';

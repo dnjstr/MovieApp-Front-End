@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SignUpInput from "./SignUpInput";
-import useSignUp from "../../../hooks/useSignUp";
+import useSignUp from "../../../hooks/ForSignIn-SignUp/useSignUp";
 
 const SignUpForm: React.FC = () => {
     const { formData, error, success, isLoading, handleChange, handleSubmit } = useSignUp();
