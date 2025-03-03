@@ -3,11 +3,7 @@ import Modal from "react-modal";
 import ThemeSelector from "./preferenceComponents/ThemeSelector";
 import ActionButtons from "./preferenceComponents/ActionButtons";
 import { useThemePreferences } from "../../hooks/useThemePreferences";
-
-interface PreferencesModalProps {
-    isOpen: boolean;
-    onRequestClose: () => void;
-}
+import { PreferencesModalProps } from "../../types/types";
 
 const PreferencesModal: React.FC<PreferencesModalProps> = ({ isOpen, onRequestClose }) => {
     const { tempBgColor, tempTextColor, handleThemeChange, handleSaveChanges } = useThemePreferences(isOpen);

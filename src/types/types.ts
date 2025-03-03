@@ -69,3 +69,22 @@ export interface PlayPauseButtonProps {
   isPlaying: boolean;
   onClick: () => void;
 }
+
+
+// Preference
+export interface ActionButtonsProps {
+    onClose: () => void;
+    onSave: () => void;
+    tempTextColor: string;
+}
+
+export interface ThemeSelectorProps {
+    tempBgColor: string;
+    tempTextColor: string;
+    onChange: (value: string) => void;
+}
+
+export interface PreferencesModalProps {
+    isOpen: boolean;
+    onRequestClose: () => void;
+}

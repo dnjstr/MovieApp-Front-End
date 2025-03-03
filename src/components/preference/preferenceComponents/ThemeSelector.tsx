@@ -1,10 +1,5 @@
 import React from "react";
-
-interface ThemeSelectorProps {
-    tempBgColor: string;
-    tempTextColor: string;
-    onChange: (value: string) => void;
-}
+import { ThemeSelectorProps } from "../../../types/types";
 
 const ThemeSelector: React.FC<ThemeSelectorProps> = ({ tempBgColor, tempTextColor, onChange }) => (
     <div className="flex items-center justify-between">

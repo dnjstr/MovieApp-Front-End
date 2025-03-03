@@ -1,10 +1,5 @@
 import React from "react";
-
-interface ActionButtonsProps {
-    onClose: () => void;
-    onSave: () => void;
-    tempTextColor: string;
-}
+import { ActionButtonsProps } from "../../../types/types";
 
 const ActionButtons: React.FC<ActionButtonsProps> = ({ onClose, onSave, tempTextColor }) => (
     <div className="flex space-x-4 mt-8">
