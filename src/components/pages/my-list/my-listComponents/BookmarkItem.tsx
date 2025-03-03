@@ -1,12 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Bookmark } from "../../../../types/types";
-
-interface BookmarkItemProps {
-  bookmark: Bookmark;
-  textColor: string;
-  onRemove: (movieId: number) => void;
-}
+import { BookmarkItemProps } from "../../../../types/types";  
 
 const BookmarkItem: React.FC<BookmarkItemProps> = ({ bookmark, textColor, onRemove }) => {
   const navigate = useNavigate();

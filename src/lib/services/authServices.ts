@@ -2,10 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { LoginFormData, loginUser } from "../../hooks/ForSignIn-SignUp/useSignIn";
-
-interface LocationState {
-    identifier?: string;
-}
+import { LocationState } from "../../types/types";
 
 const useSignIn = () => {
     const location = useLocation();

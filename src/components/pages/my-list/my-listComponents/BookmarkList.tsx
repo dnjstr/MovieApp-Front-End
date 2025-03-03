@@ -1,12 +1,6 @@
 import React from "react";
 import BookmarkItem from "./BookmarkItem";
-import { Bookmark } from "../../../../types/types";
-
-interface BookmarkListProps {
-  bookmarks: Bookmark[];
-  textColor: string;
-  onRemove: (movieId: number) => void;
-}
+import { BookmarkListProps } from "../../../../types/types";
 
 const BookmarkList: React.FC<BookmarkListProps> = ({ bookmarks, textColor, onRemove }) => {
   return (

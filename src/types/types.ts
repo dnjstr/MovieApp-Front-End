@@ -48,6 +48,19 @@ export interface Bookmark {
     movie_director: string;
 }
 
+export interface BookmarkItemProps {
+    bookmark: Bookmark;
+    textColor: string;
+    onRemove: (movieId: number) => void;
+}
+
+export interface BookmarkListProps {
+  bookmarks: Bookmark[];
+  textColor: string;
+  onRemove: (movieId: number) => void;
+}
+
+
 
 // Movie Player
 export interface MoviePlayerProps {
@@ -125,4 +138,10 @@ export interface AuthContextType {
   loading: boolean;
   login: (token: string, role: "admin" | "user", user: User) => void;
   logout: () => void;
+}
+
+
+// Services
+export interface LocationState {
+    identifier?: string;
 }
