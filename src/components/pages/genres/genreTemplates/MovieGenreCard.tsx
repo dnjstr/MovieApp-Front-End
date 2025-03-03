@@ -2,7 +2,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Movie } from "../../../../types/types";
 
-
 interface MovieCardProps {
     movie: Movie;
     setSelectedMovie: (movie: Movie) => void;

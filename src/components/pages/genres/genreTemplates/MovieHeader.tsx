@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import { Movie } from "../../../../types/types";
 
-
 interface MovieHeaderProps {
     selectedMovie: Movie | null;
     navigate: (path: string) => void;

@@ -6,7 +6,6 @@ import { fetchMoviesByGenre } from "../../../hooks/ForMovies/useMovieGenre";
 import MovieHeader from "./genreTemplates/MovieHeader";
 import MovieGenreCard from "./genreTemplates/MovieGenreCard";
 
-
 const GenreMovies: React.FC = () => {
     const { genreName } = useParams<{ genreName: string }>();
     const navigate = useNavigate();

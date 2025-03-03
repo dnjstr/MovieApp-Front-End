@@ -3,7 +3,6 @@ import { usePreferences } from '../../../context/PreferencesContext';
 import { useGenres } from "../../../hooks/useGenre";
 import GenreItem from "./genreTemplates/genreItem";
 
-
 const Genre: React.FC = () => {
     const textColor = usePreferences();
     const { data: genreCounts = [], isLoading, isError } = useGenres();

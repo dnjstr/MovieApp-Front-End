@@ -1,11 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { getGenreIcon } from "../../../../utils/genreIcons";
-
-interface GenreItemProps {
-    genre: string;
-    count: number;
-}
+import { GenreItemProps } from "../../../../types/types";
 
 const GenreItem: React.FC<GenreItemProps> = ({ genre, count }) => {
     const { icon, color } = getGenreIcon(genre);

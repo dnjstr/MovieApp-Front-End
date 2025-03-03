@@ -1,3 +1,5 @@
+
+// Review
 export interface Review {
     id: number; 
     user: { fullName: string };
@@ -6,6 +8,8 @@ export interface Review {
     created_at: string;
 }
 
+
+// Movie
 export interface Movie {
     id: number;
     title: string;
@@ -19,6 +23,15 @@ export interface Movie {
     average_rating: number;
 }
 
+
+// Genre
+export interface GenreItemProps {
+    genre: string;
+    count: number;
+}
+
+
+// Movie Player
 export interface MoviePlayerProps {
   videoUrl: string;
   onClose: () => void;
