@@ -7,6 +7,10 @@ interface Movie {
   poster_image: string;
   release_date: string;
   description: string;
+  genre: string;
+  main_cast: string;
+  director: string;
+  duration: string;
   average_rating: number;
 }
 

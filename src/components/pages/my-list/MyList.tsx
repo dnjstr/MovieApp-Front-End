@@ -43,7 +43,7 @@ const MyList: React.FC = () => {
   }
 
   return (
-    <div className={`flex flex-col txtlg:justify-between ${textColor} px-6 mb-[152px] ${myList.length === 0 ? "h-[636px] pt-10" : ""}`}>
+    <div className={`flex flex-col txtlg:justify-between ${textColor} px-6 mb-[130px] ${myList.length === 0 ? "h-[636px] pt-10" : ""}`}>
       <div className="flex flex-col txtlg:flex-row txtlg:justify-around txtlg:items-center gap-10 mt-10 txtlg:mt-24">
         <div className="text-center lg:flex-1">
           <h1 className="text-5xl font-bold mb-2 mt-12">My List</h1>
