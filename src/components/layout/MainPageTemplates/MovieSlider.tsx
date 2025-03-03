@@ -3,11 +3,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
 import { useNavigate } from "react-router-dom";
-
-interface MovieSliderProps {
-  slides: any[];
-  setCurrentVideo: (video: string | null) => void;
-}
+import { MovieSliderProps } from "../../../types/types";
 
 const MovieSlider: React.FC<MovieSliderProps> = ({ slides, setCurrentVideo }) => {
   const navigate = useNavigate();

@@ -1,4 +1,11 @@
 
+// MainPage
+export interface MovieSliderProps {
+    slides: any[];
+    setCurrentVideo: (video: string | null) => void;
+}  
+
+
 // Search
 export interface SearchResultsProps {
     results: Movie[];
