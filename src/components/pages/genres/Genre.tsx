@@ -8,7 +8,7 @@ const Genre: React.FC = () => {
     const { data: genreCounts = [], isLoading, isError } = useGenres();
 
     if (isLoading) {
-        return <div className="text-gray-500 text-center my-[382px]">Loading...</div>;
+        return <div className="text-white text-center my-[382px]">Loading...</div>;
     }
 
     if (isError) {
