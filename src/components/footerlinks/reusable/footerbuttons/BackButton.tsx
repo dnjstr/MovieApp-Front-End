@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaArrowLeft } from 'react-icons/fa';
 
 interface BackButtonProps {
   className?: string;
@@ -10,12 +11,14 @@ const BackButton: React.FC<BackButtonProps> = ({ className = "" }) => {
   };
 
   return (
-    <button
-      className={`bg-orange-600 border border-gray-900 text-white py-2 px-4 rounded-md hover:bg-orange-800 mb-8 ${className}`}
-      onClick={handleGoBack}
-    >
-      Back
-    </button>
+    <div className="group inline-block">
+        <button
+            onClick={handleGoBack}
+            className={`flex items-center gap-2 px-4 py-2 bg-gradient-to-b from-orange-600 to-orange-900 text-white group-hover:from-orange-700 group-hover:to-orange-950 rounded transition duration-300 shadow-md mb-4 ${className}`}
+        >
+            <FaArrowLeft /> Back
+        </button>
+    </div>
   );
 };
 
