@@ -47,7 +47,7 @@ const MovieDetailsSection: React.FC<MovieDetailsSectionProps> = ({ movie, isAuth
                             onClick={toggleBookmark}
                             className={`bookmark-btn-hover mt-4 px-4 py-2 rounded flex items-center gap-2 transition duration-300 
                             ${isAuthenticated 
-                                ? 'bg-gradient-to-b from-orange-600 to-orange-900 text-white group-hover:from-orange-700 group-hover:to-orange-950' 
+                                ? 'bg-gradient-to-b from-orange-600 to-orange-900 text-white group-hover:from-orange-700 group-hover:to-orange-950 shadow-md' 
                                 : 'bg-gray-600 text-white cursor-not-allowed'}`}
                             disabled={!isAuthenticated}
                         >
@@ -59,7 +59,7 @@ const MovieDetailsSection: React.FC<MovieDetailsSectionProps> = ({ movie, isAuth
                             onClick={isReleased ? handleWatchNow : undefined}
                             className={`mt-4 px-4 py-2 rounded transition duration-300 
                             ${isReleased 
-                                ? 'bg-gradient-to-b from-green-600 to-green-900 text-white group-hover:from-green-700 group-hover:to-green-950' 
+                                ? 'bg-gradient-to-b from-green-600 to-green-900 text-white group-hover:from-green-700 group-hover:to-green-950 shadow-md' 
                                 : 'bg-gray-600 text-gray-400 cursor-not-allowed'}`}
                             disabled={!isReleased}
                         >

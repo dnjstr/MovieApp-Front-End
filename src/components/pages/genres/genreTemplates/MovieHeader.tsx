@@ -32,12 +32,14 @@ const MovieHeader: React.FC<MovieHeaderProps> = ({ selectedMovie, navigate }) =>
                 zIndex: 1,
             }}
         >
-            <button
-                onClick={() => navigate("/genre")}
-                className="absolute top-4 left-4 flex items-center gap-2 px-4 py-2 text-white rounded bg-gradient-to-b from-orange-600 to-orange-900 transition duration-300"
-            >
-                <FaArrowLeft /> Back
-            </button>
+            <div className="group inline-block">
+                <button
+                    onClick={() => navigate("/genre")}
+                    className="absolute top-4 left-4 flex items-center gap-2 px-4 py-2 bg-gradient-to-b from-orange-600 to-orange-900 text-white group-hover:from-orange-700 group-hover:to-orange-950 rounded transition duration-300 shadow-md"
+                >
+                    <FaArrowLeft /> Back
+                </button>
+            </div>
 
             <div className="px-6 text-white flex flex-col h-[100px]">
                 <p className="text-3xl font-bold">{selectedMovie?.title}</p>
