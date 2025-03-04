@@ -13,12 +13,6 @@ const MyList: React.FC = () => {
   const userToken = localStorage.getItem("token") || "";
   const { data: myList = [], isLoading, isError, refetch } = useMyList(userToken);
 
-  React.useEffect(() => {
-    refetch();
-  }, [refetch]);
-
-  const removeMutation = useRemoveFromMyList(userToken);
-
   if (!userToken) {
     return (
       <div className={`flex flex-col justify-center items-center h-[788px] ${textColor}`}>
@@ -33,6 +27,14 @@ const MyList: React.FC = () => {
       </div>
     );
   }
+
+  React.useEffect(() => {
+    refetch();
+  }, [refetch]);
+
+  const removeMutation = useRemoveFromMyList(userToken);
+
+
 
   if (isLoading) {
     return <p className="text-white flex justify-center my-[382px]">Loading...</p>;
