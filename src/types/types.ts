@@ -42,6 +42,7 @@ export interface Movie {
 export interface GenreItemProps {
     genre: string;
     count: number;
+    index: number;
 }
 
 export interface MovieCardProps {
