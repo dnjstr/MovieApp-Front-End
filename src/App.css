@@ -382,6 +382,25 @@ body {
     opacity: 0.7;
 }
 
+.message-container {
+    position: relative;
+    width: 100%;
+}
+
+.fixed-message {
+    position: absolute;
+    top: -5px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%; 
+    max-width: 350px; 
+    z-index: 1000;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
 /*Genre Item Color*/
 .genre-orange {
     background-color: #353133;

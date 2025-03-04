@@ -7,10 +7,12 @@ const SignInForm: React.FC = () => {
 
     return (
         <>
-            {error && <div className="text-red-700 text-center text-xs font-bold">{error}</div>}
-            {success && <div className="text-green-500 text-center text-xs">{success}</div>}
+            <div className="message-container mb-7">
+                {error && <div className="fixed-message text-red-600 text-center text-xs font-bold">{error}</div>}
+                {success && <div className="fixed-message text-green-500 text-center text-xs">{success}</div>}
+            </div>
 
-            <form onSubmit={handleSubmit} className="mt-4">
+            <form onSubmit={handleSubmit}>
                 <input
                     type="text"
                     name="identifier"

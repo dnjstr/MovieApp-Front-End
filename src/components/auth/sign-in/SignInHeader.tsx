@@ -29,7 +29,7 @@ const SignInHeader: React.FC = () => {
                 </svg>
             </Link>
             <h2 className="text-2xl text-white font-bold text-center mb-4">Sign In</h2>
-            <p className="text-center text-[15px] text-gray-200 mb-7">
+            <p className="text-center text-[15px] text-gray-200">
                 Welcome back! <span className="text-gray-200 ms-1 text-[13px]">Please sign in to continue.</span>
             </p>
         </>
