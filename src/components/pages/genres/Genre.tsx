@@ -1,5 +1,5 @@
-import React from 'react';
-import { usePreferences } from '../../../context/PreferencesContext';
+import React from "react";
+import { usePreferences } from "../../../context/PreferencesContext";
 import { useGenres } from "../../../hooks/useGenre";
 import GenreItem from "./genreTemplates/genreItem";
 
@@ -28,8 +28,8 @@ const Genre: React.FC = () => {
                 </div>
                 <div className="bookmark-scroll-bar overflow-y-scroll h-[530px] px-5">
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-                        {genreCounts.map((genre) => (
-                            genre.genre && <GenreItem key={genre.genre} genre={genre.genre.trim()} count={genre.count} />
+                        {genreCounts.map((genre, index) => (
+                            genre.genre && <GenreItem key={genre.genre} genre={genre.genre.trim()} count={genre.count} index={index} />
                         ))}
                     </div>
                 </div>

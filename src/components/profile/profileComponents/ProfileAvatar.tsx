@@ -1,5 +1,5 @@
 import React from "react";
-import Avatar from "../../assets/Avatar";
+import Avatar from "../../../assets/Avatar";
 
 interface ProfileAvatarProps {
     name: string;
