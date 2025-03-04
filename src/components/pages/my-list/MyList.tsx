@@ -34,8 +34,6 @@ const MyList: React.FC = () => {
 
   const removeMutation = useRemoveFromMyList(userToken);
 
-
-
   if (isLoading) {
     return <p className="text-white flex justify-center my-[382px]">Loading...</p>;
   }
