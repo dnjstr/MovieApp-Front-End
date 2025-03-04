@@ -19,20 +19,21 @@ const ReviewsSection: React.FC<ReviewsSectionProps> = ({ reviews, newReview, set
         <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-bold">Reviews</h2>
             {isReleased ? (
-                <button
-                    onClick={() => {
-                        setShowReviewForm(true);
-                        setIsButtonDisabled(true); 
-                    }}
-                    className={`px-4 py-2 rounded-md ${
-                        isAuthenticated && !isButtonDisabled
-                            ? 'bg-gradient-to-b from-orange-600 to-orange-900'
-                            : 'bg-gray-600 cursor-not-allowed'
-                    }`}
-                    disabled={!isAuthenticated || isButtonDisabled}
-                >
-                    Add Review
-                </button>
+                <div className="group inline-block">
+                    <button
+                        onClick={() => {
+                            setShowReviewForm(true);
+                            setIsButtonDisabled(true);
+                        }}
+                        className={`px-4 py-2 rounded-md transition duration-300 
+                        ${isAuthenticated && !isButtonDisabled 
+                            ? 'bg-gradient-to-b from-orange-600 to-orange-900 text-white group-hover:from-orange-700 group-hover:to-orange-950' 
+                            : 'bg-gray-600 text-gray-400 cursor-not-allowed'}`}
+                        disabled={!isAuthenticated || isButtonDisabled}
+                    >
+                        Add Review
+                    </button>
+                </div>
             ) : (
                 <span className="text-gray-400">Coming Soon - Reviews Unavailable</span>
             )}
@@ -65,12 +66,14 @@ const ReviewsSection: React.FC<ReviewsSectionProps> = ({ reviews, newReview, set
                     />
                 </div>
                 <div className="flex gap-2">
-                    <button
-                        type="submit"
-                        className="px-4 py-2 bg-gradient-to-b from-orange-600 to-orange-900 rounded"
-                    >
-                        Submit Review
-                    </button>
+                    <div className='group inline-block'>
+                        <button
+                            type="submit"
+                            className="px-4 py-2 bg-gradient-to-b from-orange-600 to-orange-900 text-white group-hover:from-orange-700 group-hover:to-orange-950 rounded"
+                        >
+                            Submit Review
+                        </button>
+                    </div>
                     <button
                         type="button"
                         onClick={() => {
