@@ -11,10 +11,9 @@ import SearchBar from './NavbarTemplates/SearchBar';
 import ProfileDropdown from './NavbarTemplates/ProfileDropdown';
 import MobileMenu from './NavbarTemplates/MobileMenu';
 
-// Add interface definitions for the hook returns to ensure proper typing
 interface SearchHookReturn {
   searchQuery: string;
-  searchResults: any[]; // Use proper type from your app if available
+  searchResults: any[]; 
   showResults: boolean;
   searchContainerRef: React.RefObject<HTMLDivElement>;
   handleSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
