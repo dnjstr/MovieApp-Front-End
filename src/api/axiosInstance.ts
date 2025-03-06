@@ -1,7 +1,9 @@
 import axios from "axios";
 
+const { VITE_BACK_END_BASE_URL } = import.meta.env;
+
 const axiosInstance = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_API_BASE_URL || "http://54.252.243.166/api",
+    baseURL: VITE_BACK_END_BASE_URL,
     timeout: 10000,
     headers: {
         "Content-Type": "application/json",
