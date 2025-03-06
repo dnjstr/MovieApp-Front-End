@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const { VITE_BACK_END_BASE_URL } = import.meta.env;
+const BACK_END_BASE_URL  = import.meta.env.VITE_BACK_END_BASE_URL;
 
 const axiosInstance = axios.create({
-    baseURL: VITE_BACK_END_BASE_URL,
+    baseURL: BACK_END_BASE_URL,
     timeout: 10000,
     headers: {
         "Content-Type": "application/json",
