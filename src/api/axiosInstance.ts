@@ -1,7 +1,9 @@
 import axios from "axios";
 
+const BACK_END_BASE_URL  = import.meta.env.VITE_BACK_END_BASE_URL;
+
 const axiosInstance = axios.create({
-    baseURL: "http://54.252.243.166/api",
+    baseURL: BACK_END_BASE_URL,
     timeout: 10000,
     headers: {
         "Content-Type": "application/json",
