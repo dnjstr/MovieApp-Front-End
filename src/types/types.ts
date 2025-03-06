@@ -1,9 +1,18 @@
 
 // MainPage
+export interface MovieSlide {
+    id: number;
+    title: string;
+    description: string;
+    poster_image: string;
+    video: string;
+    release_date: string;
+}
+
 export interface MovieSliderProps {
-    slides: any[];
+    slides: MovieSlide[];
     setCurrentVideo: (video: string | null) => void;
-}  
+}
 
 
 // Search

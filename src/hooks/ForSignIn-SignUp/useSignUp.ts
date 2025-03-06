@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../api/axiosInstance";
 
 interface SignUpFormData {
     fullName: string;
@@ -38,22 +39,14 @@ const useSignUp = () => {
         }
 
         try {
-            const response = await fetch("http://127.0.0.1:8000/api/register/", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData),
-            });
-
-            const data = await response.json();
-
-            if (!response.ok) throw new Error(data.error || "Registration failed");
+            await axiosInstance.post("/register/", formData); // No need to store response
 
             setSuccess("Account created successfully! Redirecting...");
             setFormData({ fullName: "", email: "", phoneNumber: "", password: "" });
 
             setTimeout(() => navigate("/sign-in", { state: { identifier: formData.email || formData.phoneNumber } }), 2000);
-        } catch (err) {
-            setError("Failed to connect to server");
+        } catch (error: any) {
+            setError(error.response?.data?.error || "Failed to connect to server");
         } finally {
             setIsLoading(false);
         }

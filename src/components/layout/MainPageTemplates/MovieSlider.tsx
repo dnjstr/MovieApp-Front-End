@@ -7,7 +7,10 @@ import { MovieSliderProps } from "../../../types/types";
 
 const MovieSlider: React.FC<MovieSliderProps> = ({ slides, setCurrentVideo }) => {
   const navigate = useNavigate();
-  const duplicatedSlides = slides.length > 1 ? slides : [...slides, ...slides];
+  const duplicatedSlides = slides && slides.length > 1 ? slides : [...(slides || []), ...(slides || [])];
+
+  console.log("Slides:", slides, "Duplicated Slides:", duplicatedSlides);
+
 
   return (
     <Swiper
